@@ -1,0 +1,22 @@
+name: On commit => execute test workflow
+
+on: push
+
+jobs:
+  php-unit-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+
+      - name: Install dependencies
+        run: composer update
+
+      - name: Dump autoload classes
+        run: composer dump-autoload -o
+
+      - name: Execute tests
+        run: vendor/phpunit/phpunit/phpunit -c php/phpunit.xml
