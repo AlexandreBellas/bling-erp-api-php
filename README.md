@@ -1,7 +1,10 @@
+- [Versão em JS/TS](https://github.com/AlexandreBellas/bling-erp-api-js/README.md)
+- Versão em C# (em breve)
+
 # Bling ERP API - PHP
 
 Pacote de integração com a [API v3 do ERP Bling](https://developer.bling.com.br)
-para PHP 8.2+. O mais completo existente.
+para PHP 8.2+. O mais completo existente (e se não é, será).
 
 Atualizado com a versão `v291` da API ([veja o registro de alterações](https://developer.bling.com.br/changelogs#2024-01-31)).
 
@@ -75,7 +78,7 @@ Nem todas as entidades do Bling estão permitidas para interação. As atuais s�
 
 Para listar seus produtos, basta executar:
 
-```js
+```php
 use AleBatistella\BlingErpApi\Bling;
 
 $apiKey = "sua_api_key";
@@ -83,7 +86,7 @@ $blingConnection = new Bling($apiKey);
 
 $products = $blingConnection->produtos->get();
 
-dd($products);
+var_dump($products);
 ```
 
 ## Executando os testes do projeto
@@ -91,5 +94,10 @@ dd($products);
 Faça o clone do projeto, instale as dependências e execute:
 
 ```bash
-vendor/phpunit/phpunit/phpunit -c php/phpunit.xml
+vendor/phpunit/phpunit/phpunit -c phpunit.xml
 ```
+
+## Contribuindo ao projeto
+
+- [Guia de contribuição](https://github.com/AlexandreBellas/bling-erp-api-php/blob/v5.0.0/CONTRIBUTING.md)
+- [Apoie o projeto](https://www.paypal.com/donate/?hosted_button_id=G2NJKZ5MUMKBS)
