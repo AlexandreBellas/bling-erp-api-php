@@ -39,9 +39,12 @@ class BorderosTest extends TestCase
     $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
     $repository->expects($this->once())
       ->method('destroy')
-      ->with($this->callback(fn(RequestOptions $requestOptions) =>
-        $requestOptions->endpoint === "borderos/$idBordero"
-      ))
+      ->with(
+        $this->callback(
+          fn(RequestOptions $requestOptions) =>
+          $requestOptions->endpoint === "borderos/$idBordero"
+        )
+      )
       ->willReturn($this->buildResponse(status: 200, body: null));
 
     /** @var IBlingRepository $repository */
@@ -62,9 +65,12 @@ class BorderosTest extends TestCase
     $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
     $repository->expects($this->once())
       ->method('show')
-      ->with($this->callback(fn(RequestOptions $requestOptions) =>
-        $requestOptions->endpoint === "borderos/$idBordero"
-      ))
+      ->with(
+        $this->callback(
+          fn(RequestOptions $requestOptions) =>
+          $requestOptions->endpoint === "borderos/$idBordero"
+        )
+      )
       ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($findResponse)));
 
     /** @var IBlingRepository $repository */

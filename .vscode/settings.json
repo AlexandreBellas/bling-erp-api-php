@@ -1,0 +1,29 @@
+{
+  /********************
+   *  Material icons  *
+   ********************/
+  "material-icon-theme.folders.associations": {
+    "Exceptions": "error",
+    "@shared": "shared",
+    "DTO": "Mappings",
+    "Request": "Global"
+  },
+  "material-icon-theme.files.associations": {
+    "*.spec.php": "test-ts"
+  },
+
+  /**************
+   *  PHP unit  *
+   **************/
+  "phpunit.phpunit": "vendor/phpunit/phpunit/phpunit",
+
+  /************
+   *  cSpell  *
+   ************/
+  "cSpell.words": ["Bordero", "borderos", "Customizado", "Customizados"],
+
+  /***************
+   *  SonarLint  *
+   ***************/
+  "sonarlint.analysisExcludesStandalone": "{**/src/**/*, **/vendor/**/*}"
+}
