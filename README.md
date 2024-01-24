@@ -1,4 +1,4 @@
-- [Versão em JS/TS](https://github.com/AlexandreBellas/bling-erp-api-js/README.md)
+- [Versão em JS/TS](https://github.com/AlexandreBellas/bling-erp-api-js)
 - Versão em C# (em breve)
 
 # Bling ERP API - PHP
