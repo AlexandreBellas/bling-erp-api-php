@@ -3,6 +3,7 @@
 namespace AleBatistella\BlingErpApi;
 
 use AleBatistella\BlingErpApi\Entities\Borderos\Borderos;
+use AleBatistella\BlingErpApi\Entities\CamposCustomizados\CamposCustomizados;
 use AleBatistella\BlingErpApi\Entities\Shared\BaseEntity;
 use AleBatistella\BlingErpApi\Exceptions\BlingInternalException;
 use AleBatistella\BlingErpApi\Providers\IoC;
@@ -12,6 +13,7 @@ use AleBatistella\BlingErpApi\Repositories\IBlingRepository;
  * Módulo conector à API do Bling.
  *
  * @property Borderos $borderos
+ * @property CamposCustomizados $camposCustomizados
  */
 class Bling
 {
@@ -55,6 +57,7 @@ class Bling
   {
     return match ($name) {
       'borderos' => $this->getModule(Borderos::class),
+      'camposCustomizados' => $this->getModule(CamposCustomizados::class),
       default => throw new BlingInternalException("A entidade \"$name\" não existe.")
     };
   }

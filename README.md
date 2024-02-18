@@ -36,7 +36,7 @@ a partir do _endpoint_ `/token`. [Veja a referência](https://developer.bling.co
 Nem todas as entidades do Bling estão permitidas para interação. As atuais são:
 
 - [x] Borderos (`->borderos`)
-- [ ] Campos customizados (`->camposCustomizados`)
+- [x] Campos customizados (`->camposCustomizados`)
 - [ ] Categorias - Lojas (`->categoriasLojas`)
 - [ ] Categorias - Produtos (`->categoriasProdutos`)
 - [ ] Categorias - Receitas e Despesas (`->categoriasReceitasDespesas`)

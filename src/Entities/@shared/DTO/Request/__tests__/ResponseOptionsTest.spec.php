@@ -24,11 +24,11 @@ class ResponseOptionsTest extends TestCase
   {
     $expected = ResponseOptions::class;
 
-    $actual = new class (endpoint: fake()->word(),
+    $actual = new ResponseOptions(
+      endpoint: fake()->word(),
       method: fake()->word(),
       status: 200
-    ) extends ResponseOptions {
-    };
+    );
 
     $this->assertInstanceOf($expected, $actual);
   }
@@ -68,12 +68,12 @@ class ResponseOptionsTest extends TestCase
     }';
     $rawResponseArray = json_decode($rawResponse, true);
 
-    new class (endpoint: fake()->word(),
+    new ResponseOptions(
+      endpoint: fake()->word(),
       method: fake()->word(),
       status: 400,
-      body: new class ($rawResponseArray) extends Body { }
-    ) extends ResponseOptions {
-    };
+      body: new Body($rawResponseArray)
+    );
   }
 
   /**
@@ -88,11 +88,11 @@ class ResponseOptionsTest extends TestCase
     $this->expectException(BlingInternalException::class);
     $this->expectExceptionMessage("Não foi possível realizar a chamada HTTP: $method $endpoint");
 
-    new class (endpoint: $endpoint,
+    new ResponseOptions(
+      endpoint: $endpoint,
       method: $method,
       status: 400,
-      body: new class (['teste' => '123']) extends Body { }
-    ) extends ResponseOptions {
-    };
+      body: new Body(['teste' => '123'])
+    );
   }
 }

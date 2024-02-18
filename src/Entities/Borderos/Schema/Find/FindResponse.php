@@ -2,13 +2,13 @@
 
 namespace AleBatistella\BlingErpApi\Entities\Borderos\Schema\Find;
 
-use AleBatistella\BlingErpApi\Contracts\IResponseRootObject;
+use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseRootObject;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions;
 
 /**
  * Resposta da busca de borderôs.
  */
-readonly final class FindResponse implements IResponseRootObject
+readonly final class FindResponse extends BaseResponseRootObject
 {
   /**
    * Constrói o objeto.
@@ -25,26 +25,10 @@ readonly final class FindResponse implements IResponseRootObject
    */
   public static function fromResponse(ResponseOptions $response): static
   {
+    if (is_null($response->body)) {
+      static::throwForInconsistentResponseOptions($response);
+    }
+
     return self::from($response->body->content);
-  }
-
-  /**
-   * @inheritDoc
-   */
-  public static function from(array $attributes): static
-  {
-    return new self(
-      data: FindResponseData::from($attributes['data'])
-    );
-  }
-
-  /**
-   * @inheritDoc
-   */
-  public function toArray(): array
-  {
-    return [
-      'data' => $this->data->toArray(),
-    ];
   }
 }

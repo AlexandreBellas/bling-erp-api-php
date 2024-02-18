@@ -4,6 +4,7 @@ namespace Tests\Unit\AleBatistella\BlingErpApi;
 
 use AleBatistella\BlingErpApi\Bling;
 use AleBatistella\BlingErpApi\Entities\Borderos\Borderos;
+use AleBatistella\BlingErpApi\Entities\CamposCustomizados\CamposCustomizados;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -45,6 +46,20 @@ class BlingTest extends TestCase
     $expected = Borderos::class;
 
     $actual = $this->getInstance()->borderos;
+
+    $this->assertInstanceOf($expected, $actual);
+  }
+
+  /**
+   * Testa obter a entidade Campos Customizados.
+   *
+   * @return void
+   */
+  public function testShouldGetCamposCustomizadosCorrectly(): void
+  {
+    $expected = CamposCustomizados::class;
+
+    $actual = $this->getInstance()->camposCustomizados;
 
     $this->assertInstanceOf($expected, $actual);
   }
