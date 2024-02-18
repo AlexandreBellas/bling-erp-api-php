@@ -7,19 +7,26 @@ namespace AleBatistella\BlingErpApi\Entities\Shared\DTO\Request;
  */
 class RequestOptions
 {
+  public ?QueryParams $queryParams;
+  public ?Body $body;
+  public ?Headers $headers;
+
   /**
    * Constrói o objeto.
    *
    * @param string $endpoint
-   * @param ?QueryParams $queryParams
-   * @param ?Headers $headers
-   * @param ?Body $body
+   * @param QueryParams|array|null $queryParams
+   * @param Headers|array|null $headers
+   * @param Body|array|null $body
    */
   public function __construct(
     public string $endpoint,
-    public ?QueryParams $queryParams = null,
-    public ?Headers $headers = null,
-    public ?Body $body = null,
+    QueryParams|array|null $queryParams = null,
+    Headers|array|null $headers = null,
+    Body|array|null $body = null,
   ) {
+    $this->queryParams = is_array($queryParams) ? new QueryParams($queryParams) : $queryParams;
+    $this->headers = is_array($headers) ? new Headers($headers) : $headers;
+    $this->body = is_array($body) ? new Body($body) : $body;
   }
 }

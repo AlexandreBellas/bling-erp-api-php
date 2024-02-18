@@ -6,7 +6,7 @@
 Pacote de integração com a [API v3 do ERP Bling](https://developer.bling.com.br)
 para PHP 8.2+. O mais completo existente (e se não é, será).
 
-Atualizado com a versão `v291` da API ([veja o registro de alterações](https://developer.bling.com.br/changelogs#2024-01-31)).
+Atualizado com a versão `v294` da API ([veja o registro de alterações](https://developer.bling.com.br/changelogs#2024-02-15)).
 
 ## Instalação
 
@@ -36,7 +36,7 @@ a partir do _endpoint_ `/token`. [Veja a referência](https://developer.bling.co
 Nem todas as entidades do Bling estão permitidas para interação. As atuais são:
 
 - [x] Borderos (`->borderos`)
-- [ ] Campos customizados (`->camposCustomizados`)
+- [x] Campos customizados (`->camposCustomizados`)
 - [ ] Categorias - Lojas (`->categoriasLojas`)
 - [ ] Categorias - Produtos (`->categoriasProdutos`)
 - [ ] Categorias - Receitas e Despesas (`->categoriasReceitasDespesas`)

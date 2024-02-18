@@ -12,6 +12,13 @@
     "*.spec.php": "test-ts"
   },
 
+  /************
+   *  Editor  *
+   ************/
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "always"
+  },
+
   /**************
    *  PHP unit  *
    **************/
@@ -20,7 +27,16 @@
   /************
    *  cSpell  *
    ************/
-  "cSpell.words": ["Bordero", "borderos", "Customizado", "Customizados"],
+  "cSpell.words": [
+    "Agrupador",
+    "agrupadores",
+    "Bordero",
+    "borderô",
+    "borderos",
+    "borderôs",
+    "Customizado",
+    "Customizados"
+  ],
 
   /***************
    *  SonarLint  *

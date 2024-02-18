@@ -2,6 +2,7 @@
 
 namespace AleBatistella\BlingErpApi\Entities\Borderos;
 
+use AleBatistella\BlingErpApi\Entities\Borderos\Schema\Delete\DeleteResponse;
 use AleBatistella\BlingErpApi\Entities\Borderos\Schema\Find\FindResponse;
 use AleBatistella\BlingErpApi\Entities\Shared\BaseEntity;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\RequestOptions;
@@ -27,17 +28,19 @@ class Borderos extends BaseEntity
    */
   public function delete(int $idBordero): null
   {
-    $response = $this->repository->destroy(new RequestOptions(
-      endpoint: "borderos/$idBordero"
-    ));
+    $response = $this->repository->destroy(
+      new RequestOptions(
+        endpoint: "borderos/$idBordero"
+      )
+    );
 
-    return $response->body;
+    return DeleteResponse::fromResponse($response);
   }
 
   /**
    * Encontra um borderô.
    *
-   * @param params Parâmetros para a busca (somente o ID).
+   * @param int Parâmetros para a busca (somente o ID).
    *
    * @return FindResponse Os dados do borderô pesquisado.
    * @throws BlingApiException|BlingInternalException
@@ -46,9 +49,11 @@ class Borderos extends BaseEntity
    */
   public function find(int $idBordero): FindResponse
   {
-    $response = $this->repository->show(new RequestOptions(
-      endpoint: "borderos/$idBordero"
-    ));
+    $response = $this->repository->show(
+      new RequestOptions(
+        endpoint: "borderos/$idBordero"
+      )
+    );
 
     return FindResponse::fromResponse($response);
   }

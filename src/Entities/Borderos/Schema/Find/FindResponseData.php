@@ -2,13 +2,13 @@
 
 namespace AleBatistella\BlingErpApi\Entities\Borderos\Schema\Find;
 
-use AleBatistella\BlingErpApi\Contracts\IResponseObject;
+use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id;
 
 /**
  * Dados de resposta da busca de borderôs.
  */
-readonly final class FindResponseData implements IResponseObject
+readonly final class FindResponseData extends BaseResponseObject
 {
   /**
    * Constrói o objeto.
@@ -33,36 +33,10 @@ readonly final class FindResponseData implements IResponseObject
   /**
    * @inheritDoc
    */
-  public static function from(array $attributes): static
-  {
-    return new self(
-      id: $attributes['id'],
-      data: $attributes['data'],
-      historico: $attributes['historico'],
-      portador: Id::from($attributes['portador']),
-      categoria: Id::from($attributes['categoria']),
-      pagamentos: array_map(
-        fn(array $item): FindResponseDataPagamentos => FindResponseDataPagamentos::from($item),
-        $attributes['pagamentos']
-      ),
-    );
-  }
-
-  /**
-   * @inheritDoc
-   */
-  public function toArray(): array
+  protected static function fromRules(): array
   {
     return [
-      'id'         => $this->id,
-      'data'       => $this->data,
-      'historico'  => $this->historico,
-      'portador'   => $this->portador->toArray(),
-      'categoria'  => $this->categoria->toArray(),
-      'pagamentos' => array_map(
-        static fn(FindResponseDataPagamentos $response): array => $response->toArray(),
-        $this->pagamentos
-      ),
+      'pagamentos' => FindResponseDataPagamentos::class,
     ];
   }
 }

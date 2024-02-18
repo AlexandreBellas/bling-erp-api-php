@@ -28,24 +28,24 @@ trait TestResponseTrait
     ?Headers $headers = null,
     ?Body $body = null
   ): ResponseOptions {
-    return new class (endpoint: $endpoint ?? fake()->word(),
+    return new ResponseOptions(
+      endpoint: $endpoint ?? fake()->word(),
       method: $method ?? fake()->word(),
       status: $status ?? fake()->numberBetween(200, 500),
       headers: $headers,
       body: $body,
-    ) extends ResponseOptions {
-    };
+    );
   }
 
   /**
    * Gera um corpo de requisição.
    *
-   * @param array $content
+   * @param ?array $content
    *
    * @return Body
    */
-  private function buildBody(array $content): Body
+  private function buildBody(?array $content): ?Body
   {
-    return new class ($content) extends Body { };
+    return is_null($content) ? $content : new Body($content);
   }
 }

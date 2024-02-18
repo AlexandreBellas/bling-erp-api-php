@@ -83,12 +83,12 @@ class ErrorResponseTest extends TestCase
       }
     }';
     $rawResponseArray = json_decode($rawResponse, true);
-    $response = new class (endpoint: fake()->word(),
+    $response = new ResponseOptions(
+      endpoint: fake()->word(),
       method: fake()->word(),
       status: 200,
-      body: new class ($rawResponseArray) extends Body { },
-    ) extends ResponseOptions {
-    };
+      body: new Body($rawResponseArray),
+    );
     $expected = ErrorResponse::class;
 
     $actual = ErrorResponse::fromResponse($response);

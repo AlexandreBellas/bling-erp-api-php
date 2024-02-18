@@ -2,13 +2,13 @@
 
 namespace AleBatistella\BlingErpApi\Entities\Borderos\Schema\Find;
 
-use AleBatistella\BlingErpApi\Contracts\IResponseObject;
+use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id;
 
 /**
  * @internal
  */
-readonly final class FindResponseDataPagamentos implements IResponseObject
+readonly final class FindResponseDataPagamentos extends BaseResponseObject
 {
   /**
    * Constrói o objeto.
@@ -30,37 +30,5 @@ readonly final class FindResponseDataPagamentos implements IResponseObject
     public float $acrescimo,
     public float $tarifa,
   ) {
-  }
-
-  /**
-   * @inheritDoc
-   */
-  public static function from(array $attributes): static
-  {
-    return new self(
-      contato: Id::from($attributes['contato']),
-      numeroDocumento: $attributes['numeroDocumento'],
-      valorPago: $attributes['valorPago'],
-      juros: $attributes['juros'],
-      desconto: $attributes['desconto'],
-      acrescimo: $attributes['acrescimo'],
-      tarifa: $attributes['tarifa'],
-    );
-  }
-
-  /**
-   * @inheritDoc
-   */
-  public function toArray(): array
-  {
-    return [
-      'contato'         => $this->contato->toArray(),
-      'numeroDocumento' => $this->numeroDocumento,
-      'valorPago'       => $this->valorPago,
-      'juros'           => $this->juros,
-      'desconto'        => $this->desconto,
-      'acrescimo'       => $this->acrescimo,
-      'tarifa'          => $this->tarifa,
-    ];
   }
 }

@@ -9,7 +9,7 @@ use AleBatistella\BlingErpApi\Exceptions\BlingInternalException;
 /**
  * Dados da resposta de uma requisição.
  */
-abstract class ResponseOptions
+class ResponseOptions
 {
   /**
    * Constrói o objeto.
@@ -29,10 +29,16 @@ abstract class ResponseOptions
     if ($status >= 400) {
       try {
         $errorResponse = ErrorResponse::fromResponse($this);
-        throw new BlingApiException(rawResponse: $errorResponse, status: $status);
+
+        throw new BlingApiException(
+          rawResponse: $errorResponse,
+          status: $status
+        );
       } catch (\TypeError $e) {
         throw new BlingInternalException(
           message: "Não foi possível realizar a chamada HTTP: $method $endpoint",
+          responseHeaders: $headers,
+          responseBody: $body,
           code: $status,
           previous: $e
         );

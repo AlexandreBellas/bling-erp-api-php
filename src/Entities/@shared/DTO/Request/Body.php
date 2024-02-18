@@ -2,10 +2,12 @@
 
 namespace AleBatistella\BlingErpApi\Entities\Shared\DTO\Request;
 
+use AleBatistella\BlingErpApi\Exceptions\BlingInternalException;
+
 /**
  * Corpo da requisição.
  */
-class Body
+readonly class Body
 {
   /**
    * Constrói o objeto.
@@ -14,7 +16,7 @@ class Body
    *
    * @return self
    */
-  public function __construct(public readonly array $content)
+  public function __construct(public array $content)
   {
   }
 }

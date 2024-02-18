@@ -25,3 +25,15 @@ if (!function_exists('fake')) {
     return \Faker\Factory::create();
   }
 }
+
+if (!function_exists('objectToArray')) {
+  /**
+   * Converte um objeto em _array_.
+   *
+   * @return array
+   */
+  function objectToArray(object $obj): array
+  {
+    return json_decode(json_encode($obj), true);
+  }
+}
