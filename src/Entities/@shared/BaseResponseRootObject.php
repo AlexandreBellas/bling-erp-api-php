@@ -9,7 +9,7 @@ use AleBatistella\BlingErpApi\Exceptions\BlingInternalException;
 /**
  * Classe base para objetos raiz de retorno.
  */
-readonly abstract class BaseResponseRootObject extends BaseResponseObject implements IResponseRootObject
+readonly abstract class BaseResponseRootObject extends BaseResponseObject
 {
     /** 
      * @inheritDoc

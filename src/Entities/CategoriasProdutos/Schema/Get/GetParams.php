@@ -1,13 +1,13 @@
 <?php
 
-namespace AleBatistella\BlingErpApi\Entities\CamposCustomizados\Schema\FindByModule;
+namespace AleBatistella\BlingErpApi\Entities\CategoriasProdutos\Schema\Get;
 
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\QueryParams;
 
 /**
- * Parâmetros da busca de campos customizados por módulo.
+ * Parâmetros da busca de categorias de lojas virtuais vinculadas a de produtos.
  */
-readonly final class FindByModuleParams extends QueryParams
+readonly final class GetParams extends QueryParams
 {
     /**
      * Constrói o objeto.
@@ -17,7 +17,7 @@ readonly final class FindByModuleParams extends QueryParams
      */
     public function __construct(
         public ?int $pagina = null,
-        public ?int $limite = null
+        public ?int $limite = null,
     ) {
         parent::__construct(objectToArray($this));
     }

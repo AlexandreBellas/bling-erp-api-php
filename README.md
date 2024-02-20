@@ -37,8 +37,8 @@ Nem todas as entidades do Bling estão permitidas para interação. As atuais s�
 
 - [x] Borderos (`->borderos`)
 - [x] Campos customizados (`->camposCustomizados`)
-- [ ] Categorias - Lojas (`->categoriasLojas`)
-- [ ] Categorias - Produtos (`->categoriasProdutos`)
+- [x] Categorias - Lojas (`->categoriasLojas`)
+- [x] Categorias - Produtos (`->categoriasProdutos`)
 - [ ] Categorias - Receitas e Despesas (`->categoriasReceitasDespesas`)
 - [ ] Contas a Pagar (`->contasPagar`)
 - [ ] Contas a Receber (`->contasReceber`)
