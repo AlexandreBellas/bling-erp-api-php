@@ -7,6 +7,7 @@ use AleBatistella\BlingErpApi\Entities\Borderos\Borderos;
 use AleBatistella\BlingErpApi\Entities\CamposCustomizados\CamposCustomizados;
 use AleBatistella\BlingErpApi\Entities\CategoriasLojas\CategoriasLojas;
 use AleBatistella\BlingErpApi\Entities\CategoriasProdutos\CategoriasProdutos;
+use AleBatistella\BlingErpApi\Entities\CategoriasReceitasDespesas\CategoriasReceitasDespesas;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -90,6 +91,20 @@ class BlingTest extends TestCase
     $expected = CategoriasProdutos::class;
 
     $actual = $this->getInstance()->categoriasProdutos;
+
+    $this->assertInstanceOf($expected, $actual);
+  }
+
+  /**
+   * Testa obter a entidade Categorias - Receitas e Despesas.
+   *
+   * @return void
+   */
+  public function testShouldGetCategoriasReceitasDespesasCorrectly(): void
+  {
+    $expected = CategoriasReceitasDespesas::class;
+
+    $actual = $this->getInstance()->categoriasReceitasDespesas;
 
     $this->assertInstanceOf($expected, $actual);
   }

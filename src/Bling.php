@@ -6,6 +6,7 @@ use AleBatistella\BlingErpApi\Entities\Borderos\Borderos;
 use AleBatistella\BlingErpApi\Entities\CamposCustomizados\CamposCustomizados;
 use AleBatistella\BlingErpApi\Entities\CategoriasLojas\CategoriasLojas;
 use AleBatistella\BlingErpApi\Entities\CategoriasProdutos\CategoriasProdutos;
+use AleBatistella\BlingErpApi\Entities\CategoriasReceitasDespesas\CategoriasReceitasDespesas;
 use AleBatistella\BlingErpApi\Entities\Shared\BaseEntity;
 use AleBatistella\BlingErpApi\Exceptions\BlingInternalException;
 use AleBatistella\BlingErpApi\Providers\IoC;
@@ -18,6 +19,7 @@ use AleBatistella\BlingErpApi\Repositories\IBlingRepository;
  * @property CamposCustomizados $camposCustomizados
  * @property CategoriasLojas $categoriasLojas
  * @property CategoriasProdutos $categoriasProdutos
+ * @property CategoriasReceitasDespesas $categoriasReceitasDespesas
  */
 class Bling
 {
@@ -64,6 +66,7 @@ class Bling
       'camposCustomizados' => $this->getModule(CamposCustomizados::class),
       'categoriasLojas' => $this->getModule(CategoriasLojas::class),
       'categoriasProdutos' => $this->getModule(CategoriasProdutos::class),
+      'categoriasReceitasDespesas' => $this->getModule(CategoriasReceitasDespesas::class),
       default => throw new BlingInternalException("A entidade \"$name\" não existe.")
     };
   }
