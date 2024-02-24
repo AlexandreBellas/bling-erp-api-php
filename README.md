@@ -40,7 +40,7 @@ Nem todas as entidades do Bling estão permitidas para interação. As atuais s�
 - [x] Categorias - Lojas (`->categoriasLojas`)
 - [x] Categorias - Produtos (`->categoriasProdutos`)
 - [x] Categorias - Receitas e Despesas (`->categoriasReceitasDespesas`)
-- [ ] Contas a Pagar (`->contasPagar`)
+- [x] Contas a Pagar (`->contasPagar`)
 - [ ] Contas a Receber (`->contasReceber`)
 - [ ] Contas Contábeis (`->contasContabeis`)
 - [ ] Contatos (`->contatos`)

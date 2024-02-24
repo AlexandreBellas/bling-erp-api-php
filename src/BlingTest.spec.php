@@ -8,6 +8,7 @@ use AleBatistella\BlingErpApi\Entities\CamposCustomizados\CamposCustomizados;
 use AleBatistella\BlingErpApi\Entities\CategoriasLojas\CategoriasLojas;
 use AleBatistella\BlingErpApi\Entities\CategoriasProdutos\CategoriasProdutos;
 use AleBatistella\BlingErpApi\Entities\CategoriasReceitasDespesas\CategoriasReceitasDespesas;
+use AleBatistella\BlingErpApi\Entities\ContasPagar\ContasPagar;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -105,6 +106,20 @@ class BlingTest extends TestCase
     $expected = CategoriasReceitasDespesas::class;
 
     $actual = $this->getInstance()->categoriasReceitasDespesas;
+
+    $this->assertInstanceOf($expected, $actual);
+  }
+
+  /**
+   * Testa obter a entidade Contas a Pagar.
+   *
+   * @return void
+   */
+  public function testShouldGetContasPagarCorrectly(): void
+  {
+    $expected = ContasPagar::class;
+
+    $actual = $this->getInstance()->contasPagar;
 
     $this->assertInstanceOf($expected, $actual);
   }
