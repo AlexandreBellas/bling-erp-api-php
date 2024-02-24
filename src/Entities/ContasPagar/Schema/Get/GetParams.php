@@ -17,6 +17,8 @@ readonly final class GetParams extends QueryParams
     public string|null $dataPagamentoInicial;
     public string|null $dataPagamentoFinal;
 
+    public int|null $situacao;
+
     /**
      * Constrói o objeto.
      * 
@@ -28,7 +30,7 @@ readonly final class GetParams extends QueryParams
      * @param \DateTimeInterface|string|null $dataVencimentoFinal Data de vencimento final da conta a pagar
      * @param \DateTimeInterface|string|null $dataPagamentoInicial Data de pagamento inicial da conta
      * @param \DateTimeInterface|string|null $dataPagamentoFinal Data de pagamento final da conta
-     * @param ?Situacao $situacao
+     * @param Situacao|int|null $situacao
      * @param ?int $idContato ID do contato
      */
     public function __construct(
@@ -40,7 +42,7 @@ readonly final class GetParams extends QueryParams
         \DateTimeInterface|string|null $dataVencimentoFinal = null,
         \DateTimeInterface|string|null $dataPagamentoInicial = null,
         \DateTimeInterface|string|null $dataPagamentoFinal = null,
-        public ?Situacao $situacao = null,
+        Situacao|int|null $situacao = null,
         public ?int $idContato = null
     ) {
         $this->dataEmissaoInicial = $this->prepareStringOrDateParam($dataEmissaoInicial);
@@ -49,6 +51,8 @@ readonly final class GetParams extends QueryParams
         $this->dataVencimentoFinal = $this->prepareStringOrDateParam($dataVencimentoFinal);
         $this->dataPagamentoInicial = $this->prepareStringOrDateParam($dataPagamentoInicial);
         $this->dataPagamentoFinal = $this->prepareStringOrDateParam($dataPagamentoFinal);
+
+        $this->situacao = $situacao instanceof Situacao ? $situacao->value : $situacao;
 
         parent::__construct(objectToArray($this));
     }

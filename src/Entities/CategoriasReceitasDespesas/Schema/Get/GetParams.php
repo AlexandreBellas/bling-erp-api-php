@@ -11,6 +11,9 @@ use AleBatistella\BlingErpApi\Entities\CategoriasReceitasDespesas\Enum\Situacao;
  */
 readonly final class GetParams extends QueryParams
 {
+    public ?int $tipo;
+    public ?int $situacao;
+
     /**
      * Constrói o objeto.
      * 
@@ -22,9 +25,12 @@ readonly final class GetParams extends QueryParams
     public function __construct(
         public ?int $pagina = null,
         public ?int $limite = null,
-        public ?Tipo $tipo = null,
-        public ?Situacao $situacao = null,
+        ?Tipo $tipo = null,
+        ?Situacao $situacao = null,
     ) {
+        $this->tipo = $tipo instanceof Tipo ? $tipo->value : $tipo;
+        $this->situacao = $situacao instanceof Situacao ? $situacao->value : $situacao;
+
         parent::__construct(objectToArray($this));
     }
 }
