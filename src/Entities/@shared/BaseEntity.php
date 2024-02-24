@@ -17,24 +17,4 @@ abstract class BaseEntity
   public function __construct(protected IBlingRepository $repository)
   {
   }
-
-  /**
-   * Prepara um parâmetro de data para chamada do repositório.
-   *
-   * @param \DateTimeInterface|string|null $param Parâmetro do tipo `string`, `\DateTimeInterface` ou `null`
-   *
-   * @return string|null
-   */
-  protected function prepareStringOrDateParam(\DateTimeInterface|string|null $param): string|null
-  {
-    if (is_null($param)) {
-      return null;
-    }
-
-    if (gettype($param) === 'string') {
-      return $param;
-    }
-
-    return convertDateToString($param);
-  }
 }
