@@ -86,6 +86,28 @@ class ContasReceber extends BaseEntity
     }
 
     /**
+     * Obtém os boletos - Bling conta.
+     * 
+     * @param int $idContaReceber ID da conta a receber.
+     * 
+     * @return FindResponse
+     * @throws BlingApiException|BlingInternalException
+     * 
+     * @see https://developer.bling.com.br/referencia#/Contas%20a%20Receber/get_contas_receber_view_bankslips
+     */
+    public function getBankSlips(int $idContaReceber): FindResponse
+    {
+        $response = $this->repository->show(
+            new RequestOptions(
+                endpoint: "contas/receber/$idContaReceber",
+            )
+        );
+
+        return FindResponse::fromResponse($response);
+    }
+
+
+    /**
      * Cria uma conta a receber.
      * 
      * @param array $body Corpo da requisição.

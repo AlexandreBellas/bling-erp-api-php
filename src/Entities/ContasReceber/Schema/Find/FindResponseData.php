@@ -3,6 +3,10 @@
 namespace AleBatistella\BlingErpApi\Entities\ContasReceber\Schema\Find;
 
 use AleBatistella\BlingErpApi\Entities\ContasReceber\Enum\Situacao;
+use AleBatistella\BlingErpApi\Entities\ContasReceber\Schema\Shared\ContasReceberOcorrenciaUnicaDTO as Unica;
+use AleBatistella\BlingErpApi\Entities\ContasReceber\Schema\Shared\ContasReceberOcorrenciaParceladaDTO as Parcelada;
+use AleBatistella\BlingErpApi\Entities\ContasReceber\Schema\Shared\ContasReceberOcorrenciaDTO as Normal;
+use AleBatistella\BlingErpApi\Entities\ContasReceber\Schema\Shared\ContasReceberOcorrenciaSemanalDTO as Semanal;
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id;
 
@@ -27,6 +31,7 @@ readonly final class FindResponseData extends BaseResponseObject
      * @param ?Id $portador
      * @param ?Id $categoria
      * @param int[] $borderos
+     * @param Unica|Parcelada|Normal|Semanal|null $ocorrencia
      */
     public function __construct(
         public ?int $id,
@@ -45,9 +50,8 @@ readonly final class FindResponseData extends BaseResponseObject
         public ?Id $portador,
         public ?Id $categoria,
         public ?Id $vendedor,
-        public array $borderos
-        // tipar "$ocorrencia" para finalizar FIND
-        // falta create, update, download e bankslips
+        public array $borderos,
+        public Unica|Parcelada|Normal|Semanal|null $ocorrencia,
     ) {
     }
 }
