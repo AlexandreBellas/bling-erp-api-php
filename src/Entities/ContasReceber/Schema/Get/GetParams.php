@@ -38,9 +38,9 @@ readonly final class GetParams extends QueryParams
         \DateTimeInterface|string|null $dataInicial = null,
         \DateTimeInterface|string|null $dataFinal = null,
         public ?array $idsCategorias = null,
-        public ?int $idPortador,
-        public ?int $idVendedor,
-        public ?int $idFormaPagamento,
+        public ?int $idPortador = null,
+        public ?int $idVendedor = null,
+        public ?int $idFormaPagamento = null,
     ) {
         $this->situacoes = array_map(
             fn(Situacao|int|null $situacao) => $situacao instanceof Situacao ? $situacao->value : $situacao,
