@@ -4,20 +4,20 @@ namespace AleBatistella\BlingErpApi\Entities\ContasReceber\Schema\Update;
 
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseRootObject;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions;
+use AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id;
 
 /**
- * Resposta da alteração do vínculo de uma categoria da loja com a de produto
- * pelo ID.
+ * Resposta da alteração de uma conta a receber pelo ID.
  */
 readonly final class UpdateResponse extends BaseResponseRootObject
 {
     /**
      * Constrói o objeto.
      *
-     * @param int $id
+     * @param Id $data
      */
     public function __construct(
-        public int $id
+        public Id $data
     ) {
     }
 

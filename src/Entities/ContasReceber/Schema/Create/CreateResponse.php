@@ -4,19 +4,20 @@ namespace AleBatistella\BlingErpApi\Entities\ContasReceber\Schema\Create;
 
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseRootObject;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions;
+use AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id;
 
 /**
- * Resposta da criação de uma conta a pagar.
+ * Resposta da criação de uma conta a receber.
  */
 readonly final class CreateResponse extends BaseResponseRootObject
 {
     /**
      * Constrói o objeto.
      *
-     * @param int $id
+     * @param Id $data
      */
     public function __construct(
-        public int $id
+        public Id $data
     ) {
     }
 

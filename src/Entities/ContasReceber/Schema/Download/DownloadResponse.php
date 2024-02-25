@@ -7,7 +7,7 @@ use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id;
 
 /**
- * Resposta do recebimento de uma conta a pagar.
+ * Resposta do recebimento de uma conta a receber.
  */
 readonly final class DownloadResponse extends BaseResponseRootObject
 {

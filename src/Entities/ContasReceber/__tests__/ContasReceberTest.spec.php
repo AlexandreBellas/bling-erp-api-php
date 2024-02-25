@@ -3,11 +3,13 @@
 namespace Tests\Unit\AleBatistella\BlingErpApi\Entities\ContasReceber;
 
 use AleBatistella\BlingErpApi\Entities\ContasReceber\ContasReceber;
+use AleBatistella\BlingErpApi\Entities\ContasReceber\Schema\CancelBankSlips\CancelBankSlipsResponse;
 use AleBatistella\BlingErpApi\Entities\ContasReceber\Schema\Create\CreateResponse;
 use AleBatistella\BlingErpApi\Entities\ContasReceber\Schema\Find\FindResponse;
 use AleBatistella\BlingErpApi\Entities\ContasReceber\Schema\Get\GetResponse;
 use AleBatistella\BlingErpApi\Entities\ContasReceber\Schema\Update\UpdateResponse;
 use AleBatistella\BlingErpApi\Entities\ContasReceber\Schema\Download\DownloadResponse;
+use AleBatistella\BlingErpApi\Entities\ContasReceber\Schema\GetBankSlips\GetBankSlipsResponse;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\RequestOptions;
 use AleBatistella\BlingErpApi\Entities\Shared\TestResponseTrait;
 use AleBatistella\BlingErpApi\Repositories\IBlingRepository;
@@ -40,20 +42,20 @@ class ContasReceberTest extends TestCase
     public function testShouldDeleteSuccessfully(): void
     {
         $deleteResponse = json_decode(file_get_contents(__DIR__ . '/delete/response.json'), true);
-        $idContaPagar = fake()->randomNumber();
+        $idContaReceber = fake()->randomNumber();
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
             ->method('destroy')
             ->with(
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
-                    $requestOptions->endpoint === "contas/pagar/$idContaPagar"
+                    $requestOptions->endpoint === "contas/receber/$idContaReceber"
                 )
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($deleteResponse)));
 
         /** @var IBlingRepository $repository */
-        $response = $this->getInstance($repository)->delete($idContaPagar);
+        $response = $this->getInstance($repository)->delete($idContaReceber);
 
         $this->assertNull($response);
     }
@@ -72,7 +74,7 @@ class ContasReceberTest extends TestCase
             ->with(
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
-                    $requestOptions->endpoint === "contas/pagar"
+                    $requestOptions->endpoint === "contas/receber"
                     && is_null($requestOptions->queryParams)
                 )
             )
@@ -92,7 +94,7 @@ class ContasReceberTest extends TestCase
      */
     public function testShouldFindSuccessfully(): void
     {
-        $idContaPagar = fake()->randomNumber();
+        $idContaReceber = fake()->randomNumber();
         $findResponse = json_decode(file_get_contents(__DIR__ . '/find/response.json'), true);
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
@@ -100,16 +102,43 @@ class ContasReceberTest extends TestCase
             ->with(
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
-                    $requestOptions->endpoint === "contas/pagar/$idContaPagar"
+                    $requestOptions->endpoint === "contas/receber/$idContaReceber"
                 )
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($findResponse)));
 
         /** @var IBlingRepository $repository */
-        $response = $this->getInstance($repository)->find($idContaPagar);
+        $response = $this->getInstance($repository)->find($idContaReceber);
 
         $this->assertInstanceOf(FindResponse::class, $response);
         $this->assertEquals($findResponse, $response->toArray());
+    }
+
+    /**
+     * Testa a visualização de boletos.
+     *
+     * @return void
+     */
+    public function testShouldGetBankSlipsSuccessfully(): void
+    {
+        $idContaReceber = fake()->randomNumber();
+        $getBankSlipsResponse = json_decode(file_get_contents(__DIR__ . '/get-bank-slips/response.json'), true);
+        $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
+        $repository->expects($this->once())
+            ->method('index')
+            ->with(
+                $this->callback(
+                    fn(RequestOptions $requestOptions) =>
+                    $requestOptions->endpoint === "contas/receber/view/bankslips"
+                )
+            )
+            ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($getBankSlipsResponse)));
+
+        /** @var IBlingRepository $repository */
+        $response = $this->getInstance($repository)->getBankSlips($idContaReceber);
+
+        $this->assertInstanceOf(GetBankSlipsResponse::class, $response);
+        $this->assertEquals($getBankSlipsResponse, $response->toArray());
     }
 
     /**
@@ -127,7 +156,7 @@ class ContasReceberTest extends TestCase
             ->with(
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
-                    $requestOptions->endpoint === "contas/pagar"
+                    $requestOptions->endpoint === "contas/receber"
                 )
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($createResponse)));
@@ -146,7 +175,7 @@ class ContasReceberTest extends TestCase
      */
     public function testShouldDownloadSuccessfully(): void
     {
-        $idContaPagar = fake()->randomNumber();
+        $idContaReceber = fake()->randomNumber();
         $downloadBody = json_decode(file_get_contents(__DIR__ . '/download/request.json'), true);
         $downloadResponse = json_decode(file_get_contents(__DIR__ . '/download/response.json'), true);
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
@@ -155,16 +184,42 @@ class ContasReceberTest extends TestCase
             ->with(
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
-                    $requestOptions->endpoint === "contas/pagar/$idContaPagar/baixar"
+                    $requestOptions->endpoint === "contas/receber/$idContaReceber/baixar"
                 )
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($downloadResponse)));
 
         /** @var IBlingRepository $repository */
-        $response = $this->getInstance($repository)->download($idContaPagar, $downloadBody);
+        $response = $this->getInstance($repository)->download($idContaReceber, $downloadBody);
 
         $this->assertInstanceOf(DownloadResponse::class, $response);
         $this->assertEquals($downloadResponse, $response->toArray());
+    }
+
+    /**
+     * Testa o cancelamento de boletos.
+     *
+     * @return void
+     */
+    public function testShouldCancelBankSlipsSuccessfully(): void
+    {
+        $cancelBankSlipsBody = json_decode(file_get_contents(__DIR__ . '/cancel-bank-slips/request.json'), true);
+        $cancelBankSlipsResponse = json_decode(file_get_contents(__DIR__ . '/cancel-bank-slips/response.json'), true);
+        $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
+        $repository->expects($this->once())
+            ->method('store')
+            ->with(
+                $this->callback(
+                    fn(RequestOptions $requestOptions) =>
+                    $requestOptions->endpoint === "contas/receber/cancel/bankslips"
+                )
+            )
+            ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($cancelBankSlipsResponse)));
+
+        /** @var IBlingRepository $repository */
+        $response = $this->getInstance($repository)->cancelBankSlips($cancelBankSlipsBody);
+
+        $this->assertNull($response);
     }
 
     /**
@@ -174,7 +229,7 @@ class ContasReceberTest extends TestCase
      */
     public function testShouldUpdateSuccessfully(): void
     {
-        $idContaPagar = fake()->randomNumber();
+        $idContaReceber = fake()->randomNumber();
         $updateBody = json_decode(file_get_contents(__DIR__ . '/update/request.json'), true);
         $updateResponse = json_decode(file_get_contents(__DIR__ . '/update/response.json'), true);
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
@@ -183,13 +238,13 @@ class ContasReceberTest extends TestCase
             ->with(
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
-                    $requestOptions->endpoint === "contas/pagar/$idContaPagar"
+                    $requestOptions->endpoint === "contas/receber/$idContaReceber"
                 )
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($updateResponse)));
 
         /** @var IBlingRepository $repository */
-        $response = $this->getInstance($repository)->update($idContaPagar, $updateBody);
+        $response = $this->getInstance($repository)->update($idContaReceber, $updateBody);
 
         $this->assertInstanceOf(UpdateResponse::class, $response);
         $this->assertEquals($updateResponse, $response->toArray());
