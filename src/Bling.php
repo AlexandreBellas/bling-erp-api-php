@@ -7,7 +7,9 @@ use AleBatistella\BlingErpApi\Entities\CamposCustomizados\CamposCustomizados;
 use AleBatistella\BlingErpApi\Entities\CategoriasLojas\CategoriasLojas;
 use AleBatistella\BlingErpApi\Entities\CategoriasProdutos\CategoriasProdutos;
 use AleBatistella\BlingErpApi\Entities\CategoriasReceitasDespesas\CategoriasReceitasDespesas;
+use AleBatistella\BlingErpApi\Entities\ContasContabeis\ContasContabeis;
 use AleBatistella\BlingErpApi\Entities\ContasPagar\ContasPagar;
+use AleBatistella\BlingErpApi\Entities\ContasReceber\ContasReceber;
 use AleBatistella\BlingErpApi\Entities\Shared\BaseEntity;
 use AleBatistella\BlingErpApi\Exceptions\BlingInternalException;
 use AleBatistella\BlingErpApi\Providers\IoC;
@@ -22,6 +24,8 @@ use AleBatistella\BlingErpApi\Repositories\IBlingRepository;
  * @property CategoriasProdutos $categoriasProdutos
  * @property CategoriasReceitasDespesas $categoriasReceitasDespesas
  * @property ContasPagar $contasPagar
+ * @property ContasReceber $contasReceber
+ * @property ContasContabeis $contasContabeis
  */
 class Bling
 {
@@ -70,6 +74,8 @@ class Bling
       'categoriasProdutos' => $this->getModule(CategoriasProdutos::class),
       'categoriasReceitasDespesas' => $this->getModule(CategoriasReceitasDespesas::class),
       'contasPagar' => $this->getModule(ContasPagar::class),
+      'contasReceber' => $this->getModule(ContasReceber::class),
+      'contasContabeis' => $this->getModule(ContasContabeis::class),
       default => throw new BlingInternalException("A entidade \"$name\" não existe.")
     };
   }
