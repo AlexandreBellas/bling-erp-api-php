@@ -3,6 +3,8 @@
 namespace AleBatistella\BlingErpApi\Entities\Shared;
 
 use AleBatistella\BlingErpApi\Contracts\IResponseObject;
+use AleBatistella\BlingErpApi\Exceptions\BlingInternalException;
+use AleBatistella\BlingErpApi\Exceptions\BlingParseResponsePayloadException;
 
 /**
  * Classe base para objetos de retorno.
@@ -36,44 +38,101 @@ readonly abstract class BaseResponseObject implements IResponseObject
     {
         $reflectionProperties = (new \ReflectionClass(static::class))->getProperties();
         $properties = [];
-        $fromRules = static::fromRules();
 
         foreach ($reflectionProperties as $reflectionProperty) {
             $propName = $reflectionProperty->getName();
             $propType = $reflectionProperty->getType();
-            $propTypeName = $propType->getName();
-            $allowsNull = $reflectionProperty->getType()->allowsNull();
 
-            // Null check
-            if ($allowsNull && !array_key_exists($propName, $attributes)) {
-                $properties[$propName] = null;
+            if (is_null($propType)) {
+                $classSignature = static::class;
+                throw new BlingInternalException(
+                    "Type of \"$propName\" from class \"{$classSignature}\" cannot be undefined."
+                );
+            }
+
+            if ($propType instanceof \ReflectionNamedType) {
+                $properties[$propName] = static::parseProperty(
+                    propType: $propType,
+                    propName: $propName,
+                    attributes: $attributes
+                );
+
                 continue;
             }
 
-            if (in_array($propTypeName, ['int', 'string', 'bool', 'float'])) {
-                $properties[$propName] = $attributes[$propName];
-            } else if ($propTypeName === 'array') {
-                if (array_key_exists($propName, $fromRules)) {
-                    // Array de objetos
-                    $properties[$propName] = array_map(
-                        fn(array $item) => $fromRules[$propName]::from($item),
-                        $attributes[$propName]
-                    );
-
-                    continue;
+            $success = false;
+            foreach ($propType->getTypes() as $propTypeFromUnion) {
+                if ($success) {
+                    break;
                 }
 
-                // Array de primitivos
-                $properties[$propName] = $attributes[$propName];
-            } else {
-                // Objeto
-                /** @var IResponseObject */
-                $objSignature = $propTypeName;
-                $properties[$propName] = $objSignature::from($attributes[$propName]);
+                try {
+                    $properties[$propName] = static::parseProperty(
+                        propType: $propTypeFromUnion,
+                        propName: $propName,
+                        attributes: $attributes
+                    );
+
+                    $success = true;
+                } catch (BlingParseResponsePayloadException) {
+                    //
+                }
+            }
+
+            if (!$success) {
+                $classSignature = static::class;
+                throw new BlingInternalException(
+                    "Could not parse union type \"$propName\" of class \"$classSignature\"."
+                );
             }
         }
 
         return new static(...$properties);
+    }
+
+    /**
+     * Processa um atributo.
+     *
+     * @param \ReflectionNamedType $propType
+     * @param string $propName
+     * @param array $attributes
+     *
+     * @return mixed
+     */
+    private static function parseProperty(
+        \ReflectionNamedType $propType,
+        string $propName,
+        array $attributes
+    ): mixed {
+        $propTypeName = $propType->getName();
+        $allowsNull = $propType->allowsNull();
+        $fromRules = static::fromRules();
+
+        // Null check
+        if ($allowsNull && !array_key_exists($propName, $attributes)) {
+            return null;
+        }
+
+        if (in_array($propTypeName, ['int', 'string', 'bool', 'float'])) {
+            // Primitivo
+            return $attributes[$propName];
+        }
+
+        if ($propTypeName === 'array') {
+            return array_key_exists($propName, $fromRules)
+                ? // Array de objetos 
+                array_map(
+                    fn(array $item) => $fromRules[$propName]::from($item),
+                    $attributes[$propName]
+                )
+                : // Array de primitivos
+                $attributes[$propName];
+        }
+
+        // Objeto
+        /** @var IResponseObject */
+        $objSignature = $propTypeName;
+        return $objSignature::from($attributes[$propName]);
     }
 
     /**
