@@ -45,7 +45,7 @@ Nem todas as entidades do Bling estão permitidas para interação. As atuais s�
 - [x] Contas Contábeis (`->contasContabeis`)
 - [x] Contatos (`->contatos`)
 - [x] Contatos - Tipos (`->contatosTipos`)
-- [ ] Contratos (`->contratos`)
+- [x] Contratos (`->contratos`)
 - [ ] Depósitos (`->depositos`)
 - [ ] Empresas (`->empresas`)
 - [ ] Estoques (`->estoques`)

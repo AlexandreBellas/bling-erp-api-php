@@ -13,6 +13,7 @@ use AleBatistella\BlingErpApi\Entities\ContasPagar\ContasPagar;
 use AleBatistella\BlingErpApi\Entities\ContasReceber\ContasReceber;
 use AleBatistella\BlingErpApi\Entities\Contatos\Contatos;
 use AleBatistella\BlingErpApi\Entities\ContatosTipos\ContatosTipos;
+use AleBatistella\BlingErpApi\Entities\Contratos\Contratos;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -180,6 +181,20 @@ class BlingTest extends TestCase
     $expected = ContatosTipos::class;
 
     $actual = $this->getInstance()->contatosTipos;
+
+    $this->assertInstanceOf($expected, $actual);
+  }
+
+  /**
+   * Testa obter a entidade Contatos.
+   *
+   * @return void
+   */
+  public function testShouldGetContratosCorrectly(): void
+  {
+    $expected = Contratos::class;
+
+    $actual = $this->getInstance()->contratos;
 
     $this->assertInstanceOf($expected, $actual);
   }
