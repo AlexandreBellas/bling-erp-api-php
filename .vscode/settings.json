@@ -16,7 +16,7 @@
    *  Editor  *
    ************/
   "editor.codeActionsOnSave": {
-    "source.organizeImports": "always"
+    "source.organizeImports": "never"
   },
 
   /**************
@@ -41,6 +41,8 @@
     "contábil",
     "Customizado",
     "Customizados",
+    "gênero",
+    "ICMS",
     "Parcelada"
   ],
 

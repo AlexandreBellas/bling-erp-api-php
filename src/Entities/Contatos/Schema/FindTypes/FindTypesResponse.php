@@ -1,23 +1,33 @@
 <?php
 
-namespace AleBatistella\BlingErpApi\Entities\ContasReceber\Schema\Find;
+namespace AleBatistella\BlingErpApi\Entities\Contatos\Schema\FindTypes;
 
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseRootObject;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions;
 
 /**
- * Resposta da busca de uma conta a receber pelo ID.
+ * Resposta da busca de tipos de contato de um contato pelo ID.
  */
-readonly final class FindResponse extends BaseResponseRootObject
+readonly final class FindTypesResponse extends BaseResponseRootObject
 {
     /**
      * Constrói o objeto.
      *
-     * @param FindResponseData $data
+     * @param FindTypesResponseData[] $data
      */
     public function __construct(
-        public FindResponseData $data
+        public array $data
     ) {
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected static function fromRules(): array
+    {
+        return [
+            'data' => FindTypesResponseData::class,
+        ];
     }
 
     /**

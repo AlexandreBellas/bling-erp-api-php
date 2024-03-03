@@ -1,22 +1,23 @@
 <?php
 
-namespace AleBatistella\BlingErpApi\Entities\ContasReceber\Schema\Find;
+namespace AleBatistella\BlingErpApi\Entities\Contatos\Schema\Create;
 
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseRootObject;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions;
+use AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id;
 
 /**
- * Resposta da busca de uma conta a receber pelo ID.
+ * Resposta da criação de um contato.
  */
-readonly final class FindResponse extends BaseResponseRootObject
+readonly final class CreateResponse extends BaseResponseRootObject
 {
     /**
      * Constrói o objeto.
      *
-     * @param FindResponseData $data
+     * @param Id $data
      */
     public function __construct(
-        public FindResponseData $data
+        public Id $data
     ) {
     }
 

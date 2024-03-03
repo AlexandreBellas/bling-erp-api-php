@@ -10,7 +10,7 @@ readonly class QueryParams
   /**
    * Constrói o objeto.
    *
-   * @param array<string, string|int|\DateTimeInterface> $content
+   * @param array<string, string|string[]|int|int[]|\DateTimeInterface> $content
    */
   public function __construct(public array $content)
   {

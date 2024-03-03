@@ -1,23 +1,33 @@
 <?php
 
-namespace AleBatistella\BlingErpApi\Entities\ContasReceber\Schema\Find;
+namespace AleBatistella\BlingErpApi\Entities\Contatos\Schema\Get;
 
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseRootObject;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions;
 
 /**
- * Resposta da busca de uma conta a receber pelo ID.
+ * Resposta da listagem de contatos paginados.
  */
-readonly final class FindResponse extends BaseResponseRootObject
+readonly final class GetResponse extends BaseResponseRootObject
 {
     /**
      * Constrói o objeto.
      *
-     * @param FindResponseData $data
+     * @param GetResponseData[] $data
      */
     public function __construct(
-        public FindResponseData $data
+        public array $data
     ) {
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected static function fromRules(): array
+    {
+        return [
+            'data' => GetResponseData::class,
+        ];
     }
 
     /**
