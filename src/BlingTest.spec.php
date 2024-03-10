@@ -17,6 +17,7 @@ use AleBatistella\BlingErpApi\Entities\Contratos\Contratos;
 use AleBatistella\BlingErpApi\Entities\Depositos\Depositos;
 use AleBatistella\BlingErpApi\Entities\Empresas\Empresas;
 use AleBatistella\BlingErpApi\Entities\Estoques\Estoques;
+use AleBatistella\BlingErpApi\Entities\FormasDePagamentos\FormasDePagamentos;
 use AleBatistella\BlingErpApi\Exceptions\BlingInternalException;
 use PHPUnit\Framework\TestCase;
 
@@ -255,6 +256,20 @@ class BlingTest extends TestCase
     $expected = Estoques::class;
 
     $actual = $this->getInstance()->estoques;
+
+    $this->assertInstanceOf($expected, $actual);
+  }
+
+  /**
+   * Testa obter a entidade Formas de Pagamentos.
+   *
+   * @return void
+   */
+  public function testShouldGetFormasDePagamentosCorrectly(): void
+  {
+    $expected = FormasDePagamentos::class;
+
+    $actual = $this->getInstance()->formasDePagamentos;
 
     $this->assertInstanceOf($expected, $actual);
   }
