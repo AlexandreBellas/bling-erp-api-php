@@ -15,6 +15,7 @@ use AleBatistella\BlingErpApi\Entities\Contatos\Contatos;
 use AleBatistella\BlingErpApi\Entities\ContatosTipos\ContatosTipos;
 use AleBatistella\BlingErpApi\Entities\Contratos\Contratos;
 use AleBatistella\BlingErpApi\Entities\Depositos\Depositos;
+use AleBatistella\BlingErpApi\Entities\Empresas\Empresas;
 use AleBatistella\BlingErpApi\Exceptions\BlingInternalException;
 use PHPUnit\Framework\TestCase;
 
@@ -225,6 +226,20 @@ class BlingTest extends TestCase
     $expected = Depositos::class;
 
     $actual = $this->getInstance()->depositos;
+
+    $this->assertInstanceOf($expected, $actual);
+  }
+
+  /**
+   * Testa obter a entidade Empresas.
+   *
+   * @return void
+   */
+  public function testShouldGetEmpresasCorrectly(): void
+  {
+    $expected = Empresas::class;
+
+    $actual = $this->getInstance()->empresas;
 
     $this->assertInstanceOf($expected, $actual);
   }
