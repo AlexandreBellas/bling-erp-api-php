@@ -14,7 +14,7 @@ readonly abstract class BaseResponseObject implements IResponseObject
     /**
      * Construtor base.
      */
-    public function __construct(...$args)
+    private function __construct(...$args)
     {
     }
 

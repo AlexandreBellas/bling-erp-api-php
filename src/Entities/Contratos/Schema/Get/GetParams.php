@@ -6,7 +6,7 @@ use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\QueryParams;
 use AleBatistella\BlingErpApi\Entities\Contratos\Enum\Situacao;
 
 /**
- * Parâmetros da busca de contatos paginados.
+ * Parâmetros da busca de contratos paginados.
  */
 readonly final class GetParams extends QueryParams
 {

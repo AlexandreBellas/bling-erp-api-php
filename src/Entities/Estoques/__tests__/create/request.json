@@ -1,0 +1,13 @@
+{
+    "produto": {
+        "id": 12345678
+    },
+    "deposito": {
+        "id": 12345678
+    },
+    "operacao": "B",
+    "preco": 1500.75,
+    "custo": 1500.75,
+    "quantidade": 50.75,
+    "observacoes": "Observações de estoque"
+}

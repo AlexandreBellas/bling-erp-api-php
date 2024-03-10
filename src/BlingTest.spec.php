@@ -14,6 +14,12 @@ use AleBatistella\BlingErpApi\Entities\ContasReceber\ContasReceber;
 use AleBatistella\BlingErpApi\Entities\Contatos\Contatos;
 use AleBatistella\BlingErpApi\Entities\ContatosTipos\ContatosTipos;
 use AleBatistella\BlingErpApi\Entities\Contratos\Contratos;
+use AleBatistella\BlingErpApi\Entities\Depositos\Depositos;
+use AleBatistella\BlingErpApi\Entities\Empresas\Empresas;
+use AleBatistella\BlingErpApi\Entities\Estoques\Estoques;
+use AleBatistella\BlingErpApi\Entities\FormasDePagamentos\FormasDePagamentos;
+use AleBatistella\BlingErpApi\Entities\Homologacao\Homologacao;
+use AleBatistella\BlingErpApi\Exceptions\BlingInternalException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -43,6 +49,20 @@ class BlingTest extends TestCase
     $actual = $this->getInstance();
 
     $this->assertInstanceOf($expected, $actual);
+  }
+
+  /**
+   * Testa obter uma entidade inexistente.
+   *
+   * @return void
+   */
+  public function testShouldNotGetInexistentEntity(): void
+  {
+    $signature = fake()->word();
+    $this->expectException(BlingInternalException::class);
+    $this->expectExceptionMessage("A entidade \"$signature\" não existe.");
+
+    $this->getInstance()->$signature;
   }
 
   /**
@@ -195,6 +215,76 @@ class BlingTest extends TestCase
     $expected = Contratos::class;
 
     $actual = $this->getInstance()->contratos;
+
+    $this->assertInstanceOf($expected, $actual);
+  }
+
+  /**
+   * Testa obter a entidade Depósitos.
+   *
+   * @return void
+   */
+  public function testShouldGetDepositosCorrectly(): void
+  {
+    $expected = Depositos::class;
+
+    $actual = $this->getInstance()->depositos;
+
+    $this->assertInstanceOf($expected, $actual);
+  }
+
+  /**
+   * Testa obter a entidade Empresas.
+   *
+   * @return void
+   */
+  public function testShouldGetEmpresasCorrectly(): void
+  {
+    $expected = Empresas::class;
+
+    $actual = $this->getInstance()->empresas;
+
+    $this->assertInstanceOf($expected, $actual);
+  }
+
+  /**
+   * Testa obter a entidade Estoques.
+   *
+   * @return void
+   */
+  public function testShouldGetEstoquesCorrectly(): void
+  {
+    $expected = Estoques::class;
+
+    $actual = $this->getInstance()->estoques;
+
+    $this->assertInstanceOf($expected, $actual);
+  }
+
+  /**
+   * Testa obter a entidade Formas de Pagamentos.
+   *
+   * @return void
+   */
+  public function testShouldGetFormasDePagamentosCorrectly(): void
+  {
+    $expected = FormasDePagamentos::class;
+
+    $actual = $this->getInstance()->formasDePagamentos;
+
+    $this->assertInstanceOf($expected, $actual);
+  }
+
+  /**
+   * Testa obter a entidade Homologação.
+   *
+   * @return void
+   */
+  public function testShouldGetHomologacaoCorrectly(): void
+  {
+    $expected = Homologacao::class;
+
+    $actual = $this->getInstance()->homologacao;
 
     $this->assertInstanceOf($expected, $actual);
   }

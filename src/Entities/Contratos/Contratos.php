@@ -23,7 +23,7 @@ class Contratos extends BaseEntity
     /**
      * Remove um contrato.
      *
-     * @param int $idContrato ID do contato.
+     * @param int $idContrato ID do contrato
      *
      * @return null
      * @throws BlingApiException|BlingInternalException
@@ -44,7 +44,7 @@ class Contratos extends BaseEntity
     /**
      * Obtém contratos.
      *
-     * @param GetParams|array|null $params Parâmetros para a busca.
+     * @param GetParams|array|null $params Parâmetros para a busca
      * 
      * @return GetResponse
      * @throws BlingApiException|BlingInternalException
@@ -66,7 +66,7 @@ class Contratos extends BaseEntity
     /**
      * Obtém um contrato.
      * 
-     * @param int $idContrato ID do contato.
+     * @param int $idContrato ID do contrato
      * 
      * @return FindResponse
      * @throws BlingApiException|BlingInternalException
@@ -87,7 +87,7 @@ class Contratos extends BaseEntity
     /**
      * Cria um contrato.
      * 
-     * @param array $body Corpo da requisição.
+     * @param array $body Corpo da requisição
      * 
      * @return CreateResponse
      * @throws BlingApiException|BlingInternalException
@@ -109,8 +109,8 @@ class Contratos extends BaseEntity
     /**
      * Altera um contrato.
      * 
-     * @param int $idContrato ID da categoria de produto
-     * @param array $body Corpo da requisição.
+     * @param int $idContrato ID do contrato
+     * @param array $body Corpo da requisição
      * 
      * @return UpdateResponse
      * @throws BlingApiException|BlingInternalException

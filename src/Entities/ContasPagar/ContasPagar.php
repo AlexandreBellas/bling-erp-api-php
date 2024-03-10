@@ -24,7 +24,7 @@ class ContasPagar extends BaseEntity
     /**
      * Remove uma conta a pagar.
      *
-     * @param int $idContaPagar ID da conta a pagar.
+     * @param int $idContaPagar ID da conta a pagar
      *
      * @return null
      * @throws BlingApiException|BlingInternalException
@@ -45,7 +45,7 @@ class ContasPagar extends BaseEntity
     /**
      * Obtém contas a pagar.
      *
-     * @param GetParams|array|null $params Parâmetros para a busca.
+     * @param GetParams|array|null $params Parâmetros para a busca
      * 
      * @return GetResponse
      * @throws BlingApiException|BlingInternalException
@@ -67,7 +67,7 @@ class ContasPagar extends BaseEntity
     /**
      * Obtém uma conta a pagar.
      * 
-     * @param int $idContaPagar ID da conta a pagar.
+     * @param int $idContaPagar ID da conta a pagar
      * 
      * @return FindResponse
      * @throws BlingApiException|BlingInternalException
@@ -88,7 +88,7 @@ class ContasPagar extends BaseEntity
     /**
      * Cria uma conta a pagar.
      * 
-     * @param array $body Corpo da requisição.
+     * @param array $body Corpo da requisição
      * 
      * @return CreateResponse
      * @throws BlingApiException|BlingInternalException
@@ -110,8 +110,8 @@ class ContasPagar extends BaseEntity
     /**
      * Cria o recebimento de uma conta a pagar.
      * 
-     * @param int $idContaPagar ID da conta a pagar.
-     * @param array $body Corpo da requisição.
+     * @param int $idContaPagar ID da conta a pagar
+     * @param array $body Corpo da requisição
      * 
      * @return DownloadResponse
      * @throws BlingApiException|BlingInternalException
@@ -133,8 +133,8 @@ class ContasPagar extends BaseEntity
     /**
      * Atualiza uma conta a pagar.
      * 
-     * @param int $idContaPagar ID da categoria de produto
-     * @param array $body Corpo da requisição.
+     * @param int $idContaPagar ID da conta a pagar
+     * @param array $body Corpo da requisição
      * 
      * @return UpdateResponse
      * @throws BlingApiException|BlingInternalException

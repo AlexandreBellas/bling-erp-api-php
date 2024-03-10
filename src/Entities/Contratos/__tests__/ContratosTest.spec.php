@@ -39,20 +39,20 @@ class ContratosTest extends TestCase
     public function testShouldDeleteSuccessfully(): void
     {
         $deleteResponse = json_decode(file_get_contents(__DIR__ . '/delete/response.json'), true);
-        $idContato = fake()->randomNumber();
+        $idContrato = fake()->randomNumber();
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
             ->method('destroy')
             ->with(
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
-                    $requestOptions->endpoint === "contratos/$idContato"
+                    $requestOptions->endpoint === "contratos/$idContrato"
                 )
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($deleteResponse)));
 
         /** @var IBlingRepository $repository */
-        $response = $this->getInstance($repository)->delete($idContato);
+        $response = $this->getInstance($repository)->delete($idContrato);
 
         $this->assertNull($response);
     }
@@ -91,7 +91,7 @@ class ContratosTest extends TestCase
      */
     public function testShouldFindSuccessfully(): void
     {
-        $idContato = fake()->randomNumber();
+        $idContrato = fake()->randomNumber();
         $findResponse = json_decode(file_get_contents(__DIR__ . '/find/response.json'), true);
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
@@ -99,13 +99,13 @@ class ContratosTest extends TestCase
             ->with(
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
-                    $requestOptions->endpoint === "contratos/$idContato"
+                    $requestOptions->endpoint === "contratos/$idContrato"
                 )
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($findResponse)));
 
         /** @var IBlingRepository $repository */
-        $response = $this->getInstance($repository)->find($idContato);
+        $response = $this->getInstance($repository)->find($idContrato);
 
         $this->assertInstanceOf(FindResponse::class, $response);
         $this->assertEquals($findResponse, $response->toArray());
@@ -145,7 +145,7 @@ class ContratosTest extends TestCase
      */
     public function testShouldUpdateSuccessfully(): void
     {
-        $idContato = fake()->randomNumber();
+        $idContrato = fake()->randomNumber();
         $updateBody = json_decode(file_get_contents(__DIR__ . '/update/request.json'), true);
         $updateResponse = json_decode(file_get_contents(__DIR__ . '/update/response.json'), true);
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
@@ -154,13 +154,13 @@ class ContratosTest extends TestCase
             ->with(
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
-                    $requestOptions->endpoint === "contratos/$idContato"
+                    $requestOptions->endpoint === "contratos/$idContrato"
                 )
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($updateResponse)));
 
         /** @var IBlingRepository $repository */
-        $response = $this->getInstance($repository)->update($idContato, $updateBody);
+        $response = $this->getInstance($repository)->update($idContrato, $updateBody);
 
 
         $this->assertInstanceOf(UpdateResponse::class, $response);

@@ -1,0 +1,11 @@
+{
+  "data": [
+    {
+      "id": 12345678,
+      "descricao": "Depósito Geral",
+      "situacao": 1,
+      "padrao": false,
+      "desconsiderarSaldo": false
+    }
+  ]
+}

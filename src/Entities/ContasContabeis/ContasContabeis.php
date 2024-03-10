@@ -20,7 +20,7 @@ class ContasContabeis extends BaseEntity
     /**
      * Obtém contas contábeis.
      *
-     * @param GetParams|array|null $params Parâmetros para a busca.
+     * @param GetParams|array|null $params Parâmetros para a busca
      * 
      * @return GetResponse
      * @throws BlingApiException|BlingInternalException
@@ -42,7 +42,7 @@ class ContasContabeis extends BaseEntity
     /**
      * Obtém uma conta contábil.
      * 
-     * @param int $idContaContabil ID da conta contábil.
+     * @param int $idContaContabil ID da conta contábil
      * 
      * @return FindResponse
      * @throws BlingApiException|BlingInternalException

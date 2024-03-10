@@ -20,7 +20,7 @@ class CategoriasReceitasDespesas extends BaseEntity
     /**
      * Obtém categorias de receitas e despesas
      *
-     * @param GetParams|array|null $params Parâmetros para a busca.
+     * @param GetParams|array|null $params Parâmetros para a busca
      * 
      * @return GetResponse
      * @throws BlingApiException|BlingInternalException
@@ -42,7 +42,7 @@ class CategoriasReceitasDespesas extends BaseEntity
     /**
      * Obtém uma categoria de receita e despesa.
      * 
-     * @param int $idCategoria ID da categoria de receita e despesa.
+     * @param int $idCategoria ID da categoria de receita e despesa
      * 
      * @return FindResponse
      * @throws BlingApiException|BlingInternalException
