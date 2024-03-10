@@ -14,6 +14,8 @@ use AleBatistella\BlingErpApi\Entities\ContasReceber\ContasReceber;
 use AleBatistella\BlingErpApi\Entities\Contatos\Contatos;
 use AleBatistella\BlingErpApi\Entities\ContatosTipos\ContatosTipos;
 use AleBatistella\BlingErpApi\Entities\Contratos\Contratos;
+use AleBatistella\BlingErpApi\Entities\Depositos\Depositos;
+use AleBatistella\BlingErpApi\Exceptions\BlingInternalException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -43,6 +45,20 @@ class BlingTest extends TestCase
     $actual = $this->getInstance();
 
     $this->assertInstanceOf($expected, $actual);
+  }
+
+  /**
+   * Testa obter uma entidade inexistente.
+   *
+   * @return void
+   */
+  public function testShouldNotGetInexistentEntity(): void
+  {
+    $signature = fake()->word();
+    $this->expectException(BlingInternalException::class);
+    $this->expectExceptionMessage("A entidade \"$signature\" não existe.");
+
+    $this->getInstance()->$signature;
   }
 
   /**
@@ -195,6 +211,20 @@ class BlingTest extends TestCase
     $expected = Contratos::class;
 
     $actual = $this->getInstance()->contratos;
+
+    $this->assertInstanceOf($expected, $actual);
+  }
+
+  /**
+   * Testa obter a entidade Depósitos.
+   *
+   * @return void
+   */
+  public function testShouldGetDepositosCorrectly(): void
+  {
+    $expected = Depositos::class;
+
+    $actual = $this->getInstance()->depositos;
 
     $this->assertInstanceOf($expected, $actual);
   }

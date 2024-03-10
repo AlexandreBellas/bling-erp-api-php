@@ -1,21 +1,21 @@
 <?php
 
-namespace Tests\Unit\AleBatistella\BlingErpApi\Entities\Contratos;
+namespace Tests\Unit\AleBatistella\BlingErpApi\Entities\Depositos;
 
-use AleBatistella\BlingErpApi\Entities\Contratos\Contratos;
-use AleBatistella\BlingErpApi\Entities\Contratos\Schema\Create\CreateResponse;
-use AleBatistella\BlingErpApi\Entities\Contratos\Schema\Find\FindResponse;
-use AleBatistella\BlingErpApi\Entities\Contratos\Schema\Get\GetResponse;
-use AleBatistella\BlingErpApi\Entities\Contratos\Schema\Update\UpdateResponse;
+use AleBatistella\BlingErpApi\Entities\Depositos\Depositos;
+use AleBatistella\BlingErpApi\Entities\Depositos\Schema\Create\CreateResponse;
+use AleBatistella\BlingErpApi\Entities\Depositos\Schema\Find\FindResponse;
+use AleBatistella\BlingErpApi\Entities\Depositos\Schema\Get\GetResponse;
+use AleBatistella\BlingErpApi\Entities\Depositos\Schema\Update\UpdateResponse;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\RequestOptions;
 use AleBatistella\BlingErpApi\Entities\Shared\TestResponseTrait;
 use AleBatistella\BlingErpApi\Repositories\IBlingRepository;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Teste de `Contratos`.
+ * Teste de `Depositos`.
  */
-class ContratosTest extends TestCase
+class DepositosTest extends TestCase
 {
     use TestResponseTrait;
 
@@ -24,37 +24,11 @@ class ContratosTest extends TestCase
      *
      * @param IBlingRepository $repository
      *
-     * @return Contratos
+     * @return Depositos
      */
-    private function getInstance(IBlingRepository $repository): Contratos
+    private function getInstance(IBlingRepository $repository): Depositos
     {
-        return new Contratos($repository);
-    }
-
-    /**
-     * Testa a deleção.
-     *
-     * @return void
-     */
-    public function testShouldDeleteSuccessfully(): void
-    {
-        $deleteResponse = json_decode(file_get_contents(__DIR__ . '/delete/response.json'), true);
-        $idContrato = fake()->randomNumber();
-        $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
-        $repository->expects($this->once())
-            ->method('destroy')
-            ->with(
-                $this->callback(
-                    fn(RequestOptions $requestOptions) =>
-                    $requestOptions->endpoint === "contratos/$idContrato"
-                )
-            )
-            ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($deleteResponse)));
-
-        /** @var IBlingRepository $repository */
-        $response = $this->getInstance($repository)->delete($idContrato);
-
-        $this->assertNull($response);
+        return new Depositos($repository);
     }
 
     /**
@@ -71,7 +45,7 @@ class ContratosTest extends TestCase
             ->with(
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
-                    $requestOptions->endpoint === "contratos"
+                    $requestOptions->endpoint === "depositos"
                     && is_null($requestOptions->queryParams)
                 )
             )
@@ -91,7 +65,7 @@ class ContratosTest extends TestCase
      */
     public function testShouldFindSuccessfully(): void
     {
-        $idContrato = fake()->randomNumber();
+        $idDeposito = fake()->randomNumber();
         $findResponse = json_decode(file_get_contents(__DIR__ . '/find/response.json'), true);
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
@@ -99,13 +73,13 @@ class ContratosTest extends TestCase
             ->with(
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
-                    $requestOptions->endpoint === "contratos/$idContrato"
+                    $requestOptions->endpoint === "depositos/$idDeposito"
                 )
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($findResponse)));
 
         /** @var IBlingRepository $repository */
-        $response = $this->getInstance($repository)->find($idContrato);
+        $response = $this->getInstance($repository)->find($idDeposito);
 
         $this->assertInstanceOf(FindResponse::class, $response);
         $this->assertEquals($findResponse, $response->toArray());
@@ -126,7 +100,7 @@ class ContratosTest extends TestCase
             ->with(
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
-                    $requestOptions->endpoint === "contratos"
+                    $requestOptions->endpoint === "depositos"
                 )
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($createResponse)));
@@ -145,7 +119,7 @@ class ContratosTest extends TestCase
      */
     public function testShouldUpdateSuccessfully(): void
     {
-        $idContrato = fake()->randomNumber();
+        $idDeposito = fake()->randomNumber();
         $updateBody = json_decode(file_get_contents(__DIR__ . '/update/request.json'), true);
         $updateResponse = json_decode(file_get_contents(__DIR__ . '/update/response.json'), true);
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
@@ -154,13 +128,13 @@ class ContratosTest extends TestCase
             ->with(
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
-                    $requestOptions->endpoint === "contratos/$idContrato"
+                    $requestOptions->endpoint === "depositos/$idDeposito"
                 )
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($updateResponse)));
 
         /** @var IBlingRepository $repository */
-        $response = $this->getInstance($repository)->update($idContrato, $updateBody);
+        $response = $this->getInstance($repository)->update($idDeposito, $updateBody);
 
 
         $this->assertInstanceOf(UpdateResponse::class, $response);

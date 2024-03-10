@@ -28,7 +28,7 @@ class Contatos extends BaseEntity
     /**
      * Remove múltiplos contatos.
      *
-     * @param ?DeleteManyParams $params IDs dos contatos.
+     * @param ?DeleteManyParams $params IDs dos contatos
      *
      * @return null
      * @throws BlingApiException|BlingInternalException
@@ -50,7 +50,7 @@ class Contatos extends BaseEntity
     /**
      * Remove um contato.
      *
-     * @param int $idContato ID do contato.
+     * @param int $idContato ID do contato
      *
      * @return null
      * @throws BlingApiException|BlingInternalException
@@ -71,7 +71,7 @@ class Contatos extends BaseEntity
     /**
      * Obtém contatos.
      *
-     * @param GetParams|array|null $params Parâmetros para a busca.
+     * @param GetParams|array|null $params Parâmetros para a busca
      * 
      * @return GetResponse
      * @throws BlingApiException|BlingInternalException
@@ -93,7 +93,7 @@ class Contatos extends BaseEntity
     /**
      * Obtém um contato.
      * 
-     * @param int $idContato ID do contato.
+     * @param int $idContato ID do contato
      * 
      * @return FindResponse
      * @throws BlingApiException|BlingInternalException
@@ -114,7 +114,7 @@ class Contatos extends BaseEntity
     /**
      * Obtém os tipos de contato de um contato.
      * 
-     * @param int $idContato ID do contato.
+     * @param int $idContato ID do contato
      * 
      * @return FindTypesResponse
      * @throws BlingApiException|BlingInternalException
@@ -135,8 +135,8 @@ class Contatos extends BaseEntity
     /**
      * Altera a situação de um contato.
      * 
-     * @param int $idContato ID do contato.
-     * @param array $body Corpo da requisição.
+     * @param int $idContato ID do contato
+     * @param array $body Corpo da requisição
      * 
      * @return null
      * @throws BlingApiException|BlingInternalException
@@ -158,7 +158,7 @@ class Contatos extends BaseEntity
     /**
      * Cria um contato.
      * 
-     * @param array $body Corpo da requisição.
+     * @param array $body Corpo da requisição
      * 
      * @return CreateResponse
      * @throws BlingApiException|BlingInternalException
@@ -180,7 +180,7 @@ class Contatos extends BaseEntity
     /**
      * Altera a situação de múltiplos contatos.
      * 
-     * @param array $body Corpo da requisição.
+     * @param array $body Corpo da requisição
      * 
      * @return null
      * @throws BlingApiException|BlingInternalException
@@ -202,8 +202,8 @@ class Contatos extends BaseEntity
     /**
      * Altera um contato.
      * 
-     * @param int $idContato ID da categoria de produto
-     * @param array $body Corpo da requisição.
+     * @param int $idContato ID do contato
+     * @param array $body Corpo da requisição
      * 
      * @return null
      * @throws BlingApiException|BlingInternalException

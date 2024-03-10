@@ -44,7 +44,7 @@ class CategoriasLojas extends BaseEntity
     /**
      * Obtém categorias de lojas virtuais vinculadas a de produtos.
      *
-     * @param GetParams|array|null $params Parâmetros para a busca.
+     * @param GetParams|array|null $params Parâmetros para a busca
      * 
      * @return GetResponse
      * @throws BlingApiException|BlingInternalException
@@ -66,7 +66,7 @@ class CategoriasLojas extends BaseEntity
     /**
      * Obtém uma categoria da loja vinculada a de produto.
      * 
-     * @param int $idCategoriaLoja ID do vínculo da categoria de produto com a da loja.
+     * @param int $idCategoriaLoja ID do vínculo da categoria de produto com a da loja
      * 
      * @return FindResponse
      * @throws BlingApiException|BlingInternalException
@@ -87,7 +87,7 @@ class CategoriasLojas extends BaseEntity
     /**
      * Cria o vínculo de uma categoria da loja com a de produto.
      * 
-     * @param array $body Corpo da requisição.
+     * @param array $body Corpo da requisição
      * 
      * @return CreateResponse
      * @throws BlingApiException|BlingInternalException
@@ -110,7 +110,7 @@ class CategoriasLojas extends BaseEntity
      * Altera o vínculo de uma categoria da loja com a de produto.
      * 
      * @param int $idCategoriaLoja ID do vínculo da categoria de produto com a da loja
-     * @param array $body Corpo da requisição.
+     * @param array $body Corpo da requisição
      * 
      * @return null
      * @throws BlingApiException|BlingInternalException

@@ -13,6 +13,7 @@ use AleBatistella\BlingErpApi\Entities\ContasReceber\ContasReceber;
 use AleBatistella\BlingErpApi\Entities\Contatos\Contatos;
 use AleBatistella\BlingErpApi\Entities\ContatosTipos\ContatosTipos;
 use AleBatistella\BlingErpApi\Entities\Contratos\Contratos;
+use AleBatistella\BlingErpApi\Entities\Depositos\Depositos;
 use AleBatistella\BlingErpApi\Entities\Shared\BaseEntity;
 use AleBatistella\BlingErpApi\Exceptions\BlingInternalException;
 use AleBatistella\BlingErpApi\Providers\IoC;
@@ -32,6 +33,7 @@ use AleBatistella\BlingErpApi\Repositories\IBlingRepository;
  * @property Contatos $contatos
  * @property ContatosTipos $contatosTipos
  * @property Contratos $contratos
+ * @property Depositos $depositos
  */
 class Bling
 {
@@ -85,6 +87,7 @@ class Bling
       'contatos' => $this->getModule(Contatos::class),
       'contatosTipos' => $this->getModule(ContatosTipos::class),
       'contratos' => $this->getModule(Contratos::class),
+      'depositos' => $this->getModule(Depositos::class),
       default => throw new BlingInternalException("A entidade \"$name\" não existe.")
     };
   }

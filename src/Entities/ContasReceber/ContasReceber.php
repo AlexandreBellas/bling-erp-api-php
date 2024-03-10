@@ -27,7 +27,7 @@ class ContasReceber extends BaseEntity
     /**
      * Remove uma conta a receber.
      *
-     * @param int $idContaReceber ID da conta a receber.
+     * @param int $idContaReceber ID da conta a receber
      *
      * @return null
      * @throws BlingApiException|BlingInternalException
@@ -48,7 +48,7 @@ class ContasReceber extends BaseEntity
     /**
      * Obtém contas a receber.
      *
-     * @param GetParams|array|null $params Parâmetros para a busca.
+     * @param GetParams|array|null $params Parâmetros para a busca
      * 
      * @return GetResponse
      * @throws BlingApiException|BlingInternalException
@@ -70,7 +70,7 @@ class ContasReceber extends BaseEntity
     /**
      * Obtém uma conta a receber.
      * 
-     * @param int $idContaReceber ID da conta a receber.
+     * @param int $idContaReceber ID da conta a receber
      * 
      * @return FindResponse
      * @throws BlingApiException|BlingInternalException
@@ -92,7 +92,7 @@ class ContasReceber extends BaseEntity
      * Obtém os boletos - Bling conta.
      * 
      * @param int $idOrigem idOrigem que pode ser ID de um venda ou NF
-     * @param GetBankSlipsParams|array|null $params Parâmetros da busca.
+     * @param GetBankSlipsParams|array|null $params Parâmetros da busca
      * 
      * @return GetBankSlipsResponse
      * @throws BlingApiException|BlingInternalException
@@ -123,7 +123,7 @@ class ContasReceber extends BaseEntity
     /**
      * Cria uma conta a receber.
      * 
-     * @param array $body Corpo da requisição.
+     * @param array $body Corpo da requisição
      * 
      * @return CreateResponse
      * @throws BlingApiException|BlingInternalException
@@ -145,8 +145,8 @@ class ContasReceber extends BaseEntity
     /**
      * Cria o recebimento de uma conta a receber.
      * 
-     * @param int $idContaReceber ID da conta a receber.
-     * @param array $body Corpo da requisição.
+     * @param int $idContaReceber ID da conta a receber
+     * @param array $body Corpo da requisição
      * 
      * @return DownloadResponse
      * @throws BlingApiException|BlingInternalException
@@ -190,8 +190,8 @@ class ContasReceber extends BaseEntity
     /**
      * Atualiza uma conta a receber.
      * 
-     * @param int $idContaReceber ID da categoria de produto
-     * @param array $body Corpo da requisição.
+     * @param int $idContaReceber ID da conta a receber
+     * @param array $body Corpo da requisição
      * 
      * @return UpdateResponse
      * @throws BlingApiException|BlingInternalException

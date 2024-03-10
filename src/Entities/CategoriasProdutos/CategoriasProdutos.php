@@ -23,7 +23,7 @@ class CategoriasProdutos extends BaseEntity
     /**
      * Remove uma categoria de produto
      *
-     * @param int $idCategoriaProduto ID da categoria de produto.
+     * @param int $idCategoriaProduto ID da categoria de produto
      *
      * @return null
      * @throws BlingApiException|BlingInternalException
@@ -44,7 +44,7 @@ class CategoriasProdutos extends BaseEntity
     /**
      * Obtém categorias de produtos.
      *
-     * @param GetParams|array|null $params Parâmetros para a busca.
+     * @param GetParams|array|null $params Parâmetros para a busca
      * 
      * @return GetResponse
      * @throws BlingApiException|BlingInternalException
@@ -66,7 +66,7 @@ class CategoriasProdutos extends BaseEntity
     /**
      * Obtém uma categoria de produto.
      * 
-     * @param int $idCategoriaProduto ID da categoria de produto.
+     * @param int $idCategoriaProduto ID da categoria de produto
      * 
      * @return FindResponse
      * @throws BlingApiException|BlingInternalException
@@ -87,7 +87,7 @@ class CategoriasProdutos extends BaseEntity
     /**
      * Cria uma categoria de produto.
      * 
-     * @param array $body Corpo da requisição.
+     * @param array $body Corpo da requisição
      * 
      * @return CreateResponse
      * @throws BlingApiException|BlingInternalException
@@ -110,7 +110,7 @@ class CategoriasProdutos extends BaseEntity
      * Altera uma categoria de produto.
      * 
      * @param int $idCategoriaProduto ID da categoria de produto
-     * @param array $body Corpo da requisição.
+     * @param array $body Corpo da requisição
      * 
      * @return null
      * @throws BlingApiException|BlingInternalException
