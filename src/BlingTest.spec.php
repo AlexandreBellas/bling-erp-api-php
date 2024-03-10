@@ -18,6 +18,7 @@ use AleBatistella\BlingErpApi\Entities\Depositos\Depositos;
 use AleBatistella\BlingErpApi\Entities\Empresas\Empresas;
 use AleBatistella\BlingErpApi\Entities\Estoques\Estoques;
 use AleBatistella\BlingErpApi\Entities\FormasDePagamentos\FormasDePagamentos;
+use AleBatistella\BlingErpApi\Entities\Homologacao\Homologacao;
 use AleBatistella\BlingErpApi\Exceptions\BlingInternalException;
 use PHPUnit\Framework\TestCase;
 
@@ -270,6 +271,20 @@ class BlingTest extends TestCase
     $expected = FormasDePagamentos::class;
 
     $actual = $this->getInstance()->formasDePagamentos;
+
+    $this->assertInstanceOf($expected, $actual);
+  }
+
+  /**
+   * Testa obter a entidade Homologação.
+   *
+   * @return void
+   */
+  public function testShouldGetHomologacaoCorrectly(): void
+  {
+    $expected = Homologacao::class;
+
+    $actual = $this->getInstance()->homologacao;
 
     $this->assertInstanceOf($expected, $actual);
   }

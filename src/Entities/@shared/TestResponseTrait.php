@@ -48,4 +48,16 @@ trait TestResponseTrait
   {
     return is_null($content) ? $content : new Body($content);
   }
+
+  /**
+   * Gera _headers_ da requisição.
+   *
+   * @param ?array $content
+   *
+   * @return Headers
+   */
+  private function buildHeaders(?array $content): ?Headers
+  {
+    return is_null($content) ? $content : new Headers($content);
+  }
 }
