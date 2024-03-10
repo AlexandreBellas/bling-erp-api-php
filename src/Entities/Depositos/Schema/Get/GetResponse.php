@@ -6,7 +6,7 @@ use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseRootObject;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions;
 
 /**
- * Resposta da listagem de contatos paginados.
+ * Resposta da listagem de depósitos paginados.
  */
 readonly final class GetResponse extends BaseResponseRootObject
 {

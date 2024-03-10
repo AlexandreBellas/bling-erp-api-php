@@ -1,19 +1,19 @@
 <?php
 
-namespace AleBatistella\BlingErpApi\Entities\Contratos\Schema\Get;
+namespace AleBatistella\BlingErpApi\Entities\Estoques\Schema\GetBalances;
 
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseRootObject;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions;
 
 /**
- * Resposta da listagem de contratos paginados.
+ * Resposta da obtenção do saldo em estoque de produtos, em todos os depósitos.
  */
-readonly final class GetResponse extends BaseResponseRootObject
+readonly final class GetBalancesResponse extends BaseResponseRootObject
 {
     /**
      * Constrói o objeto.
      *
-     * @param GetResponseData[] $data
+     * @param GetBalancesResponseData[] $data
      */
     public function __construct(
         public array $data
@@ -26,7 +26,7 @@ readonly final class GetResponse extends BaseResponseRootObject
     protected static function fromRules(): array
     {
         return [
-            'data' => GetResponseData::class,
+            'data' => GetBalancesResponseData::class,
         ];
     }
 

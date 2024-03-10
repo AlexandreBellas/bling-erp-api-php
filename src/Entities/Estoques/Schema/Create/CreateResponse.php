@@ -1,33 +1,24 @@
 <?php
 
-namespace AleBatistella\BlingErpApi\Entities\Contratos\Schema\Get;
+namespace AleBatistella\BlingErpApi\Entities\Estoques\Schema\Create;
 
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseRootObject;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions;
+use AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id;
 
 /**
- * Resposta da listagem de contratos paginados.
+ * Resposta da criação de um registro de estoque.
  */
-readonly final class GetResponse extends BaseResponseRootObject
+readonly final class CreateResponse extends BaseResponseRootObject
 {
     /**
      * Constrói o objeto.
      *
-     * @param GetResponseData[] $data
+     * @param Id $data
      */
     public function __construct(
-        public array $data
+        public Id $data
     ) {
-    }
-
-    /**
-     * @inheritDoc
-     */
-    protected static function fromRules(): array
-    {
-        return [
-            'data' => GetResponseData::class,
-        ];
     }
 
     /**
