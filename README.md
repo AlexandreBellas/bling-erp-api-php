@@ -51,7 +51,7 @@ Nem todas as entidades do Bling estão permitidas para interação. As atuais s�
 - [x] Estoques (`->estoques`)
 - [x] Formas de pagamento (`->formasDePagamento`)
 - [x] Homologação (`->homologacao`)
-- [ ] Logísticas (`->logisticas`)
+- [x] Logísticas (`->logisticas`)
 - [ ] Logísticas - Etiquetas (`->logisticasEtiquetas`)
 - [ ] Logísticas - Objetos (`->logisticasObjetos`)
 - [ ] Logísticas - Remessas (`->logisticasRemessas`)
