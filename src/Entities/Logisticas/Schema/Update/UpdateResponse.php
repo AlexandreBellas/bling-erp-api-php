@@ -1,14 +1,14 @@
 <?php
 
-namespace AleBatistella\BlingErpApi\Entities\Contratos\Schema\Delete;
+namespace AleBatistella\BlingErpApi\Entities\Logisticas\Schema\Update;
 
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseRootObject;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions;
 
 /**
- * Resposta da remoção de um contrato pelo ID.
+ * Resposta da alteração de um contrato pelo ID.
  */
-readonly final class DeleteResponse extends BaseResponseRootObject
+readonly final class UpdateResponse extends BaseResponseRootObject
 {
     /**
      * @inheritDoc

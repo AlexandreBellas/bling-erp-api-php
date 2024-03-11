@@ -18,6 +18,7 @@ use AleBatistella\BlingErpApi\Entities\Empresas\Empresas;
 use AleBatistella\BlingErpApi\Entities\Estoques\Estoques;
 use AleBatistella\BlingErpApi\Entities\FormasDePagamentos\FormasDePagamentos;
 use AleBatistella\BlingErpApi\Entities\Homologacao\Homologacao;
+use AleBatistella\BlingErpApi\Entities\Logisticas\Logisticas;
 use AleBatistella\BlingErpApi\Entities\Shared\BaseEntity;
 use AleBatistella\BlingErpApi\Exceptions\BlingInternalException;
 use AleBatistella\BlingErpApi\Providers\IoC;
@@ -42,6 +43,7 @@ use AleBatistella\BlingErpApi\Repositories\IBlingRepository;
  * @property Estoques $estoques
  * @property FormasDePagamentos $formasDePagamentos
  * @property Homologacao $homologacao
+ * @property Logisticas $logisticas
  */
 class Bling
 {
@@ -100,6 +102,7 @@ class Bling
       'estoques' => $this->getModule(Estoques::class),
       'formasDePagamentos' => $this->getModule(FormasDePagamentos::class),
       'homologacao' => $this->getModule(Homologacao::class),
+      'logisticas' => $this->getModule(Logisticas::class),
       default => throw new BlingInternalException("A entidade \"$name\" não existe.")
     };
   }
