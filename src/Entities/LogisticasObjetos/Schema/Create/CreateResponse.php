@@ -1,13 +1,13 @@
 <?php
 
-namespace AleBatistella\BlingErpApi\Entities\Logisticas\Schema\Create;
+namespace AleBatistella\BlingErpApi\Entities\LogisticasObjetos\Schema\Create;
 
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseRootObject;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id;
 
 /**
- * Resposta da criação de uma logística.
+ * Resposta da criação de um objeto de logística personalizada.
  */
 readonly final class CreateResponse extends BaseResponseRootObject
 {

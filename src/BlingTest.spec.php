@@ -21,6 +21,7 @@ use AleBatistella\BlingErpApi\Entities\FormasDePagamentos\FormasDePagamentos;
 use AleBatistella\BlingErpApi\Entities\Homologacao\Homologacao;
 use AleBatistella\BlingErpApi\Entities\Logisticas\Logisticas;
 use AleBatistella\BlingErpApi\Entities\LogisticasEtiquetas\LogisticasEtiquetas;
+use AleBatistella\BlingErpApi\Entities\LogisticasObjetos\LogisticasObjetos;
 use AleBatistella\BlingErpApi\Exceptions\BlingInternalException;
 use PHPUnit\Framework\TestCase;
 
@@ -315,6 +316,20 @@ class BlingTest extends TestCase
     $expected = LogisticasEtiquetas::class;
 
     $actual = $this->getInstance()->logisticasEtiquetas;
+
+    $this->assertInstanceOf($expected, $actual);
+  }
+
+  /**
+   * Testa obter a entidade Logísticas - Objetos.
+   *
+   * @return void
+   */
+  public function testShouldGetLogisticasObjetosCorrectly(): void
+  {
+    $expected = LogisticasObjetos::class;
+
+    $actual = $this->getInstance()->logisticasObjetos;
 
     $this->assertInstanceOf($expected, $actual);
   }

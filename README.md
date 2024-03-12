@@ -53,7 +53,7 @@ Nem todas as entidades do Bling estão permitidas para interação. As atuais s�
 - [x] Homologação (`->homologacao`)
 - [x] Logísticas (`->logisticas`)
 - [x] Logísticas - Etiquetas (`->logisticasEtiquetas`)
-- [ ] Logísticas - Objetos (`->logisticasObjetos`)
+- [x] Logísticas - Objetos (`->logisticasObjetos`)
 - [ ] Logísticas - Remessas (`->logisticasRemessas`)
 - [ ] Logísticas - Serviços (`->logisticasServicos`)
 - [ ] Naturezas de Operações (`->naturezasDeOperacoes`)
