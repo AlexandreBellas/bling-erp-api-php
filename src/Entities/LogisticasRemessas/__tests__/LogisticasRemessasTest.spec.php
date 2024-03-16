@@ -1,21 +1,21 @@
 <?php
 
-namespace Tests\Unit\AleBatistella\BlingErpApi\Entities\Logisticas;
+namespace Tests\Unit\AleBatistella\BlingErpApi\Entities\LogisticasRemessas;
 
-use AleBatistella\BlingErpApi\Entities\Logisticas\Logisticas;
-use AleBatistella\BlingErpApi\Entities\Logisticas\Schema\Create\CreateResponse;
-use AleBatistella\BlingErpApi\Entities\Logisticas\Schema\Find\FindResponse;
-use AleBatistella\BlingErpApi\Entities\Logisticas\Schema\Get\GetResponse;
-use AleBatistella\BlingErpApi\Entities\Logisticas\Schema\Update\UpdateResponse;
+use AleBatistella\BlingErpApi\Entities\LogisticasRemessas\LogisticasRemessas;
+use AleBatistella\BlingErpApi\Entities\LogisticasRemessas\Schema\Create\CreateResponse;
+use AleBatistella\BlingErpApi\Entities\LogisticasRemessas\Schema\Find\FindResponse;
+use AleBatistella\BlingErpApi\Entities\LogisticasRemessas\Schema\GetByLogistic\GetByLogisticResponse;
+use AleBatistella\BlingErpApi\Entities\LogisticasRemessas\Schema\Update\UpdateResponse;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\RequestOptions;
 use AleBatistella\BlingErpApi\Entities\Shared\TestResponseTrait;
 use AleBatistella\BlingErpApi\Repositories\IBlingRepository;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Teste de `Logisticas`.
+ * Teste de `LogisticasRemessas`.
  */
-class LogisticasTest extends TestCase
+class LogisticasRemessasTest extends TestCase
 {
     use TestResponseTrait;
 
@@ -24,11 +24,11 @@ class LogisticasTest extends TestCase
      *
      * @param IBlingRepository $repository
      *
-     * @return Logisticas
+     * @return LogisticasRemessas
      */
-    private function getInstance(IBlingRepository $repository): Logisticas
+    private function getInstance(IBlingRepository $repository): LogisticasRemessas
     {
-        return new Logisticas($repository);
+        return new LogisticasRemessas($repository);
     }
 
     /**
@@ -39,48 +39,49 @@ class LogisticasTest extends TestCase
     public function testShouldDeleteSuccessfully(): void
     {
         $deleteResponse = json_decode(file_get_contents(__DIR__ . '/delete/response.json'), true);
-        $idLogistica = fake()->randomNumber();
+        $idRemessa = fake()->randomNumber();
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
             ->method('destroy')
             ->with(
                 $this->callback(
                     fn (RequestOptions $requestOptions) =>
-                    $requestOptions->endpoint === "logisticas/$idLogistica"
+                    $requestOptions->endpoint === "logisticas/remessas/$idRemessa"
                 )
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($deleteResponse)));
 
         /** @var IBlingRepository $repository */
-        $response = $this->getInstance($repository)->delete($idLogistica);
+        $response = $this->getInstance($repository)->delete($idRemessa);
 
         $this->assertNull($response);
     }
 
     /**
-     * Testa a listagem.
+     * Testa a listagem por logística.
      *
      * @return void
      */
-    public function testShouldGetSuccessfully(): void
+    public function testShouldGetByLogisticSuccessfully(): void
     {
-        $getResponse = json_decode(file_get_contents(__DIR__ . '/get/response.json'), true);
+        $getResponse = json_decode(file_get_contents(__DIR__ . '/get-by-logistic/response.json'), true);
+        $idLogistica = fake()->randomNumber();
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
             ->method('index')
             ->with(
                 $this->callback(
                     fn (RequestOptions $requestOptions) =>
-                    $requestOptions->endpoint === "logisticas"
+                    $requestOptions->endpoint === "logisticas/$idLogistica/remessas"
                         && is_null($requestOptions->queryParams)
                 )
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($getResponse)));
 
         /** @var IBlingRepository $repository */
-        $response = $this->getInstance($repository)->get();
+        $response = $this->getInstance($repository)->getByLogistic($idLogistica);
 
-        $this->assertInstanceOf(GetResponse::class, $response);
+        $this->assertInstanceOf(GetByLogisticResponse::class, $response);
         $this->assertEquals($getResponse, $response->toArray());
     }
 
@@ -91,7 +92,7 @@ class LogisticasTest extends TestCase
      */
     public function testShouldFindSuccessfully(): void
     {
-        $idLogistica = fake()->randomNumber();
+        $idRemessa = fake()->randomNumber();
         $findResponse = json_decode(file_get_contents(__DIR__ . '/find/response.json'), true);
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
@@ -99,13 +100,13 @@ class LogisticasTest extends TestCase
             ->with(
                 $this->callback(
                     fn (RequestOptions $requestOptions) =>
-                    $requestOptions->endpoint === "logisticas/$idLogistica"
+                    $requestOptions->endpoint === "logisticas/remessas/$idRemessa"
                 )
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($findResponse)));
 
         /** @var IBlingRepository $repository */
-        $response = $this->getInstance($repository)->find($idLogistica);
+        $response = $this->getInstance($repository)->find($idRemessa);
 
         $this->assertInstanceOf(FindResponse::class, $response);
         $this->assertEquals($findResponse, $response->toArray());
@@ -126,7 +127,7 @@ class LogisticasTest extends TestCase
             ->with(
                 $this->callback(
                     fn (RequestOptions $requestOptions) =>
-                    $requestOptions->endpoint === "logisticas"
+                    $requestOptions->endpoint === "logisticas/remessas"
                 )
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($createResponse)));
@@ -145,7 +146,7 @@ class LogisticasTest extends TestCase
      */
     public function testShouldUpdateSuccessfully(): void
     {
-        $idLogistica = fake()->randomNumber();
+        $idRemessa = fake()->randomNumber();
         $updateBody = json_decode(file_get_contents(__DIR__ . '/update/request.json'), true);
         $updateResponse = json_decode(file_get_contents(__DIR__ . '/update/response.json'), true);
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
@@ -154,15 +155,15 @@ class LogisticasTest extends TestCase
             ->with(
                 $this->callback(
                     fn (RequestOptions $requestOptions) =>
-                    $requestOptions->endpoint === "logisticas/$idLogistica"
+                    $requestOptions->endpoint === "logisticas/remessas/$idRemessa"
                 )
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($updateResponse)));
 
         /** @var IBlingRepository $repository */
-        $response = $this->getInstance($repository)->update($idLogistica, $updateBody);
+        $response = $this->getInstance($repository)->update($idRemessa, $updateBody);
 
-
-        $this->assertNull($response);
+        $this->assertInstanceOf(UpdateResponse::class, $response);
+        $this->assertEquals($updateResponse, $response->toArray());
     }
 }

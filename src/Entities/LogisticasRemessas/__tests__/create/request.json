@@ -1,0 +1,11 @@
+{
+    "numeroPlp": "749fdc73",
+    "situacao": -3,
+    "descricao": "Remessa_18092023",
+    "logistica": {
+        "id": 12345678
+    },
+    "objetos": [
+        "12"
+    ]
+}
