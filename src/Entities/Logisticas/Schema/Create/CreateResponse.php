@@ -7,7 +7,7 @@ use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id;
 
 /**
- * Resposta da criação de um contrato.
+ * Resposta da criação de uma logística.
  */
 readonly final class CreateResponse extends BaseResponseRootObject
 {

@@ -19,6 +19,14 @@
     "source.organizeImports": "never"
   },
 
+  /*********
+   *  PHP  *
+   *********/
+  "[php]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
+  },
+
   /**************
    *  PHP unit  *
    **************/
@@ -37,6 +45,7 @@
     "borderô",
     "borderos",
     "borderôs",
+    "Cofins",
     "Contabeis",
     "Contábeis",
     "contábil",
@@ -46,6 +55,8 @@
     "gênero",
     "ICMS",
     "Parcelada",
+    "postagem",
+    "Rastreamento",
     "TRIANUAL"
   ],
 

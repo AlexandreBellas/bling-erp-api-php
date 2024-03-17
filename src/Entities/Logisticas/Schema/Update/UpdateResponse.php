@@ -6,7 +6,7 @@ use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseRootObject;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions;
 
 /**
- * Resposta da alteração de um contrato pelo ID.
+ * Resposta da alteração de uma logística pelo ID.
  */
 readonly final class UpdateResponse extends BaseResponseRootObject
 {
