@@ -56,7 +56,7 @@ Nem todas as entidades do Bling estão permitidas para interação. As atuais s�
 - [x] Logísticas - Objetos (`->logisticasObjetos`)
 - [x] Logísticas - Remessas (`->logisticasRemessas`)
 - [x] Logísticas - Serviços (`->logisticasServicos`)
-- [ ] Naturezas de Operações (`->naturezasDeOperacoes`)
+- [x] Naturezas de Operações (`->naturezasDeOperacoes`)
 - [ ] Notas Fiscais de Consumidor Eletrônicas (`->nfces`)
 - [ ] Notas Fiscais de Serviço Eletrônicas (`->nfses`)
 - [ ] Notas Fiscais Eletrônicas (`->nfes`)

@@ -33,7 +33,7 @@ class LogisticasServicosTest extends TestCase
     }
 
     /**
-     * Testa a deleção.
+     * Testa a listagem.
      *
      * @return void
      */

@@ -24,6 +24,7 @@ use AleBatistella\BlingErpApi\Entities\LogisticasEtiquetas\LogisticasEtiquetas;
 use AleBatistella\BlingErpApi\Entities\LogisticasObjetos\LogisticasObjetos;
 use AleBatistella\BlingErpApi\Entities\LogisticasRemessas\LogisticasRemessas;
 use AleBatistella\BlingErpApi\Entities\LogisticasServicos\LogisticasServicos;
+use AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\NaturezasDeOperacoes;
 use AleBatistella\BlingErpApi\Exceptions\BlingInternalException;
 use PHPUnit\Framework\TestCase;
 
@@ -360,6 +361,20 @@ class BlingTest extends TestCase
     $expected = LogisticasServicos::class;
 
     $actual = $this->getInstance()->logisticasServicos;
+
+    $this->assertInstanceOf($expected, $actual);
+  }
+
+  /**
+   * Testa obter a entidade Naturezas de Operações.
+   *
+   * @return void
+   */
+  public function testShouldGetNaturezasDeOperacoesCorrectly(): void
+  {
+    $expected = NaturezasDeOperacoes::class;
+
+    $actual = $this->getInstance()->naturezasDeOperacoes;
 
     $this->assertInstanceOf($expected, $actual);
   }
