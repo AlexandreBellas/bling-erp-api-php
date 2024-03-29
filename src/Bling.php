@@ -25,6 +25,7 @@ use AleBatistella\BlingErpApi\Entities\LogisticasRemessas\LogisticasRemessas;
 use AleBatistella\BlingErpApi\Entities\LogisticasServicos\LogisticasServicos;
 use AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\NaturezasDeOperacoes;
 use AleBatistella\BlingErpApi\Entities\Nfces\Nfces;
+use AleBatistella\BlingErpApi\Entities\Nfes\Nfes;
 use AleBatistella\BlingErpApi\Entities\Nfses\Nfses;
 use AleBatistella\BlingErpApi\Entities\Shared\BaseEntity;
 use AleBatistella\BlingErpApi\Exceptions\BlingInternalException;
@@ -58,6 +59,7 @@ use AleBatistella\BlingErpApi\Repositories\IBlingRepository;
  * @property NaturezasDeOperacoes $naturezasDeOperacoes
  * @property Nfces $nfces
  * @property Nfses $nfses
+ * @property Nfes $nfes
  */
 class Bling
 {
@@ -124,6 +126,7 @@ class Bling
       'naturezasDeOperacoes' => $this->getModule(NaturezasDeOperacoes::class),
       'nfces' => $this->getModule(Nfces::class),
       'nfses' => $this->getModule(Nfses::class),
+      'nfes' => $this->getModule(Nfes::class),
       default => throw new BlingInternalException("A entidade \"$name\" não existe.")
     };
   }
