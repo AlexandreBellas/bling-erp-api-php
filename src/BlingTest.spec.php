@@ -26,6 +26,7 @@ use AleBatistella\BlingErpApi\Entities\LogisticasRemessas\LogisticasRemessas;
 use AleBatistella\BlingErpApi\Entities\LogisticasServicos\LogisticasServicos;
 use AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\NaturezasDeOperacoes;
 use AleBatistella\BlingErpApi\Entities\Nfces\Nfces;
+use AleBatistella\BlingErpApi\Entities\Nfes\Nfes;
 use AleBatistella\BlingErpApi\Entities\Nfses\Nfses;
 use AleBatistella\BlingErpApi\Exceptions\BlingInternalException;
 use PHPUnit\Framework\TestCase;
@@ -405,6 +406,20 @@ class BlingTest extends TestCase
     $expected = Nfses::class;
 
     $actual = $this->getInstance()->nfses;
+
+    $this->assertInstanceOf($expected, $actual);
+  }
+
+  /**
+   * Testa obter a entidade NF-es.
+   *
+   * @return void
+   */
+  public function testShouldGetNfesCorrectly(): void
+  {
+    $expected = Nfes::class;
+
+    $actual = $this->getInstance()->nfes;
 
     $this->assertInstanceOf($expected, $actual);
   }
