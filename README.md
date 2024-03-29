@@ -58,7 +58,7 @@ Nem todas as entidades do Bling estão permitidas para interação. As atuais s�
 - [x] Logísticas - Serviços (`->logisticasServicos`)
 - [x] Naturezas de Operações (`->naturezasDeOperacoes`)
 - [x] Notas Fiscais de Consumidor Eletrônicas (`->nfces`)
-- [ ] Notas Fiscais de Serviço Eletrônicas (`->nfses`)
+- [x] Notas Fiscais de Serviço Eletrônicas (`->nfses`)
 - [ ] Notas Fiscais Eletrônicas (`->nfes`)
 - [ ] Notificações (`->notificacoes`)
 - [ ] Pedidos - Compras (`->pedidosCompras`)

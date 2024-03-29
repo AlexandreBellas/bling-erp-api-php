@@ -4,7 +4,6 @@ namespace AleBatistella\BlingErpApi\Entities\Nfces;
 
 use AleBatistella\BlingErpApi\Entities\Nfces\Schema\Get\GetParams;
 use AleBatistella\BlingErpApi\Entities\Nfces\Schema\Create\CreateResponse;
-use AleBatistella\BlingErpApi\Entities\Nfces\Schema\Delete\DeleteResponse;
 use AleBatistella\BlingErpApi\Entities\Nfces\Schema\Find\FindResponse;
 use AleBatistella\BlingErpApi\Entities\Nfces\Schema\Get\GetResponse;
 use AleBatistella\BlingErpApi\Entities\Nfces\Schema\PostAccounts\PostAccountsResponse;

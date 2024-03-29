@@ -1,12 +1,12 @@
 <?php
 
-namespace AleBatistella\BlingErpApi\Entities\Nfces\Schema\Delete;
+namespace AleBatistella\BlingErpApi\Entities\Nfses\Schema\Delete;
 
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseRootObject;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions;
 
 /**
- * Resposta da remoção de uma logística pelo ID.
+ * Resposta da exclusão de uma nota de serviço pelo ID.
  */
 readonly final class DeleteResponse extends BaseResponseRootObject
 {
