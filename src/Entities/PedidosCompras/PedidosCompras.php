@@ -28,7 +28,7 @@ class PedidosCompras extends BaseEntity
     /**
      * Remove um pedido de compra.
      *
-     * @param int $idPedidoCompra IDs das notas fiscais
+     * @param int $idPedidoCompra ID do pedido de compra
      *
      * @return null
      * @throws BlingApiException|BlingInternalException

@@ -6,7 +6,7 @@ use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseRootObject;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions;
 
 /**
- * Resposta do estorno das contas de uma nota fiscal pelo ID.
+ * Resposta do estorno das contas de um pedido de compra pelo ID.
  */
 readonly final class ReverseAccountsResponse extends BaseResponseRootObject
 {

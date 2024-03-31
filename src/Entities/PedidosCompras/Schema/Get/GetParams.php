@@ -10,7 +10,6 @@ use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\QueryParams;
 readonly final class GetParams extends QueryParams
 {
     public ?int $situacao;
-    public ?int $tipo;
     public ?string $dataInicial;
     public ?string $dataFinal;
 

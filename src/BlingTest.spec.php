@@ -30,6 +30,7 @@ use AleBatistella\BlingErpApi\Entities\Nfes\Nfes;
 use AleBatistella\BlingErpApi\Entities\Nfses\Nfses;
 use AleBatistella\BlingErpApi\Entities\Notificacoes\Notificacoes;
 use AleBatistella\BlingErpApi\Entities\PedidosCompras\PedidosCompras;
+use AleBatistella\BlingErpApi\Entities\PedidosVendas\PedidosVendas;
 use AleBatistella\BlingErpApi\Exceptions\BlingInternalException;
 use PHPUnit\Framework\TestCase;
 
@@ -450,6 +451,19 @@ class BlingTest extends TestCase
     $expected = PedidosCompras::class;
 
     $actual = $this->getInstance()->pedidosCompras;
+
+    $this->assertInstanceOf($expected, $actual);
+  }
+  /**
+   * Testa obter a entidade Pedidos de Vendas.
+   *
+   * @return void
+   */
+  public function testShouldGetPedidosVendasCorrectly(): void
+  {
+    $expected = PedidosVendas::class;
+
+    $actual = $this->getInstance()->pedidosVendas;
 
     $this->assertInstanceOf($expected, $actual);
   }

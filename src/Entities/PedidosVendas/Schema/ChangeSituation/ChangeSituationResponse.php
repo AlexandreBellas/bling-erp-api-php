@@ -1,14 +1,14 @@
 <?php
 
-namespace AleBatistella\BlingErpApi\Entities\PedidosCompras\Schema\ReverseStock;
+namespace AleBatistella\BlingErpApi\Entities\PedidosVendas\Schema\ChangeSituation;
 
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseRootObject;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions;
 
 /**
- * Resposta do estorno do estoque de um pedido de compra pelo ID.
+ * Resposta da alteração de situação de um pedido de venda pelo ID.
  */
-readonly final class ReverseStockResponse extends BaseResponseRootObject
+readonly final class ChangeSituationResponse extends BaseResponseRootObject
 {
     /**
      * @inheritDoc

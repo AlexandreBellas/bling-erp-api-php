@@ -32,7 +32,7 @@ class PedidosComprasTest extends TestCase
     }
 
     /**
-     * Testa a deleção múltipla.
+     * Testa a deleção.
      *
      * @return void
      */
