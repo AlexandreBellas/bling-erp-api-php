@@ -62,7 +62,7 @@ Nem todas as entidades do Bling estão permitidas para interação. As atuais s�
 - [x] Notas Fiscais Eletrônicas (`->nfes`)
 - [x] Notificações (`->notificacoes`)
 - [x] Pedidos - Compras (`->pedidosCompras`)
-- [ ] Pedidos - Vendas (`->pedidosVendas`)
+- [x] Pedidos - Vendas (`->pedidosVendas`)
 - [ ] Produtos (`->produtos`)
 - [ ] Produtos - Estruturas (`->produtosEstruturas`)
 - [ ] Produtos - Fornecedores (`->produtosFornecedores`)
