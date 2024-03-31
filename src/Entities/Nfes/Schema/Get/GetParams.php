@@ -13,6 +13,8 @@ readonly final class GetParams extends QueryParams
 {
     public ?int $situacao;
     public ?int $tipo;
+    public ?string $dataEmissaoInicial;
+    public ?string $dataEmissaoFinal;
 
     /**
      * Constrói o objeto.
@@ -22,8 +24,8 @@ readonly final class GetParams extends QueryParams
      * @param ?string $numeroLoja
      * @param Situacao|int|null $situacao
      * @param Tipo|int|null $tipo
-     * @param ?string $dataEmissaoInicial
-     * @param ?string $dataEmissaoFinal
+     * @param \DateTimeInterface|string|null $dataEmissaoInicial
+     * @param \DateTimeInterface|string|null $dataEmissaoFinal
      */
     public function __construct(
         public ?int $pagina = null,
@@ -31,11 +33,14 @@ readonly final class GetParams extends QueryParams
         public ?string $numeroLoja = null,
         Situacao|string|null $situacao = null,
         Tipo|string|null $tipo = null,
-        public ?string $dataEmissaoInicial = null,
-        public ?string $dataEmissaoFinal = null,
+        \DateTimeInterface|string|null $dataEmissaoInicial = null,
+        \DateTimeInterface|string|null $dataEmissaoFinal = null,
     ) {
         $this->situacao = $situacao instanceof Situacao ? $situacao->value : $situacao;
         $this->tipo = $tipo instanceof Tipo ? $tipo->value : $tipo;
+
+        $this->dataEmissaoInicial = $this->prepareStringOrDateParam($dataEmissaoInicial);
+        $this->dataEmissaoFinal = $this->prepareStringOrDateParam($dataEmissaoFinal);
 
         parent::__construct(objectToArray($this));
     }
