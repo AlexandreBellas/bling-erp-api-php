@@ -1,0 +1,37 @@
+{
+    "data": {
+        "id": 6423817751,
+        "variations": {
+            "deleted": [
+                {
+                    "id": 6423817579,
+                    "variations": {},
+                    "warnings": [
+                        "Mensagem de aviso."
+                    ]
+                }
+            ],
+            "updated": [
+                {
+                    "id": 6423817579,
+                    "variations": {},
+                    "warnings": [
+                        "Mensagem de aviso."
+                    ]
+                }
+            ],
+            "saved": [
+                {
+                    "id": 6423817579,
+                    "variations": {},
+                    "warnings": [
+                        "Mensagem de aviso."
+                    ]
+                }
+            ]
+        },
+        "warnings": [
+            "Mensagem de aviso."
+        ]
+    }
+}

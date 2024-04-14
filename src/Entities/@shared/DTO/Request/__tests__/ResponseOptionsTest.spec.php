@@ -86,7 +86,9 @@ class ResponseOptionsTest extends TestCase
     $endpoint = fake()->word();
     $method = fake()->word();
     $this->expectException(BlingInternalException::class);
-    $this->expectExceptionMessage("Não foi possível realizar a chamada HTTP: $method $endpoint");
+    $this->expectExceptionMessage(
+      "Could not parse property \"error\" of type \"AleBatistella\\BlingErpApi\\Entities\\Shared\\DTO\\Error\\Error\"."
+    );
 
     new ResponseOptions(
       endpoint: $endpoint,

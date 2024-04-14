@@ -2,7 +2,7 @@
   "name": "alebatistella/bling-erp-api",
   "description": "Pacote de integração com a API do Bling ERP",
   "type": "library",
-  "version": "1.11.0",
+  "version": "1.12.0",
   "license": "MIT",
   "autoload": {
     "psr-4": {

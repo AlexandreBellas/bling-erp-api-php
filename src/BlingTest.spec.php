@@ -31,6 +31,10 @@ use AleBatistella\BlingErpApi\Entities\Nfses\Nfses;
 use AleBatistella\BlingErpApi\Entities\Notificacoes\Notificacoes;
 use AleBatistella\BlingErpApi\Entities\PedidosCompras\PedidosCompras;
 use AleBatistella\BlingErpApi\Entities\PedidosVendas\PedidosVendas;
+use AleBatistella\BlingErpApi\Entities\Produtos\Produtos;
+use AleBatistella\BlingErpApi\Entities\ProdutosEstruturas\ProdutosEstruturas;
+use AleBatistella\BlingErpApi\Entities\ProdutosFornecedores\ProdutosFornecedores;
+use AleBatistella\BlingErpApi\Entities\ProdutosLojas\ProdutosLojas;
 use AleBatistella\BlingErpApi\Exceptions\BlingInternalException;
 use PHPUnit\Framework\TestCase;
 
@@ -454,6 +458,7 @@ class BlingTest extends TestCase
 
     $this->assertInstanceOf($expected, $actual);
   }
+
   /**
    * Testa obter a entidade Pedidos de Vendas.
    *
@@ -464,6 +469,62 @@ class BlingTest extends TestCase
     $expected = PedidosVendas::class;
 
     $actual = $this->getInstance()->pedidosVendas;
+
+    $this->assertInstanceOf($expected, $actual);
+  }
+
+  /**
+   * Testa obter a entidade Produtos.
+   *
+   * @return void
+   */
+  public function testShouldGetProdutosCorrectly(): void
+  {
+    $expected = Produtos::class;
+
+    $actual = $this->getInstance()->produtos;
+
+    $this->assertInstanceOf($expected, $actual);
+  }
+
+  /**
+   * Testa obter a entidade Produtos - Estruturas.
+   *
+   * @return void
+   */
+  public function testShouldGetProdutosEstruturasCorrectly(): void
+  {
+    $expected = ProdutosEstruturas::class;
+
+    $actual = $this->getInstance()->produtosEstruturas;
+
+    $this->assertInstanceOf($expected, $actual);
+  }
+
+  /**
+   * Testa obter a entidade Produtos - Fornecedores.
+   *
+   * @return void
+   */
+  public function testShouldGetProdutosFornecedoresCorrectly(): void
+  {
+    $expected = ProdutosFornecedores::class;
+
+    $actual = $this->getInstance()->produtosFornecedores;
+
+    $this->assertInstanceOf($expected, $actual);
+  }
+
+  /**
+   * Testa obter a entidade Produtos - Lojas.
+   *
+   * @return void
+   */
+  public function testShouldGetProdutosLojasCorrectly(): void
+  {
+    $expected = ProdutosLojas::class;
+
+    $actual = $this->getInstance()->produtosLojas;
 
     $this->assertInstanceOf($expected, $actual);
   }

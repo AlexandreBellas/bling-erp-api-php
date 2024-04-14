@@ -147,7 +147,7 @@ class PedidosVendasTest extends TestCase
     }
 
     /**
-     * Testa a criação.
+     * Testa a mudança de situação.
      *
      * @return void
      */
