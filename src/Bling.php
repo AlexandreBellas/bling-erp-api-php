@@ -31,6 +31,7 @@ use AleBatistella\BlingErpApi\Entities\Notificacoes\Notificacoes;
 use AleBatistella\BlingErpApi\Entities\PedidosCompras\PedidosCompras;
 use AleBatistella\BlingErpApi\Entities\PedidosVendas\PedidosVendas;
 use AleBatistella\BlingErpApi\Entities\Produtos\Produtos;
+use AleBatistella\BlingErpApi\Entities\ProdutosEstruturas\ProdutosEstruturas;
 use AleBatistella\BlingErpApi\Entities\Shared\BaseEntity;
 use AleBatistella\BlingErpApi\Exceptions\BlingInternalException;
 use AleBatistella\BlingErpApi\Providers\IoC;
@@ -68,6 +69,7 @@ use AleBatistella\BlingErpApi\Repositories\IBlingRepository;
  * @property PedidosCompras $pedidosCompras
  * @property PedidosVendas $pedidosVendas
  * @property Produtos $produtos
+ * @property ProdutosEstruturas $produtosEstruturas
  */
 class Bling
 {
@@ -139,6 +141,7 @@ class Bling
       'pedidosCompras' => $this->getModule(PedidosCompras::class),
       'pedidosVendas' => $this->getModule(PedidosVendas::class),
       'produtos' => $this->getModule(Produtos::class),
+      'produtosEstruturas' => $this->getModule(ProdutosEstruturas::class),
       default => throw new BlingInternalException("A entidade \"$name\" não existe.")
     };
   }

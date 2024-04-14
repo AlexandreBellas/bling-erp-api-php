@@ -64,7 +64,7 @@ Nem todas as entidades do Bling estão permitidas para interação. As atuais s�
 - [x] Pedidos - Compras (`->pedidosCompras`)
 - [x] Pedidos - Vendas (`->pedidosVendas`)
 - [x] Produtos (`->produtos`)
-- [ ] Produtos - Estruturas (`->produtosEstruturas`)
+- [x] Produtos - Estruturas (`->produtosEstruturas`)
 - [ ] Produtos - Fornecedores (`->produtosFornecedores`)
 - [ ] Produtos - Lojas (`->produtosLojas`)
 - [ ] Produtos - Variações (`->produtosVariacoes`)
