@@ -107,10 +107,15 @@ readonly abstract class BaseResponseObject implements IResponseObject
         $propTypeName = $propType->getName();
         $allowsNull = $propType->allowsNull();
         $fromRules = static::fromRules();
+        $objSignature = $propTypeName;
 
         // Null check
-        if ($allowsNull && !array_key_exists($propName, $attributes)) {
-            return null;
+        if (!array_key_exists($propName, $attributes)) {
+            if ($allowsNull) return null;
+
+            throw new BlingInternalException(
+                "Could not parse property \"$propName\" of type \"$objSignature\"."
+            );
         }
 
         if (in_array($propTypeName, ['int', 'string', 'bool', 'float'])) {
@@ -122,16 +127,33 @@ readonly abstract class BaseResponseObject implements IResponseObject
             return array_key_exists($propName, $fromRules)
                 ? // Array de objetos 
                 array_map(
-                    fn(array $item) => $fromRules[$propName]::from($item),
+                    fn (array $item) => $fromRules[$propName]::from($item),
                     $attributes[$propName]
                 )
                 : // Array de primitivos
                 $attributes[$propName];
         }
 
+        // Enum
+        if (enum_exists($objSignature)) {
+            if ($allowsNull && !isset($attributes[$propName])) {
+                return null;
+            }
+
+            /** @var \BackedEnum */
+            $enumSignature = $objSignature;
+            $enumValue = $enumSignature::tryFrom($attributes[$propName]);
+
+            if (!is_null($enumValue)) return $enumValue;
+            if ($allowsNull) return null;
+
+            throw new BlingInternalException(
+                "Could not parse enum property \"$propName\" of type \"$objSignature\"."
+            );
+        }
+
         // Objeto
-        /** @var IResponseObject */
-        $objSignature = $propTypeName;
+        /** @var IResponseObject $objSignature */
         return $objSignature::from($attributes[$propName]);
     }
 
