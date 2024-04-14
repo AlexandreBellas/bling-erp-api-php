@@ -33,6 +33,7 @@ use AleBatistella\BlingErpApi\Entities\PedidosCompras\PedidosCompras;
 use AleBatistella\BlingErpApi\Entities\PedidosVendas\PedidosVendas;
 use AleBatistella\BlingErpApi\Entities\Produtos\Produtos;
 use AleBatistella\BlingErpApi\Entities\ProdutosEstruturas\ProdutosEstruturas;
+use AleBatistella\BlingErpApi\Entities\ProdutosFornecedores\ProdutosFornecedores;
 use AleBatistella\BlingErpApi\Exceptions\BlingInternalException;
 use PHPUnit\Framework\TestCase;
 
@@ -495,6 +496,20 @@ class BlingTest extends TestCase
     $expected = ProdutosEstruturas::class;
 
     $actual = $this->getInstance()->produtosEstruturas;
+
+    $this->assertInstanceOf($expected, $actual);
+  }
+
+  /**
+   * Testa obter a entidade Produtos - Fornecedores.
+   *
+   * @return void
+   */
+  public function testShouldGetProdutosFornecedoresCorrectly(): void
+  {
+    $expected = ProdutosFornecedores::class;
+
+    $actual = $this->getInstance()->produtosFornecedores;
 
     $this->assertInstanceOf($expected, $actual);
   }
