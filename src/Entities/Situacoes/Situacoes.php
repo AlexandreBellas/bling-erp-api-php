@@ -3,10 +3,8 @@
 namespace AleBatistella\BlingErpApi\Entities\Situacoes;
 
 use AleBatistella\BlingErpApi\Entities\Situacoes\Schema\Delete\DeleteResponse;
-use AleBatistella\BlingErpApi\Entities\Situacoes\Schema\Get\GetParams;
 use AleBatistella\BlingErpApi\Entities\Situacoes\Schema\Create\CreateResponse;
 use AleBatistella\BlingErpApi\Entities\Situacoes\Schema\Find\FindResponse;
-use AleBatistella\BlingErpApi\Entities\Situacoes\Schema\Get\GetResponse;
 use AleBatistella\BlingErpApi\Entities\Situacoes\Schema\Update\UpdateResponse;
 use AleBatistella\BlingErpApi\Entities\Shared\BaseEntity;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\RequestOptions;
