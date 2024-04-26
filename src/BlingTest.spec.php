@@ -38,6 +38,7 @@ use AleBatistella\BlingErpApi\Entities\ProdutosLojas\ProdutosLojas;
 use AleBatistella\BlingErpApi\Entities\ProdutosVariacoes\ProdutosVariacoes;
 use AleBatistella\BlingErpApi\Entities\Situacoes\Situacoes;
 use AleBatistella\BlingErpApi\Entities\SituacoesModulos\SituacoesModulos;
+use AleBatistella\BlingErpApi\Entities\SituacoesTransicoes\SituacoesTransicoes;
 use AleBatistella\BlingErpApi\Exceptions\BlingInternalException;
 use PHPUnit\Framework\TestCase;
 
@@ -570,6 +571,20 @@ class BlingTest extends TestCase
     $expected = SituacoesModulos::class;
 
     $actual = $this->getInstance()->situacoesModulos;
+
+    $this->assertInstanceOf($expected, $actual);
+  }
+
+  /**
+   * Testa obter a entidade Situações - Transições.
+   *
+   * @return void
+   */
+  public function testShouldGetSituacoesTransicoesCorrectly(): void
+  {
+    $expected = SituacoesTransicoes::class;
+
+    $actual = $this->getInstance()->situacoesTransicoes;
 
     $this->assertInstanceOf($expected, $actual);
   }

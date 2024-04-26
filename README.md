@@ -70,7 +70,7 @@ Nem todas as entidades do Bling estão permitidas para interação. As atuais s�
 - [x] Produtos - Variações (`->produtosVariacoes`)
 - [x] Situações (`->situacoes`)
 - [x] Situações - Módulos (`->situacoesModulos`)
-- [ ] Situações - Transições (`->situacoesTransicoes`)
+- [x] Situações - Transições (`->situacoesTransicoes`)
 - [ ] Usuários (`->usuarios`)
 - [ ] Vendedores (`->vendedores`)
 
