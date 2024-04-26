@@ -16,6 +16,9 @@ class BlingRepository implements IBlingRepository
   /** @property Client $client Cliente de chamada HTTP. */
   private readonly Client $client;
 
+  /** @property array $baseHeaders _Headers_ base para a requisição. */
+  private readonly array $baseHeaders;
+
   /**
    * Cria o objeto.
    *
@@ -24,12 +27,8 @@ class BlingRepository implements IBlingRepository
    */
   public function __construct(string $baseUrl, string $accessToken)
   {
-    $this->client = new Client([
-      'base_uri' => $baseUrl,
-      'headers'  => [
-        'Authorization' => "Bearer $accessToken",
-      ],
-    ]);
+    $this->baseHeaders = ['Authorization' => "Bearer $accessToken"];
+    $this->client = new Client(['base_uri' => $baseUrl]);
   }
 
   /**
@@ -39,7 +38,10 @@ class BlingRepository implements IBlingRepository
   {
     $response = $this->client->get($options->endpoint, [
       'query'   => $options->queryParams?->content,
-      'headers' => $options->headers?->content,
+      'headers' => [
+        ...$this->baseHeaders,
+        ...($options->headers?->content ?? [])
+      ],
     ]);
 
     return new ResponseOptions(
@@ -67,7 +69,10 @@ class BlingRepository implements IBlingRepository
     $response = $this->client->post($options->endpoint, [
       'query'   => $options->queryParams?->content,
       'json'    => $options->body?->content,
-      'headers' => $options->headers?->content,
+      'headers' => [
+        ...$this->baseHeaders,
+        ...($options->headers?->content ?? [])
+      ],
     ]);
 
     return new ResponseOptions(
@@ -87,7 +92,10 @@ class BlingRepository implements IBlingRepository
     $response = $this->client->patch($options->endpoint, [
       'query'   => $options->queryParams?->content,
       'json'    => $options->body?->content,
-      'headers' => $options->headers?->content,
+      'headers' => [
+        ...$this->baseHeaders,
+        ...($options->headers?->content ?? [])
+      ],
     ]);
 
     return new ResponseOptions(
@@ -107,7 +115,10 @@ class BlingRepository implements IBlingRepository
     $response = $this->client->put($options->endpoint, [
       'query'   => $options->queryParams?->content,
       'json'    => $options->body?->content,
-      'headers' => $options->headers?->content,
+      'headers' => [
+        ...$this->baseHeaders,
+        ...($options->headers?->content ?? [])
+      ],
     ]);
 
     return new ResponseOptions(
@@ -127,7 +138,10 @@ class BlingRepository implements IBlingRepository
     $response = $this->client->delete($options->endpoint, [
       'query'   => $options->queryParams?->content,
       'json'    => $options->body?->content,
-      'headers' => $options->headers?->content,
+      'headers' => [
+        ...$this->baseHeaders,
+        ...($options->headers?->content ?? [])
+      ],
     ]);
 
     return new ResponseOptions(

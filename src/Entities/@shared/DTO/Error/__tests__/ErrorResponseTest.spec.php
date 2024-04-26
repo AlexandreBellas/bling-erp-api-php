@@ -5,6 +5,7 @@ namespace Tests\Unit\AleBatistella\BlingErpApi\Entities\Shared\DTO\Error;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Error\ErrorResponse;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\Body;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions;
+use AleBatistella\BlingErpApi\Exceptions\BlingApiException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -58,6 +59,10 @@ class ErrorResponseTest extends TestCase
    */
   public function testShouldInstantiateFromResponseOptions(): void
   {
+    $this->expectException(BlingApiException::class);
+    $this->expectExceptionMessage(
+      "A venda não pode ser salva, pois ocorreram problemas em sua validação."
+    );
     $rawResponse = '{
       "error": {
         "type": "VALIDATION_ERROR",
@@ -83,17 +88,12 @@ class ErrorResponseTest extends TestCase
       }
     }';
     $rawResponseArray = json_decode($rawResponse, true);
-    $response = new ResponseOptions(
+    new ResponseOptions(
       endpoint: fake()->word(),
       method: fake()->word(),
       status: 200,
       body: new Body($rawResponseArray),
     );
-    $expected = ErrorResponse::class;
-
-    $actual = ErrorResponse::fromResponse($response);
-
-    $this->assertInstanceOf($expected, $actual);
   }
 
   /**
