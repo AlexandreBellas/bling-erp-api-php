@@ -3,9 +3,6 @@
 namespace AleBatistella\BlingErpApi\Entities\ProdutosLojas;
 
 use AleBatistella\BlingErpApi\Entities\ProdutosLojas\Schema\Delete\DeleteResponse;
-use AleBatistella\BlingErpApi\Entities\ProdutosLojas\Schema\DeleteMany\DeleteManyResponse;
-use AleBatistella\BlingErpApi\Entities\ProdutosLojas\Schema\ChangeSituation\ChangeSituationResponse;
-use AleBatistella\BlingErpApi\Entities\ProdutosLojas\Schema\ChangeSituationMany\ChangeSituationManyResponse;
 use AleBatistella\BlingErpApi\Entities\ProdutosLojas\Schema\Get\GetParams;
 use AleBatistella\BlingErpApi\Entities\ProdutosLojas\Schema\Create\CreateResponse;
 use AleBatistella\BlingErpApi\Entities\ProdutosLojas\Schema\Find\FindResponse;

@@ -6,7 +6,7 @@
 Pacote de integração com a [API v3 do ERP Bling](https://developer.bling.com.br)
 para PHP 8.2+. O mais completo existente (e se não é, será).
 
-Atualizado com a versão `v295` da API ([veja o registro de alterações](https://developer.bling.com.br/changelogs#2024-02-28)).
+Atualizado com a versão `v296` da API ([veja o registro de alterações](https://developer.bling.com.br/changelogs#2024-03-13)).
 
 ## Instalação
 
@@ -33,7 +33,7 @@ a partir do _endpoint_ `/token`. [Veja a referência](https://developer.bling.co
 
 ## Entidades disponíveis
 
-Nem todas as entidades do Bling estão permitidas para interação. As atuais são:
+Todas as entidades do Bling atualmente são permitidas para interação. São elas:
 
 - [x] Borderos (`->borderos`)
 - [x] Campos customizados (`->camposCustomizados`)
@@ -67,12 +67,12 @@ Nem todas as entidades do Bling estão permitidas para interação. As atuais s�
 - [x] Produtos - Estruturas (`->produtosEstruturas`)
 - [x] Produtos - Fornecedores (`->produtosFornecedores`)
 - [x] Produtos - Lojas (`->produtosLojas`)
-- [ ] Produtos - Variações (`->produtosVariacoes`)
-- [ ] Situações (`->situacoes`)
-- [ ] Situações - Módulos (`->situacoesModulos`)
-- [ ] Situações - Transições (`->situacoesTransicoes`)
-- [ ] Usuários (`->usuarios`)
-- [ ] Vendedores (`->vendedores`)
+- [x] Produtos - Variações (`->produtosVariacoes`)
+- [x] Situações (`->situacoes`)
+- [x] Situações - Módulos (`->situacoesModulos`)
+- [x] Situações - Transições (`->situacoesTransicoes`)
+- [x] Usuários (`->usuarios`)
+- [x] Vendedores (`->vendedores`)
 
 ## Exemplo de uso
 

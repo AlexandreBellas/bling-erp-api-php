@@ -11,6 +11,7 @@ use AleBatistella\BlingErpApi\Entities\Contatos\Schema\Delete\DeleteResponse;
 use AleBatistella\BlingErpApi\Entities\Contatos\Schema\Find\FindResponse;
 use AleBatistella\BlingErpApi\Entities\Contatos\Schema\FindTypes\FindTypesResponse;
 use AleBatistella\BlingErpApi\Entities\Contatos\Schema\DeleteMany\DeleteManyParams;
+use AleBatistella\BlingErpApi\Entities\Contatos\Schema\FindFinalCustomer\FindFinalCustomerResponse;
 use AleBatistella\BlingErpApi\Entities\Contatos\Schema\Get\GetResponse;
 use AleBatistella\BlingErpApi\Entities\Contatos\Schema\Update\UpdateResponse;
 use AleBatistella\BlingErpApi\Entities\Shared\BaseEntity;
@@ -130,6 +131,25 @@ class Contatos extends BaseEntity
         );
 
         return FindTypesResponse::fromResponse($response);
+    }
+
+    /**
+     * Obtém os dados do contato Consumidor Final.
+     * 
+     * @return FindFinalCustomerResponse
+     * @throws BlingApiException|BlingInternalException
+     * 
+     * @see https://developer.bling.com.br/referencia#/Contatos/get_contatos_consumidor_final
+     */
+    public function findFinalCustomer(): FindFinalCustomerResponse
+    {
+        $response = $this->repository->show(
+            new RequestOptions(
+                endpoint: "contatos/consumidor-final",
+            )
+        );
+
+        return FindFinalCustomerResponse::fromResponse($response);
     }
 
     /**

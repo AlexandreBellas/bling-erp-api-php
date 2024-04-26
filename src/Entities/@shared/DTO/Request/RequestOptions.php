@@ -17,16 +17,16 @@ class RequestOptions
    * @param string $endpoint
    * @param QueryParams|array|null $queryParams
    * @param Headers|array|null $headers
-   * @param Body|array|null $body
+   * @param Body|array|string|null $body
    */
   public function __construct(
     public string $endpoint,
     QueryParams|array|null $queryParams = null,
     Headers|array|null $headers = null,
-    Body|array|null $body = null,
+    Body|array|string|null $body = null,
   ) {
     $this->queryParams = is_array($queryParams) ? new QueryParams($queryParams) : $queryParams;
     $this->headers = is_array($headers) ? new Headers($headers) : $headers;
-    $this->body = is_array($body) ? new Body($body) : $body;
+    $this->body = in_array(gettype($body), ['string', 'array']) ? new Body($body) : $body;
   }
 }

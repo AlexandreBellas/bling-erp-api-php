@@ -35,6 +35,12 @@ use AleBatistella\BlingErpApi\Entities\Produtos\Produtos;
 use AleBatistella\BlingErpApi\Entities\ProdutosEstruturas\ProdutosEstruturas;
 use AleBatistella\BlingErpApi\Entities\ProdutosFornecedores\ProdutosFornecedores;
 use AleBatistella\BlingErpApi\Entities\ProdutosLojas\ProdutosLojas;
+use AleBatistella\BlingErpApi\Entities\ProdutosVariacoes\ProdutosVariacoes;
+use AleBatistella\BlingErpApi\Entities\Situacoes\Situacoes;
+use AleBatistella\BlingErpApi\Entities\SituacoesModulos\SituacoesModulos;
+use AleBatistella\BlingErpApi\Entities\SituacoesTransicoes\SituacoesTransicoes;
+use AleBatistella\BlingErpApi\Entities\Usuarios\Usuarios;
+use AleBatistella\BlingErpApi\Entities\Vendedores\Vendedores;
 use AleBatistella\BlingErpApi\Exceptions\BlingInternalException;
 use PHPUnit\Framework\TestCase;
 
@@ -525,6 +531,90 @@ class BlingTest extends TestCase
     $expected = ProdutosLojas::class;
 
     $actual = $this->getInstance()->produtosLojas;
+
+    $this->assertInstanceOf($expected, $actual);
+  }
+
+  /**
+   * Testa obter a entidade Produtos - Variações.
+   *
+   * @return void
+   */
+  public function testShouldGetProdutosVariacoesCorrectly(): void
+  {
+    $expected = ProdutosVariacoes::class;
+
+    $actual = $this->getInstance()->produtosVariacoes;
+
+    $this->assertInstanceOf($expected, $actual);
+  }
+
+  /**
+   * Testa obter a entidade Situações.
+   *
+   * @return void
+   */
+  public function testShouldGetSituacoesCorrectly(): void
+  {
+    $expected = Situacoes::class;
+
+    $actual = $this->getInstance()->situacoes;
+
+    $this->assertInstanceOf($expected, $actual);
+  }
+
+  /**
+   * Testa obter a entidade Situações - Módulos.
+   *
+   * @return void
+   */
+  public function testShouldGetSituacoesModulosCorrectly(): void
+  {
+    $expected = SituacoesModulos::class;
+
+    $actual = $this->getInstance()->situacoesModulos;
+
+    $this->assertInstanceOf($expected, $actual);
+  }
+
+  /**
+   * Testa obter a entidade Situações - Transições.
+   *
+   * @return void
+   */
+  public function testShouldGetSituacoesTransicoesCorrectly(): void
+  {
+    $expected = SituacoesTransicoes::class;
+
+    $actual = $this->getInstance()->situacoesTransicoes;
+
+    $this->assertInstanceOf($expected, $actual);
+  }
+
+  /**
+   * Testa obter a entidade Usuários.
+   *
+   * @return void
+   */
+  public function testShouldGetUsuariosCorrectly(): void
+  {
+    $expected = Usuarios::class;
+
+    $actual = $this->getInstance()->usuarios;
+
+    $this->assertInstanceOf($expected, $actual);
+  }
+
+  /**
+   * Testa obter a entidade Vendedores.
+   *
+   * @return void
+   */
+  public function VendedoresCorrectly(): void
+  {
+    $expected = Vendedores::class;
+
+    $actual = $this->getInstance()->vendedores;
 
     $this->assertInstanceOf($expected, $actual);
   }

@@ -34,7 +34,13 @@ use AleBatistella\BlingErpApi\Entities\Produtos\Produtos;
 use AleBatistella\BlingErpApi\Entities\ProdutosEstruturas\ProdutosEstruturas;
 use AleBatistella\BlingErpApi\Entities\ProdutosFornecedores\ProdutosFornecedores;
 use AleBatistella\BlingErpApi\Entities\ProdutosLojas\ProdutosLojas;
+use AleBatistella\BlingErpApi\Entities\ProdutosVariacoes\ProdutosVariacoes;
 use AleBatistella\BlingErpApi\Entities\Shared\BaseEntity;
+use AleBatistella\BlingErpApi\Entities\Situacoes\Situacoes;
+use AleBatistella\BlingErpApi\Entities\SituacoesModulos\SituacoesModulos;
+use AleBatistella\BlingErpApi\Entities\SituacoesTransicoes\SituacoesTransicoes;
+use AleBatistella\BlingErpApi\Entities\Usuarios\Usuarios;
+use AleBatistella\BlingErpApi\Entities\Vendedores\Vendedores;
 use AleBatistella\BlingErpApi\Exceptions\BlingInternalException;
 use AleBatistella\BlingErpApi\Providers\IoC;
 use AleBatistella\BlingErpApi\Repositories\IBlingRepository;
@@ -74,6 +80,12 @@ use AleBatistella\BlingErpApi\Repositories\IBlingRepository;
  * @property ProdutosEstruturas $produtosEstruturas
  * @property ProdutosFornecedores $produtosFornecedores
  * @property ProdutosLojas $produtosLojas
+ * @property ProdutosVariacoes $produtosVariacoes
+ * @property Situacoes $situacoes
+ * @property SituacoesModulos $situacoesModulos
+ * @property SituacoesTransicoes $situacoesTransicoes
+ * @property Usuarios $usuarios
+ * @property Vendedores $vendedores
  */
 class Bling
 {
@@ -148,6 +160,12 @@ class Bling
       'produtosEstruturas' => $this->getModule(ProdutosEstruturas::class),
       'produtosFornecedores' => $this->getModule(ProdutosFornecedores::class),
       'produtosLojas' => $this->getModule(ProdutosLojas::class),
+      'produtosVariacoes' => $this->getModule(ProdutosVariacoes::class),
+      'situacoes' => $this->getModule(Situacoes::class),
+      'situacoesModulos' => $this->getModule(SituacoesModulos::class),
+      'situacoesTransicoes' => $this->getModule(SituacoesTransicoes::class),
+      'usuarios' => $this->getModule(Usuarios::class),
+      'vendedores' => $this->getModule(Vendedores::class),
       default => throw new BlingInternalException("A entidade \"$name\" não existe.")
     };
   }
