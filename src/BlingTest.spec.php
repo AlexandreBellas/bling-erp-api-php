@@ -35,6 +35,7 @@ use AleBatistella\BlingErpApi\Entities\Produtos\Produtos;
 use AleBatistella\BlingErpApi\Entities\ProdutosEstruturas\ProdutosEstruturas;
 use AleBatistella\BlingErpApi\Entities\ProdutosFornecedores\ProdutosFornecedores;
 use AleBatistella\BlingErpApi\Entities\ProdutosLojas\ProdutosLojas;
+use AleBatistella\BlingErpApi\Entities\ProdutosVariacoes\ProdutosVariacoes;
 use AleBatistella\BlingErpApi\Exceptions\BlingInternalException;
 use PHPUnit\Framework\TestCase;
 
@@ -525,6 +526,20 @@ class BlingTest extends TestCase
     $expected = ProdutosLojas::class;
 
     $actual = $this->getInstance()->produtosLojas;
+
+    $this->assertInstanceOf($expected, $actual);
+  }
+
+  /**
+   * Testa obter a entidade Produtos - Variações.
+   *
+   * @return void
+   */
+  public function testShouldGetProdutosVariacoesCorrectly(): void
+  {
+    $expected = ProdutosVariacoes::class;
+
+    $actual = $this->getInstance()->produtosVariacoes;
 
     $this->assertInstanceOf($expected, $actual);
   }

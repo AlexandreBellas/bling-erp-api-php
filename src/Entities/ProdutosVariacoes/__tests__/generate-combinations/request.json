@@ -1,0 +1,14 @@
+{
+    "produtoPai": {
+        "id": 123456789
+    },
+    "atributos": [
+        {
+            "nome": "Cor",
+            "opcoes": [
+                "Azul",
+                "Vermelho"
+            ]
+        }
+    ]
+}
