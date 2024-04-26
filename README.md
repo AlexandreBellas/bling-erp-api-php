@@ -31,6 +31,9 @@ Vale destacar que o fluxo de criação e autorização do aplicativo **não é f
 pela biblioteca**. Ou seja, a biblioteca somente recebe o `access_token` gerado
 a partir do _endpoint_ `/token`. [Veja a referência](https://developer.bling.com.br/aplicativos#tokens-de-acesso).
 
+Para entender na prática como a autenticação citada acima funciona, [veja o
+projeto de demonstração](https://github.com/AlexandreBellas/bling-erp-api-php/tree/v1.13.1/demo).
+
 ## Entidades disponíveis
 
 Todas as entidades do Bling atualmente são permitidas para interação. São elas:
@@ -99,5 +102,5 @@ vendor/phpunit/phpunit/phpunit -c phpunit.xml
 
 ## Contribuindo ao projeto
 
-- [Guia de contribuição](https://github.com/AlexandreBellas/bling-erp-api-php/blob/v5.0.0/CONTRIBUTING.md)
+- [Guia de contribuição](https://github.com/AlexandreBellas/bling-erp-api-php/blob/v1.13.1/CONTRIBUTING.md)
 - [Apoie o projeto](https://www.paypal.com/donate/?hosted_button_id=G2NJKZ5MUMKBS)

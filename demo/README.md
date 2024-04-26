@@ -24,7 +24,7 @@ php artisan serve
 
 Abra no navegador a URL `http://localhost:8000` e siga o que é apresentado.
 
-### Passo a passo
+## Passo a passo
 
 1. Insira o _client ID_ e o _client secret_;
 2. Conceda as permissões pedidas;
