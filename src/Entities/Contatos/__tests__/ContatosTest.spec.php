@@ -6,6 +6,7 @@ use AleBatistella\BlingErpApi\Entities\Contatos\Contatos;
 use AleBatistella\BlingErpApi\Entities\Contatos\Schema\Create\CreateResponse;
 use AleBatistella\BlingErpApi\Entities\Contatos\Schema\Find\FindResponse;
 use AleBatistella\BlingErpApi\Entities\Contatos\Schema\DeleteMany\DeleteManyParams;
+use AleBatistella\BlingErpApi\Entities\Contatos\Schema\FindFinalCustomer\FindFinalCustomerResponse;
 use AleBatistella\BlingErpApi\Entities\Contatos\Schema\FindTypes\FindTypesResponse;
 use AleBatistella\BlingErpApi\Entities\Contatos\Schema\Get\GetResponse;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\RequestOptions;
@@ -46,10 +47,10 @@ class ContatosTest extends TestCase
             ->method('destroy')
             ->with(
                 $this->callback(
-                    fn(RequestOptions $requestOptions) =>
+                    fn (RequestOptions $requestOptions) =>
                     $requestOptions->endpoint === "contatos"
-                    && count($requestOptions->queryParams->content['idsContatos']) === 1
-                    && $requestOptions->queryParams->content['idsContatos'][0] === $idContato
+                        && count($requestOptions->queryParams->content['idsContatos']) === 1
+                        && $requestOptions->queryParams->content['idsContatos'][0] === $idContato
                 )
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($deleteManyResponse)));
@@ -78,7 +79,7 @@ class ContatosTest extends TestCase
             ->method('destroy')
             ->with(
                 $this->callback(
-                    fn(RequestOptions $requestOptions) =>
+                    fn (RequestOptions $requestOptions) =>
                     $requestOptions->endpoint === "contatos/$idContato"
                 )
             )
@@ -103,9 +104,9 @@ class ContatosTest extends TestCase
             ->method('index')
             ->with(
                 $this->callback(
-                    fn(RequestOptions $requestOptions) =>
+                    fn (RequestOptions $requestOptions) =>
                     $requestOptions->endpoint === "contatos"
-                    && is_null($requestOptions->queryParams)
+                        && is_null($requestOptions->queryParams)
                 )
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($getResponse)));
@@ -131,7 +132,7 @@ class ContatosTest extends TestCase
             ->method('show')
             ->with(
                 $this->callback(
-                    fn(RequestOptions $requestOptions) =>
+                    fn (RequestOptions $requestOptions) =>
                     $requestOptions->endpoint === "contatos/$idContato"
                 )
             )
@@ -158,7 +159,7 @@ class ContatosTest extends TestCase
             ->method('show')
             ->with(
                 $this->callback(
-                    fn(RequestOptions $requestOptions) =>
+                    fn (RequestOptions $requestOptions) =>
                     $requestOptions->endpoint === "contatos/$idContato/tipos"
                 )
             )
@@ -169,6 +170,38 @@ class ContatosTest extends TestCase
 
         $this->assertInstanceOf(FindTypesResponse::class, $response);
         $this->assertEquals($findTypesResponse, $response->toArray());
+    }
+
+    /**
+     * Testa a busca de tipos.
+     *
+     * @return void
+     */
+    public function testShouldFindFinalCustomerSuccessfully(): void
+    {
+        $findFinalCustomerResponse = json_decode(
+            file_get_contents(__DIR__ . '/find-final-customer/response.json'),
+            true
+        );
+        $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
+        $repository->expects($this->once())
+            ->method('show')
+            ->with(
+                $this->callback(
+                    fn (RequestOptions $requestOptions) =>
+                    $requestOptions->endpoint === "contatos/consumidor-final"
+                )
+            )
+            ->willReturn($this->buildResponse(
+                status: 200,
+                body: $this->buildBody($findFinalCustomerResponse)
+            ));
+
+        /** @var IBlingRepository $repository */
+        $response = $this->getInstance($repository)->findFinalCustomer();
+
+        $this->assertInstanceOf(FindFinalCustomerResponse::class, $response);
+        $this->assertEquals($findFinalCustomerResponse, $response->toArray());
     }
 
     /**
@@ -192,7 +225,7 @@ class ContatosTest extends TestCase
             ->method('update')
             ->with(
                 $this->callback(
-                    fn(RequestOptions $requestOptions) =>
+                    fn (RequestOptions $requestOptions) =>
                     $requestOptions->endpoint === "contatos/$idContato/situacoes"
                 )
             )
@@ -221,7 +254,7 @@ class ContatosTest extends TestCase
             ->method('store')
             ->with(
                 $this->callback(
-                    fn(RequestOptions $requestOptions) =>
+                    fn (RequestOptions $requestOptions) =>
                     $requestOptions->endpoint === "contatos"
                 )
             )
@@ -254,7 +287,7 @@ class ContatosTest extends TestCase
             ->method('store')
             ->with(
                 $this->callback(
-                    fn(RequestOptions $requestOptions) =>
+                    fn (RequestOptions $requestOptions) =>
                     $requestOptions->endpoint === "contatos/situacoes"
                 )
             )
@@ -286,7 +319,7 @@ class ContatosTest extends TestCase
             ->method('replace')
             ->with(
                 $this->callback(
-                    fn(RequestOptions $requestOptions) =>
+                    fn (RequestOptions $requestOptions) =>
                     $requestOptions->endpoint === "contatos/$idContato"
                 )
             )
