@@ -4,7 +4,7 @@
 # Bling ERP API - PHP
 
 Pacote de integração com a [API v3 do ERP Bling](https://developer.bling.com.br)
-para PHP 8.2+. O mais completo existente (e se não é, será).
+para PHP 8.2+. O mais completo existente.
 
 Atualizado com a versão `v296` da API ([veja o registro de alterações](https://developer.bling.com.br/changelogs#2024-03-13)).
 
