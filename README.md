@@ -71,7 +71,7 @@ Nem todas as entidades do Bling estão permitidas para interação. As atuais s�
 - [x] Situações (`->situacoes`)
 - [x] Situações - Módulos (`->situacoesModulos`)
 - [x] Situações - Transições (`->situacoesTransicoes`)
-- [ ] Usuários (`->usuarios`)
+- [x] Usuários (`->usuarios`)
 - [ ] Vendedores (`->vendedores`)
 
 ## Exemplo de uso
