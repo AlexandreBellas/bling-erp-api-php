@@ -26,7 +26,12 @@ class ResponseOptions
     public readonly ?Headers $headers = null,
     public readonly ?Body $body = null,
   ) {
-    if ($status >= 400) {
+    $isErrorStatusCode = $status >= 400;
+    $isErrorBody = !is_null($body)
+      && is_array($body->content)
+      && array_key_exists('error', $body->content);
+
+    if ($isErrorStatusCode || $isErrorBody) {
       try {
         $errorResponse = ErrorResponse::fromResponse($this);
 
