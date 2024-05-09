@@ -23,18 +23,22 @@ class Estoques extends BaseEntity
      * 
      * @param int $idDeposito ID do depósito
      * @param int[] $idsProdutos IDs dos produtos
+     * @param ?string $codigo Código do produto
      * 
      * @return FindBalanceResponse
      * @throws BlingApiException|BlingInternalException
      * 
      * @see https://developer.bling.com.br/referencia#/Estoques/get_estoques_saldos__idDeposito_
      */
-    public function findBalance(int $idDeposito, array $idsProdutos): FindBalanceResponse
-    {
+    public function findBalance(
+        int $idDeposito,
+        array $idsProdutos,
+        ?string $codigo = null
+    ): FindBalanceResponse {
         $response = $this->repository->show(
             new RequestOptions(
                 endpoint: "estoques/saldos/$idDeposito",
-                queryParams: ['idsProdutos' => $idsProdutos]
+                queryParams: ['idsProdutos' => $idsProdutos, 'codigo' => $codigo]
             )
         );
 
@@ -45,18 +49,19 @@ class Estoques extends BaseEntity
      * Obtém o saldo em estoque de produtos.
      *
      * @param int[] $idsProdutos IDs dos produtos
+     * @param ?string $codigo Código do produto
      * 
      * @return GetBalancesResponse
      * @throws BlingApiException|BlingInternalException
      *
      * @see https://developer.bling.com.br/referencia#/Estoques/get_estoques_saldos
      */
-    public function getBalances(array $idsProdutos): GetBalancesResponse
+    public function getBalances(array $idsProdutos, ?string $codigo = null): GetBalancesResponse
     {
         $response = $this->repository->index(
             new RequestOptions(
                 endpoint: "estoques/saldos",
-                queryParams: ['idsProdutos' => $idsProdutos]
+                queryParams: ['idsProdutos' => $idsProdutos, 'codigo' => $codigo]
             )
         );
 

@@ -19,10 +19,15 @@ readonly final class FindResponseData extends BaseResponseObject
      * @param Situacao $situacao
      * @param string $vencimento
      * @param float $valor
-     * @param Id $contato
-     * @param ?Id $formaPagamento
-     * @param ?float $saldo
+     * @param ?string $idTransacao
+     * @param ?string $linkQRCodePix
+     * @param ?string $linkBoleto
      * @param ?string $dataEmissao
+     * @param FindResponseDataContato $contato
+     * @param ?FindResponseDataFormaPagamento $formaPagamento
+     * @param ?FindResponseDataContaContabil $contaContabil
+     * @param ?FindResponseDataOrigem $origem
+     * @param ?float $saldo
      * @param string $vencimentoOriginal
      * @param ?string $numeroDocumento
      * @param ?string $competencia
@@ -38,10 +43,15 @@ readonly final class FindResponseData extends BaseResponseObject
         public Situacao $situacao,
         public string $vencimento,
         public float $valor,
-        public Id $contato,
-        public ?Id $formaPagamento,
-        public ?float $saldo,
+        public ?string $idTransacao,
+        public ?string $linkQRCodePix,
+        public ?string $linkBoleto,
         public ?string $dataEmissao,
+        public FindResponseDataContato $contato,
+        public ?FindResponseDataFormaPagamento $formaPagamento,
+        public ?FindResponseDataContaContabil $contaContabil,
+        public ?FindResponseDataOrigem $origem,
+        public ?float $saldo,
         public string $vencimentoOriginal,
         public ?string $numeroDocumento,
         public ?string $competencia,
