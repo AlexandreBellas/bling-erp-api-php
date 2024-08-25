@@ -10,4 +10,5 @@ enum LancamentoEstoque: string
     case PRODUTO_E_COMPONENTE = 'A';
     case COMPONENTE = 'M';
     case PRODUTO = 'P';
+    case NAO_DEFINIDO = "";
 }

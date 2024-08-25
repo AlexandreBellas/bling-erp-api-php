@@ -5,6 +5,7 @@ namespace Tests\Unit\AleBatistella\BlingErpApi;
 use AleBatistella\BlingErpApi\Bling;
 use AleBatistella\BlingErpApi\Entities\Borderos\Borderos;
 use AleBatistella\BlingErpApi\Entities\CamposCustomizados\CamposCustomizados;
+use AleBatistella\BlingErpApi\Entities\CanaisDeVenda\CanaisDeVenda;
 use AleBatistella\BlingErpApi\Entities\CategoriasLojas\CategoriasLojas;
 use AleBatistella\BlingErpApi\Entities\CategoriasProdutos\CategoriasProdutos;
 use AleBatistella\BlingErpApi\Entities\CategoriasReceitasDespesas\CategoriasReceitasDespesas;
@@ -111,6 +112,20 @@ class BlingTest extends TestCase
     $expected = CamposCustomizados::class;
 
     $actual = $this->getInstance()->camposCustomizados;
+
+    $this->assertInstanceOf($expected, $actual);
+  }
+
+  /**
+   * Testa obter a entidade Canais de Venda.
+   *
+   * @return void
+   */
+  public function testShouldGetCanaisDeVendaCorrectly(): void
+  {
+    $expected = CanaisDeVenda::class;
+
+    $actual = $this->getInstance()->canaisDeVenda;
 
     $this->assertInstanceOf($expected, $actual);
   }
@@ -610,7 +625,7 @@ class BlingTest extends TestCase
    *
    * @return void
    */
-  public function VendedoresCorrectly(): void
+  public function testShouldGetVendedoresCorrectly(): void
   {
     $expected = Vendedores::class;
 

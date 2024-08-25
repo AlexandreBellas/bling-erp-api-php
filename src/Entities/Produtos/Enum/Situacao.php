@@ -9,4 +9,5 @@ enum Situacao: string
 {
     case ATIVO = 'A';
     case INATIVO = 'I';
+    case EXCLUIDO = 'E';
 }
