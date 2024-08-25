@@ -9,4 +9,5 @@ enum TipoEstoque: string
 {
     case FISICO = 'F';
     case VIRTUAL = 'V';
+    case NAO_DEFINIDO = "";
 }

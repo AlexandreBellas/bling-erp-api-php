@@ -4,6 +4,7 @@ namespace AleBatistella\BlingErpApi;
 
 use AleBatistella\BlingErpApi\Entities\Borderos\Borderos;
 use AleBatistella\BlingErpApi\Entities\CamposCustomizados\CamposCustomizados;
+use AleBatistella\BlingErpApi\Entities\CanaisDeVenda\CanaisDeVenda;
 use AleBatistella\BlingErpApi\Entities\CategoriasLojas\CategoriasLojas;
 use AleBatistella\BlingErpApi\Entities\CategoriasProdutos\CategoriasProdutos;
 use AleBatistella\BlingErpApi\Entities\CategoriasReceitasDespesas\CategoriasReceitasDespesas;
@@ -50,6 +51,7 @@ use AleBatistella\BlingErpApi\Repositories\IBlingRepository;
  *
  * @property Borderos $borderos
  * @property CamposCustomizados $camposCustomizados
+ * @property CanaisDeVenda $canaisDeVenda
  * @property CategoriasLojas $categoriasLojas
  * @property CategoriasProdutos $categoriasProdutos
  * @property CategoriasReceitasDespesas $categoriasReceitasDespesas
@@ -130,6 +132,7 @@ class Bling
     return match ($name) {
       'borderos' => $this->getModule(Borderos::class),
       'camposCustomizados' => $this->getModule(CamposCustomizados::class),
+      'canaisDeVenda' => $this->getModule(CanaisDeVenda::class),
       'categoriasLojas' => $this->getModule(CategoriasLojas::class),
       'categoriasProdutos' => $this->getModule(CategoriasProdutos::class),
       'categoriasReceitasDespesas' => $this->getModule(CategoriasReceitasDespesas::class),
