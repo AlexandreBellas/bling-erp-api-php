@@ -8,6 +8,7 @@
     "psr-4": {
       "AleBatistella\\BlingErpApi\\": "./src/",
       "AleBatistella\\BlingErpApi\\Entities\\Shared\\": "./src/Entities/@shared/",
+      "AleBatistella\\BlingErpApi\\Entities\\ContasPagar\\Schema\\Shared\\": "./src/Entities/ContasPagar/Schema/@shared/",
       "AleBatistella\\BlingErpApi\\Entities\\ContasReceber\\Schema\\Shared\\": "./src/Entities/ContasReceber/Schema/@shared/"
     },
     "files": [

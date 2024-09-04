@@ -5,6 +5,10 @@ namespace AleBatistella\BlingErpApi\Entities\ContasPagar\Schema\Find;
 use AleBatistella\BlingErpApi\Entities\ContasPagar\Enum\Situacao;
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id;
+use AleBatistella\BlingErpApi\Entities\ContasPagar\Schema\Shared\ContasPagarOcorrenciaUnicaDTO as Unica;
+use AleBatistella\BlingErpApi\Entities\ContasPagar\Schema\Shared\ContasPagarOcorrenciaParceladaDTO as Parcelada;
+use AleBatistella\BlingErpApi\Entities\ContasPagar\Schema\Shared\ContasPagarOcorrenciaDTO as Normal;
+use AleBatistella\BlingErpApi\Entities\ContasPagar\Schema\Shared\ContasPagarOcorrenciaSemanalDTO as Semanal;
 
 readonly final class FindResponseData extends BaseResponseObject
 {
@@ -27,6 +31,7 @@ readonly final class FindResponseData extends BaseResponseObject
      * @param ?Id $portador
      * @param ?Id $categoria
      * @param int[] $borderos
+     * @param Unica|Parcelada|Normal|Semanal|null $ocorrencia
      */
     public function __construct(
         public ?int $id,
@@ -44,7 +49,7 @@ readonly final class FindResponseData extends BaseResponseObject
         public string $numeroBanco,
         public ?Id $portador,
         public ?Id $categoria,
-        public array $borderos
-    ) {
-    }
+        public array $borderos,
+        public Unica|Parcelada|Normal|Semanal|null $ocorrencia,
+    ) {}
 }

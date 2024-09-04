@@ -6,7 +6,8 @@
       "tipoPagamento": 1,
       "situacao": 1,
       "fixa": false,
-      "padrao": 0
+      "padrao": 0,
+      "finalidade": 1
     }
   ]
 }

@@ -27,7 +27,7 @@ readonly final class FindResponseData extends BaseResponseObject
      * @param ?FindResponseDataFormaPagamento $formaPagamento
      * @param ?FindResponseDataContaContabil $contaContabil
      * @param ?FindResponseDataOrigem $origem
-     * @param ?float $saldo
+     * @param float $saldo
      * @param string $vencimentoOriginal
      * @param ?string $numeroDocumento
      * @param ?string $competencia
@@ -62,6 +62,5 @@ readonly final class FindResponseData extends BaseResponseObject
         public ?Id $vendedor,
         public array $borderos,
         public Unica|Parcelada|Normal|Semanal|null $ocorrencia,
-    ) {
-    }
+    ) {}
 }
