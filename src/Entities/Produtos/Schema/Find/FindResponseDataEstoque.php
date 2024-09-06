@@ -13,12 +13,13 @@ readonly final class FindResponseDataEstoque extends BaseResponseObject
      * @param ?float $maximo
      * @param ?int $crossdocking
      * @param ?string $localizacao
+     * @param ?float $saldoVirtualTotal
      */
     public function __construct(
         public ?float $minimo,
         public ?float $maximo,
         public ?int $crossdocking,
         public ?string $localizacao,
-    ) {
-    }
+        public ?float $saldoVirtualTotal,
+    ) {}
 }

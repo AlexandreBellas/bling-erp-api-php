@@ -15,4 +15,8 @@ enum ActionEstoque: string
      * Transfere o estoque do produto pai para a primeira variação informada.
      */
     case TRANSFERIR = 'T';
+    /**
+     * O valor retornado foi nulo.
+     */
+    case NAO_DEFINIDO = "";
 }

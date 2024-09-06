@@ -30,6 +30,7 @@ use AleBatistella\BlingErpApi\Entities\Nfces\Nfces;
 use AleBatistella\BlingErpApi\Entities\Nfes\Nfes;
 use AleBatistella\BlingErpApi\Entities\Nfses\Nfses;
 use AleBatistella\BlingErpApi\Entities\Notificacoes\Notificacoes;
+use AleBatistella\BlingErpApi\Entities\OrdensDeProducao\OrdensDeProducao;
 use AleBatistella\BlingErpApi\Entities\PedidosCompras\PedidosCompras;
 use AleBatistella\BlingErpApi\Entities\PedidosVendas\PedidosVendas;
 use AleBatistella\BlingErpApi\Entities\Produtos\Produtos;
@@ -462,6 +463,20 @@ class BlingTest extends TestCase
     $expected = Notificacoes::class;
 
     $actual = $this->getInstance()->notificacoes;
+
+    $this->assertInstanceOf($expected, $actual);
+  }
+
+  /**
+   * Testa obter a entidade Ordens de Produção.
+   *
+   * @return void
+   */
+  public function testShouldGetOrdensDeProducaoCorrectly(): void
+  {
+    $expected = OrdensDeProducao::class;
+
+    $actual = $this->getInstance()->ordensDeProducao;
 
     $this->assertInstanceOf($expected, $actual);
   }

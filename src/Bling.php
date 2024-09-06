@@ -29,6 +29,7 @@ use AleBatistella\BlingErpApi\Entities\Nfces\Nfces;
 use AleBatistella\BlingErpApi\Entities\Nfes\Nfes;
 use AleBatistella\BlingErpApi\Entities\Nfses\Nfses;
 use AleBatistella\BlingErpApi\Entities\Notificacoes\Notificacoes;
+use AleBatistella\BlingErpApi\Entities\OrdensDeProducao\OrdensDeProducao;
 use AleBatistella\BlingErpApi\Entities\PedidosCompras\PedidosCompras;
 use AleBatistella\BlingErpApi\Entities\PedidosVendas\PedidosVendas;
 use AleBatistella\BlingErpApi\Entities\Produtos\Produtos;
@@ -76,6 +77,7 @@ use AleBatistella\BlingErpApi\Repositories\IBlingRepository;
  * @property Nfses $nfses
  * @property Nfes $nfes
  * @property Notificacoes $notificacoes
+ * @property OrdensDeProducao $ordensDeProducao
  * @property PedidosCompras $pedidosCompras
  * @property PedidosVendas $pedidosVendas
  * @property Produtos $produtos
@@ -157,6 +159,7 @@ class Bling
       'nfses' => $this->getModule(Nfses::class),
       'nfes' => $this->getModule(Nfes::class),
       'notificacoes' => $this->getModule(Notificacoes::class),
+      'ordensDeProducao' => $this->getModule(OrdensDeProducao::class),
       'pedidosCompras' => $this->getModule(PedidosCompras::class),
       'pedidosVendas' => $this->getModule(PedidosVendas::class),
       'produtos' => $this->getModule(Produtos::class),
