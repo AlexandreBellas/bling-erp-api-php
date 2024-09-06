@@ -2,12 +2,13 @@
   "name": "alebatistella/bling-erp-api",
   "description": "Pacote de integração com a API do Bling ERP",
   "type": "library",
-  "version": "1.14.2",
+  "version": "1.15.0",
   "license": "MIT",
   "autoload": {
     "psr-4": {
       "AleBatistella\\BlingErpApi\\": "./src/",
       "AleBatistella\\BlingErpApi\\Entities\\Shared\\": "./src/Entities/@shared/",
+      "AleBatistella\\BlingErpApi\\Entities\\ContasPagar\\Schema\\Shared\\": "./src/Entities/ContasPagar/Schema/@shared/",
       "AleBatistella\\BlingErpApi\\Entities\\ContasReceber\\Schema\\Shared\\": "./src/Entities/ContasReceber/Schema/@shared/"
     },
     "files": [

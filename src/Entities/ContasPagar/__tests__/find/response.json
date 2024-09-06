@@ -25,6 +25,9 @@
         },
         "borderos": [
             0
-        ]
+        ],
+        "ocorrencia": {
+            "tipo": 1
+        }
     }
 }

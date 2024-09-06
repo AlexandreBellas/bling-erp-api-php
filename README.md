@@ -6,7 +6,7 @@
 Pacote de integração com a [API v3 do ERP Bling](https://developer.bling.com.br)
 para PHP 8.2+. O mais completo existente.
 
-Atualizado com a versão `v300` da API ([veja o registro de alterações](https://developer.bling.com.br/changelogs#2024-03-13)).
+Atualizado com a versão `v303` da API ([veja o registro de alterações](https://developer.bling.com.br/changelogs#2024-06-19)).
 
 ## Instalação
 
@@ -36,7 +36,7 @@ projeto de demonstração](https://github.com/AlexandreBellas/bling-erp-api-php/
 
 ## Entidades disponíveis
 
-Todas as entidades do Bling atualmente são permitidas para interação. São elas:
+Quase todas as entidades do Bling atualmente são permitidas para interação. São elas:
 
 - [x] Borderos (`->borderos`)
 - [x] Campos customizados (`->camposCustomizados`)
@@ -54,6 +54,7 @@ Todas as entidades do Bling atualmente são permitidas para interação. São el
 - [x] Empresas (`->empresas`)
 - [x] Estoques (`->estoques`)
 - [x] Formas de pagamento (`->formasDePagamento`)
+- [ ] Grupos de produtos (`->gruposDeProdutos`)
 - [x] Homologação (`->homologacao`)
 - [x] Logísticas (`->logisticas`)
 - [x] Logísticas - Etiquetas (`->logisticasEtiquetas`)
@@ -65,6 +66,7 @@ Todas as entidades do Bling atualmente são permitidas para interação. São el
 - [x] Notas Fiscais de Serviço Eletrônicas (`->nfses`)
 - [x] Notas Fiscais Eletrônicas (`->nfes`)
 - [x] Notificações (`->notificacoes`)
+- [x] Ordens de produção (`->ordensDeProducao`)
 - [x] Pedidos - Compras (`->pedidosCompras`)
 - [x] Pedidos - Vendas (`->pedidosVendas`)
 - [x] Produtos (`->produtos`)
@@ -72,6 +74,7 @@ Todas as entidades do Bling atualmente são permitidas para interação. São el
 - [x] Produtos - Fornecedores (`->produtosFornecedores`)
 - [x] Produtos - Lojas (`->produtosLojas`)
 - [x] Produtos - Variações (`->produtosVariacoes`)
+- [ ] Propostas comerciais (`->propostasComerciais`)
 - [x] Situações (`->situacoes`)
 - [x] Situações - Módulos (`->situacoesModulos`)
 - [x] Situações - Transições (`->situacoesTransicoes`)

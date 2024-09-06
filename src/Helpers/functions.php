@@ -14,6 +14,20 @@ if (!function_exists('convertDateToString')) {
   }
 }
 
+if (!function_exists('convertDateTimeToString')) {
+  /**
+   * Converte uma data para o formato YYYY-MM-DD HH:MM:SS.
+   *
+   * @param \DateTimeInterface $date
+   *
+   * @return string
+   */
+  function convertDateTimeToString(\DateTimeInterface $date): string
+  {
+    return $date->format('Y-m-d H:i:s');
+  }
+}
+
 if (!function_exists('fake')) {
   /**
    * Cria objeto para dados _fake_.

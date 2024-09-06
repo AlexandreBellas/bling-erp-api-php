@@ -17,7 +17,6 @@ readonly final class FindResponseDataVariacoes extends BaseResponseObject
      * Constrói o objeto.
      *
      * @param ?int $id
-     * @param ?int $idProdutoPai
      * @param string $nome
      * @param ?string $codigo
      * @param ?float $preco
@@ -44,6 +43,7 @@ readonly final class FindResponseDataVariacoes extends BaseResponseObject
      * @param ?string $descricaoEmbalagemDiscreta
      * @param ?Id $categoria
      * @param ?FindResponseDataEstoque $estoque
+     * @param ?FindResponseDataFornecedor $fornecedor
      * @param ?ActionEstoque $actionEstoque
      * @param ?FindResponseDataDimensoes $dimensoes
      * @param ?FindResponseDataTributacao $tributacao
@@ -55,7 +55,6 @@ readonly final class FindResponseDataVariacoes extends BaseResponseObject
      */
     public function __construct(
         public ?int $id,
-        public ?int $idProdutoPai,
         public string $nome,
         public ?string $codigo,
         public ?float $preco,
@@ -82,6 +81,7 @@ readonly final class FindResponseDataVariacoes extends BaseResponseObject
         public ?string $descricaoEmbalagemDiscreta,
         public ?Id $categoria,
         public ?FindResponseDataEstoque $estoque,
+        public ?FindResponseDataFornecedor $fornecedor,
         public ?ActionEstoque $actionEstoque,
         public ?FindResponseDataDimensoes $dimensoes,
         public ?FindResponseDataTributacao $tributacao,
@@ -90,8 +90,7 @@ readonly final class FindResponseDataVariacoes extends BaseResponseObject
         public ?FindResponseDataEstrutura $estrutura,
         public ?array $camposCustomizados,
         public ?FindResponseDataVariacoesVariacao $variacao,
-    ) {
-    }
+    ) {}
 
     /**
      * @inheritDoc

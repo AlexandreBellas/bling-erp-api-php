@@ -9,10 +9,11 @@ readonly final class FindResponseDataVariacoesVariacaoProdutoPai extends BaseRes
     /**
      * Constrói o objeto.
      *
+     * @param ?int $id
      * @param bool $cloneInfo
      */
     public function __construct(
+        public ?int $id,
         public bool $cloneInfo
-    ) {
-    }
+    ) {}
 }

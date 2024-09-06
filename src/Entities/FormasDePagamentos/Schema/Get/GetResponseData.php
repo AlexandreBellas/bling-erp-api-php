@@ -3,6 +3,7 @@
 namespace AleBatistella\BlingErpApi\Entities\FormasDePagamentos\Schema\Get;
 
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
+use AleBatistella\BlingErpApi\Entities\FormasDePagamentos\Enum\Finalidade;
 use AleBatistella\BlingErpApi\Entities\FormasDePagamentos\Enum\Situacao;
 use AleBatistella\BlingErpApi\Entities\FormasDePagamentos\Enum\TipoPagamento;
 use AleBatistella\BlingErpApi\Entities\FormasDePagamentos\Enum\Padrao;
@@ -18,6 +19,7 @@ readonly final class GetResponseData extends BaseResponseObject
      * @param ?Situacao $situacao
      * @param ?bool $fixa
      * @param ?Padrao $padrao
+     * @param Finalidade $finalidade
      */
     public function __construct(
         public ?int $id,
@@ -26,6 +28,6 @@ readonly final class GetResponseData extends BaseResponseObject
         public ?Situacao $situacao,
         public ?bool $fixa,
         public ?Padrao $padrao,
-    ) {
-    }
+        public Finalidade $finalidade
+    ) {}
 }

@@ -54,10 +54,10 @@ readonly final class GetParams extends QueryParams
         $this->criterio =  $criterio instanceof Criterio ? $criterio->value : $criterio;
         $this->tipo =  $tipo instanceof TipoListagem ? $tipo->value : $tipo;
 
-        $this->dataInclusaoInicial = $this->prepareStringOrDateParam($dataInclusaoInicial);
-        $this->dataInclusaoFinal = $this->prepareStringOrDateParam($dataInclusaoFinal);
-        $this->dataAlteracaoInicial = $this->prepareStringOrDateParam($dataAlteracaoInicial);
-        $this->dataAlteracaoFinal = $this->prepareStringOrDateParam($dataAlteracaoFinal);
+        $this->dataInclusaoInicial = $this->prepareStringOrDateParam($dataInclusaoInicial, shouldIncludeTime: true);
+        $this->dataInclusaoFinal = $this->prepareStringOrDateParam($dataInclusaoFinal, shouldIncludeTime: true);
+        $this->dataAlteracaoInicial = $this->prepareStringOrDateParam($dataAlteracaoInicial, shouldIncludeTime: true);
+        $this->dataAlteracaoFinal = $this->prepareStringOrDateParam($dataAlteracaoFinal, shouldIncludeTime: true);
 
         parent::__construct(objectToArray($this));
     }
