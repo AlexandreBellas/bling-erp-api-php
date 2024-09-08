@@ -1,12 +1,12 @@
 <?php
 
-namespace AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Schema\CalculateItemTax;
+namespace AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Schema\ObtainTax;
 
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id;
 use AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Enum\Tributacao;
 
-readonly final class CalculateItemTaxResponseDataPisSt extends BaseResponseObject
+readonly final class ObtainTaxResponseDataIssqn extends BaseResponseObject
 {
     /**
      * Constrói o objeto.
@@ -20,6 +20,9 @@ readonly final class CalculateItemTaxResponseDataPisSt extends BaseResponseObjec
      * @param ?float $valorImposto
      * @param ?string $observacoes
      * @param ?string $informacoesAdicionaisFisco
+     * @param ?string $codigoListaServicos
+     * @param ?bool $descontarIssTotalNota
+     * @param ?bool $reterIss
      */
     public function __construct(
         public ?Id $regraOperacao,
@@ -31,6 +34,8 @@ readonly final class CalculateItemTaxResponseDataPisSt extends BaseResponseObjec
         public ?float $valorImposto,
         public ?string $observacoes,
         public ?string $informacoesAdicionaisFisco,
-    ) {
-    }
+        public ?string $codigoListaServicos,
+        public ?bool $descontarIssTotalNota,
+        public ?bool $reterIss,
+    ) {}
 }

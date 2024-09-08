@@ -1,12 +1,12 @@
 <?php
 
-namespace AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Schema\CalculateItemTax;
+namespace AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Schema\ObtainTax;
 
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id;
 use AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Enum\Tributacao;
 
-readonly final class CalculateItemTaxResponseDataIpi extends BaseResponseObject
+readonly final class ObtainTaxResponseDataIpi extends BaseResponseObject
 {
     /**
      * Constrói o objeto.
@@ -41,6 +41,5 @@ readonly final class CalculateItemTaxResponseDataIpi extends BaseResponseObject
         public ?int $codigoEnquadramentoIpi,
         public ?string $codigoSelo,
         public ?int $codigoExTipi,
-    ) {
-    }
+    ) {}
 }

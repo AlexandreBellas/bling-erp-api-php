@@ -4,7 +4,7 @@ namespace AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes;
 
 use AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Schema\Get\GetParams;
 use AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Schema\Get\GetResponse;
-use AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Schema\CalculateItemTax\CalculateItemTaxResponse;
+use AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Schema\ObtainTax\ObtainTaxResponse;
 use AleBatistella\BlingErpApi\Entities\Shared\BaseEntity;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\RequestOptions;
 use AleBatistella\BlingErpApi\Exceptions\BlingApiException;
@@ -40,25 +40,25 @@ class NaturezasDeOperacoes extends BaseEntity
     }
 
     /**
-     * Calcula os impostos de um item.
+     * Obtém regras de tributação que incidem sobre o item, dada uma natureza de operação..
      *
      * @param int $idNaturezaOperacao ID da natureza de operação
      * @param array $body Corpo da requisição
      *
-     * @return CalculateItemTaxResponse
+     * @return ObtainTaxResponse
      * @throws BlingApiException|BlingInternalException
      *
-     * @see https://developer.bling.com.br/referencia#/Naturezas%20de%20Opera%C3%A7%C3%B5es/post_naturezas_operacoes__idNaturezaOperacao__calcular_imposto_item
+     * @see https://developer.bling.com.br/referencia#/Naturezas%20de%20Opera%C3%A7%C3%B5es/post_naturezas_operacoes__idNaturezaOperacao__obter_tributacao
      */
-    public function calculateItemTax(int $idNaturezaOperacao, array $body): CalculateItemTaxResponse
+    public function obtainTax(int $idNaturezaOperacao, array $body): ObtainTaxResponse
     {
         $response = $this->repository->store(
             new RequestOptions(
-                endpoint: "naturezas-operacoes/$idNaturezaOperacao/calcular-imposto-item",
+                endpoint: "naturezas-operacoes/$idNaturezaOperacao/obter-tributacao",
                 body: $body
             )
         );
 
-        return CalculateItemTaxResponse::fromResponse($response);
+        return ObtainTaxResponse::fromResponse($response);
     }
 }

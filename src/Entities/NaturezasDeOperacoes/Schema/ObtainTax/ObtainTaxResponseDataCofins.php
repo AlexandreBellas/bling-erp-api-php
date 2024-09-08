@@ -1,13 +1,12 @@
 <?php
 
-namespace AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Schema\CalculateItemTax;
+namespace AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Schema\ObtainTax;
 
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id;
 use AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Enum\Tributacao;
-use AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Enum\ModalidadeBaseCalculoICMSST;
 
-readonly final class CalculateItemTaxResponseDataIcmsSt extends BaseResponseObject
+readonly final class ObtainTaxResponseDataCofins extends BaseResponseObject
 {
     /**
      * Constrói o objeto.
@@ -21,9 +20,7 @@ readonly final class CalculateItemTaxResponseDataIcmsSt extends BaseResponseObje
      * @param ?float $valorImposto
      * @param ?string $observacoes
      * @param ?string $informacoesAdicionaisFisco
-     * @param ?float $percentualAdicionado
-     * @param ?ModalidadeBaseCalculoICMSST $modalidadeBaseCalculo
-     * @param ?float $valorPauta
+     * @param ?float $valorCofinsFixo
      */
     public function __construct(
         public ?Id $regraOperacao,
@@ -35,9 +32,6 @@ readonly final class CalculateItemTaxResponseDataIcmsSt extends BaseResponseObje
         public ?float $valorImposto,
         public ?string $observacoes,
         public ?string $informacoesAdicionaisFisco,
-        public ?float $percentualAdicionado,
-        public ?ModalidadeBaseCalculoICMSST $modalidadeBaseCalculo,
-        public ?float $valorPauta,
-    ) {
-    }
+        public ?float $valorCofinsFixo,
+    ) {}
 }

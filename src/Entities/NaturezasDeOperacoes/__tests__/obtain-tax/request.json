@@ -4,7 +4,7 @@
     "municipio": {
         "id": 4302105
     },
-    "calcularImpostos": true,
+    "obterRegras": true,
     "crt": 1,
     "loja": {
         "id": 12345678,

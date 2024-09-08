@@ -1,6 +1,6 @@
 <?php
 
-namespace AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Schema\CalculateItemTax;
+namespace AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Schema\ObtainTax;
 
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id;
@@ -8,7 +8,7 @@ use AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Enum\Tributacao;
 use AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Enum\TipoPartilha;
 use AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Enum\MotivoDesoneracaoICMS;
 
-readonly final class CalculateItemTaxResponseDataIcms extends BaseResponseObject
+readonly final class ObtainTaxResponseDataIcms extends BaseResponseObject
 {
     /**
      * Constrói o objeto.
@@ -67,6 +67,5 @@ readonly final class CalculateItemTaxResponseDataIcms extends BaseResponseObject
         public ?float $valorBaseDiferimento,
         public ?float $valorPresumido,
         public ?float $aliquotaPosicao,
-    ) {
-    }
+    ) {}
 }

@@ -1,10 +1,10 @@
 <?php
 
-namespace AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Schema\CalculateItemTax;
+namespace AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Schema\ObtainTax;
 
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 
-readonly final class CalculateItemTaxResponseData extends BaseResponseObject
+readonly final class ObtainTaxResponseData extends BaseResponseObject
 {
     /**
      * Constrói o objeto.
@@ -24,24 +24,24 @@ readonly final class CalculateItemTaxResponseData extends BaseResponseObject
      * @param ?float $retValorCsll
      * @param ?bool $descontoCondicional
      * @param ?float $baseComissao
-     * @param ?CalculateItemTaxResponseDataIcms $icms
+     * @param ?ObtainTaxResponseDataIcms $icms
      * @param ?float $valorPmc
      * @param ?float $aliquotaValorAproxImpostos
      * @param ?string $informacoesAdicionaisFisco
      * @param ?bool $incluirFreteIpi
-     * @param ?CalculateItemTaxResponseDataSimples $simples
-     * @param ?CalculateItemTaxResponseDataIpi $ipi
-     * @param ?CalculateItemTaxResponseDataIssqn $issqn
-     * @param ?CalculateItemTaxResponseDataPis $pis
-     * @param ?CalculateItemTaxResponseDataCofins $cofins
-     * @param ?CalculateItemTaxResponseDataIcmsSt $icmsSt
-     * @param ?CalculateItemTaxResponseDataPisSt $pisSt
-     * @param ?CalculateItemTaxResponseDataCofinsSt $cofinsSt
-     * @param ?CalculateItemTaxResponseDataII $ii
+     * @param ?ObtainTaxResponseDataSimples $simples
+     * @param ?ObtainTaxResponseDataIpi $ipi
+     * @param ?ObtainTaxResponseDataIssqn $issqn
+     * @param ?ObtainTaxResponseDataPis $pis
+     * @param ?ObtainTaxResponseDataCofins $cofins
+     * @param ?ObtainTaxResponseDataIcmsSt $icmsSt
+     * @param ?ObtainTaxResponseDataPisSt $pisSt
+     * @param ?ObtainTaxResponseDataCofinsSt $cofinsSt
+     * @param ?ObtainTaxResponseDataII $ii
      * @param ?string $codigoBeneficioFiscal
      * @param ?float $porcentagemFcp
      * @param ?int $cfop
-     * @param ?CalculateItemTaxResponseDataSimplesSt $simplesSt
+     * @param ?ObtainTaxResponseDataSimplesSt $simplesSt
      */
     public function __construct(
         public ?bool $faturada,
@@ -59,24 +59,23 @@ readonly final class CalculateItemTaxResponseData extends BaseResponseObject
         public ?float $retValorCsll,
         public ?bool $descontoCondicional,
         public ?float $baseComissao,
-        public ?CalculateItemTaxResponseDataIcms $icms,
+        public ?ObtainTaxResponseDataIcms $icms,
         public ?float $valorPmc,
         public ?float $aliquotaValorAproxImpostos,
         public ?string $informacoesAdicionaisFisco,
         public ?bool $incluirFreteIpi,
-        public ?CalculateItemTaxResponseDataSimples $simples,
-        public ?CalculateItemTaxResponseDataIpi $ipi,
-        public ?CalculateItemTaxResponseDataIssqn $issqn,
-        public ?CalculateItemTaxResponseDataPis $pis,
-        public ?CalculateItemTaxResponseDataCofins $cofins,
-        public ?CalculateItemTaxResponseDataIcmsSt $icmsSt,
-        public ?CalculateItemTaxResponseDataPisSt $pisSt,
-        public ?CalculateItemTaxResponseDataCofinsSt $cofinsSt,
-        public ?CalculateItemTaxResponseDataII $ii,
+        public ?ObtainTaxResponseDataSimples $simples,
+        public ?ObtainTaxResponseDataIpi $ipi,
+        public ?ObtainTaxResponseDataIssqn $issqn,
+        public ?ObtainTaxResponseDataPis $pis,
+        public ?ObtainTaxResponseDataCofins $cofins,
+        public ?ObtainTaxResponseDataIcmsSt $icmsSt,
+        public ?ObtainTaxResponseDataPisSt $pisSt,
+        public ?ObtainTaxResponseDataCofinsSt $cofinsSt,
+        public ?ObtainTaxResponseDataII $ii,
         public ?string $codigoBeneficioFiscal,
         public ?float $porcentagemFcp,
         public ?int $cfop,
-        public ?CalculateItemTaxResponseDataSimplesSt $simplesSt,
-    ) {
-    }
+        public ?ObtainTaxResponseDataSimplesSt $simplesSt,
+    ) {}
 }

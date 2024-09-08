@@ -111,7 +111,7 @@ class ContasReceber extends BaseEntity
 
         $response = $this->repository->index(
             new RequestOptions(
-                endpoint: "contas/receber/view/bankslips",
+                endpoint: "contas/receber/boletos",
                 queryParams: $actualParams
             )
         );
@@ -179,7 +179,7 @@ class ContasReceber extends BaseEntity
     {
         $response = $this->repository->store(
             new RequestOptions(
-                endpoint: "contas/receber/cancel/bankslips",
+                endpoint: "contas/receber/boletos/cancelar",
                 body: $body
             )
         );
