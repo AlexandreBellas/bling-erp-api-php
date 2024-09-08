@@ -32,10 +32,12 @@
             "id": 12345678
         },
         "serie": 1,
+        "valorNota": 10.3,
         "chaveAcesso": "string",
         "xml": "string",
         "linkDanfe": "string",
         "linkPDF": "string",
+        "numeroPedidoLoja": "string",
         "transporte": {
             "fretePorConta": 0,
             "transportador": {
@@ -57,6 +59,9 @@
                 "cep": "95702-000",
                 "bairro": "Imigrante"
             }
+        },
+        "vendedor": {
+            "id": 12345679
         }
     }
 }

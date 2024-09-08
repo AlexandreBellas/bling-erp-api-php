@@ -31,6 +31,37 @@
         "loja": {
             "id": 12345678
         },
-        "serie": "1"
+        "serie": 1,
+        "valorNota": 10.3,
+        "chaveAcesso": "string",
+        "xml": "string",
+        "linkDanfe": "string",
+        "linkPDF": "string",
+        "numeroPedidoLoja": "string",
+        "transporte": {
+            "fretePorConta": 0,
+            "transportador": {
+                "nome": "Transportador",
+                "numeroDocumento": "30188025000121"
+            },
+            "volumes": [
+                {
+                    "id": 12345678
+                }
+            ],
+            "etiqueta": {
+                "nome": "Transportador",
+                "endereco": "Olavo Bilac",
+                "numero": "914",
+                "complemento": "Sala 101",
+                "municipio": "Bento Gonçalves",
+                "uf": "RS",
+                "cep": "95702-000",
+                "bairro": "Imigrante"
+            }
+        },
+        "vendedor": {
+            "id": 12345679
+        }
     }
 }

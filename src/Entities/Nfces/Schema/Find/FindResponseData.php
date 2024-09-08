@@ -21,7 +21,15 @@ readonly final class FindResponseData extends BaseResponseObject
      * @param FindResponseDataContato $contato
      * @param ?Id $naturezaOperacao
      * @param ?Id $loja
-     * @param string $serie
+     * @param ?int $serie
+     * @param ?float $valorNota
+     * @param ?string $chaveAcesso
+     * @param ?string $xml
+     * @param ?string $linkDanfe
+     * @param ?string $linkPDF
+     * @param ?string $numeroPedidoLoja
+     * @param ?FindResponseDataTransporte $transporte
+     * @param ?Id $vendedor
      */
     public function __construct(
         public ?int $id,
@@ -33,7 +41,14 @@ readonly final class FindResponseData extends BaseResponseObject
         public FindResponseDataContato $contato,
         public ?Id $naturezaOperacao,
         public ?Id $loja,
-        public string $serie,
-    ) {
-    }
+        public ?int $serie,
+        public ?float $valorNota,
+        public ?string $chaveAcesso,
+        public ?string $xml,
+        public ?string $linkDanfe,
+        public ?string $linkPDF,
+        public ?string $numeroPedidoLoja,
+        public ?FindResponseDataTransporte $transporte,
+        public ?Id $vendedor,
+    ) {}
 }
