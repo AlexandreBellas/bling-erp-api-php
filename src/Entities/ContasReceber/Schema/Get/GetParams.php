@@ -27,6 +27,7 @@ readonly final class GetParams extends QueryParams
      * @param \DateTimeInterface|string|null $dataFinal
      * @param ?int[] $idsCategorias
      * @param ?int $idPortador
+     * @param ?int $idContato
      * @param ?int $idVendedor
      * @param ?int $idFormaPagamento
      * @param ?int $boletoGerado
@@ -40,12 +41,13 @@ readonly final class GetParams extends QueryParams
         \DateTimeInterface|string|null $dataFinal = null,
         public ?array $idsCategorias = null,
         public ?int $idPortador = null,
+        public ?int $idContato = null,
         public ?int $idVendedor = null,
         public ?int $idFormaPagamento = null,
         public ?int $boletoGerado = null
     ) {
         $this->situacoes = array_map(
-            fn (Situacao|int|null $situacao) => $situacao instanceof Situacao ? $situacao->value : $situacao,
+            fn(Situacao|int|null $situacao) => $situacao instanceof Situacao ? $situacao->value : $situacao,
             $situacoes
         );
         $this->tipoFiltroData = $tipoFiltroData instanceof TipoFiltroData ? $tipoFiltroData->value : $tipoFiltroData;

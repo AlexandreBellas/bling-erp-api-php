@@ -35,6 +35,7 @@ readonly final class GetParams extends QueryParams
      * @param ?string $codigo
      * @param ?string $nome
      * @param ?int[] $idsProdutos
+     * @param ?string[] $codigos
      */
     public function __construct(
         public ?int $pagina = null,
@@ -50,6 +51,7 @@ readonly final class GetParams extends QueryParams
         public ?string $codigo = null,
         public ?string $nome = null,
         public ?array $idsProdutos = null,
+        public ?array $codigos = null,
     ) {
         $this->criterio =  $criterio instanceof Criterio ? $criterio->value : $criterio;
         $this->tipo =  $tipo instanceof TipoListagem ? $tipo->value : $tipo;

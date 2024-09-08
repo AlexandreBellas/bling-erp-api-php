@@ -10,4 +10,5 @@ enum TipoFiltroData: string
 {
     case DATA_DE_EMISSAO = 'E';
     case DATA_DE_VENCIMENTO = 'V';
+    case DATA_DE_RECEBIMENTO = 'R';
 }

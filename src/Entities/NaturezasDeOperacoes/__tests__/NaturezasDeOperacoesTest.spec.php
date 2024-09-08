@@ -3,7 +3,7 @@
 namespace Tests\Unit\AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes;
 
 use AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\NaturezasDeOperacoes;
-use AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Schema\CalculateItemTax\CalculateItemTaxResponse;
+use AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Schema\ObtainTax\ObtainTaxResponse;
 use AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Schema\Get\GetResponse;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\RequestOptions;
 use AleBatistella\BlingErpApi\Entities\Shared\TestResponseTrait;
@@ -42,7 +42,7 @@ class NaturezasDeOperacoesTest extends TestCase
             ->method('index')
             ->with(
                 $this->callback(
-                    fn (RequestOptions $requestOptions) =>
+                    fn(RequestOptions $requestOptions) =>
                     $requestOptions->endpoint === "naturezas-operacoes"
                 )
             )
@@ -56,19 +56,19 @@ class NaturezasDeOperacoesTest extends TestCase
     }
 
     /**
-     * Testa o cálculo de imposto.
+     * Testa a obtenção de regras de imposto.
      *
      * @return void
      */
-    public function testShouldCalculateItemTaxSuccessfully(): void
+    public function testShouldObtainTaxSuccessfully(): void
     {
         $idNaturezaOperacao = fake()->randomNumber();
         $calculateItemTaxBody = json_decode(
-            file_get_contents(__DIR__ . '/calculate-item-tax/request.json'),
+            file_get_contents(__DIR__ . '/obtain-tax/request.json'),
             true
         );
         $calculateItemTaxResponse = json_decode(
-            file_get_contents(__DIR__ . '/calculate-item-tax/response.json'),
+            file_get_contents(__DIR__ . '/obtain-tax/response.json'),
             true
         );
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
@@ -76,19 +76,19 @@ class NaturezasDeOperacoesTest extends TestCase
             ->method('store')
             ->with(
                 $this->callback(
-                    fn (RequestOptions $requestOptions) =>
-                    $requestOptions->endpoint === "naturezas-operacoes/$idNaturezaOperacao/calcular-imposto-item"
+                    fn(RequestOptions $requestOptions) =>
+                    $requestOptions->endpoint === "naturezas-operacoes/$idNaturezaOperacao/obter-tributacao"
                 )
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($calculateItemTaxResponse)));
 
         /** @var IBlingRepository $repository */
-        $response = $this->getInstance($repository)->calculateItemTax(
+        $response = $this->getInstance($repository)->obtainTax(
             idNaturezaOperacao: $idNaturezaOperacao,
             body: $calculateItemTaxBody
         );
 
-        $this->assertInstanceOf(CalculateItemTaxResponse::class, $response);
+        $this->assertInstanceOf(ObtainTaxResponse::class, $response);
         $this->assertEquals($calculateItemTaxResponse, $response->toArray());
     }
 }

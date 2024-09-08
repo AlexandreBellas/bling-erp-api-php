@@ -6,9 +6,7 @@ use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseRootObject;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions;
 
 /**
- * Resposta do cancelamento de boletos - Bling Conta com situação aberto,
- * podendo cancelar um ou todos boletos vinculado ao uma Venda/Nota Fiscal,
- * quando nenhum boleto tiver emitido não se faz uso do 2FA.
+ * Resposta do cancelamento de um ou todos os boletos em aberto vinculados a uma venda ou nota fiscal.
  */
 readonly final class CancelBankSlipsResponse extends BaseResponseRootObject
 {

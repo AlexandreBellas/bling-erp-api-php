@@ -6,6 +6,10 @@
       "nome": "Produto 1",
       "codigo": "CODE_123",
       "preco": 1,
+      "precoCusto": 1,
+      "estoque": {
+        "saldoVirtualTotal": 1
+      },
       "tipo": "P",
       "situacao": "A",
       "formato": "S",

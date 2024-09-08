@@ -6,29 +6,24 @@ use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseRootObject;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions;
 
 /**
- * Resposta da listagem de boletos - Bling conta vinculados a um idOrigem.
+ * Resposta da listagem de boletos vinculados a um idOrigem, o qual corresponde ao ID de uma venda ou nota fiscal.
  */
 readonly final class GetBankSlipsResponse extends BaseResponseRootObject
 {
     /**
      * Constrói o objeto.
      *
-     * @param ?string $numberSale
-     * @param ?string $numberNF
-     * @param ?int $amountAccounts
-     * @param ?float $amountValuesAccounts
-     * @param ?bool $haveAccountWithIntegration
-     * @param ?GetBankSlipsAccountsResponse $accounts
+     * @param ?GetBankSlipsResponseVenda $venda
+     * @param ?GetBankSlipsResponseNotaFiscal $notaFiscal
+     * @param ?float $valorTotal
+     * @param ?GetBankSlipsResponseContas[] $contas
      */
     public function __construct(
-        public ?string $numberSale,
-        public ?string $numberNF,
-        public ?int $amountAccounts,
-        public ?float $amountValuesAccounts,
-        public ?bool $haveAccountWithIntegration,
-        public ?array $accounts
-    ) {
-    }
+        public ?GetBankSlipsResponseVenda $venda,
+        public ?GetBankSlipsResponseNotaFiscal $notaFiscal,
+        public ?float $valorTotal,
+        public ?array $contas
+    ) {}
 
     /**
      * @inheritDoc
@@ -36,7 +31,7 @@ readonly final class GetBankSlipsResponse extends BaseResponseRootObject
     protected static function fromRules(): array
     {
         return [
-            'accounts' => GetBankSlipsAccountsResponse::class,
+            'contas' => GetBankSlipsResponseContas::class,
         ];
     }
 

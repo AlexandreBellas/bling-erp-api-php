@@ -75,7 +75,7 @@ class ContasReceberTest extends TestCase
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
                     $requestOptions->endpoint === "contas/receber"
-                    && is_null($requestOptions->queryParams)
+                        && is_null($requestOptions->queryParams)
                 )
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($getResponse)));
@@ -129,7 +129,7 @@ class ContasReceberTest extends TestCase
             ->with(
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
-                    $requestOptions->endpoint === "contas/receber/view/bankslips"
+                    $requestOptions->endpoint === "contas/receber/boletos"
                 )
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($getBankSlipsResponse)));
@@ -211,7 +211,7 @@ class ContasReceberTest extends TestCase
             ->with(
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
-                    $requestOptions->endpoint === "contas/receber/cancel/bankslips"
+                    $requestOptions->endpoint === "contas/receber/boletos/cancelar"
                 )
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($cancelBankSlipsResponse)));

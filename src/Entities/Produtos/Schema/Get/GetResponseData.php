@@ -17,6 +17,8 @@ readonly final class GetResponseData extends BaseResponseObject
      * @param string $nome
      * @param ?string $codigo
      * @param ?float $preco
+     * @param ?float $precoCusto
+     * @param ?GetResponseDataEstoque $estoque
      * @param Tipo $tipo
      * @param Situacao $situacao
      * @param Formato $formato
@@ -29,11 +31,12 @@ readonly final class GetResponseData extends BaseResponseObject
         public string $nome,
         public ?string $codigo,
         public ?float $preco,
+        public ?float $precoCusto,
+        public ?GetResponseDataEstoque $estoque,
         public Tipo $tipo,
         public Situacao $situacao,
         public Formato $formato,
         public ?string $descricaoCurta,
         public ?string $imagemURL,
-    ) {
-    }
+    ) {}
 }

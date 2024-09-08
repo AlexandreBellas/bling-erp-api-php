@@ -5,13 +5,12 @@ namespace AleBatistella\BlingErpApi\Entities\ContasReceber\Enum;
 /**
  * Enumerador de situação de boletos de contas a receber.
  */
-enum BankSlipSituacao: string
+enum BankSlipSituacao: int
 {
-    case EM_ABERTO = 'aberto';
-    case CONFIRMADO = 'confirmado';
-    case PARCIALMENTE_RECEBIDO = 'pacial';
-    case DEVOLVIDO = 'devolvido';
-    case PARCIALMENTE_DEVOLVIDO = 'devolvidoP';
-    case RECEBIDO = 'pago';
-    case CANCELADO = 'cancelada';
+    case EM_ABERTO = 1;
+    case RECEBIDO = 2;
+    case PARCIALMENTE_RECEBIDO = 3;
+    case DEVOLVIDO = 4;
+    case PARCIALMENTE_DEVOLVIDO = 5;
+    case CANCELADO = 6;
 }

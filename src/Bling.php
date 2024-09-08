@@ -18,6 +18,7 @@ use AleBatistella\BlingErpApi\Entities\Depositos\Depositos;
 use AleBatistella\BlingErpApi\Entities\Empresas\Empresas;
 use AleBatistella\BlingErpApi\Entities\Estoques\Estoques;
 use AleBatistella\BlingErpApi\Entities\FormasDePagamentos\FormasDePagamentos;
+use AleBatistella\BlingErpApi\Entities\GruposDeProdutos\GruposDeProdutos;
 use AleBatistella\BlingErpApi\Entities\Homologacao\Homologacao;
 use AleBatistella\BlingErpApi\Entities\Logisticas\Logisticas;
 use AleBatistella\BlingErpApi\Entities\LogisticasEtiquetas\LogisticasEtiquetas;
@@ -37,6 +38,7 @@ use AleBatistella\BlingErpApi\Entities\ProdutosEstruturas\ProdutosEstruturas;
 use AleBatistella\BlingErpApi\Entities\ProdutosFornecedores\ProdutosFornecedores;
 use AleBatistella\BlingErpApi\Entities\ProdutosLojas\ProdutosLojas;
 use AleBatistella\BlingErpApi\Entities\ProdutosVariacoes\ProdutosVariacoes;
+use AleBatistella\BlingErpApi\Entities\PropostasComerciais\PropostasComerciais;
 use AleBatistella\BlingErpApi\Entities\Shared\BaseEntity;
 use AleBatistella\BlingErpApi\Entities\Situacoes\Situacoes;
 use AleBatistella\BlingErpApi\Entities\SituacoesModulos\SituacoesModulos;
@@ -66,6 +68,7 @@ use AleBatistella\BlingErpApi\Repositories\IBlingRepository;
  * @property Empresas $empresas
  * @property Estoques $estoques
  * @property FormasDePagamentos $formasDePagamentos
+ * @property GruposDeProdutos $gruposDeProdutos
  * @property Homologacao $homologacao
  * @property Logisticas $logisticas
  * @property LogisticasEtiquetas $logisticasEtiquetas
@@ -85,6 +88,7 @@ use AleBatistella\BlingErpApi\Repositories\IBlingRepository;
  * @property ProdutosFornecedores $produtosFornecedores
  * @property ProdutosLojas $produtosLojas
  * @property ProdutosVariacoes $produtosVariacoes
+ * @property PropostasComerciais $propostasComerciais
  * @property Situacoes $situacoes
  * @property SituacoesModulos $situacoesModulos
  * @property SituacoesTransicoes $situacoesTransicoes
@@ -148,6 +152,7 @@ class Bling
       'empresas' => $this->getModule(Empresas::class),
       'estoques' => $this->getModule(Estoques::class),
       'formasDePagamentos' => $this->getModule(FormasDePagamentos::class),
+      'gruposDeProdutos' => $this->getModule(GruposDeProdutos::class),
       'homologacao' => $this->getModule(Homologacao::class),
       'logisticas' => $this->getModule(Logisticas::class),
       'logisticasEtiquetas' => $this->getModule(LogisticasEtiquetas::class),
@@ -167,6 +172,7 @@ class Bling
       'produtosFornecedores' => $this->getModule(ProdutosFornecedores::class),
       'produtosLojas' => $this->getModule(ProdutosLojas::class),
       'produtosVariacoes' => $this->getModule(ProdutosVariacoes::class),
+      'propostasComerciais' => $this->getModule(PropostasComerciais::class),
       'situacoes' => $this->getModule(Situacoes::class),
       'situacoesModulos' => $this->getModule(SituacoesModulos::class),
       'situacoesTransicoes' => $this->getModule(SituacoesTransicoes::class),
