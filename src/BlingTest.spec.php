@@ -19,6 +19,7 @@ use AleBatistella\BlingErpApi\Entities\Depositos\Depositos;
 use AleBatistella\BlingErpApi\Entities\Empresas\Empresas;
 use AleBatistella\BlingErpApi\Entities\Estoques\Estoques;
 use AleBatistella\BlingErpApi\Entities\FormasDePagamentos\FormasDePagamentos;
+use AleBatistella\BlingErpApi\Entities\GruposDeProdutos\GruposDeProdutos;
 use AleBatistella\BlingErpApi\Entities\Homologacao\Homologacao;
 use AleBatistella\BlingErpApi\Entities\Logisticas\Logisticas;
 use AleBatistella\BlingErpApi\Entities\LogisticasEtiquetas\LogisticasEtiquetas;
@@ -310,6 +311,20 @@ class BlingTest extends TestCase
     $expected = FormasDePagamentos::class;
 
     $actual = $this->getInstance()->formasDePagamentos;
+
+    $this->assertInstanceOf($expected, $actual);
+  }
+
+  /**
+   * Testa obter a entidade Grupos de Produtos.
+   *
+   * @return void
+   */
+  public function testShouldGetGruposDeProdutosCorrectly(): void
+  {
+    $expected = GruposDeProdutos::class;
+
+    $actual = $this->getInstance()->gruposDeProdutos;
 
     $this->assertInstanceOf($expected, $actual);
   }

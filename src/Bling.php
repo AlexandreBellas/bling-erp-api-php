@@ -18,6 +18,7 @@ use AleBatistella\BlingErpApi\Entities\Depositos\Depositos;
 use AleBatistella\BlingErpApi\Entities\Empresas\Empresas;
 use AleBatistella\BlingErpApi\Entities\Estoques\Estoques;
 use AleBatistella\BlingErpApi\Entities\FormasDePagamentos\FormasDePagamentos;
+use AleBatistella\BlingErpApi\Entities\GruposDeProdutos\GruposDeProdutos;
 use AleBatistella\BlingErpApi\Entities\Homologacao\Homologacao;
 use AleBatistella\BlingErpApi\Entities\Logisticas\Logisticas;
 use AleBatistella\BlingErpApi\Entities\LogisticasEtiquetas\LogisticasEtiquetas;
@@ -67,6 +68,7 @@ use AleBatistella\BlingErpApi\Repositories\IBlingRepository;
  * @property Empresas $empresas
  * @property Estoques $estoques
  * @property FormasDePagamentos $formasDePagamentos
+ * @property GruposDeProdutos $gruposDeProdutos
  * @property Homologacao $homologacao
  * @property Logisticas $logisticas
  * @property LogisticasEtiquetas $logisticasEtiquetas
@@ -150,6 +152,7 @@ class Bling
       'empresas' => $this->getModule(Empresas::class),
       'estoques' => $this->getModule(Estoques::class),
       'formasDePagamentos' => $this->getModule(FormasDePagamentos::class),
+      'gruposDeProdutos' => $this->getModule(GruposDeProdutos::class),
       'homologacao' => $this->getModule(Homologacao::class),
       'logisticas' => $this->getModule(Logisticas::class),
       'logisticasEtiquetas' => $this->getModule(LogisticasEtiquetas::class),
