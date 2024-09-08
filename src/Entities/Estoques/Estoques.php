@@ -22,8 +22,8 @@ class Estoques extends BaseEntity
      * Obtém o saldo em estoque de produtos por depósito.
      * 
      * @param int $idDeposito ID do depósito
-     * @param int[] $idsProdutos IDs dos produtos
-     * @param ?string $codigo Código do produto
+     * @param ?int[] $idsProdutos IDs dos produtos
+     * @param ?string[] $codigos Códigos dos produtos
      * 
      * @return FindBalanceResponse
      * @throws BlingApiException|BlingInternalException
@@ -32,13 +32,13 @@ class Estoques extends BaseEntity
      */
     public function findBalance(
         int $idDeposito,
-        array $idsProdutos,
-        ?string $codigo = null
+        ?array $idsProdutos = null,
+        ?array $codigos = null
     ): FindBalanceResponse {
         $response = $this->repository->show(
             new RequestOptions(
                 endpoint: "estoques/saldos/$idDeposito",
-                queryParams: ['idsProdutos' => $idsProdutos, 'codigo' => $codigo]
+                queryParams: ['idsProdutos' => $idsProdutos, 'codigos' => $codigos]
             )
         );
 
