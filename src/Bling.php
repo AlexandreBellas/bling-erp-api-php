@@ -37,6 +37,7 @@ use AleBatistella\BlingErpApi\Entities\ProdutosEstruturas\ProdutosEstruturas;
 use AleBatistella\BlingErpApi\Entities\ProdutosFornecedores\ProdutosFornecedores;
 use AleBatistella\BlingErpApi\Entities\ProdutosLojas\ProdutosLojas;
 use AleBatistella\BlingErpApi\Entities\ProdutosVariacoes\ProdutosVariacoes;
+use AleBatistella\BlingErpApi\Entities\PropostasComerciais\PropostasComerciais;
 use AleBatistella\BlingErpApi\Entities\Shared\BaseEntity;
 use AleBatistella\BlingErpApi\Entities\Situacoes\Situacoes;
 use AleBatistella\BlingErpApi\Entities\SituacoesModulos\SituacoesModulos;
@@ -85,6 +86,7 @@ use AleBatistella\BlingErpApi\Repositories\IBlingRepository;
  * @property ProdutosFornecedores $produtosFornecedores
  * @property ProdutosLojas $produtosLojas
  * @property ProdutosVariacoes $produtosVariacoes
+ * @property PropostasComerciais $propostasComerciais
  * @property Situacoes $situacoes
  * @property SituacoesModulos $situacoesModulos
  * @property SituacoesTransicoes $situacoesTransicoes
@@ -167,6 +169,7 @@ class Bling
       'produtosFornecedores' => $this->getModule(ProdutosFornecedores::class),
       'produtosLojas' => $this->getModule(ProdutosLojas::class),
       'produtosVariacoes' => $this->getModule(ProdutosVariacoes::class),
+      'propostasComerciais' => $this->getModule(PropostasComerciais::class),
       'situacoes' => $this->getModule(Situacoes::class),
       'situacoesModulos' => $this->getModule(SituacoesModulos::class),
       'situacoesTransicoes' => $this->getModule(SituacoesTransicoes::class),

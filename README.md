@@ -74,7 +74,7 @@ Quase todas as entidades do Bling atualmente são permitidas para interação. S
 - [x] Produtos - Fornecedores (`->produtosFornecedores`)
 - [x] Produtos - Lojas (`->produtosLojas`)
 - [x] Produtos - Variações (`->produtosVariacoes`)
-- [ ] Propostas comerciais (`->propostasComerciais`)
+- [x] Propostas comerciais (`->propostasComerciais`)
 - [x] Situações (`->situacoes`)
 - [x] Situações - Módulos (`->situacoesModulos`)
 - [x] Situações - Transições (`->situacoesTransicoes`)

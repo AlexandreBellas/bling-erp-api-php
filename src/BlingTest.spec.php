@@ -38,6 +38,7 @@ use AleBatistella\BlingErpApi\Entities\ProdutosEstruturas\ProdutosEstruturas;
 use AleBatistella\BlingErpApi\Entities\ProdutosFornecedores\ProdutosFornecedores;
 use AleBatistella\BlingErpApi\Entities\ProdutosLojas\ProdutosLojas;
 use AleBatistella\BlingErpApi\Entities\ProdutosVariacoes\ProdutosVariacoes;
+use AleBatistella\BlingErpApi\Entities\PropostasComerciais\PropostasComerciais;
 use AleBatistella\BlingErpApi\Entities\Situacoes\Situacoes;
 use AleBatistella\BlingErpApi\Entities\SituacoesModulos\SituacoesModulos;
 use AleBatistella\BlingErpApi\Entities\SituacoesTransicoes\SituacoesTransicoes;
@@ -575,6 +576,20 @@ class BlingTest extends TestCase
     $expected = ProdutosVariacoes::class;
 
     $actual = $this->getInstance()->produtosVariacoes;
+
+    $this->assertInstanceOf($expected, $actual);
+  }
+
+  /**
+   * Testa obter a entidade Propostas Comerciais.
+   *
+   * @return void
+   */
+  public function testShouldGetPropostasComerciaisCorrectly(): void
+  {
+    $expected = PropostasComerciais::class;
+
+    $actual = $this->getInstance()->propostasComerciais;
 
     $this->assertInstanceOf($expected, $actual);
   }
