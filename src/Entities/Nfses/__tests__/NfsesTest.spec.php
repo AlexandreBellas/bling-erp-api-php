@@ -47,7 +47,7 @@ class NfsesTest extends TestCase
             ->method('destroy')
             ->with(
                 $this->callback(
-                    fn (RequestOptions $requestOptions) =>
+                    fn(RequestOptions $requestOptions) =>
                     $requestOptions->endpoint === "nfse/$idNotaServico"
                 )
             )
@@ -72,7 +72,7 @@ class NfsesTest extends TestCase
             ->method('index')
             ->with(
                 $this->callback(
-                    fn (RequestOptions $requestOptions) =>
+                    fn(RequestOptions $requestOptions) =>
                     $requestOptions->endpoint === "nfse"
                         && is_null($requestOptions->queryParams)
                 )
@@ -100,7 +100,7 @@ class NfsesTest extends TestCase
             ->method('show')
             ->with(
                 $this->callback(
-                    fn (RequestOptions $requestOptions) =>
+                    fn(RequestOptions $requestOptions) =>
                     $requestOptions->endpoint === "nfse/$idNotaServico"
                 )
             )
@@ -129,7 +129,7 @@ class NfsesTest extends TestCase
             ->method('index')
             ->with(
                 $this->callback(
-                    fn (RequestOptions $requestOptions) =>
+                    fn(RequestOptions $requestOptions) =>
                     $requestOptions->endpoint === "nfse/configurations"
                 )
             )
@@ -156,7 +156,7 @@ class NfsesTest extends TestCase
             ->method('store')
             ->with(
                 $this->callback(
-                    fn (RequestOptions $requestOptions) =>
+                    fn(RequestOptions $requestOptions) =>
                     $requestOptions->endpoint === "nfse"
                 )
             )
@@ -183,7 +183,7 @@ class NfsesTest extends TestCase
             ->method('store')
             ->with(
                 $this->callback(
-                    fn (RequestOptions $requestOptions) =>
+                    fn(RequestOptions $requestOptions) =>
                     $requestOptions->endpoint === "nfse/$idNotaServico/enviar"
                 )
             )
@@ -204,20 +204,24 @@ class NfsesTest extends TestCase
     public function testShouldCancelSuccessfully(): void
     {
         $idNotaServico = fake()->randomNumber();
+        $cancelRequest = json_decode(file_get_contents(__DIR__ . '/cancel/request.json'), true);
         $cancelResponse = json_decode(file_get_contents(__DIR__ . '/cancel/response.json'), true);
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
             ->method('store')
             ->with(
                 $this->callback(
-                    fn (RequestOptions $requestOptions) =>
+                    fn(RequestOptions $requestOptions) =>
                     $requestOptions->endpoint === "nfse/$idNotaServico/cancelar"
                 )
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($cancelResponse)));
 
         /** @var IBlingRepository $repository */
-        $response = $this->getInstance($repository)->cancel($idNotaServico);
+        $response = $this->getInstance($repository)->cancel(
+            $idNotaServico,
+            $cancelRequest
+        );
 
         $this->assertNull($response);
     }
@@ -242,7 +246,7 @@ class NfsesTest extends TestCase
             ->method('replace')
             ->with(
                 $this->callback(
-                    fn (RequestOptions $requestOptions) =>
+                    fn(RequestOptions $requestOptions) =>
                     $requestOptions->endpoint === "nfse/configuracoes"
                 )
             )

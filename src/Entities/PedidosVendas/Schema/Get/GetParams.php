@@ -55,7 +55,7 @@ readonly final class GetParams extends QueryParams
         public ?array $numerosLojas = null,
     ) {
         $this->situacoes = array_map(
-            fn (Situacao|int|null $situacao) => $situacao instanceof Situacao
+            fn(Situacao|int|null $situacao) => $situacao instanceof Situacao
                 ? $situacao->value
                 : $situacao,
             $situacoes
@@ -63,8 +63,8 @@ readonly final class GetParams extends QueryParams
 
         $this->dataInicial = $this->prepareStringOrDateParam($dataInicial);
         $this->dataFinal = $this->prepareStringOrDateParam($dataFinal);
-        $this->dataAlteracaoInicial = $this->prepareStringOrDateParam($dataAlteracaoInicial);
-        $this->dataAlteracaoFinal = $this->prepareStringOrDateParam($dataAlteracaoFinal);
+        $this->dataAlteracaoInicial = $this->prepareStringOrDateParam($dataAlteracaoInicial, true);
+        $this->dataAlteracaoFinal = $this->prepareStringOrDateParam($dataAlteracaoFinal, true);
         $this->dataPrevistaInicial = $this->prepareStringOrDateParam($dataPrevistaInicial);
         $this->dataPrevistaFinal = $this->prepareStringOrDateParam($dataPrevistaFinal);
 

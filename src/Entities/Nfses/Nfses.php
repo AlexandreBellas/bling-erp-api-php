@@ -9,13 +9,7 @@ use AleBatistella\BlingErpApi\Entities\Nfses\Schema\Delete\DeleteResponse;
 use AleBatistella\BlingErpApi\Entities\Nfses\Schema\Find\FindResponse;
 use AleBatistella\BlingErpApi\Entities\Nfses\Schema\Get\GetResponse;
 use AleBatistella\BlingErpApi\Entities\Nfses\Schema\GetConfigurations\GetConfigurationsResponse;
-use AleBatistella\BlingErpApi\Entities\Nfses\Schema\PostAccounts\PostAccountsResponse;
-use AleBatistella\BlingErpApi\Entities\Nfses\Schema\PostStock\PostStockResponse;
-use AleBatistella\BlingErpApi\Entities\Nfses\Schema\PostStockToDeposit\PostStockToDepositResponse;
-use AleBatistella\BlingErpApi\Entities\Nfses\Schema\ReverseAccounts\ReverseAccountsResponse;
-use AleBatistella\BlingErpApi\Entities\Nfses\Schema\ReverseStock\ReverseStockResponse;
 use AleBatistella\BlingErpApi\Entities\Nfses\Schema\Send\SendResponse;
-use AleBatistella\BlingErpApi\Entities\Nfses\Schema\Update\UpdateResponse;
 use AleBatistella\BlingErpApi\Entities\Nfses\Schema\UpdateConfigurations\UpdateConfigurationsResponse;
 use AleBatistella\BlingErpApi\Entities\Shared\BaseEntity;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\RequestOptions;
@@ -159,17 +153,19 @@ class Nfses extends BaseEntity
      * Cancela uma nota de serviço.
      *
      * @param int $idNotaServico ID da nota de serviço
+     * @param array $body Corpo da requisição
      *
      * @return null
      * @throws BlingApiException|BlingInternalException
      *
      * @see https://developer.bling.com.br/referencia#/Notas%20Fiscais%20de%20Servi%C3%A7o%20Eletr%C3%B4nicas/post_nfse__idNotaServico__cancelar
      */
-    public function cancel(int $idNotaServico): null
+    public function cancel(int $idNotaServico, array $body): null
     {
         $response = $this->repository->store(
             new RequestOptions(
                 endpoint: "nfse/$idNotaServico/cancelar",
+                body: $body
             )
         );
 
