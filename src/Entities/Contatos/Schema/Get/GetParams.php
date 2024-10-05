@@ -52,10 +52,10 @@ readonly final class GetParams extends QueryParams
     ) {
         $this->criterio = $criterio instanceof Criterio ? $criterio->value : $criterio;
 
-        $this->dataInclusaoInicial = $this->prepareStringOrDateParam($dataInclusaoInicial);
-        $this->dataInclusaoFinal = $this->prepareStringOrDateParam($dataInclusaoFinal);
-        $this->dataAlteracaoInicial = $this->prepareStringOrDateParam($dataAlteracaoInicial);
-        $this->dataAlteracaoFinal = $this->prepareStringOrDateParam($dataAlteracaoFinal);
+        $this->dataInclusaoInicial = $this->prepareStringOrDateParam($dataInclusaoInicial, true);
+        $this->dataInclusaoFinal = $this->prepareStringOrDateParam($dataInclusaoFinal, true);
+        $this->dataAlteracaoInicial = $this->prepareStringOrDateParam($dataAlteracaoInicial, true);
+        $this->dataAlteracaoFinal = $this->prepareStringOrDateParam($dataAlteracaoFinal, true);
 
         $this->uf = $uf instanceof UF ? $uf->value : $uf;
 
