@@ -20,7 +20,7 @@ readonly final class FindResponseDataMidiaImagensInternas extends BaseResponseOb
         public string $linkMiniatura,
         public string $validade,
         public ?int $ordem,
-        public Id $anexo,
-        public Id $anexoVinculo,
+        public ?Id $anexo,
+        public ?Id $anexoVinculo,
     ) {}
 }
