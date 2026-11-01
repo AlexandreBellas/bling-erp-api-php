@@ -1,0 +1,55 @@
+---
+description: High-level architecture of the Bling ERP API PHP wrapper
+alwaysApply: true
+---
+
+# Project Overview
+
+This package is a thin PHP wrapper around the [Bling ERP API v3](https://developer.bling.com.br/). It exposes entity modules that mirror Bling resource groups and delegates HTTP to a shared repository.
+
+## Layering
+
+| Layer | Location | Responsibility |
+|-------|----------|----------------|
+| Facade | `src/Bling.php` | `new Bling($accessToken)`, `@property` getters, lazy modules |
+| Auth | `src/Bling.php`, `src/Providers/IoC.php` | Bearer access token and fixed API base URL |
+| Entities | `src/Entities/<Module>/` | One class per Bling resource; maps methods to repository calls |
+| Repository | `src/Repositories/` | HTTP verbs, auth header, response envelope |
+| Provider | `src/Providers/IoC.php` | `IoC::getRepository($accessToken)` |
+| Contracts | `src/Contracts/` | `IResponseObject`, `IResponseRootObject` |
+| Exceptions | `src/Exceptions/` | API, internal, and payload-parse failures |
+| Helpers | `src/Helpers/functions.php` | Date strings, `objectToArray`, `fake` |
+| Shared | `src/Entities/@shared/` | Base entity, response parser, request DTOs, shared enums |
+
+## Assumptions
+
+- Targets **PHP 8.2** and **Bling API v3**.
+- Resource base URL is `https://www.bling.com.br/Api/v3/` (`src/Providers/IoC.php`).
+- Callers pass an existing access token: `new Bling($accessToken)`.
+- Endpoint paths and query names follow the Bling reference (Portuguese, kebab-case segments).
+- Runtime dependency is **guzzlehttp/guzzle** (`composer.json`).
+- PSR-4 root is `AleBatistella\BlingErpApi\` → `src/`. A directory named `@shared` is the `Shared` namespace segment, registered under `autoload.psr-4` in `composer.json`.
+- Tests are `*.spec.php` files under `src/` (`phpunit.xml`). `.gitattributes` marks `*.spec.php` and `**/__tests__` as `export-ignore`.
+- Pull requests target `develop`. Subjects follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/). Member names are `camelCase`. Class names are `PascalCase`.
+
+## Entity Module Inventory
+
+Each name below is one camelCase getter on `Bling`. The matching folder is PascalCase under `src/Entities/`. `@shared` is the shared layer from the table above and has no getter.
+
+`borderos`, `camposCustomizados`, `canaisDeVenda`, `categoriasLojas`, `categoriasProdutos`, `categoriasReceitasDespesas`, `contasContabeis`, `contasPagar`, `contasReceber`, `contatos`, `contatosTipos`, `contratos`, `depositos`, `empresas`, `estoques`, `formasDePagamentos`, `gruposDeProdutos`, `homologacao`, `logisticas`, `logisticasEtiquetas`, `logisticasObjetos`, `logisticasRemessas`, `logisticasServicos`, `naturezasDeOperacoes`, `nfces`, `nfes`, `nfses`, `notificacoes`, `ordensDeProducao`, `pedidosCompras`, `pedidosVendas`, `produtos`, `produtosEstruturas`, `produtosFornecedores`, `produtosLojas`, `produtosVariacoes`, `propostasComerciais`, `situacoes`, `situacoesModulos`, `situacoesTransicoes`, `usuarios`, `vendedores`.
+
+Folder names are PascalCase (`src/Entities/FormasDePagamentos/`). Getter names are camelCase (`$bling->formasDePagamentos`).
+
+## Consumer Flow
+
+1. `$bling = new Bling($accessToken)` from `src/Bling.php`.
+2. Read a module through its getter (`$bling->contatos`).
+3. Call an entity method. It returns a schema object or `null`, or throws `BlingApiException` / `BlingInternalException`.
+
+## Modularity Principles
+
+- **One entity folder = one Bling resource group.** The public class is `<Module>.php`.
+- **HTTP stays in the repository.** Entity methods call `$this->repository->*` and finish with `*Response::fromResponse($response)`.
+- **Shared types come from `AleBatistella\BlingErpApi\Entities\Shared`.** A module reuses another module's schema only through its own `Schema\Shared` namespace (`ContasPagar`, `ContasReceber`).
+- **The bearer header is set in `BlingRepository`.** Entities do not set `Authorization`.
+- **One instance per module per client.** `Bling::getModule` caches by class name.

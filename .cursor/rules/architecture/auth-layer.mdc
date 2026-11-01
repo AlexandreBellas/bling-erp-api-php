@@ -1,0 +1,43 @@
+---
+description: Bearer access token and Bling client construction
+globs: src/Bling.php,src/Providers/**,src/Repositories/BlingRepository.php
+alwaysApply: false
+---
+
+# Auth
+
+The library sends a bearer access token on every resource call. It does not create, refresh, or revoke tokens.
+
+## Public construction
+
+```php
+use AleBatistella\BlingErpApi\Bling;
+
+$bling = new Bling($accessToken);
+```
+
+`Bling::__construct(string $accessToken)` asks `IoC::getRepository` for the repository and keeps it on the client (`src/Bling.php`).
+
+## What IoC wires
+
+`src/Providers/IoC.php`:
+
+| Piece | Value |
+|-------|--------|
+| Base URL | `https://www.bling.com.br/Api/v3/` |
+| Header | `Authorization: Bearer {accessToken}` |
+| Client | `BlingRepository` |
+
+The token and base URL stay fixed for that `Bling` instance. Resource methods do not accept a token argument.
+
+## Where the token comes from
+
+The caller already holds an access token from Bling's `/oauth/token` endpoint. Document that boundary with:
+
+- `README.md` — `new Bling($apiKey)` and the link to token issuance
+- `https://developer.bling.com.br/aplicativos#tokens-de-acesso`
+- `demo/` — Laravel sample that posts the authorization code to `https://www.bling.com.br/Api/v3/oauth/token` and then constructs `new Bling($accessToken)`
+
+## Tests
+
+Facade tests call `new Bling(fake()->word())`. Do not request a real token and do not call live Bling.

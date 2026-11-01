@@ -1,0 +1,51 @@
+---
+description: PHPDoc standards for the public API
+globs: src/**/*.php
+alwaysApply: false
+---
+
+# PHPDoc Standards
+
+## Language
+
+Documentation is Brazilian Portuguese, matching the entity and facade blocks.
+
+## Class block
+
+Every entity class and `Bling` includes:
+
+- One sentence naming the resource (`Entidade para interação com contatos.`).
+- `@see` pointing at the Bling reference section for that resource.
+
+Copy the header in `src/Entities/CamposCustomizados/CamposCustomizados.php` or `src/Entities/Nfes/Nfes.php`. `Bling` documents each getter with `@property`.
+
+## Method block
+
+Each public entity method documents, in this order:
+
+1. **Description** — one Portuguese sentence.
+2. **`@param`** — `{type} $name` and a short Portuguese description, one tag per parameter.
+3. **`@return`** — the PHP type. Use `null` when `fromResponse` returns `null`.
+4. **`@throws BlingApiException|BlingInternalException`** — on every method that calls `$this->repository`.
+5. **`@see`** — the Bling operation URL.
+
+Omit `@param` when the method takes no arguments. `Homologacao::execute` returns `void`, calls other entity methods, and documents `@return void` plus `@see https://developer.bling.com.br/homologacao`.
+
+## Schema and enum blocks
+
+- A `*Params` or `*Response` class has a one-line Portuguese summary (`Parâmetros da busca de contatos paginados.`).
+- Constructor `@param` tags list every argument with the same type the signature uses, including `Enum|scalar|null` and `\DateTimeInterface|string|null`.
+- An enum file starts with `Enumerador de ...`.
+- `fromResponse` and `fromRules` use `@inheritDoc` when they implement the base contract.
+
+## Repository, contracts, and exceptions
+
+- Repository methods that implement `IBlingRepository` use `@inheritDoc` (`BlingRepository`).
+- The interface method documents `@param RequestOptions $options` and `@return ResponseOptions`.
+- Exception classes document the purpose in Portuguese and list constructor parameters in signature order.
+
+## Links
+
+Base reference: `https://developer.bling.com.br/referencia`.
+
+Use the URL-encoded resource name already present on sibling methods (`Contatos`, `Campos%20Customizados`, `Border%C3%B4s`). The operation anchor uses the Bling pattern `get_contatos__idContato_`.

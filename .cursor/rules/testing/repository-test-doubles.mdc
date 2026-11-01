@@ -1,0 +1,62 @@
+---
+description: PHPUnit mock of IBlingRepository for entity tests
+globs: src/**/__tests__/**,src/**/*.spec.php,src/Entities/@shared/TestResponseTrait.php
+alwaysApply: false
+---
+
+# Repository Test Doubles
+
+Entity tests replace `IBlingRepository` with a PHPUnit mock. They assert the `RequestOptions` the entity built and the object returned by `fromResponse`.
+
+## Setup
+
+From `src/Entities/Contatos/__tests__/ContatosTest.spec.php`:
+
+```php
+$repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
+$entity = new Contatos($repository);
+```
+
+Construct the entity with the mock. Do not construct `Bling` inside an entity spec. Facade coverage lives in `src/BlingTest.spec.php`.
+
+The spec class `use`s `AleBatistella\BlingErpApi\Entities\Shared\TestResponseTrait`.
+
+## Response helper
+
+`TestResponseTrait::buildResponse` returns a `ResponseOptions`:
+
+| Parameter | Role |
+|-----------|------|
+| `$endpoint` | Defaults to `fake()->word()` |
+| `$method` | Defaults to `fake()->word()` |
+| `$status` | Defaults to a number from 200 to 500. Success tests pass `status: 200` |
+| `$headers` | `Headers` or `null`. Build with `buildHeaders(array)` |
+| `$body` | `Body` or `null`. Build with `buildBody(array)` |
+
+`buildBody(null)` and `buildHeaders(null)` return `null`.
+
+## Expectation
+
+```php
+$repository->expects($this->once())
+    ->method('show')
+    ->with($this->callback(
+        fn (RequestOptions $requestOptions) =>
+            $requestOptions->endpoint === "contatos/$idContato"
+    ))
+    ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($findResponse)));
+```
+
+The verb is the one the entity calls. The callback reads `endpoint`, and `queryParams->content` or `headers` when the call sets them.
+
+## Ids
+
+Generate numeric ids with `fake()->randomNumber()` and interpolate them into the expected endpoint. Keep fixture JSON ids stable; they are payload data, not the path id under test.
+
+## Error specs
+
+`ResponseOptionsTest` constructs `ResponseOptions` with status `400`. A body shaped as `ErrorResponse` expects `BlingApiException` and the `error.description` message. A `400` body that is not that shape expects `BlingInternalException`. `ErrorResponseTest` covers `ErrorResponse::from` and the same exception path.
+
+## Scope
+
+These doubles do not perform HTTP. A new repository method is added to `IBlingRepository` first; specs then `method('<name>')` on the same `getMockBuilder(IBlingRepository::class)` mock.

@@ -1,0 +1,39 @@
+---
+description: Bling facade class and module registration
+globs: src/Bling.php,src/BlingTest.spec.php
+alwaysApply: false
+---
+
+# Bling Facade
+
+`src/Bling.php` is the package entry. Callers construct it with `new Bling(string $accessToken)`.
+
+## Responsibilities
+
+1. Store the `IBlingRepository` from `IoC::getRepository($accessToken)`.
+2. Expose one camelCase module per Bling resource through `__get`.
+3. Instantiate each module once per client, via private `getModule(string $entityClassName)`.
+4. Throw `BlingInternalException` with message `A entidade "{name}" não existe.` for an unknown getter.
+
+`__get` is a `match` from the getter name to `Entity::class`. The class docblock repeats every getter as `@property <Class> $<getter>`.
+
+## Module registration
+
+When adding a resource:
+
+1. Import the entity class.
+2. Add `@property` for the camelCase getter.
+3. Add a `match` arm: `'contatos' => $this->getModule(Contatos::class)`.
+4. Add `testShouldGet<Module>Correctly` in `src/BlingTest.spec.php`.
+
+`getModule` does `new $entityClassName($this->repository)` and caches the instance in `$this->modules` under the class name.
+
+## What does not belong here
+
+- Endpoint strings, Guzzle calls, or response parsing.
+- Token refresh or OAuth HTTP. The constructor receives an access token that already exists.
+
+## Fields
+
+- `repository` — one `IBlingRepository` shared by every module of this client. Declared `private readonly`.
+- `modules` — `array` cache of `BaseEntity` instances, filled on first getter access.

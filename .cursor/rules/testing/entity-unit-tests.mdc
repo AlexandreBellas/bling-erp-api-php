@@ -1,0 +1,66 @@
+---
+description: Entity unit test structure and conventions
+globs: src/**/__tests__/**,src/**/*.spec.php,phpunit.xml
+alwaysApply: false
+---
+
+# Entity Unit Tests
+
+## Location
+
+Tests sit next to the code they cover:
+
+```
+src/Entities/<Module>/__tests__/<Module>Test.spec.php
+src/Entities/<Module>/__tests__/<operation>/response.json
+src/BlingTest.spec.php
+src/Entities/@shared/DTO/Error/__tests__/ErrorResponseTest.spec.php
+src/Entities/@shared/DTO/Request/__tests__/ResponseOptionsTest.spec.php
+```
+
+Ship `<Module>Test.spec.php` for each entity module. Ship `src/BlingTest.spec.php` for the facade.
+
+## Spec structure
+
+Follow `src/Entities/Contatos/__tests__/ContatosTest.spec.php`:
+
+1. Namespace `Tests\Unit\AleBatistella\BlingErpApi\Entities\<Module>`.
+2. `use TestResponseTrait`.
+3. Extend `PHPUnit\Framework\TestCase`.
+4. `private function getInstance(IBlingRepository $repository): <Module>`.
+5. One public method per entity operation, named `testShould<Action>Successfully`.
+6. Docblock `Teste de \`<Module>\`.` on the class and `Testa ...` plus `@return void` on each test method.
+
+## Assertions per test
+
+1. Load JSON with `json_decode(file_get_contents(__DIR__ . '/<operation>/response.json'), true)`. Load `request.json` the same way when the call sends a body.
+2. Build ids with `fake()->randomNumber()`.
+3. `$repository = $this->getMockBuilder(IBlingRepository::class)->getMock()`.
+4. `$repository->expects($this->once())->method('<verb>')`.
+5. `->with($this->callback(fn (RequestOptions $requestOptions) => $requestOptions->endpoint === '<path>'))`.
+6. `->willReturn($this->buildResponse(status: 200, body: $this->buildBody($decoded)))`.
+7. Call the entity through `getInstance`. Annotate the mock with `/** @var IBlingRepository $repository */` before the call.
+8. `assertNull` when the method returns `null`.
+9. `assertInstanceOf` plus `assertEquals($decoded, $response->toArray())` when it returns a response object.
+
+A `get` test that calls `get()` with no arguments asserts `$requestOptions->queryParams` is `null` (`ContatosTest::testShouldGetSuccessfully`). A test that passes filters or a bulk id list asserts those entries on `queryParams->content` (`ContatosTest::testShouldDeleteManySuccessfully`). A call that sends headers asserts `headers` (`HomologacaoTest`).
+
+Spy the repository method the entity calls (`index`, `show`, `store`, `update`, `replace`, `destroy`), not the HTTP verb name.
+
+## Facade tests
+
+`src/BlingTest.spec.php`:
+
+- `testShouldInstantiateCorrectly` asserts `new Bling(fake()->word())` is a `Bling`.
+- `testShouldNotGetInexistentEntity` expects `BlingInternalException` and the message `A entidade "{name}" não existe.`.
+- One `testShouldGet<Module>Correctly` per getter, asserting `assertInstanceOf(<Entity>::class, $bling-><getter>)`.
+
+## Running tests
+
+```bash
+vendor/phpunit/phpunit/phpunit -c phpunit.xml
+```
+
+## What these tests cover
+
+Entity specs cover wiring: endpoint, query, headers, and the parsed return value. They do not open a socket to Bling. `ResponseOptionsTest` and `ErrorResponseTest` cover error normalization.
