@@ -9,12 +9,12 @@ use AleBatistella\BlingErpApi\Repositories\IBlingRepository;
  */
 abstract class BaseEntity
 {
-  /**
-   * Constrói o objeto.
-   *
-   * @param IBlingRepository $repository Repositório para conexão com o Bling.
-   */
-  public function __construct(protected IBlingRepository $repository)
-  {
-  }
+    /**
+     * Constrói o objeto.
+     *
+     * @param \AleBatistella\BlingErpApi\Repositories\IBlingRepository $repository Repositório para conexão com o Bling.
+     */
+    public function __construct(protected IBlingRepository $repository)
+    {
+    }
 }

@@ -4,13 +4,16 @@ namespace AleBatistella\BlingErpApi\Entities\ProdutosVariacoes\Schema\GenerateCo
 
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class GenerateCombinationsResponseDataMidiaImagens extends BaseResponseObject
 {
     /**
      * Constrói o objeto.
      *
-     * @param ?GenerateCombinationsResponseDataMidiaImagensExternas[] $externas
-     * @param ?GenerateCombinationsResponseDataMidiaImagensInternas[] $internas
+     * @param ?array $externas
+     * @param ?array $internas
      */
     public function __construct(
         public ?array $externas,
@@ -24,8 +27,8 @@ readonly final class GenerateCombinationsResponseDataMidiaImagens extends BaseRe
     protected static function fromRules(): array
     {
         return [
-            'externas' => GenerateCombinationsResponseDataMidiaImagensExternas::class,
-            'internas' => GenerateCombinationsResponseDataMidiaImagensInternas::class,
+            "externas" => GenerateCombinationsResponseDataMidiaImagensExternas::class,
+            "internas" => GenerateCombinationsResponseDataMidiaImagensInternas::class,
         ];
     }
 }

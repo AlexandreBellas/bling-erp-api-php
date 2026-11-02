@@ -7,20 +7,23 @@ use AleBatistella\BlingErpApi\Entities\Nfes\Enum\Situacao;
 use AleBatistella\BlingErpApi\Entities\Nfes\Enum\Tipo;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class FindResponseData extends BaseResponseObject
 {
     /**
      * Constrói o objeto.
      *
      * @param ?int $id
-     * @param Tipo $tipo
-     * @param ?Situacao $situacao
-     * @param ?string $numero
+     * @param \AleBatistella\BlingErpApi\Entities\Nfes\Enum\Tipo $tipo
+     * @param ?\AleBatistella\BlingErpApi\Entities\Nfes\Enum\Situacao $situacao
+     * @param string $numero
      * @param ?string $dataEmissao
      * @param ?string $dataOperacao
-     * @param FindResponseDataContato $contato
-     * @param ?Id $naturezaOperacao
-     * @param ?Id $loja
+     * @param \AleBatistella\BlingErpApi\Entities\Nfes\Schema\Find\FindResponseDataContato $contato
+     * @param ?\AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id $naturezaOperacao
+     * @param ?\AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id $loja
      * @param ?int $serie
      * @param ?float $valorNota
      * @param ?string $chaveAcesso
@@ -28,8 +31,8 @@ readonly final class FindResponseData extends BaseResponseObject
      * @param ?string $linkDanfe
      * @param ?string $linkPDF
      * @param ?string $numeroPedidoLoja
-     * @param ?FindResponseDataTransporte $transporte
-     * @param ?Id $vendedor
+     * @param ?\AleBatistella\BlingErpApi\Entities\Nfes\Schema\Find\FindResponseDataTransporte $transporte
+     * @param ?\AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id $vendedor
      */
     public function __construct(
         public ?int $id,

@@ -13,13 +13,14 @@ readonly final class ObtainTaxResponse extends BaseResponseRootObject
     /**
      * Constrói o objeto.
      *
-     * @param ObtainTaxResponseData $data
+     * @param \AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Schema\ObtainTax\ObtainTaxResponseData $data
      */
     public function __construct(
         public ObtainTaxResponseData $data
     ) {}
 
     /**
+     * @param \AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions $response
      * @inheritDoc
      */
     public static function fromResponse(ResponseOptions $response): static

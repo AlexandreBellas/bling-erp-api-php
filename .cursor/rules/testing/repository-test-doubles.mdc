@@ -19,6 +19,8 @@ $entity = new Contatos($repository);
 
 Construct the entity with the mock. Do not construct `Bling` inside an entity spec. Facade coverage lives in `src/BlingTest.spec.php`.
 
+Before the call, annotate the mock as `/** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */`.
+
 The spec class `use`s `AleBatistella\BlingErpApi\Entities\Shared\TestResponseTrait`.
 
 ## Response helper

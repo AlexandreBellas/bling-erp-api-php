@@ -4,6 +4,9 @@ namespace AleBatistella\BlingErpApi\Entities\CamposCustomizados\Schema\GetModule
 
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class GetModulesResponseData extends BaseResponseObject
 {
     /**
@@ -13,7 +16,7 @@ readonly final class GetModulesResponseData extends BaseResponseObject
      * @param string $nome
      * @param string $modulo
      * @param ?string $agrupador
-     * @param GetModulesResponseDataPermissoes[] $permissoes
+     * @param array $permissoes
      */
     public function __construct(
         public int $id,

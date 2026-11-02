@@ -12,6 +12,7 @@ use AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id;
 readonly final class UpdateResponse extends BaseResponseRootObject
 {
     /**
+     * @param \AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions $response
      * @inheritDoc
      */
     public static function fromResponse(ResponseOptions $response): null

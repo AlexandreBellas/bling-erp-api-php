@@ -2,6 +2,9 @@
 
 namespace AleBatistella\BlingErpApi\Entities\Estoques;
 
+use AleBatistella\BlingErpApi\Entities\Estoques\Schema\FindBalance\FindBalanceParams;
+use AleBatistella\BlingErpApi\Entities\Estoques\Schema\GetBalances\GetBalancesParams;
+
 use AleBatistella\BlingErpApi\Entities\Estoques\Schema\Create\CreateResponse;
 use AleBatistella\BlingErpApi\Entities\Estoques\Schema\FindBalance\FindBalanceResponse;
 use AleBatistella\BlingErpApi\Entities\Estoques\Schema\GetBalances\GetBalancesResponse;
@@ -20,25 +23,24 @@ class Estoques extends BaseEntity
 {
     /**
      * Obtém o saldo em estoque de produtos por depósito.
-     * 
+     *
+     * Aceita `FindBalanceParams` ou o mapa de query que o objeto serializa, por exemplo `["idsProdutos" => [1, 2], "codigos" => ["SKU"]]`.
+     *
      * @param int $idDeposito ID do depósito
-     * @param ?int[] $idsProdutos IDs dos produtos
-     * @param ?string[] $codigos Códigos dos produtos
-     * 
+     * @param \AleBatistella\BlingErpApi\Entities\Estoques\Schema\FindBalance\FindBalanceParams|array $params
      * @return FindBalanceResponse
      * @throws BlingApiException|BlingInternalException
-     * 
+     *
      * @see https://developer.bling.com.br/referencia#/Estoques/get_estoques_saldos__idDeposito_
      */
     public function findBalance(
         int $idDeposito,
-        ?array $idsProdutos = null,
-        ?array $codigos = null
+        FindBalanceParams|array $params
     ): FindBalanceResponse {
-        $response = $this->repository->show(
+        $response = $this->repository->index(
             new RequestOptions(
                 endpoint: "estoques/saldos/$idDeposito",
-                queryParams: ['idsProdutos' => $idsProdutos, 'codigos' => $codigos]
+                queryParams: $params
             )
         );
 
@@ -48,20 +50,20 @@ class Estoques extends BaseEntity
     /**
      * Obtém o saldo em estoque de produtos.
      *
-     * @param int[] $idsProdutos IDs dos produtos
-     * @param ?string $codigo Código do produto
-     * 
+     * Aceita `GetBalancesParams` ou o mapa de query que o objeto serializa, por exemplo `["idsProdutos" => [1, 2], "codigo" => null]`.
+     *
+     * @param \AleBatistella\BlingErpApi\Entities\Estoques\Schema\GetBalances\GetBalancesParams|array $params
      * @return GetBalancesResponse
      * @throws BlingApiException|BlingInternalException
      *
      * @see https://developer.bling.com.br/referencia#/Estoques/get_estoques_saldos
      */
-    public function getBalances(array $idsProdutos, ?string $codigo = null): GetBalancesResponse
+    public function getBalances(GetBalancesParams|array $params): GetBalancesResponse
     {
         $response = $this->repository->index(
             new RequestOptions(
                 endpoint: "estoques/saldos",
-                queryParams: ['idsProdutos' => $idsProdutos, 'codigo' => $codigo]
+                queryParams: $params
             )
         );
 

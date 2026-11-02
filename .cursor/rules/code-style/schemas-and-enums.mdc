@@ -29,7 +29,7 @@ Reference: `src/Entities/Contatos/Schema/`, `src/Entities/CamposCustomizados/Sch
 - A backed enum is accepted as `EnumType|scalar|null` and stored as `$enum->value`.
 - A `\DateTimeInterface|string|null` argument is passed through `prepareStringOrDateParam`. The second argument is `true` when Bling expects a datetime (`Contatos\Schema\Get\GetParams`).
 - The constructor finishes with `parent::__construct(objectToArray($this))`.
-- The entity method accepts `GetParams|array|null $params = null` and passes `$params` as `queryParams`.
+- The entity method accepts `*Params|array $params` when the call needs parameters, or `*Params|array|null $params = null` for an optional filter, and passes `$params` as `queryParams`.
 
 ### Response root
 

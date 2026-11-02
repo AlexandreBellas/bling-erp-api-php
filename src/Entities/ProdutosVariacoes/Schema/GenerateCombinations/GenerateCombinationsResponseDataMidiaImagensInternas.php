@@ -5,6 +5,9 @@ namespace AleBatistella\BlingErpApi\Entities\ProdutosVariacoes\Schema\GenerateCo
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class GenerateCombinationsResponseDataMidiaImagensInternas extends BaseResponseObject
 {
     /**
@@ -13,8 +16,8 @@ readonly final class GenerateCombinationsResponseDataMidiaImagensInternas extend
      * @param string $linkMiniatura
      * @param string $validade
      * @param int $ordem
-     * @param Id $anexo
-     * @param Id $anexoVinculo
+     * @param \AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id $anexo
+     * @param \AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id $anexoVinculo
      */
     public function __construct(
         public string $linkMiniatura,

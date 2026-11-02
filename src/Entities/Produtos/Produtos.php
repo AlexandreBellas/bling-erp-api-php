@@ -2,6 +2,8 @@
 
 namespace AleBatistella\BlingErpApi\Entities\Produtos;
 
+use AleBatistella\BlingErpApi\Entities\Produtos\Schema\DeleteMany\DeleteManyParams;
+
 use AleBatistella\BlingErpApi\Entities\Produtos\Schema\Delete\DeleteResponse;
 use AleBatistella\BlingErpApi\Entities\Produtos\Schema\DeleteMany\DeleteManyResponse;
 use AleBatistella\BlingErpApi\Entities\Produtos\Schema\ChangeSituation\ChangeSituationResponse;
@@ -26,19 +28,20 @@ class Produtos extends BaseEntity
     /**
      * Remove múltiplos produtos.
      *
-     * @param int[] $idsProdutos IDs dos produtos
+     * Aceita `DeleteManyParams` ou o mapa de query que o objeto serializa, por exemplo `["idsProdutos" => [1, 2]]`.
      *
+     * @param \AleBatistella\BlingErpApi\Entities\Produtos\Schema\DeleteMany\DeleteManyParams|array $params
      * @return DeleteManyResponse
      * @throws BlingApiException|BlingInternalException
      *
      * @see https://developer.bling.com.br/referencia#/Produtos/delete_produtos
      */
-    public function deleteMany(array $idsProdutos): DeleteManyResponse
+    public function deleteMany(DeleteManyParams|array $params): DeleteManyResponse
     {
         $response = $this->repository->destroy(
             new RequestOptions(
                 endpoint: "produtos",
-                queryParams: ['idsProdutos' => $idsProdutos]
+                queryParams: $params
             )
         );
 
@@ -69,8 +72,8 @@ class Produtos extends BaseEntity
     /**
      * Obtém produtos.
      *
-     * @param GetParams|array|null $params Parâmetros para a busca
      *
+     * @param \AleBatistella\BlingErpApi\Entities\Produtos\Schema\Get\GetParams|array|null $params Parâmetros para a busca
      * @return GetResponse
      * @throws BlingApiException|BlingInternalException
      *

@@ -13,13 +13,14 @@ readonly final class UpdateResponse extends BaseResponseRootObject
     /**
      * Constrói o objeto.
      *
-     * @param UpdateResponseData $data
+     * @param \AleBatistella\BlingErpApi\Entities\GruposDeProdutos\Schema\Update\UpdateResponseData $data
      */
     public function __construct(
         public UpdateResponseData $data
     ) {}
 
     /**
+     * @param \AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions $response
      * @inheritDoc
      */
     public static function fromResponse(ResponseOptions $response): null

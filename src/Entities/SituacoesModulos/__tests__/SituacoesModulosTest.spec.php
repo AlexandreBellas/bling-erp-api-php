@@ -22,8 +22,8 @@ class SituacoesModulosTest extends TestCase
     /**
      * Obtém a instância da entidade.
      *
-     * @param IBlingRepository $repository
      *
+     * @param \AleBatistella\BlingErpApi\Repositories\IBlingRepository $repository
      * @return SituacoesModulos
      */
     private function getInstance(IBlingRepository $repository): SituacoesModulos
@@ -39,12 +39,12 @@ class SituacoesModulosTest extends TestCase
     public function testShouldGetModulesSuccessfully(): void
     {
         $getModulesResponse = json_decode(
-            file_get_contents(__DIR__ . '/get-modules/response.json'),
+            file_get_contents(__DIR__ . "/get-modules/response.json"),
             true
         );
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('show')
+            ->method("index")
             ->with(
                 $this->callback(
                     fn (RequestOptions $requestOptions) =>
@@ -56,7 +56,7 @@ class SituacoesModulosTest extends TestCase
                 body: $this->buildBody($getModulesResponse)
             ));
 
-        /** @var IBlingRepository $repository */
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $response = $this->getInstance($repository)->getModules();
 
         $this->assertInstanceOf(GetModulesResponse::class, $response);
@@ -72,12 +72,12 @@ class SituacoesModulosTest extends TestCase
     {
         $idModuloSistema = fake()->randomNumber();
         $getModuleSituationsResponse = json_decode(
-            file_get_contents(__DIR__ . '/get-module-situations/response.json'),
+            file_get_contents(__DIR__ . "/get-module-situations/response.json"),
             true
         );
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('show')
+            ->method("index")
             ->with(
                 $this->callback(
                     fn (RequestOptions $requestOptions) =>
@@ -89,7 +89,7 @@ class SituacoesModulosTest extends TestCase
                 body: $this->buildBody($getModuleSituationsResponse)
             ));
 
-        /** @var IBlingRepository $repository */
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $response = $this->getInstance($repository)->getModuleSituations($idModuloSistema);
 
         $this->assertInstanceOf(GetModuleSituationsResponse::class, $response);
@@ -105,12 +105,12 @@ class SituacoesModulosTest extends TestCase
     {
         $idModuloSistema = fake()->randomNumber();
         $getModuleActionsResponse = json_decode(
-            file_get_contents(__DIR__ . '/get-module-actions/response.json'),
+            file_get_contents(__DIR__ . "/get-module-actions/response.json"),
             true
         );
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('show')
+            ->method("index")
             ->with(
                 $this->callback(
                     fn (RequestOptions $requestOptions) =>
@@ -122,7 +122,7 @@ class SituacoesModulosTest extends TestCase
                 body: $this->buildBody($getModuleActionsResponse)
             ));
 
-        /** @var IBlingRepository $repository */
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $response = $this->getInstance($repository)->getModuleActions($idModuloSistema);
 
         $this->assertInstanceOf(GetModuleActionsResponse::class, $response);
@@ -138,12 +138,12 @@ class SituacoesModulosTest extends TestCase
     {
         $idModuloSistema = fake()->randomNumber();
         $getModuleTransitionsResponse = json_decode(
-            file_get_contents(__DIR__ . '/get-module-transitions/response.json'),
+            file_get_contents(__DIR__ . "/get-module-transitions/response.json"),
             true
         );
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('show')
+            ->method("index")
             ->with(
                 $this->callback(
                     fn (RequestOptions $requestOptions) =>
@@ -155,7 +155,7 @@ class SituacoesModulosTest extends TestCase
                 body: $this->buildBody($getModuleTransitionsResponse)
             ));
 
-        /** @var IBlingRepository $repository */
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $response = $this->getInstance($repository)->getModuleTransitions($idModuloSistema);
 
         $this->assertInstanceOf(GetModuleTransitionsResponse::class, $response);

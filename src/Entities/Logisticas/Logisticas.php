@@ -44,8 +44,8 @@ class Logisticas extends BaseEntity
     /**
      * Obtém logísticas.
      *
-     * @param GetParams|array|null $params Parâmetros para a busca
      *
+     * @param \AleBatistella\BlingErpApi\Entities\Logisticas\Schema\Get\GetParams|array|null $params Parâmetros para a busca
      * @return GetResponse
      * @throws BlingApiException|BlingInternalException
      *

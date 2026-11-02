@@ -5,7 +5,6 @@ namespace Tests\Unit\AleBatistella\BlingErpApi\Entities\LogisticasObjetos;
 use AleBatistella\BlingErpApi\Entities\LogisticasObjetos\LogisticasObjetos;
 use AleBatistella\BlingErpApi\Entities\LogisticasObjetos\Schema\Create\CreateResponse;
 use AleBatistella\BlingErpApi\Entities\LogisticasObjetos\Schema\Find\FindResponse;
-use AleBatistella\BlingErpApi\Entities\LogisticasObjetos\Schema\Get\GetResponse;
 use AleBatistella\BlingErpApi\Entities\LogisticasObjetos\Schema\Update\UpdateResponse;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\RequestOptions;
 use AleBatistella\BlingErpApi\Entities\Shared\TestResponseTrait;
@@ -22,8 +21,8 @@ class LogisticasObjetosTest extends TestCase
     /**
      * Obtém a instância da entidade.
      *
-     * @param IBlingRepository $repository
      *
+     * @param \AleBatistella\BlingErpApi\Repositories\IBlingRepository $repository
      * @return LogisticasObjetos
      */
     private function getInstance(IBlingRepository $repository): LogisticasObjetos
@@ -38,11 +37,11 @@ class LogisticasObjetosTest extends TestCase
      */
     public function testShouldDeleteSuccessfully(): void
     {
-        $deleteResponse = json_decode(file_get_contents(__DIR__ . '/delete/response.json'), true);
+        $deleteResponse = json_decode(file_get_contents(__DIR__ . "/delete/response.json"), true);
         $idContrato = fake()->randomNumber();
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('destroy')
+            ->method("destroy")
             ->with(
                 $this->callback(
                     fn (RequestOptions $requestOptions) =>
@@ -51,7 +50,7 @@ class LogisticasObjetosTest extends TestCase
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($deleteResponse)));
 
-        /** @var IBlingRepository $repository */
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $response = $this->getInstance($repository)->delete($idContrato);
 
         $this->assertNull($response);
@@ -65,10 +64,10 @@ class LogisticasObjetosTest extends TestCase
     public function testShouldFindSuccessfully(): void
     {
         $idContrato = fake()->randomNumber();
-        $findResponse = json_decode(file_get_contents(__DIR__ . '/find/response.json'), true);
+        $findResponse = json_decode(file_get_contents(__DIR__ . "/find/response.json"), true);
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('show')
+            ->method("show")
             ->with(
                 $this->callback(
                     fn (RequestOptions $requestOptions) =>
@@ -77,7 +76,7 @@ class LogisticasObjetosTest extends TestCase
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($findResponse)));
 
-        /** @var IBlingRepository $repository */
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $response = $this->getInstance($repository)->find($idContrato);
 
         $this->assertInstanceOf(FindResponse::class, $response);
@@ -91,11 +90,11 @@ class LogisticasObjetosTest extends TestCase
      */
     public function testShouldCreateSuccessfully(): void
     {
-        $createBody = json_decode(file_get_contents(__DIR__ . '/create/request.json'), true);
-        $createResponse = json_decode(file_get_contents(__DIR__ . '/create/response.json'), true);
+        $createBody = json_decode(file_get_contents(__DIR__ . "/create/request.json"), true);
+        $createResponse = json_decode(file_get_contents(__DIR__ . "/create/response.json"), true);
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('store')
+            ->method("store")
             ->with(
                 $this->callback(
                     fn (RequestOptions $requestOptions) =>
@@ -104,7 +103,7 @@ class LogisticasObjetosTest extends TestCase
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($createResponse)));
 
-        /** @var IBlingRepository $repository */
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $response = $this->getInstance($repository)->create($createBody);
 
         $this->assertInstanceOf(CreateResponse::class, $response);
@@ -119,11 +118,11 @@ class LogisticasObjetosTest extends TestCase
     public function testShouldUpdateSuccessfully(): void
     {
         $idContrato = fake()->randomNumber();
-        $updateBody = json_decode(file_get_contents(__DIR__ . '/update/request.json'), true);
-        $updateResponse = json_decode(file_get_contents(__DIR__ . '/update/response.json'), true);
+        $updateBody = json_decode(file_get_contents(__DIR__ . "/update/request.json"), true);
+        $updateResponse = json_decode(file_get_contents(__DIR__ . "/update/response.json"), true);
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('replace')
+            ->method("replace")
             ->with(
                 $this->callback(
                     fn (RequestOptions $requestOptions) =>
@@ -132,7 +131,7 @@ class LogisticasObjetosTest extends TestCase
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($updateResponse)));
 
-        /** @var IBlingRepository $repository */
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $response = $this->getInstance($repository)->update($idContrato, $updateBody);
 
 

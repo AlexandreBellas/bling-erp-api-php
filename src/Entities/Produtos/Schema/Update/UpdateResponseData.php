@@ -4,14 +4,17 @@ namespace AleBatistella\BlingErpApi\Entities\Produtos\Schema\Update;
 
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class UpdateResponseData extends BaseResponseObject
 {
     /**
      * Constrói o objeto.
      *
      * @param int $id
-     * @param ?UpdateResponseDataVariations $variations
-     * @param ?string[] $warnings
+     * @param ?\AleBatistella\BlingErpApi\Entities\Produtos\Schema\Update\UpdateResponseDataVariations $variations
+     * @param ?array $warnings
      */
     public function __construct(
         public int $id,

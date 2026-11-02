@@ -5,6 +5,9 @@ namespace AleBatistella\BlingErpApi\Entities\CamposCustomizados\Schema\FindByMod
 use AleBatistella\BlingErpApi\Entities\CamposCustomizados\Enum\Situacao;
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class FindByModuleResponseData extends BaseResponseObject
 {
     /**
@@ -12,7 +15,7 @@ readonly final class FindByModuleResponseData extends BaseResponseObject
      * 
      * @param int $id
      * @param string $nome
-     * @param ?Situacao $situacao
+     * @param ?\AleBatistella\BlingErpApi\Entities\CamposCustomizados\Enum\Situacao $situacao
      */
     public function __construct(
         public int $id,

@@ -20,8 +20,8 @@ class ContasContabeisTest extends TestCase
     /**
      * Obtém a instância da entidade.
      *
-     * @param IBlingRepository $repository
      *
+     * @param \AleBatistella\BlingErpApi\Repositories\IBlingRepository $repository
      * @return ContasContabeis
      */
     private function getInstance(IBlingRepository $repository): ContasContabeis
@@ -36,10 +36,10 @@ class ContasContabeisTest extends TestCase
      */
     public function testShouldGetSuccessfully(): void
     {
-        $getResponse = json_decode(file_get_contents(__DIR__ . '/get/response.json'), true);
+        $getResponse = json_decode(file_get_contents(__DIR__ . "/get/response.json"), true);
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('index')
+            ->method("index")
             ->with(
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
@@ -49,7 +49,7 @@ class ContasContabeisTest extends TestCase
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($getResponse)));
 
-        /** @var IBlingRepository $repository */
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $response = $this->getInstance($repository)->get();
 
         $this->assertInstanceOf(GetResponse::class, $response);
@@ -64,10 +64,10 @@ class ContasContabeisTest extends TestCase
     public function testShouldFindSuccessfully(): void
     {
         $idContaReceber = fake()->randomNumber();
-        $findResponse = json_decode(file_get_contents(__DIR__ . '/find/response.json'), true);
+        $findResponse = json_decode(file_get_contents(__DIR__ . "/find/response.json"), true);
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('show')
+            ->method("show")
             ->with(
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
@@ -76,7 +76,7 @@ class ContasContabeisTest extends TestCase
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($findResponse)));
 
-        /** @var IBlingRepository $repository */
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $response = $this->getInstance($repository)->find($idContaReceber);
 
         $this->assertInstanceOf(FindResponse::class, $response);

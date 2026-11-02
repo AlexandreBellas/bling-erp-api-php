@@ -4,6 +4,9 @@ namespace AleBatistella\BlingErpApi\Entities\SituacoesModulos\Schema\GetModuleTr
 
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class GetModuleTransitionsResponseDataSituacao extends BaseResponseObject
 {
     /**

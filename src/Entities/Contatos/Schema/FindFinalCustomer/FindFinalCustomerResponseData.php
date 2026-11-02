@@ -8,6 +8,9 @@ use AleBatistella\BlingErpApi\Entities\Contatos\Enum\IndicadorIe;
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class FindFinalCustomerResponseData extends BaseResponseObject
 {
     /**
@@ -16,24 +19,24 @@ readonly final class FindFinalCustomerResponseData extends BaseResponseObject
      * @param ?int $id
      * @param ?string $nome
      * @param ?string $codigo
-     * @param ?Situacao $situacao
+     * @param ?\AleBatistella\BlingErpApi\Entities\Contatos\Enum\Situacao $situacao
      * @param ?string $numeroDocumento
      * @param ?string $telefone
      * @param ?string $celular
      * @param ?string $fantasia
-     * @param ?TipoPessoa $tipo
-     * @param ?IndicadorIe $indicadorIe
+     * @param ?\AleBatistella\BlingErpApi\Entities\Shared\Enum\TipoPessoa $tipo
+     * @param ?\AleBatistella\BlingErpApi\Entities\Contatos\Enum\IndicadorIe $indicadorIe
      * @param ?string $ie
      * @param ?string $rg
      * @param ?string $orgaoEmissor
      * @param ?string $email
-     * @param ?FindFinalCustomerResponseDataEndereco $endereco
-     * @param ?Id $vendedor
-     * @param ?FindFinalCustomerResponseDataDadosAdicionais $dadosAdicionais
-     * @param ?FindFinalCustomerResponseDataFinanceiro $financeiro
-     * @param ?FindFinalCustomerResponseDataPais $pais
-     * @param FindFinalCustomerResponseDataTiposContato[] $tiposContato
-     * @param FindFinalCustomerResponseDataPessoasContato[] $pessoasContato
+     * @param ?\AleBatistella\BlingErpApi\Entities\Contatos\Schema\FindFinalCustomer\FindFinalCustomerResponseDataEndereco $endereco
+     * @param ?\AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id $vendedor
+     * @param ?\AleBatistella\BlingErpApi\Entities\Contatos\Schema\FindFinalCustomer\FindFinalCustomerResponseDataDadosAdicionais $dadosAdicionais
+     * @param ?\AleBatistella\BlingErpApi\Entities\Contatos\Schema\FindFinalCustomer\FindFinalCustomerResponseDataFinanceiro $financeiro
+     * @param ?\AleBatistella\BlingErpApi\Entities\Contatos\Schema\FindFinalCustomer\FindFinalCustomerResponseDataPais $pais
+     * @param ?array $tiposContato
+     * @param ?array $pessoasContato
      */
     public function __construct(
         public ?int $id,
@@ -66,8 +69,8 @@ readonly final class FindFinalCustomerResponseData extends BaseResponseObject
     protected static function fromRules(): array
     {
         return [
-            'tiposContato'   => FindFinalCustomerResponseDataTiposContato::class,
-            'pessoasContato' => FindFinalCustomerResponseDataPessoasContato::class,
+            "tiposContato"   => FindFinalCustomerResponseDataTiposContato::class,
+            "pessoasContato" => FindFinalCustomerResponseDataPessoasContato::class,
         ];
     }
 }

@@ -13,7 +13,7 @@ readonly final class GetTypesResponse extends BaseResponseRootObject
     /**
      * Constrói o objeto.
      *
-     * @param GetTypesResponseData[] $data
+     * @param array $data
      */
     public function __construct(
         public array $data
@@ -26,11 +26,12 @@ readonly final class GetTypesResponse extends BaseResponseRootObject
     protected static function fromRules(): array
     {
         return [
-            'data' => GetTypesResponseData::class,
+            "data" => GetTypesResponseData::class,
         ];
     }
 
     /**
+     * @param \AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions $response
      * @inheritDoc
      */
     public static function fromResponse(ResponseOptions $response): static

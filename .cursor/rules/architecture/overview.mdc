@@ -18,7 +18,7 @@ This package is a thin PHP wrapper around the [Bling ERP API v3](https://develop
 | Provider | `src/Providers/IoC.php` | `IoC::getRepository($accessToken)` |
 | Contracts | `src/Contracts/` | `IResponseObject`, `IResponseRootObject` |
 | Exceptions | `src/Exceptions/` | API, internal, and payload-parse failures |
-| Helpers | `src/Helpers/functions.php` | Date strings, `objectToArray`, `fake` |
+| Helpers | `src/Helpers/functions.php`, `global-functions.php` | Date strings and `objectToArray`. Tests call `fake()` from `dev/fake.php` |
 | Shared | `src/Entities/@shared/` | Base entity, response parser, request DTOs, shared enums |
 
 ## Assumptions

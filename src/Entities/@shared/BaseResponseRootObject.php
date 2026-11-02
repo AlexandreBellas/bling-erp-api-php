@@ -2,7 +2,6 @@
 
 namespace AleBatistella\BlingErpApi\Entities\Shared;
 
-use AleBatistella\BlingErpApi\Contracts\IResponseRootObject;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions;
 use AleBatistella\BlingErpApi\Exceptions\BlingInternalException;
 
@@ -12,16 +11,17 @@ use AleBatistella\BlingErpApi\Exceptions\BlingInternalException;
 readonly abstract class BaseResponseRootObject extends BaseResponseObject
 {
     /** 
+     * @param \AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions $response
      * @inheritDoc
      */
-    public abstract static function fromResponse(ResponseOptions $response): static|null;
+    public abstract static function fromResponse(ResponseOptions $response): ?static;
 
     /**
      * Lança `BlingInternalException` caso a resposta da API esteja
      * inconsistente.
      *
-     * @param ResponseOptions $response
      *
+     * @param \AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions $response
      * @return never
      */
     protected static function throwForInconsistentResponseOptions(ResponseOptions $response): never

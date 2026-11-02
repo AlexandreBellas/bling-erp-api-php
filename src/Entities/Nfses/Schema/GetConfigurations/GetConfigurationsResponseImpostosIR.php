@@ -4,6 +4,9 @@ namespace AleBatistella\BlingErpApi\Entities\Nfses\Schema\GetConfigurations;
 
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class GetConfigurationsResponseImpostosIR extends BaseResponseObject
 {
     /**
@@ -12,7 +15,7 @@ readonly final class GetConfigurationsResponseImpostosIR extends BaseResponseObj
      * @param ?float $percentual
      * @param ?float $valorMinimoAlternativoDescontol
      * @param ?bool $descontar
-     * @param ?GetConfigurationsResponseImpostosIRTexto $texto
+     * @param ?\AleBatistella\BlingErpApi\Entities\Nfses\Schema\GetConfigurations\GetConfigurationsResponseImpostosIRTexto $texto
      */
     public function __construct(
         public ?float $percentual,

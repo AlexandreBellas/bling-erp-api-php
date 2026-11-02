@@ -2,6 +2,9 @@
 
 namespace AleBatistella\BlingErpApi\Entities\ProdutosEstruturas;
 
+use AleBatistella\BlingErpApi\Entities\ProdutosEstruturas\Schema\Delete\DeleteParams;
+use AleBatistella\BlingErpApi\Entities\ProdutosEstruturas\Schema\DeleteComponents\DeleteComponentsParams;
+
 use AleBatistella\BlingErpApi\Entities\ProdutosEstruturas\Schema\Delete\DeleteResponse;
 use AleBatistella\BlingErpApi\Entities\ProdutosEstruturas\Schema\DeleteComponents\DeleteComponentsResponse;
 use AleBatistella\BlingErpApi\Entities\ProdutosEstruturas\Schema\ChangeComponent\ChangeComponentResponse;
@@ -23,20 +26,21 @@ class ProdutosEstruturas extends BaseEntity
     /**
      * Remove componentes específicos de um produto com composição.
      *
-     * @param int $idProdutoEstrutura ID do produto com composição
-     * @param int[] $idsComponentes IDs dos produtos
+     * Aceita `DeleteComponentsParams` ou o mapa de query que o objeto serializa, por exemplo `["idsComponentes" => [1, 2]]`.
      *
+     * @param int $idProdutoEstrutura ID do produto com composição
+     * @param \AleBatistella\BlingErpApi\Entities\ProdutosEstruturas\Schema\DeleteComponents\DeleteComponentsParams|array $params
      * @return null
      * @throws BlingApiException|BlingInternalException
      *
      * @see https://developer.bling.com.br/referencia#/Produtos%20-%20Estruturas/delete_produtos_estruturas__idProdutoEstrutura__componentes
      */
-    public function deleteComponents(int $idProdutoEstrutura, array $idsComponentes): null
+    public function deleteComponents(int $idProdutoEstrutura, DeleteComponentsParams|array $params): null
     {
         $response = $this->repository->destroy(
             new RequestOptions(
                 endpoint: "produtos/estruturas/$idProdutoEstrutura/componentes",
-                queryParams: ['idsComponentes' => $idsComponentes]
+                queryParams: $params
             )
         );
 
@@ -46,19 +50,20 @@ class ProdutosEstruturas extends BaseEntity
     /**
      * Remove a estrutura de múltiplos produtos.
      *
-     * @param int[] $idsProdutos IDs dos produtos
+     * Aceita `DeleteParams` ou o mapa de query que o objeto serializa, por exemplo `["idsProdutos" => [1, 2]]`.
      *
+     * @param \AleBatistella\BlingErpApi\Entities\ProdutosEstruturas\Schema\Delete\DeleteParams|array $params
      * @return DeleteResponse
      * @throws BlingApiException|BlingInternalException
      *
      * @see https://developer.bling.com.br/referencia#/Produtos%20-%20Estruturas/delete_produtos_estruturas
      */
-    public function delete(array $idsProdutos): DeleteResponse
+    public function delete(DeleteParams|array $params): DeleteResponse
     {
         $response = $this->repository->destroy(
             new RequestOptions(
                 endpoint: "produtos/estruturas",
-                queryParams: ['idsProdutos' => $idsProdutos]
+                queryParams: $params
             )
         );
 

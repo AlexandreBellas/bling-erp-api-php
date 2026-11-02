@@ -10,14 +10,14 @@ use AleBatistella\BlingErpApi\Entities\ContasPagar\Enum\Situacao;
  */
 readonly final class GetParams extends QueryParams
 {
-    public string|null $dataEmissaoInicial;
-    public string|null $dataEmissaoFinal;
-    public string|null $dataVencimentoInicial;
-    public string|null $dataVencimentoFinal;
-    public string|null $dataPagamentoInicial;
-    public string|null $dataPagamentoFinal;
+    public ?string $dataEmissaoInicial;
+    public ?string $dataEmissaoFinal;
+    public ?string $dataVencimentoInicial;
+    public ?string $dataVencimentoFinal;
+    public ?string $dataPagamentoInicial;
+    public ?string $dataPagamentoFinal;
 
-    public int|null $situacao;
+    public ?int $situacao;
 
     /**
      * Constrói o objeto.
@@ -30,7 +30,7 @@ readonly final class GetParams extends QueryParams
      * @param \DateTimeInterface|string|null $dataVencimentoFinal Data de vencimento final da conta a pagar
      * @param \DateTimeInterface|string|null $dataPagamentoInicial Data de pagamento inicial da conta
      * @param \DateTimeInterface|string|null $dataPagamentoFinal Data de pagamento final da conta
-     * @param Situacao|int|null $situacao
+     * @param \AleBatistella\BlingErpApi\Entities\ContasPagar\Enum\Situacao|int|null $situacao
      * @param ?int $idContato ID do contato
      */
     public function __construct(

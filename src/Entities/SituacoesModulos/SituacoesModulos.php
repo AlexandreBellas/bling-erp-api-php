@@ -28,7 +28,7 @@ class SituacoesModulos extends BaseEntity
      */
     public function getModules(): GetModulesResponse
     {
-        $response = $this->repository->show(
+        $response = $this->repository->index(
             new RequestOptions(
                 endpoint: "situacoes/modulos",
             )
@@ -49,7 +49,7 @@ class SituacoesModulos extends BaseEntity
      */
     public function getModuleSituations(int $idModuloSistema): GetModuleSituationsResponse
     {
-        $response = $this->repository->show(
+        $response = $this->repository->index(
             new RequestOptions(
                 endpoint: "situacoes/modulos/$idModuloSistema",
             )
@@ -70,7 +70,7 @@ class SituacoesModulos extends BaseEntity
      */
     public function getModuleActions(int $idModuloSistema): GetModuleActionsResponse
     {
-        $response = $this->repository->show(
+        $response = $this->repository->index(
             new RequestOptions(
                 endpoint: "situacoes/modulos/$idModuloSistema/acoes",
             )
@@ -91,7 +91,7 @@ class SituacoesModulos extends BaseEntity
      */
     public function getModuleTransitions(int $idModuloSistema): GetModuleTransitionsResponse
     {
-        $response = $this->repository->show(
+        $response = $this->repository->index(
             new RequestOptions(
                 endpoint: "situacoes/modulos/$idModuloSistema/transicoes",
             )

@@ -52,6 +52,8 @@ use AleBatistella\BlingErpApi\Repositories\IBlingRepository;
 /**
  * Módulo conector à API do Bling.
  *
+ * @see https://developer.bling.com.br/referencia
+ *
  * @property Borderos $borderos
  * @property CamposCustomizados $camposCustomizados
  * @property CanaisDeVenda $canaisDeVenda
@@ -97,88 +99,89 @@ use AleBatistella\BlingErpApi\Repositories\IBlingRepository;
  */
 class Bling
 {
-  /** @property-read IBlingRepository $repository Repositório de conexão ao Bling. */
-  private readonly IBlingRepository $repository;
+    /** @property-read IBlingRepository $repository Repositório de conexão ao Bling. */
+    private readonly IBlingRepository $repository;
 
-  /** @property array $modules Módulos instanciados para utilização. */
-  private array $modules;
+    /** @property array $modules Módulos instanciados para utilização. */
+    private array $modules;
 
-  /**
-   * Constrói o objeto.
-   *
-   * @param string $accessToken
-   */
-  public function __construct(string $accessToken)
-  {
-    $this->repository = IoC::getRepository($accessToken);
-    $this->modules = [];
-  }
-
-  /**
-   * Obtém um módulo através de sua assinatura (seguindo o _pattern_ `Instance`).
-   *
-   * @param string $entityClassName O nome da classe da entidade desejada.
-   *
-   * @return BaseEntity A instância da entidade.
-   */
-  private function getModule(string $entityClassName): BaseEntity
-  {
-    if (!array_key_exists($entityClassName, $this->modules)) {
-      $this->modules[$entityClassName] = new $entityClassName($this->repository);
+    /**
+     * Constrói o objeto.
+     *
+     * @param string $accessToken
+     */
+    public function __construct(string $accessToken)
+    {
+        $this->repository = IoC::getRepository($accessToken);
+        $this->modules = [];
     }
 
-    return $this->modules[$entityClassName];
-  }
+    /**
+     * Obtém um módulo através de sua assinatura (seguindo o _pattern_ `Instance`).
+     *
+     * @param string $entityClassName O nome da classe da entidade desejada.
+     *
+     * @return BaseEntity A instância da entidade.
+     */
+    private function getModule(string $entityClassName): BaseEntity
+    {
+        if (!array_key_exists($entityClassName, $this->modules)) {
+            $this->modules[$entityClassName] = new $entityClassName($this->repository);
+        }
 
-  /**
-   * _Facade_ de busca da entidade correta.
-   */
-  public function __get(string $name)
-  {
-    return match ($name) {
-      'borderos' => $this->getModule(Borderos::class),
-      'camposCustomizados' => $this->getModule(CamposCustomizados::class),
-      'canaisDeVenda' => $this->getModule(CanaisDeVenda::class),
-      'categoriasLojas' => $this->getModule(CategoriasLojas::class),
-      'categoriasProdutos' => $this->getModule(CategoriasProdutos::class),
-      'categoriasReceitasDespesas' => $this->getModule(CategoriasReceitasDespesas::class),
-      'contasPagar' => $this->getModule(ContasPagar::class),
-      'contasReceber' => $this->getModule(ContasReceber::class),
-      'contasContabeis' => $this->getModule(ContasContabeis::class),
-      'contatos' => $this->getModule(Contatos::class),
-      'contatosTipos' => $this->getModule(ContatosTipos::class),
-      'contratos' => $this->getModule(Contratos::class),
-      'depositos' => $this->getModule(Depositos::class),
-      'empresas' => $this->getModule(Empresas::class),
-      'estoques' => $this->getModule(Estoques::class),
-      'formasDePagamentos' => $this->getModule(FormasDePagamentos::class),
-      'gruposDeProdutos' => $this->getModule(GruposDeProdutos::class),
-      'homologacao' => $this->getModule(Homologacao::class),
-      'logisticas' => $this->getModule(Logisticas::class),
-      'logisticasEtiquetas' => $this->getModule(LogisticasEtiquetas::class),
-      'logisticasObjetos' => $this->getModule(LogisticasObjetos::class),
-      'logisticasRemessas' => $this->getModule(LogisticasRemessas::class),
-      'logisticasServicos' => $this->getModule(LogisticasServicos::class),
-      'naturezasDeOperacoes' => $this->getModule(NaturezasDeOperacoes::class),
-      'nfces' => $this->getModule(Nfces::class),
-      'nfses' => $this->getModule(Nfses::class),
-      'nfes' => $this->getModule(Nfes::class),
-      'notificacoes' => $this->getModule(Notificacoes::class),
-      'ordensDeProducao' => $this->getModule(OrdensDeProducao::class),
-      'pedidosCompras' => $this->getModule(PedidosCompras::class),
-      'pedidosVendas' => $this->getModule(PedidosVendas::class),
-      'produtos' => $this->getModule(Produtos::class),
-      'produtosEstruturas' => $this->getModule(ProdutosEstruturas::class),
-      'produtosFornecedores' => $this->getModule(ProdutosFornecedores::class),
-      'produtosLojas' => $this->getModule(ProdutosLojas::class),
-      'produtosVariacoes' => $this->getModule(ProdutosVariacoes::class),
-      'propostasComerciais' => $this->getModule(PropostasComerciais::class),
-      'situacoes' => $this->getModule(Situacoes::class),
-      'situacoesModulos' => $this->getModule(SituacoesModulos::class),
-      'situacoesTransicoes' => $this->getModule(SituacoesTransicoes::class),
-      'usuarios' => $this->getModule(Usuarios::class),
-      'vendedores' => $this->getModule(Vendedores::class),
-      default => throw new BlingInternalException("A entidade \"$name\" não existe.")
-    };
-  }
+        return $this->modules[$entityClassName];
+    }
+
+    /**
+     * _Facade_ de busca da entidade correta.
+     * @param string $name
+     */
+    public function __get(string $name)
+    {
+        return match ($name) {
+            "borderos" => $this->getModule(Borderos::class),
+            "camposCustomizados" => $this->getModule(CamposCustomizados::class),
+            "canaisDeVenda" => $this->getModule(CanaisDeVenda::class),
+            "categoriasLojas" => $this->getModule(CategoriasLojas::class),
+            "categoriasProdutos" => $this->getModule(CategoriasProdutos::class),
+            "categoriasReceitasDespesas" => $this->getModule(CategoriasReceitasDespesas::class),
+            "contasPagar" => $this->getModule(ContasPagar::class),
+            "contasReceber" => $this->getModule(ContasReceber::class),
+            "contasContabeis" => $this->getModule(ContasContabeis::class),
+            "contatos" => $this->getModule(Contatos::class),
+            "contatosTipos" => $this->getModule(ContatosTipos::class),
+            "contratos" => $this->getModule(Contratos::class),
+            "depositos" => $this->getModule(Depositos::class),
+            "empresas" => $this->getModule(Empresas::class),
+            "estoques" => $this->getModule(Estoques::class),
+            "formasDePagamentos" => $this->getModule(FormasDePagamentos::class),
+            "gruposDeProdutos" => $this->getModule(GruposDeProdutos::class),
+            "homologacao" => $this->getModule(Homologacao::class),
+            "logisticas" => $this->getModule(Logisticas::class),
+            "logisticasEtiquetas" => $this->getModule(LogisticasEtiquetas::class),
+            "logisticasObjetos" => $this->getModule(LogisticasObjetos::class),
+            "logisticasRemessas" => $this->getModule(LogisticasRemessas::class),
+            "logisticasServicos" => $this->getModule(LogisticasServicos::class),
+            "naturezasDeOperacoes" => $this->getModule(NaturezasDeOperacoes::class),
+            "nfces" => $this->getModule(Nfces::class),
+            "nfses" => $this->getModule(Nfses::class),
+            "nfes" => $this->getModule(Nfes::class),
+            "notificacoes" => $this->getModule(Notificacoes::class),
+            "ordensDeProducao" => $this->getModule(OrdensDeProducao::class),
+            "pedidosCompras" => $this->getModule(PedidosCompras::class),
+            "pedidosVendas" => $this->getModule(PedidosVendas::class),
+            "produtos" => $this->getModule(Produtos::class),
+            "produtosEstruturas" => $this->getModule(ProdutosEstruturas::class),
+            "produtosFornecedores" => $this->getModule(ProdutosFornecedores::class),
+            "produtosLojas" => $this->getModule(ProdutosLojas::class),
+            "produtosVariacoes" => $this->getModule(ProdutosVariacoes::class),
+            "propostasComerciais" => $this->getModule(PropostasComerciais::class),
+            "situacoes" => $this->getModule(Situacoes::class),
+            "situacoesModulos" => $this->getModule(SituacoesModulos::class),
+            "situacoesTransicoes" => $this->getModule(SituacoesTransicoes::class),
+            "usuarios" => $this->getModule(Usuarios::class),
+            "vendedores" => $this->getModule(Vendedores::class),
+            default => throw new BlingInternalException("A entidade \"$name\" não existe.")
+        };
+    }
 }

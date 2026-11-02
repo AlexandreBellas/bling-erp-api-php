@@ -4,6 +4,9 @@ namespace AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Schema\ObtainT
 
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class ObtainTaxResponseData extends BaseResponseObject
 {
     /**
@@ -24,24 +27,24 @@ readonly final class ObtainTaxResponseData extends BaseResponseObject
      * @param ?float $retValorCsll
      * @param ?bool $descontoCondicional
      * @param ?float $baseComissao
-     * @param ?ObtainTaxResponseDataIcms $icms
+     * @param ?\AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Schema\ObtainTax\ObtainTaxResponseDataIcms $icms
      * @param ?float $valorPmc
      * @param ?float $aliquotaValorAproxImpostos
      * @param ?string $informacoesAdicionaisFisco
      * @param ?bool $incluirFreteIpi
-     * @param ?ObtainTaxResponseDataSimples $simples
-     * @param ?ObtainTaxResponseDataIpi $ipi
-     * @param ?ObtainTaxResponseDataIssqn $issqn
-     * @param ?ObtainTaxResponseDataPis $pis
-     * @param ?ObtainTaxResponseDataCofins $cofins
-     * @param ?ObtainTaxResponseDataIcmsSt $icmsSt
-     * @param ?ObtainTaxResponseDataPisSt $pisSt
-     * @param ?ObtainTaxResponseDataCofinsSt $cofinsSt
-     * @param ?ObtainTaxResponseDataII $ii
+     * @param ?\AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Schema\ObtainTax\ObtainTaxResponseDataSimples $simples
+     * @param ?\AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Schema\ObtainTax\ObtainTaxResponseDataIpi $ipi
+     * @param ?\AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Schema\ObtainTax\ObtainTaxResponseDataIssqn $issqn
+     * @param ?\AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Schema\ObtainTax\ObtainTaxResponseDataPis $pis
+     * @param ?\AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Schema\ObtainTax\ObtainTaxResponseDataCofins $cofins
+     * @param ?\AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Schema\ObtainTax\ObtainTaxResponseDataIcmsSt $icmsSt
+     * @param ?\AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Schema\ObtainTax\ObtainTaxResponseDataPisSt $pisSt
+     * @param ?\AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Schema\ObtainTax\ObtainTaxResponseDataCofinsSt $cofinsSt
+     * @param ?\AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Schema\ObtainTax\ObtainTaxResponseDataII $ii
      * @param ?string $codigoBeneficioFiscal
      * @param ?float $porcentagemFcp
      * @param ?int $cfop
-     * @param ?ObtainTaxResponseDataSimplesSt $simplesSt
+     * @param ?\AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Schema\ObtainTax\ObtainTaxResponseDataSimplesSt $simplesSt
      */
     public function __construct(
         public ?bool $faturada,

@@ -7,6 +7,6 @@ namespace AleBatistella\BlingErpApi\Entities\ProdutosVariacoes\Enum;
  */
 enum Situacao: string
 {
-    case ATIVO = 'A';
-    case INATIVO = 'I';
+    case ATIVO = "A";
+    case INATIVO = "I";
 }

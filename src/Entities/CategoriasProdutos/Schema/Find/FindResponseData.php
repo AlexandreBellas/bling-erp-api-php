@@ -5,6 +5,9 @@ namespace AleBatistella\BlingErpApi\Entities\CategoriasProdutos\Schema\Find;
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class FindResponseData extends BaseResponseObject
 {
     /**
@@ -12,7 +15,7 @@ readonly final class FindResponseData extends BaseResponseObject
      *
      * @param int $id
      * @param string $descricao
-     * @param ?Id $categoriaPai
+     * @param ?\AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id $categoriaPai
      */
     public function __construct(
         public int $id,

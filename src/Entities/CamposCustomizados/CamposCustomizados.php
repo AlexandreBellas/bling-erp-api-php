@@ -85,9 +85,9 @@ class CamposCustomizados extends BaseEntity
     /**
      * Obtém campos customizados por módulo.
      * 
-     * @param int $idModulo ID do módulo.
-     * @param FindByModuleParams|array|null $params Parâmetros da busca.
      * 
+     * @param int $idModulo ID do módulo.
+     * @param \AleBatistella\BlingErpApi\Entities\CamposCustomizados\Schema\FindByModule\FindByModuleParams|array|null $params Parâmetros da busca.
      * @return FindByModuleResponse
      * @throws BlingApiException|BlingInternalException
      * 

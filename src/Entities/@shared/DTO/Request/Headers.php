@@ -7,12 +7,12 @@ namespace AleBatistella\BlingErpApi\Entities\Shared\DTO\Request;
  */
 readonly class Headers
 {
-  /**
-   * Constrói o objeto.
-   *
-   * @param array<string, string|int> $content
-   */
-  public function __construct(public array $content)
-  {
-  }
+    /**
+     * Constrói o objeto.
+     *
+     * @param array $content
+     */
+    public function __construct(public array $content)
+    {
+    }
 }

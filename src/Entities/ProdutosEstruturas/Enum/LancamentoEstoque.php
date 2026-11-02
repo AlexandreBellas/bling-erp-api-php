@@ -7,7 +7,7 @@ namespace AleBatistella\BlingErpApi\Entities\ProdutosEstruturas\Enum;
  */
 enum LancamentoEstoque: string
 {
-    case PRODUTO_E_COMPONENTE = 'A';
-    case COMPONENTE = 'M';
-    case PRODUTO = 'P';
+    case PRODUTO_E_COMPONENTE = "A";
+    case COMPONENTE = "M";
+    case PRODUTO = "P";
 }

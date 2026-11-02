@@ -9,6 +9,9 @@ use AleBatistella\BlingErpApi\Entities\FormasDePagamentos\Enum\Destino;
 use AleBatistella\BlingErpApi\Entities\FormasDePagamentos\Enum\Finalidade;
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class FindResponseData extends BaseResponseObject
 {
     /**
@@ -16,15 +19,15 @@ readonly final class FindResponseData extends BaseResponseObject
      *
      * @param ?int $id
      * @param string $descricao
-     * @param TipoPagamento $tipoPagamento
-     * @param ?Situacao $situacao
+     * @param \AleBatistella\BlingErpApi\Entities\FormasDePagamentos\Enum\TipoPagamento $tipoPagamento
+     * @param ?\AleBatistella\BlingErpApi\Entities\FormasDePagamentos\Enum\Situacao $situacao
      * @param ?bool $fixa
-     * @param ?Padrao $padrao
+     * @param ?\AleBatistella\BlingErpApi\Entities\FormasDePagamentos\Enum\Padrao $padrao
      * @param ?string $condicao
-     * @param Destino $destino
-     * @param Finalidade $finalidade
-     * @param ?FindResponseDataTaxas $taxas
-     * @param ?FindResponseDataDadosCartao $dadosCartao
+     * @param \AleBatistella\BlingErpApi\Entities\FormasDePagamentos\Enum\Destino $destino
+     * @param \AleBatistella\BlingErpApi\Entities\FormasDePagamentos\Enum\Finalidade $finalidade
+     * @param ?\AleBatistella\BlingErpApi\Entities\FormasDePagamentos\Schema\Find\FindResponseDataTaxas $taxas
+     * @param ?\AleBatistella\BlingErpApi\Entities\FormasDePagamentos\Schema\Find\FindResponseDataDadosCartao $dadosCartao
      */
     public function __construct(
         public ?int $id,

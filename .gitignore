@@ -127,3 +127,4 @@ vendor/
 
 # PHP testing
 .phpunit.cache/
+.php-cs-fixer.cache

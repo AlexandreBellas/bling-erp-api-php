@@ -6,6 +6,9 @@ use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 use AleBatistella\BlingErpApi\Entities\Logisticas\Enum\Situacao;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class GetResponseData extends BaseResponseObject
 {
     /**
@@ -15,9 +18,9 @@ readonly final class GetResponseData extends BaseResponseObject
      * @param string $descricao
      * @param string $tipoIntegracao
      * @param bool $integracaoNativa
-     * @param Situacao $situacao
-     * @param Id $integracao
-     * @param Id[] $servicos
+     * @param \AleBatistella\BlingErpApi\Entities\Logisticas\Enum\Situacao $situacao
+     * @param \AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id $integracao
+     * @param array $servicos
      */
     public function __construct(
         public int $id,
@@ -36,7 +39,7 @@ readonly final class GetResponseData extends BaseResponseObject
     protected static function fromRules(): array
     {
         return [
-            'servicos' => Id::class,
+            "servicos" => Id::class,
         ];
     }
 }

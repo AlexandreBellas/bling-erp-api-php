@@ -4,12 +4,15 @@ namespace AleBatistella\BlingErpApi\Entities\PedidosVendas\Schema\DeleteMany;
 
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class DeleteManyResponseData extends BaseResponseObject
 {
     /**
      * Constrói o objeto.
      *
-     * @param ?string[] $alertas
+     * @param array $alertas
      */
     public function __construct(
         public array $alertas,

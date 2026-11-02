@@ -15,7 +15,7 @@ readonly final class UpdateResponse extends BaseResponseRootObject
      * Constrói o objeto.
      *
      * @param int $id
-     * @param ?ErrorField[] $alertas
+     * @param ?array $alertas
      */
     public function __construct(
         public int $id,
@@ -29,11 +29,12 @@ readonly final class UpdateResponse extends BaseResponseRootObject
     protected static function fromRules(): array
     {
         return [
-            'alertas' => ErrorField::class,
+            "alertas" => ErrorField::class,
         ];
     }
 
     /**
+     * @param \AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions $response
      * @inheritDoc
      */
     public static function fromResponse(ResponseOptions $response): static

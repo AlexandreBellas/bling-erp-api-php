@@ -18,7 +18,7 @@ readonly final class GetParams extends QueryParams
      * @param ?int $pagina
      * @param ?int $limite
      * @param ?string $descricao
-     * @param Situacao|int|null $situacao
+     * @param \AleBatistella\BlingErpApi\Entities\Depositos\Enum\Situacao|int|null $situacao
      */
     public function __construct(
         public ?int $pagina = null,

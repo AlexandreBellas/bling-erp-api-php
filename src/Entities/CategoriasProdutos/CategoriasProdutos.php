@@ -44,8 +44,8 @@ class CategoriasProdutos extends BaseEntity
     /**
      * Obtém categorias de produtos.
      *
-     * @param GetParams|array|null $params Parâmetros para a busca
      * 
+     * @param \AleBatistella\BlingErpApi\Entities\CategoriasProdutos\Schema\Get\GetParams|array|null $params Parâmetros para a busca
      * @return GetResponse
      * @throws BlingApiException|BlingInternalException
      *

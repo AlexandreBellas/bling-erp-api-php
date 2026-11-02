@@ -5,6 +5,9 @@ namespace AleBatistella\BlingErpApi\Entities\PedidosCompras\Schema\Find;
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class FindResponseData extends BaseResponseObject
 {
     /**
@@ -16,17 +19,17 @@ readonly final class FindResponseData extends BaseResponseObject
      * @param ?string $dataPrevista
      * @param ?float $totalProdutos
      * @param ?float $total
-     * @param ?Id $fornecedor
-     * @param ?FindResponseDataSituacao $situacao
+     * @param ?\AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id $fornecedor
+     * @param ?\AleBatistella\BlingErpApi\Entities\PedidosCompras\Schema\Find\FindResponseDataSituacao $situacao
      * @param ?string $ordemCompra
      * @param ?string $observacoes
      * @param ?string $observacoesInternas
-     * @param ?FindResponseDataDesconto $desconto
-     * @param ?Id $categoria
-     * @param ?FindResponseDataTributacao $tributacao
-     * @param ?FindResponseDataTransporte $transporte
-     * @param ?FindResponseDataItens[] $itens
-     * @param ?FindResponseDataParcelas[] $parcelas
+     * @param ?\AleBatistella\BlingErpApi\Entities\PedidosCompras\Schema\Find\FindResponseDataDesconto $desconto
+     * @param ?\AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id $categoria
+     * @param ?\AleBatistella\BlingErpApi\Entities\PedidosCompras\Schema\Find\FindResponseDataTributacao $tributacao
+     * @param ?\AleBatistella\BlingErpApi\Entities\PedidosCompras\Schema\Find\FindResponseDataTransporte $transporte
+     * @param ?array $itens
+     * @param ?array $parcelas
      */
     public function __construct(
         public ?int $id,
@@ -55,8 +58,8 @@ readonly final class FindResponseData extends BaseResponseObject
     protected static function fromRules(): array
     {
         return [
-            'itens' => FindResponseDataItens::class,
-            'parcelas' => FindResponseDataParcelas::class
+            "itens" => FindResponseDataItens::class,
+            "parcelas" => FindResponseDataParcelas::class
         ];
     }
 }

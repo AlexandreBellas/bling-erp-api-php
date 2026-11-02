@@ -13,7 +13,7 @@ readonly final class GenerateOverDemandResponse extends BaseResponseRootObject
     /**
      * Constrói o objeto.
      *
-     * @param GenerateOverDemandResponseData[] $data
+     * @param array $data
      */
     public function __construct(
         public array $data
@@ -25,11 +25,12 @@ readonly final class GenerateOverDemandResponse extends BaseResponseRootObject
     protected static function fromRules(): array
     {
         return [
-            'data' => GenerateOverDemandResponseData::class
+            "data" => GenerateOverDemandResponseData::class
         ];
     }
 
     /**
+     * @param \AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions $response
      * @inheritDoc
      */
     public static function fromResponse(ResponseOptions $response): static

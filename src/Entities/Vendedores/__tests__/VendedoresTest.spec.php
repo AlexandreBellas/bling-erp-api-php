@@ -20,8 +20,8 @@ class VendedoresTest extends TestCase
     /**
      * Obtém a instância da entidade.
      *
-     * @param IBlingRepository $repository
      *
+     * @param \AleBatistella\BlingErpApi\Repositories\IBlingRepository $repository
      * @return Vendedores
      */
     private function getInstance(IBlingRepository $repository): Vendedores
@@ -36,10 +36,10 @@ class VendedoresTest extends TestCase
      */
     public function testShouldGetSuccessfully(): void
     {
-        $getResponse = json_decode(file_get_contents(__DIR__ . '/get/response.json'), true);
+        $getResponse = json_decode(file_get_contents(__DIR__ . "/get/response.json"), true);
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('index')
+            ->method("index")
             ->with(
                 $this->callback(
                     fn (RequestOptions $requestOptions) =>
@@ -52,7 +52,7 @@ class VendedoresTest extends TestCase
                 body: $this->buildBody($getResponse)
             ));
 
-        /** @var IBlingRepository $repository */
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $response = $this->getInstance($repository)->get();
 
         $this->assertInstanceOf(GetResponse::class, $response);
@@ -67,10 +67,10 @@ class VendedoresTest extends TestCase
     public function testShouldFindSuccessfully(): void
     {
         $idVendedor = fake()->randomNumber();
-        $findResponse = json_decode(file_get_contents(__DIR__ . '/find/response.json'), true);
+        $findResponse = json_decode(file_get_contents(__DIR__ . "/find/response.json"), true);
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('show')
+            ->method("show")
             ->with(
                 $this->callback(
                     fn (RequestOptions $requestOptions) =>
@@ -82,7 +82,7 @@ class VendedoresTest extends TestCase
                 body: $this->buildBody($findResponse)
             ));
 
-        /** @var IBlingRepository $repository */
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $response = $this->getInstance($repository)->find($idVendedor);
 
         $this->assertInstanceOf(FindResponse::class, $response);

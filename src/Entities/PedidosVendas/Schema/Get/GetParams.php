@@ -24,7 +24,7 @@ readonly final class GetParams extends QueryParams
      * @param ?int $pagina
      * @param ?int $limite
      * @param ?int $idContato
-     * @param Situacao[]|int[]|null $situacoes
+     * @param ?array $situacoes
      * @param \DateTimeInterface|string|null $dataInicial
      * @param \DateTimeInterface|string|null $dataFinal
      * @param \DateTimeInterface|string|null $dataAlteracaoInicial
@@ -35,7 +35,7 @@ readonly final class GetParams extends QueryParams
      * @param ?int $idLoja
      * @param ?int $idVendedor
      * @param ?int $idControleCaixa
-     * @param ?string[] $numerosLojas
+     * @param ?array $numerosLojas
      */
     public function __construct(
         public ?int $pagina = null,

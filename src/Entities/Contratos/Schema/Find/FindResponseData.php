@@ -7,6 +7,9 @@ use AleBatistella\BlingErpApi\Entities\Contratos\Enum\TipoManutencao;
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class FindResponseData extends BaseResponseObject
 {
     /**
@@ -17,19 +20,19 @@ readonly final class FindResponseData extends BaseResponseObject
      * @param string $data
      * @param string $numero
      * @param float $valor
-     * @param Situacao $situacao
-     * @param Id $contato
+     * @param \AleBatistella\BlingErpApi\Entities\Contratos\Enum\Situacao $situacao
+     * @param \AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id $contato
      * @param string $dataFim
-     * @param TipoManutencao $tipoManutencao
+     * @param \AleBatistella\BlingErpApi\Entities\Contratos\Enum\TipoManutencao $tipoManutencao
      * @param bool $emitirOrdemServico
      * @param string $observacoes
-     * @param FindResponseDataVendedor $vendedor
-     * @param Id $categoria
-     * @param FindResponseDataDesconto $desconto
-     * @param Id $contaContabil
-     * @param Id $formaPagamento
-     * @param ?FindResponseDataNotaFiscal $notaFiscal
-     * @param FindResponseDataCobranca $cobranca
+     * @param \AleBatistella\BlingErpApi\Entities\Contratos\Schema\Find\FindResponseDataVendedor $vendedor
+     * @param \AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id $categoria
+     * @param \AleBatistella\BlingErpApi\Entities\Contratos\Schema\Find\FindResponseDataDesconto $desconto
+     * @param \AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id $contaContabil
+     * @param \AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id $formaPagamento
+     * @param ?\AleBatistella\BlingErpApi\Entities\Contratos\Schema\Find\FindResponseDataNotaFiscal $notaFiscal
+     * @param \AleBatistella\BlingErpApi\Entities\Contratos\Schema\Find\FindResponseDataCobranca $cobranca
      */
     public function __construct(
         public ?int $id,

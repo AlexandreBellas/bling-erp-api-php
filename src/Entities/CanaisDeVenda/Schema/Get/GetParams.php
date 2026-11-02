@@ -19,9 +19,9 @@ readonly final class GetParams extends QueryParams
      * 
      * @param ?int $pagina N° da página da listagem
      * @param ?int $limite Quantidade de registros que devem ser exibidos por página
-     * @param ?string[] $tipos Parâmetro para filtrar os registros através de uma lista de tipos de canal de venda
-     * @param Situacao|int|null $situacao Parâmetro para filtrar os registros através da situação
-     * @param Agrupador|int|null $agrupador Agrupador do canal de venda
+     * @param ?array $tipos Parâmetro para filtrar os registros através de uma lista de tipos de canal de venda
+     * @param \AleBatistella\BlingErpApi\Entities\CanaisDeVenda\Enum\Situacao|int|null $situacao Parâmetro para filtrar os registros através da situação
+     * @param \AleBatistella\BlingErpApi\Entities\CanaisDeVenda\Enum\Agrupador|int|null $agrupador Agrupador do canal de venda
      */
     public function __construct(
         public ?int $pagina = null,

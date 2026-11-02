@@ -50,7 +50,7 @@ Put every id the reference shows in the path into `endpoint`.
 
 ## Payload shapes
 
-- **Homologação hash.** Send `headers: ['x-bling-homologacao' => $hash]` on the following call. `Homologacao::execute` runs GET → POST → PUT → PATCH → DELETE and returns `void`.
+- **Homologação hash.** Send `headers: ["x-bling-homologacao" => $hash]` on the call that needs the previous response hash. Each step is its own public method (`get`, `create`, `update`, `changeSituation`, `delete`).
 - **Discriminated objects.** Model a `oneOf` as separate schema classes that override `from` and throw `BlingParseResponsePayloadException` when the discriminator does not match. The property type is the union. See `ContasPagarOcorrenciaUnicaDTO` and `FindResponseData::$ocorrencia`.
 - **Array of objects.** Register the item class in `fromRules` (`'tiposContato' => FindResponseDataTiposContato::class`).
 

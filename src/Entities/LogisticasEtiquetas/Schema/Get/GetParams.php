@@ -15,8 +15,8 @@ readonly final class GetParams extends QueryParams
     /**
      * Constrói o objeto.
      *
-     * @param Formato|string|null $formato
-     * @param int[]|null $idsVendas
+     * @param \AleBatistella\BlingErpApi\Entities\LogisticasEtiquetas\Enum\Formato|string|null $formato
+     * @param ?array $idsVendas
      */
     public function __construct(
         Formato|string|null $formato = null,

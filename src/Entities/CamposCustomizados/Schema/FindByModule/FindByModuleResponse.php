@@ -13,7 +13,7 @@ readonly final class FindByModuleResponse extends BaseResponseRootObject
     /**
      * Constrói o objeto.
      *
-     * @param FindByModuleResponseData[] $data
+     * @param array $data
      */
     public function __construct(
         public array $data
@@ -21,6 +21,7 @@ readonly final class FindByModuleResponse extends BaseResponseRootObject
     }
 
     /**
+     * @param \AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions $response
      * @inheritDoc
      */
     public static function fromResponse(ResponseOptions $response): static
@@ -38,7 +39,7 @@ readonly final class FindByModuleResponse extends BaseResponseRootObject
     protected static function fromRules(): array
     {
         return [
-            'data' => FindByModuleResponseData::class,
+            "data" => FindByModuleResponseData::class,
         ];
     }
 }

@@ -3,7 +3,6 @@
 namespace Tests\Unit\AleBatistella\BlingErpApi\Entities\CamposCustomizados;
 
 use AleBatistella\BlingErpApi\Entities\CamposCustomizados\CamposCustomizados;
-use AleBatistella\BlingErpApi\Entities\CamposCustomizados\Schema\ChangeSituation\ChangeSituationResponse;
 use AleBatistella\BlingErpApi\Entities\CamposCustomizados\Schema\Create\CreateResponse;
 use AleBatistella\BlingErpApi\Entities\CamposCustomizados\Schema\Find\FindResponse;
 use AleBatistella\BlingErpApi\Entities\CamposCustomizados\Schema\FindByModule\FindByModuleResponse;
@@ -25,8 +24,8 @@ class CamposCustomizadosTest extends TestCase
     /**
      * Obtém a instância da entidade.
      *
-     * @param IBlingRepository $repository
      *
+     * @param \AleBatistella\BlingErpApi\Repositories\IBlingRepository $repository
      * @return CamposCustomizados
      */
     private function getInstance(IBlingRepository $repository): CamposCustomizados
@@ -41,11 +40,11 @@ class CamposCustomizadosTest extends TestCase
      */
     public function testShouldDeleteSuccessfully(): void
     {
-        $deleteResponse = json_decode(file_get_contents(__DIR__ . '/delete/response.json'), true);
+        $deleteResponse = json_decode(file_get_contents(__DIR__ . "/delete/response.json"), true);
         $idCampoCustomizado = fake()->randomNumber();
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('destroy')
+            ->method("destroy")
             ->with(
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
@@ -54,7 +53,7 @@ class CamposCustomizadosTest extends TestCase
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($deleteResponse)));
 
-        /** @var IBlingRepository $repository */
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $response = $this->getInstance($repository)->delete($idCampoCustomizado);
 
         $this->assertNull($response);
@@ -67,10 +66,10 @@ class CamposCustomizadosTest extends TestCase
      */
     public function testShouldGetModulesSuccessfully(): void
     {
-        $getModulesResponse = json_decode(file_get_contents(__DIR__ . '/get-modules/response.json'), true);
+        $getModulesResponse = json_decode(file_get_contents(__DIR__ . "/get-modules/response.json"), true);
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('index')
+            ->method("index")
             ->with(
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
@@ -79,7 +78,7 @@ class CamposCustomizadosTest extends TestCase
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($getModulesResponse)));
 
-        /** @var IBlingRepository $repository */
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $response = $this->getInstance($repository)->getModules();
 
         $this->assertInstanceOf(GetModulesResponse::class, $response);
@@ -93,10 +92,10 @@ class CamposCustomizadosTest extends TestCase
      */
     public function testShouldGetTypesSuccessfully(): void
     {
-        $getTypesResponse = json_decode(file_get_contents(__DIR__ . '/get-types/response.json'), true);
+        $getTypesResponse = json_decode(file_get_contents(__DIR__ . "/get-types/response.json"), true);
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('index')
+            ->method("index")
             ->with(
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
@@ -105,7 +104,7 @@ class CamposCustomizadosTest extends TestCase
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($getTypesResponse)));
 
-        /** @var IBlingRepository $repository */
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $response = $this->getInstance($repository)->getTypes();
 
         $this->assertInstanceOf(GetTypesResponse::class, $response);
@@ -120,10 +119,10 @@ class CamposCustomizadosTest extends TestCase
     public function testShouldFindByModuleSuccessfully(): void
     {
         $idCampoCustomizado = fake()->randomNumber();
-        $findByModuleResponse = json_decode(file_get_contents(__DIR__ . '/find-by-module/response.json'), true);
+        $findByModuleResponse = json_decode(file_get_contents(__DIR__ . "/find-by-module/response.json"), true);
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('index')
+            ->method("index")
             ->with(
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
@@ -133,7 +132,7 @@ class CamposCustomizadosTest extends TestCase
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($findByModuleResponse)));
 
-        /** @var IBlingRepository $repository */
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $response = $this->getInstance($repository)->findByModule($idCampoCustomizado);
 
         $this->assertInstanceOf(FindByModuleResponse::class, $response);
@@ -148,10 +147,10 @@ class CamposCustomizadosTest extends TestCase
     public function testShouldFindSuccessfully(): void
     {
         $idCampoCustomizado = fake()->randomNumber();
-        $findResponse = json_decode(file_get_contents(__DIR__ . '/find/response.json'), true);
+        $findResponse = json_decode(file_get_contents(__DIR__ . "/find/response.json"), true);
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('show')
+            ->method("show")
             ->with(
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
@@ -160,7 +159,7 @@ class CamposCustomizadosTest extends TestCase
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($findResponse)));
 
-        /** @var IBlingRepository $repository */
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $response = $this->getInstance($repository)->find($idCampoCustomizado);
 
         $this->assertInstanceOf(FindResponse::class, $response);
@@ -175,11 +174,11 @@ class CamposCustomizadosTest extends TestCase
     public function testShouldChangeSituationSuccessfully(): void
     {
         $idCampoCustomizado = fake()->randomNumber();
-        $changeSituationRequest = json_decode(file_get_contents(__DIR__ . '/change-situation/request.json'), true);
-        $changeSituationResponse = json_decode(file_get_contents(__DIR__ . '/change-situation/response.json'), true);
+        $changeSituationRequest = json_decode(file_get_contents(__DIR__ . "/change-situation/request.json"), true);
+        $changeSituationResponse = json_decode(file_get_contents(__DIR__ . "/change-situation/response.json"), true);
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('update')
+            ->method("update")
             ->with(
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
@@ -188,7 +187,7 @@ class CamposCustomizadosTest extends TestCase
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($changeSituationResponse)));
 
-        /** @var IBlingRepository $repository */
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $response = $this->getInstance($repository)->changeSituation($idCampoCustomizado, $changeSituationRequest);
 
         $this->assertNull($response);
@@ -201,11 +200,11 @@ class CamposCustomizadosTest extends TestCase
      */
     public function testShouldCreateSuccessfully(): void
     {
-        $createBody = json_decode(file_get_contents(__DIR__ . '/create/request.json'), true);
-        $createResponse = json_decode(file_get_contents(__DIR__ . '/create/response.json'), true);
+        $createBody = json_decode(file_get_contents(__DIR__ . "/create/request.json"), true);
+        $createResponse = json_decode(file_get_contents(__DIR__ . "/create/response.json"), true);
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('store')
+            ->method("store")
             ->with(
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
@@ -214,7 +213,7 @@ class CamposCustomizadosTest extends TestCase
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($createResponse)));
 
-        /** @var IBlingRepository $repository */
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $response = $this->getInstance($repository)->create($createBody);
 
         $this->assertInstanceOf(CreateResponse::class, $response);
@@ -229,11 +228,11 @@ class CamposCustomizadosTest extends TestCase
     public function testShouldUpdateSuccessfully(): void
     {
         $idCampoCustomizado = fake()->randomNumber();
-        $updateBody = json_decode(file_get_contents(__DIR__ . '/update/request.json'), true);
-        $updateResponse = json_decode(file_get_contents(__DIR__ . '/update/response.json'), true);
+        $updateBody = json_decode(file_get_contents(__DIR__ . "/update/request.json"), true);
+        $updateResponse = json_decode(file_get_contents(__DIR__ . "/update/response.json"), true);
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('replace')
+            ->method("replace")
             ->with(
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
@@ -242,7 +241,7 @@ class CamposCustomizadosTest extends TestCase
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($updateResponse)));
 
-        /** @var IBlingRepository $repository */
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $response = $this->getInstance($repository)->update($idCampoCustomizado, $updateBody);
 
         $this->assertInstanceOf(UpdateResponse::class, $response);

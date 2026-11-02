@@ -6,6 +6,9 @@ use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 use AleBatistella\BlingErpApi\Entities\ProdutosVariacoes\Enum\TipoArmamento;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class GenerateCombinationsResponseDataTributacao extends BaseResponseObject
 {
     /**
@@ -34,10 +37,10 @@ readonly final class GenerateCombinationsResponseDataTributacao extends BaseResp
      * @param ?float $percentualGasNacional
      * @param ?float $percentualGasImportado
      * @param ?float $valorPartida
-     * @param ?TipoArmamento $tipoArmamento
+     * @param ?\AleBatistella\BlingErpApi\Entities\ProdutosVariacoes\Enum\TipoArmamento $tipoArmamento
      * @param ?string $descricaoCompletaArmamento
      * @param ?string $dadosAdicionais
-     * @param ?Id $grupoProduto
+     * @param ?\AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id $grupoProduto
      */
     public function __construct(
         public ?int $origem,

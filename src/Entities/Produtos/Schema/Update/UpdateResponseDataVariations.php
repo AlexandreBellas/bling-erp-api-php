@@ -4,14 +4,17 @@ namespace AleBatistella\BlingErpApi\Entities\Produtos\Schema\Update;
 
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class UpdateResponseDataVariations extends BaseResponseObject
 {
     /**
      * Constrói o objeto.
      *
-     * @param ?UpdateResponseDataVariationsCommonObject[] $deleted
-     * @param ?UpdateResponseDataVariationsCommonObject[] $updated
-     * @param ?UpdateResponseDataVariationsCommonObject[] $saved
+     * @param ?array $deleted
+     * @param ?array $updated
+     * @param ?array $saved
      */
     public function __construct(
         public ?array $deleted,
@@ -26,9 +29,9 @@ readonly final class UpdateResponseDataVariations extends BaseResponseObject
     protected static function fromRules(): array
     {
         return [
-            'deleted' => UpdateResponseDataVariationsCommonObject::class,
-            'updated' => UpdateResponseDataVariationsCommonObject::class,
-            'saved' => UpdateResponseDataVariationsCommonObject::class,
+            "deleted" => UpdateResponseDataVariationsCommonObject::class,
+            "updated" => UpdateResponseDataVariationsCommonObject::class,
+            "saved" => UpdateResponseDataVariationsCommonObject::class,
         ];
     }
 }

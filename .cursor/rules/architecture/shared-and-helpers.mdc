@@ -67,14 +67,17 @@ Add an enum here when two or more modules share the same cases. The same propert
 
 ## Helpers
 
-`src/Helpers/functions.php` is autoloaded via `composer.json` `autoload.files`. Each function is wrapped in `function_exists`.
+`src/Helpers/functions.php` declares namespace `AleBatistella\BlingErpApi\Helpers` and is autoloaded via `composer.json` `autoload.files`. Each function is wrapped in `function_exists(__NAMESPACE__ . "\\name")`.
+
+`global-functions.php` (also in `autoload.files`, and a PHPStan `bootstrapFiles` entry) defines the same three functions in the global namespace and delegates to the namespaced ones. Call sites use the unqualified names `objectToArray`, `convertDateToString`, and `convertDateTimeToString`. Do not import them with `use function`.
 
 | Function | Contract |
 |----------|----------|
 | `convertDateToString` | `\DateTimeInterface` → `Y-m-d` |
 | `convertDateTimeToString` | `\DateTimeInterface` → `Y-m-d H:i:s` |
 | `objectToArray` | `json_decode(json_encode($obj), true)` |
-| `fake` | `\Faker\Factory::create()` for tests |
+
+`fake()` lives in `dev/fake.php`, registered with `autoload-dev` and PHPStan `bootstrapFiles`. It returns `\Faker\Factory::create()` and is for tests.
 
 `QueryParams::prepareStringOrDateParam($param, $shouldIncludeTime = false)` returns `null` for `null`, returns a string unchanged, and otherwise calls `convertDateToString` or `convertDateTimeToString`.
 

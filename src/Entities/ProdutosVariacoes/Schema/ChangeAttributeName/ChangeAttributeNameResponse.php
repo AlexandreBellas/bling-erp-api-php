@@ -14,7 +14,7 @@ readonly final class ChangeAttributeNameResponse extends BaseResponseRootObject
     /**
      * Constrói o objeto.
      *
-     * @param Id[] $data
+     * @param array $data
      */
     public function __construct(
         public array $data
@@ -27,11 +27,12 @@ readonly final class ChangeAttributeNameResponse extends BaseResponseRootObject
     protected static function fromRules(): array
     {
         return [
-            'data' => Id::class
+            "data" => Id::class
         ];
     }
 
     /**
+     * @param \AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions $response
      * @inheritDoc
      */
     public static function fromResponse(ResponseOptions $response): static

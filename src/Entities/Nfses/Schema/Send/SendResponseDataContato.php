@@ -4,6 +4,9 @@ namespace AleBatistella\BlingErpApi\Entities\Nfses\Schema\Send;
 
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class SendResponseDataContato extends BaseResponseObject
 {
     /**

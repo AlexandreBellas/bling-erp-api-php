@@ -5,6 +5,9 @@ namespace AleBatistella\BlingErpApi\Entities\PedidosCompras\Schema\Get;
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class GetResponseData extends BaseResponseObject
 {
     /**
@@ -16,8 +19,8 @@ readonly final class GetResponseData extends BaseResponseObject
      * @param ?string $dataPrevista
      * @param ?float $totalProdutos
      * @param ?float $total
-     * @param ?Id $fornecedor
-     * @param ?GetResponseDataSituacao $situacao
+     * @param ?\AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id $fornecedor
+     * @param ?\AleBatistella\BlingErpApi\Entities\PedidosCompras\Schema\Get\GetResponseDataSituacao $situacao
      */
     public function __construct(
         public ?int $id,

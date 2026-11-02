@@ -5,6 +5,9 @@ namespace AleBatistella\BlingErpApi\Entities\CategoriasReceitasDespesas\Schema\G
 use AleBatistella\BlingErpApi\Entities\CategoriasReceitasDespesas\Enum\Tipo;
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class GetResponseData extends BaseResponseObject
 {
     /**
@@ -13,7 +16,7 @@ readonly final class GetResponseData extends BaseResponseObject
      * @param ?int $id
      * @param ?int $idCategoriaPai
      * @param string $descricao
-     * @param Tipo $tipo
+     * @param \AleBatistella\BlingErpApi\Entities\CategoriasReceitasDespesas\Enum\Tipo $tipo
      */
     public function __construct(
         public ?int $id,

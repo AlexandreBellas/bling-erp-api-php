@@ -8,7 +8,7 @@ alwaysApply: false
 
 ## Language level
 
-- **PHP 8.2**, matching `README.md` and `.github/workflows/on-commit-test.yaml`.
+- **PHP 8.2**, matching `README.md` and `.github/workflows/on-commit.yaml`.
 - Files start with `<?php` and a namespace. They have no closing tag and no `declare(strict_types=1)`.
 - One class, enum, interface, or trait per file. The file name is the type name (PSR-4).
 
@@ -19,7 +19,7 @@ alwaysApply: false
 - `BaseEntity` subclasses use a plain `class` declaration.
 - Constructor promotion is the way to declare typed properties (`public function __construct(public int $id)`).
 - `RequestOptions` is built with named arguments: `endpoint:`, `queryParams:`, `headers:`, `body:`.
-- A filter parameter is the union `GetParams|array|null $params = null`.
+- A parameter the operation needs is `*Params|array $params`. An optional filter stays `*Params|array|null $params = null`. The array is the query map the Params object serializes, for example `["idsProdutos" => [1, 2]]`.
 - A nullable scalar is `?int`, `?string`, `?array`, or `?bool`.
 - An empty success body uses the return type `null`.
 - Discrete Bling values are backed enums (`enum Situacao: string` or `: int`).
@@ -41,5 +41,5 @@ alwaysApply: false
 ## Dependencies
 
 - Runtime: `guzzlehttp/guzzle` (`composer.json`).
-- Dev: `phpunit/phpunit`, `fakerphp/faker`, `laravel/laravel`.
-- Tests call `fake()` from `src/Helpers/functions.php`.
+- Dev: `phpunit/phpunit`, `fakerphp/faker`, `alexandrebellas/code-conventions`, `phpstan/extension-installer`.
+- Tests call global `fake()` from `dev/fake.php` (`autoload-dev`).

@@ -6,14 +6,17 @@ use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 use AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Enum\Situacao;
 use AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Enum\Padrao;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class GetResponseData extends BaseResponseObject
 {
     /**
      * Constrói o objeto.
      *
      * @param ?int $id
-     * @param ?Situacao $situacao
-     * @param ?Padrao $padrao
+     * @param ?\AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Enum\Situacao $situacao
+     * @param ?\AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Enum\Padrao $padrao
      * @param ?string $descricao
      */
     public function __construct(

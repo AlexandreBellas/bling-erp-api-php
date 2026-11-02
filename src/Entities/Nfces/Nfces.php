@@ -28,8 +28,8 @@ class Nfces extends BaseEntity
     /**
      * Obtém notas fiscais de consumidor.
      *
-     * @param GetParams|array|null $params Parâmetros para a busca
      *
+     * @param \AleBatistella\BlingErpApi\Entities\Nfces\Schema\Get\GetParams|array|null $params Parâmetros para a busca
      * @return GetResponse
      * @throws BlingApiException|BlingInternalException
      *

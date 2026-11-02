@@ -22,8 +22,8 @@ readonly final class GetParams extends QueryParams
      * @param ?int $pagina
      * @param ?int $limite
      * @param ?string $numeroLoja
-     * @param Situacao|int|null $situacao
-     * @param Tipo|int|null $tipo
+     * @param \AleBatistella\BlingErpApi\Entities\Nfes\Enum\Situacao|string|null $situacao
+     * @param \AleBatistella\BlingErpApi\Entities\Nfes\Enum\Tipo|string|null $tipo
      * @param \DateTimeInterface|string|null $dataEmissaoInicial
      * @param \DateTimeInterface|string|null $dataEmissaoFinal
      */

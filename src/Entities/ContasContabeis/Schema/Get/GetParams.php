@@ -21,7 +21,7 @@ readonly final class GetParams extends QueryParams
      * @param ?bool $ocultarInvisiveis Oculta contas contábeis invisíveis
      * @param ?bool $ocultarContasIntegracaoPagamento Oculta contas contábeis de integração com gateway de pagamento
      * @param ?bool $ocultarTipoContaBancaria Oculta contas contábeis do tipo conta bancária
-     * @param Situacao[]|int[]|null $situacoes Situação da conta contábil
+     * @param ?array $situacoes Situação da conta contábil
      */
     public function __construct(
         public ?int $pagina = null,

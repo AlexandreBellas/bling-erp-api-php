@@ -13,7 +13,7 @@ readonly final class FindBalanceResponse extends BaseResponseRootObject
     /**
      * Constrói o objeto.
      *
-     * @param FindBalanceResponseData[] $data
+     * @param array $data
      */
     public function __construct(
         public array $data
@@ -26,11 +26,12 @@ readonly final class FindBalanceResponse extends BaseResponseRootObject
     protected static function fromRules(): array
     {
         return [
-            'data' => FindBalanceResponseData::class,
+            "data" => FindBalanceResponseData::class,
         ];
     }
 
     /**
+     * @param \AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions $response
      * @inheritDoc
      */
     public static function fromResponse(ResponseOptions $response): static

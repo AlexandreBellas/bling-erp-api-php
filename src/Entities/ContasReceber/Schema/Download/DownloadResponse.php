@@ -14,7 +14,7 @@ readonly final class DownloadResponse extends BaseResponseRootObject
     /**
      * Constrói o objeto.
      *
-     * @param Id $bordero
+     * @param \AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id $bordero
      */
     public function __construct(
         public Id $bordero
@@ -22,6 +22,7 @@ readonly final class DownloadResponse extends BaseResponseRootObject
     }
 
     /**
+     * @param \AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions $response
      * @inheritDoc
      */
     public static function fromResponse(ResponseOptions $response): static

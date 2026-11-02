@@ -21,6 +21,7 @@ readonly final class DeleteResponse extends BaseResponseRootObject
     }
 
     /**
+     * @param \AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions $response
      * @inheritDoc
      */
     public static function fromResponse(ResponseOptions $response): static
@@ -29,8 +30,10 @@ readonly final class DeleteResponse extends BaseResponseRootObject
             static::throwForInconsistentResponseOptions($response);
         }
 
+        $homologacao = "x-bling-homologacao";
+
         return new self(
-            hash: $response->headers->content['x-bling-homologacao']
+            hash: $response->headers->content[$homologacao]
         );
     }
 }

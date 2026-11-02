@@ -49,7 +49,7 @@ Name a non-CRUD action after the Bling action in English: `send`, `download`, `p
 ## Endpoint and parameter patterns
 
 - Endpoint strings are double-quoted, kebab-case, and include every path id: `"contatos/$idContato"`, `"contatos/$idContato/tipos"`, `"contas/pagar/$idContaPagar"`.
-- Collection and filter calls take `GetParams|array|null $params = null` (or `<Operation>Params`) and pass `$params` through as `queryParams`. See `Contatos::get`.
+- Collection and filter calls take `*Params|array $params` when the operation needs it, or `*Params|array|null $params = null` when the filter is optional, and pass `$params` through as `queryParams`. The array uses the same keys the Params object serializes. See `Produtos::deleteMany` and `Contatos::get`.
 - `create` and other JSON writes take `array $body` and pass it as `body`.
 - Date filters are converted inside the `*Params` constructor with `prepareStringOrDateParam` (`Contatos\Schema\Get\GetParams`).
 - An operation with an empty success body uses a response class whose `fromResponse` returns `null`. The entity method's return type is `null` (`Contatos::delete`).

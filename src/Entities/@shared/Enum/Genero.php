@@ -7,6 +7,6 @@ namespace AleBatistella\BlingErpApi\Entities\Shared\Enum;
  */
 enum Genero: string
 {
-    case MASCULINO = 'M';
-    case FEMININO = 'F';
+    case MASCULINO = "M";
+    case FEMININO = "F";
 }

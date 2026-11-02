@@ -23,8 +23,8 @@ class HomologacaoTest extends TestCase
     /**
      * Obtém a instância da entidade.
      *
-     * @param IBlingRepository $repository
      *
+     * @param \AleBatistella\BlingErpApi\Repositories\IBlingRepository $repository
      * @return Homologacao
      */
     private function getInstance(IBlingRepository $repository): Homologacao
@@ -41,10 +41,10 @@ class HomologacaoTest extends TestCase
     {
         $hash = fake()->word();
         $idProdutoHomologacao = fake()->randomNumber();
-        $deleteResponse = json_decode(file_get_contents(__DIR__ . '/delete/response.json'), true);
+        $deleteResponse = json_decode(file_get_contents(__DIR__ . "/delete/response.json"), true);
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('destroy')
+            ->method("destroy")
             ->with(
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
@@ -55,11 +55,11 @@ class HomologacaoTest extends TestCase
                 $this->buildResponse(
                     status: 200,
                     body: $this->buildBody($deleteResponse),
-                    headers: $this->buildHeaders(['x-bling-homologacao' => $hash])
+                    headers: $this->buildHeaders(["x-bling-homologacao" => $hash])
                 )
             );
 
-        /** @var IBlingRepository $repository */
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $response = $this->getInstance($repository)->delete(
             idProdutoHomologacao: $idProdutoHomologacao,
             hash: fake()->word()
@@ -77,10 +77,10 @@ class HomologacaoTest extends TestCase
     public function testShouldGetSuccessfully(): void
     {
         $hash = fake()->word();
-        $getResponse = json_decode(file_get_contents(__DIR__ . '/get/response.json'), true);
+        $getResponse = json_decode(file_get_contents(__DIR__ . "/get/response.json"), true);
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('index')
+            ->method("index")
             ->with(
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
@@ -92,17 +92,17 @@ class HomologacaoTest extends TestCase
                 $this->buildResponse(
                     status: 200,
                     body: $this->buildBody($getResponse),
-                    headers: $this->buildHeaders(['x-bling-homologacao' => $hash])
+                    headers: $this->buildHeaders(["x-bling-homologacao" => $hash])
                 )
             );
 
-        /** @var IBlingRepository $repository */
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $response = $this->getInstance($repository)->get();
 
         $this->assertInstanceOf(GetResponse::class, $response);
         $this->assertEquals($hash, $response->hash);
-        ['data' => $data] = $response->toArray();
-        $this->assertEquals($getResponse, ['data' => $data]);
+        ["data" => $data] = $response->toArray();
+        $this->assertEquals($getResponse, ["data" => $data]);
     }
 
     /**
@@ -115,16 +115,16 @@ class HomologacaoTest extends TestCase
         $hash = fake()->word();
         $idProdutoHomologacao = fake()->randomNumber();
         $changeSituationRequest = json_decode(
-            file_get_contents(__DIR__ . '/change-situation/request.json'),
+            file_get_contents(__DIR__ . "/change-situation/request.json"),
             true
         );
         $changeSituationResponse = json_decode(
-            file_get_contents(__DIR__ . '/change-situation/response.json'),
+            file_get_contents(__DIR__ . "/change-situation/response.json"),
             true
         );
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('update')
+            ->method("update")
             ->with(
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
@@ -135,11 +135,11 @@ class HomologacaoTest extends TestCase
                 $this->buildResponse(
                     status: 200,
                     body: $this->buildBody($changeSituationResponse),
-                    headers: $this->buildHeaders(['x-bling-homologacao' => $hash])
+                    headers: $this->buildHeaders(["x-bling-homologacao" => $hash])
                 )
             );
 
-        /** @var IBlingRepository $repository */
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $response = $this->getInstance($repository)->changeSituation(
             idProdutoHomologacao: $idProdutoHomologacao,
             body: $changeSituationRequest,
@@ -159,11 +159,11 @@ class HomologacaoTest extends TestCase
     public function testShouldCreateSuccessfully(): void
     {
         $hash = fake()->word();
-        $createBody = json_decode(file_get_contents(__DIR__ . '/create/request.json'), true);
-        $createResponse = json_decode(file_get_contents(__DIR__ . '/create/response.json'), true);
+        $createBody = json_decode(file_get_contents(__DIR__ . "/create/request.json"), true);
+        $createResponse = json_decode(file_get_contents(__DIR__ . "/create/response.json"), true);
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('store')
+            ->method("store")
             ->with(
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
@@ -174,11 +174,11 @@ class HomologacaoTest extends TestCase
                 $this->buildResponse(
                     status: 200,
                     body: $this->buildBody($createResponse),
-                    headers: $this->buildHeaders(['x-bling-homologacao' => $hash])
+                    headers: $this->buildHeaders(["x-bling-homologacao" => $hash])
                 )
             );
 
-        /** @var IBlingRepository $repository */
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $response = $this->getInstance($repository)->create(
             body: $createBody,
             hash: fake()->word()
@@ -186,8 +186,8 @@ class HomologacaoTest extends TestCase
 
         $this->assertInstanceOf(CreateResponse::class, $response);
         $this->assertEquals($hash, $response->hash);
-        ['data' => $data] = $response->toArray();
-        $this->assertEquals($createResponse, ['data' => $data]);
+        ["data" => $data] = $response->toArray();
+        $this->assertEquals($createResponse, ["data" => $data]);
     }
 
     /**
@@ -199,11 +199,11 @@ class HomologacaoTest extends TestCase
     {
         $hash = fake()->word();
         $idProdutoHomologacao = fake()->randomNumber();
-        $updateBody = json_decode(file_get_contents(__DIR__ . '/update/request.json'), true);
-        $updateResponse = json_decode(file_get_contents(__DIR__ . '/update/response.json'), true);
+        $updateBody = json_decode(file_get_contents(__DIR__ . "/update/request.json"), true);
+        $updateResponse = json_decode(file_get_contents(__DIR__ . "/update/response.json"), true);
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('replace')
+            ->method("replace")
             ->with(
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
@@ -214,11 +214,11 @@ class HomologacaoTest extends TestCase
                 $this->buildResponse(
                     status: 200,
                     body: $this->buildBody($updateResponse),
-                    headers: $this->buildHeaders(['x-bling-homologacao' => $hash])
+                    headers: $this->buildHeaders(["x-bling-homologacao" => $hash])
                 )
             );
 
-        /** @var IBlingRepository $repository */
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $response = $this->getInstance($repository)->update(
             idProdutoHomologacao: $idProdutoHomologacao,
             body: $updateBody,
@@ -227,116 +227,5 @@ class HomologacaoTest extends TestCase
 
         $this->assertInstanceOf(UpdateResponse::class, $response);
         $this->assertEquals($hash, $response->hash);
-    }
-
-    /**
-     * Testa a execução.
-     *
-     * @return void
-     */
-    public function testShouldExecuteSuccessfully(): void
-    {
-        $hashGet = fake()->word();
-        $hashPost = fake()->word();
-        $hashPatch = fake()->word();
-        $hashPut = fake()->word();
-        $hashDelete = fake()->word();
-        $getResponse = json_decode(file_get_contents(__DIR__ . '/get/response.json'), true);
-        $changeSituationRequest = json_decode(file_get_contents(__DIR__ . '/change-situation/request.json'), true);
-        $changeSituationResponse = json_decode(file_get_contents(__DIR__ . '/change-situation/response.json'), true);
-        $createResponse = json_decode(file_get_contents(__DIR__ . '/create/response.json'), true);
-        $updateResponse = json_decode(file_get_contents(__DIR__ . '/update/response.json'), true);
-        $deleteResponse = json_decode(file_get_contents(__DIR__ . '/delete/response.json'), true);
-        $idProdutoHomologacao = $createResponse['data']['id'];
-        $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
-        $repository->expects($this->once())
-            ->method('index')
-            ->with(
-                $this->callback(
-                    fn(RequestOptions $requestOptions) =>
-                    $requestOptions->endpoint === "homologacao/produtos"
-                )
-            )
-            ->willReturn(
-                $this->buildResponse(
-                    status: 200,
-                    body: $this->buildBody($getResponse),
-                    headers: $this->buildHeaders(['x-bling-homologacao' => $hashGet])
-                )
-            );
-        $repository->expects($this->once())
-            ->method('store')
-            ->with(
-                $this->callback(
-                    fn(RequestOptions $requestOptions) =>
-                    $requestOptions->endpoint === "homologacao/produtos"
-                    && $requestOptions->body->content === $getResponse
-                    && $requestOptions->headers->content['x-bling-homologacao'] === $hashGet
-                )
-            )
-            ->willReturn(
-                $this->buildResponse(
-                    status: 200,
-                    body: $this->buildBody($createResponse),
-                    headers: $this->buildHeaders(['x-bling-homologacao' => $hashPost])
-                )
-            );
-        $repository->expects($this->once())
-            ->method('replace')
-            ->with(
-                $this->callback(
-                    fn(RequestOptions $requestOptions) =>
-                    $requestOptions->endpoint === "homologacao/produtos/$idProdutoHomologacao"
-                    && $requestOptions->body->content === [
-                        'nome'   => 'Copo',
-                        'preco'  => $createResponse['data']['preco'],
-                        'codigo' => $createResponse['data']['codigo'],
-                    ]
-                    && $requestOptions->headers->content['x-bling-homologacao'] === $hashPost
-                )
-            )
-            ->willReturn(
-                $this->buildResponse(
-                    status: 200,
-                    body: $this->buildBody($updateResponse),
-                    headers: $this->buildHeaders(['x-bling-homologacao' => $hashPut])
-                )
-            );
-        $repository->expects($this->once())
-            ->method('update')
-            ->with(
-                $this->callback(
-                    fn(RequestOptions $requestOptions) =>
-                    $requestOptions->endpoint === "homologacao/produtos/$idProdutoHomologacao/situacoes"
-                    && $requestOptions->body->content === $changeSituationRequest
-                    && $requestOptions->headers->content['x-bling-homologacao'] === $hashPut
-                )
-            )
-            ->willReturn(
-                $this->buildResponse(
-                    status: 200,
-                    body: $this->buildBody($changeSituationResponse),
-                    headers: $this->buildHeaders(['x-bling-homologacao' => $hashPatch])
-                )
-            );
-        $repository->expects($this->once())
-            ->method('destroy')
-            ->with(
-                $this->callback(
-                    fn(RequestOptions $requestOptions) =>
-                    $requestOptions->endpoint === "homologacao/produtos/$idProdutoHomologacao"
-                    && $requestOptions->headers->content['x-bling-homologacao'] === $hashPatch
-                )
-            )
-            ->willReturn(
-                $this->buildResponse(
-                    status: 200,
-                    body: $this->buildBody($deleteResponse),
-                    headers: $this->buildHeaders(['x-bling-homologacao' => $hashDelete])
-                )
-            );
-
-        /** @var IBlingRepository $repository */
-        $this->getInstance($repository)->execute();
     }
 }

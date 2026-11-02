@@ -9,12 +9,12 @@ use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
  */
 final readonly class Id extends BaseResponseObject
 {
-  /**
-   * Constrói o objeto.
-   *
-   * @param int $id
-   */
-  public function __construct(public int $id)
-  {
-  }
+    /**
+     * Constrói o objeto.
+     *
+     * @param int $id
+     */
+    public function __construct(public int $id)
+    {
+    }
 }

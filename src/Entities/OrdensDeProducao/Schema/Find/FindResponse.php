@@ -13,17 +13,17 @@ readonly final class FindResponse extends BaseResponseRootObject
     /**
      * Constrói o objeto.
      *
-     * @param int $id
+     * @param ?int $id
      * @param ?string $dataPrevisaoInicio
      * @param ?string $dataPrevisaoFinal
      * @param ?string $dataInicio
      * @param ?string $dataFim
      * @param int $numero
      * @param ?string $responsavel
-     * @param FindResponseDeposito $deposito
-     * @param FindResponseSituacao $situacao
-     * @param ?FindResponseVendas[] $vendas
-     * @param ?FindResponseItens[] $itens
+     * @param \AleBatistella\BlingErpApi\Entities\OrdensDeProducao\Schema\Find\FindResponseDeposito $deposito
+     * @param \AleBatistella\BlingErpApi\Entities\OrdensDeProducao\Schema\Find\FindResponseSituacao $situacao
+     * @param ?array $vendas
+     * @param ?array $itens
      * @param ?string $observacoes
      */
     public function __construct(
@@ -53,6 +53,7 @@ readonly final class FindResponse extends BaseResponseRootObject
     }
 
     /**
+     * @param \AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions $response
      * @inheritDoc
      */
     public static function fromResponse(ResponseOptions $response): static

@@ -29,14 +29,15 @@ class Contatos extends BaseEntity
     /**
      * Remove múltiplos contatos.
      *
-     * @param ?DeleteManyParams $params IDs dos contatos
+     * Aceita `DeleteManyParams` ou o mapa de query que o objeto serializa, por exemplo `["idsContatos" => [1, 2]]`.
      *
+     * @param \AleBatistella\BlingErpApi\Entities\Contatos\Schema\DeleteMany\DeleteManyParams|array $params
      * @return null
      * @throws BlingApiException|BlingInternalException
      *
      * @see https://developer.bling.com.br/referencia#/Contatos/delete_contatos
      */
-    public function deleteMany(DeleteManyParams $params = null): null
+    public function deleteMany(DeleteManyParams|array $params): null
     {
         $response = $this->repository->destroy(
             new RequestOptions(
@@ -72,8 +73,8 @@ class Contatos extends BaseEntity
     /**
      * Obtém contatos.
      *
-     * @param GetParams|array|null $params Parâmetros para a busca
      * 
+     * @param \AleBatistella\BlingErpApi\Entities\Contatos\Schema\Get\GetParams|array|null $params Parâmetros para a busca
      * @return GetResponse
      * @throws BlingApiException|BlingInternalException
      *

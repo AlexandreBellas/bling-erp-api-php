@@ -4,6 +4,9 @@ namespace AleBatistella\BlingErpApi\Entities\CamposCustomizados\Schema\GetTypes;
 
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class GetTypesResponseData extends BaseResponseObject
 {
     /**

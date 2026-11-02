@@ -44,8 +44,8 @@ class ProdutosFornecedores extends BaseEntity
     /**
      * Obtém produtos fornecedores.
      *
-     * @param GetParams|array|null $params Parâmetros para a busca
      *
+     * @param \AleBatistella\BlingErpApi\Entities\ProdutosFornecedores\Schema\Get\GetParams|array|null $params Parâmetros para a busca
      * @return GetResponse
      * @throws BlingApiException|BlingInternalException
      *

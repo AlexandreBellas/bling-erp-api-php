@@ -15,7 +15,7 @@ readonly final class GetTypesParams extends QueryParams
     /**
      * Constrói o objeto.
      * 
-     * @param Agrupador|int|null $agrupador Agrupador do canal de venda
+     * @param \AleBatistella\BlingErpApi\Entities\CanaisDeVenda\Enum\Agrupador|int|null $agrupador Agrupador do canal de venda
      */
     public function __construct(
         Agrupador|int|null $agrupador = null,

@@ -13,7 +13,7 @@ readonly final class CreateResponse extends BaseResponseRootObject
     /**
      * Constrói o objeto.
      *
-     * @param CreateResponseData $data
+     * @param \AleBatistella\BlingErpApi\Entities\PedidosVendas\Schema\Create\CreateResponseData $data
      */
     public function __construct(
         public CreateResponseData $data
@@ -21,6 +21,7 @@ readonly final class CreateResponse extends BaseResponseRootObject
     }
 
     /**
+     * @param \AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions $response
      * @inheritDoc
      */
     public static function fromResponse(ResponseOptions $response): static

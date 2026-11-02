@@ -5,6 +5,9 @@ namespace AleBatistella\BlingErpApi\Entities\PedidosVendas\Schema\Find;
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class FindResponseData extends BaseResponseObject
 {
     /**
@@ -18,23 +21,23 @@ readonly final class FindResponseData extends BaseResponseObject
      * @param string $dataPrevista
      * @param ?float $totalProdutos
      * @param ?float $total
-     * @param ?FindResponseDataContato $contato
-     * @param ?FindResponseDataSituacao $situacao
-     * @param ?Id $loja
+     * @param ?\AleBatistella\BlingErpApi\Entities\PedidosVendas\Schema\Find\FindResponseDataContato $contato
+     * @param ?\AleBatistella\BlingErpApi\Entities\PedidosVendas\Schema\Find\FindResponseDataSituacao $situacao
+     * @param ?\AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id $loja
      * @param ?string $numeroPedidoCompra
      * @param ?float $outrasDespesas
      * @param ?string $observacoes
      * @param ?string $observacoesInternas
-     * @param ?FindResponseDataDesconto $desconto
-     * @param ?Id $categoria
-     * @param ?Id $notaFiscal
-     * @param ?FindResponseDataTributacao $tributacao
-     * @param ?FindResponseDataItens[] $itens
-     * @param ?FindResponseDataParcelas[] $parcelas
-     * @param ?FindResponseDataTransporte $transporte
-     * @param ?Id $vendedor
-     * @param ?FindResponseDataIntermediador $intermediador
-     * @param ?FindResponseDataTaxas $taxas
+     * @param ?\AleBatistella\BlingErpApi\Entities\PedidosVendas\Schema\Find\FindResponseDataDesconto $desconto
+     * @param ?\AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id $categoria
+     * @param ?\AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id $notaFiscal
+     * @param ?\AleBatistella\BlingErpApi\Entities\PedidosVendas\Schema\Find\FindResponseDataTributacao $tributacao
+     * @param ?array $itens
+     * @param ?array $parcelas
+     * @param ?\AleBatistella\BlingErpApi\Entities\PedidosVendas\Schema\Find\FindResponseDataTransporte $transporte
+     * @param ?\AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id $vendedor
+     * @param ?\AleBatistella\BlingErpApi\Entities\PedidosVendas\Schema\Find\FindResponseDataIntermediador $intermediador
+     * @param ?\AleBatistella\BlingErpApi\Entities\PedidosVendas\Schema\Find\FindResponseDataTaxas $taxas
      */
     public function __construct(
         public ?int $id,
@@ -71,8 +74,8 @@ readonly final class FindResponseData extends BaseResponseObject
     protected static function fromRules(): array
     {
         return [
-            'itens' => FindResponseDataItens::class,
-            'parcelas' => FindResponseDataParcelas::class
+            "itens" => FindResponseDataItens::class,
+            "parcelas" => FindResponseDataParcelas::class
         ];
     }
 }

@@ -13,7 +13,7 @@ readonly final class FindFinalCustomerResponse extends BaseResponseRootObject
     /**
      * Constrói o objeto.
      *
-     * @param FindFinalCustomerResponseData $data
+     * @param \AleBatistella\BlingErpApi\Entities\Contatos\Schema\FindFinalCustomer\FindFinalCustomerResponseData $data
      */
     public function __construct(
         public FindFinalCustomerResponseData $data
@@ -21,6 +21,7 @@ readonly final class FindFinalCustomerResponse extends BaseResponseRootObject
     }
 
     /**
+     * @param \AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions $response
      * @inheritDoc
      */
     public static function fromResponse(ResponseOptions $response): static

@@ -45,8 +45,8 @@ class ContasPagar extends BaseEntity
     /**
      * Obtém contas a pagar.
      *
-     * @param GetParams|array|null $params Parâmetros para a busca
      * 
+     * @param \AleBatistella\BlingErpApi\Entities\ContasPagar\Schema\Get\GetParams|array|null $params Parâmetros para a busca
      * @return GetResponse
      * @throws BlingApiException|BlingInternalException
      *

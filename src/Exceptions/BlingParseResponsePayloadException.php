@@ -2,8 +2,6 @@
 
 namespace AleBatistella\BlingErpApi\Exceptions;
 
-use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\Body;
-use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\Headers;
 
 /**
  * Exceção lançada quando há um erro ao processar _array_ para construir um

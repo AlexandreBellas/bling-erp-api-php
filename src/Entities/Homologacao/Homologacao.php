@@ -35,7 +35,7 @@ class Homologacao extends BaseEntity
         $response = $this->repository->destroy(
             new RequestOptions(
                 endpoint: "homologacao/produtos/$idProdutoHomologacao",
-                headers: ['x-bling-homologacao' => $hash]
+                headers: ["x-bling-homologacao" => $hash]
             )
         );
 
@@ -79,7 +79,7 @@ class Homologacao extends BaseEntity
             new RequestOptions(
                 endpoint: "homologacao/produtos/$idProdutoHomologacao/situacoes",
                 body: $body,
-                headers: ['x-bling-homologacao' => $hash]
+                headers: ["x-bling-homologacao" => $hash]
             )
         );
 
@@ -103,7 +103,7 @@ class Homologacao extends BaseEntity
             new RequestOptions(
                 endpoint: "homologacao/produtos",
                 body: $body,
-                headers: ['x-bling-homologacao' => $hash]
+                headers: ["x-bling-homologacao" => $hash]
             )
         );
 
@@ -128,57 +128,10 @@ class Homologacao extends BaseEntity
             new RequestOptions(
                 endpoint: "homologacao/produtos/$idProdutoHomologacao",
                 body: $body,
-                headers: ['x-bling-homologacao' => $hash]
+                headers: ["x-bling-homologacao" => $hash]
             )
         );
 
         return UpdateResponse::fromResponse($response);
-    }
-
-    /**
-     * Executa a homologação do aplicativo.
-     *
-     * @return void
-     *
-     * @see https://developer.bling.com.br/homologacao
-     */
-    public function execute(): void
-    {
-        // Passo 1: GET
-        $getResponse = $this->get();
-
-        // Passo 2: POST
-        ['data' => $data, 'hash' => $hash] = $getResponse->toArray();
-        $postResponse = $this->create(
-            body: ['data' => $data],
-            hash: $hash
-        );
-
-        // Passo 3: PUT
-        ['data' => $data, 'hash' => $hash] = $postResponse->toArray();
-        ['id' => $idProdutoHomologacao] = $data;
-        $putResponse = $this->update(
-            idProdutoHomologacao: $idProdutoHomologacao,
-            body: [
-                'nome'   => 'Copo',
-                'preco'  => $data['preco'],
-                'codigo' => $data['codigo'],
-            ],
-            hash: $hash
-        );
-
-        // Passo 4: PATCH
-        ['hash' => $hash] = $putResponse->toArray();
-        $patchResponse = $this->changeSituation(
-            idProdutoHomologacao: $idProdutoHomologacao,
-            body: ['situacao' => 'I'],
-            hash: $putResponse->hash,
-        );
-
-        // Passo 5: DELETE
-        $this->delete(
-            idProdutoHomologacao: $idProdutoHomologacao,
-            hash: $patchResponse->hash
-        );
     }
 }

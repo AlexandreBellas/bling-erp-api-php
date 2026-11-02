@@ -16,45 +16,45 @@ use AleBatistella\BlingErpApi\Exceptions\BlingInternalException;
  */
 class Borderos extends BaseEntity
 {
-  /**
-   * Remove um borderô.
-   *
-   * @param int $idBordero ID para deleção.
-   *
-   * @return null Não há retorno.
-   * @throws BlingApiException|BlingInternalException
-   *
-   * @see https://developer.bling.com.br/referencia#/Border%C3%B4s/delete_borderos__idBordero_
-   */
-  public function delete(int $idBordero): null
-  {
-    $response = $this->repository->destroy(
-      new RequestOptions(
-        endpoint: "borderos/$idBordero"
-      )
-    );
+    /**
+     * Remove um borderô.
+     *
+     * @param int $idBordero ID para deleção.
+     *
+     * @return null Não há retorno.
+     * @throws BlingApiException|BlingInternalException
+     *
+     * @see https://developer.bling.com.br/referencia#/Border%C3%B4s/delete_borderos__idBordero_
+     */
+    public function delete(int $idBordero): null
+    {
+        $response = $this->repository->destroy(
+            new RequestOptions(
+                endpoint: "borderos/$idBordero"
+            )
+        );
 
-    return DeleteResponse::fromResponse($response);
-  }
+        return DeleteResponse::fromResponse($response);
+    }
 
-  /**
-   * Encontra um borderô.
-   *
-   * @param int Parâmetros para a busca (somente o ID).
-   *
-   * @return FindResponse Os dados do borderô pesquisado.
-   * @throws BlingApiException|BlingInternalException
-   *
-   * @see https://developer.bling.com.br/referencia#/Border%C3%B4s/get_borderos__idBordero_
-   */
-  public function find(int $idBordero): FindResponse
-  {
-    $response = $this->repository->show(
-      new RequestOptions(
-        endpoint: "borderos/$idBordero"
-      )
-    );
+    /**
+     * Encontra um borderô.
+     *
+     *
+     * @param int $idBordero
+     * @return FindResponse Os dados do borderô pesquisado.
+     * @throws BlingApiException|BlingInternalException
+     *
+     * @see https://developer.bling.com.br/referencia#/Border%C3%B4s/get_borderos__idBordero_
+     */
+    public function find(int $idBordero): FindResponse
+    {
+        $response = $this->repository->show(
+            new RequestOptions(
+                endpoint: "borderos/$idBordero"
+            )
+        );
 
-    return FindResponse::fromResponse($response);
-  }
+        return FindResponse::fromResponse($response);
+    }
 }

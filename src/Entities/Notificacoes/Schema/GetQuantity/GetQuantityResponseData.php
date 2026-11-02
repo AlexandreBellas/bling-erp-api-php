@@ -4,6 +4,9 @@ namespace AleBatistella\BlingErpApi\Entities\Notificacoes\Schema\GetQuantity;
 
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class GetQuantityResponseData extends BaseResponseObject
 {
     /**

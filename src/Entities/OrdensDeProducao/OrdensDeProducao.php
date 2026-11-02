@@ -46,8 +46,8 @@ class OrdensDeProducao extends BaseEntity
     /**
      * Obtém ordens de produção.
      *
-     * @param GetParams|array|null $params Parâmetros para a busca
      * 
+     * @param \AleBatistella\BlingErpApi\Entities\OrdensDeProducao\Schema\Get\GetParams|array|null $params Parâmetros para a busca
      * @return GetResponse
      * @throws BlingApiException|BlingInternalException
      *
@@ -130,10 +130,10 @@ class OrdensDeProducao extends BaseEntity
     /**
      * Altera uma ordem de produção.
      * 
+     * 
      * @param int $idOrdemProducao ID da ordem de produção
      * @param array $body Corpo da requisição
-     * 
-     * @return UpdateResponse
+     * @return null
      * @throws BlingApiException|BlingInternalException
      * 
      * @see https://developer.bling.com.br/referencia#/Ordens%20de%20Produ%C3%A7%C3%A3o/put_ordens_producao__idOrdemProducao_
@@ -154,10 +154,10 @@ class OrdensDeProducao extends BaseEntity
     /**
      * Altera a situação de uma ordem de produção.
      * 
+     * 
      * @param int $idOrdemProducao ID da ordem de produção
      * @param array $body Corpo da requisição
-     * 
-     * @return ChangeSituationResponse
+     * @return null
      * @throws BlingApiException|BlingInternalException
      * 
      * @see https://developer.bling.com.br/referencia#/Ordens%20de%20Produ%C3%A7%C3%A3o/put_ordens_producao__idOrdemProducao__situacoes

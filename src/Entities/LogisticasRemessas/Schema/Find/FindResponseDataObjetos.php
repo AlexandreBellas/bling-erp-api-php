@@ -5,19 +5,22 @@ namespace AleBatistella\BlingErpApi\Entities\LogisticasRemessas\Schema\Find;
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class FindResponseDataObjetos extends BaseResponseObject
 {
     /**
      * Constrói o objeto.
      *
      * @param int $id
-     * @param ?Id $remessa
-     * @param Id $pedidoVenda
-     * @param Id $notaFiscal
-     * @param FindResponseDataObjetosServico $servico
-     * @param FindResponseDataObjetosRastreamento $rastreamento
-     * @param FindResponseDataObjetosDimensao $dimensao
-     * @param Id $embalagem
+     * @param ?\AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id $remessa
+     * @param \AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id $pedidoVenda
+     * @param \AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id $notaFiscal
+     * @param \AleBatistella\BlingErpApi\Entities\LogisticasRemessas\Schema\Find\FindResponseDataObjetosServico $servico
+     * @param \AleBatistella\BlingErpApi\Entities\LogisticasRemessas\Schema\Find\FindResponseDataObjetosRastreamento $rastreamento
+     * @param \AleBatistella\BlingErpApi\Entities\LogisticasRemessas\Schema\Find\FindResponseDataObjetosDimensao $dimensao
+     * @param \AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id $embalagem
      * @param string $dataSaida
      * @param int $prazoEntregaPrevisto
      * @param float $fretePrevisto

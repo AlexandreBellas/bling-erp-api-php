@@ -2,6 +2,8 @@
 
 namespace AleBatistella\BlingErpApi\Entities\PedidosVendas;
 
+use AleBatistella\BlingErpApi\Entities\PedidosVendas\Schema\DeleteMany\DeleteManyParams;
+
 use AleBatistella\BlingErpApi\Entities\PedidosVendas\Schema\Delete\DeleteResponse;
 use AleBatistella\BlingErpApi\Entities\PedidosVendas\Schema\DeleteMany\DeleteManyResponse;
 use AleBatistella\BlingErpApi\Entities\PedidosVendas\Schema\ChangeSituation\ChangeSituationResponse;
@@ -32,19 +34,20 @@ class PedidosVendas extends BaseEntity
     /**
      * Remove pedidos de vendas.
      *
-     * @param int[] $idsPedidosVendas IDs dos pedidos de vendas
+     * Aceita `DeleteManyParams` ou o mapa de query que o objeto serializa, por exemplo `["idsPedidosVendas" => [1, 2]]`.
      *
+     * @param \AleBatistella\BlingErpApi\Entities\PedidosVendas\Schema\DeleteMany\DeleteManyParams|array $params
      * @return DeleteManyResponse
      * @throws BlingApiException|BlingInternalException
      *
      * @see https://developer.bling.com.br/referencia#/Pedidos%20-%20Vendas/delete_pedidos_vendas
      */
-    public function deleteMany(array $idsPedidosVendas): DeleteManyResponse
+    public function deleteMany(DeleteManyParams|array $params): DeleteManyResponse
     {
         $response = $this->repository->destroy(
             new RequestOptions(
                 endpoint: "pedidos/vendas",
-                queryParams: ['idsPedidosVendas' => $idsPedidosVendas]
+                queryParams: $params
             )
         );
 
@@ -75,8 +78,8 @@ class PedidosVendas extends BaseEntity
     /**
      * Obtém pedidos de vendas.
      *
-     * @param GetParams|array|null $params Parâmetros para a busca
      *
+     * @param \AleBatistella\BlingErpApi\Entities\PedidosVendas\Schema\Get\GetParams|array|null $params Parâmetros para a busca
      * @return GetResponse
      * @throws BlingApiException|BlingInternalException
      *

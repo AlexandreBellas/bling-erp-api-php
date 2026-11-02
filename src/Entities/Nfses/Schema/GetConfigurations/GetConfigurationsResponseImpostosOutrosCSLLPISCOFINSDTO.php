@@ -4,6 +4,9 @@ namespace AleBatistella\BlingErpApi\Entities\Nfses\Schema\GetConfigurations;
 
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 
+/**
+ * Variante de dados da resposta.
+ */
 readonly final class GetConfigurationsResponseImpostosOutrosCSLLPISCOFINSDTO extends BaseResponseObject
 {
     /**

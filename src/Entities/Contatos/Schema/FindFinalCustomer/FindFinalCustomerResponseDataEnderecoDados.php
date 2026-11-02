@@ -5,6 +5,9 @@ namespace AleBatistella\BlingErpApi\Entities\Contatos\Schema\FindFinalCustomer;
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 use AleBatistella\BlingErpApi\Entities\Shared\Enum\UF;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class FindFinalCustomerResponseDataEnderecoDados extends BaseResponseObject
 {
     /**
@@ -14,7 +17,7 @@ readonly final class FindFinalCustomerResponseDataEnderecoDados extends BaseResp
      * @param ?string $cep
      * @param ?string $bairro
      * @param ?string $municipio
-     * @param ?UF $uf
+     * @param ?\AleBatistella\BlingErpApi\Entities\Shared\Enum\UF $uf
      * @param ?string $numero
      * @param ?string $complemento
      */

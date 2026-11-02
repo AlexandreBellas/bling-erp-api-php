@@ -25,7 +25,7 @@ readonly final class GetParams extends QueryParams
      * @param \DateTimeInterface|string|null $dataCriacaoFinal
      * @param \DateTimeInterface|string|null $dataBaseInicio
      * @param \DateTimeInterface|string|null $dataBaseFinal
-     * @param Situacao|string|null $situacao
+     * @param \AleBatistella\BlingErpApi\Entities\Contratos\Enum\Situacao|string|null $situacao
      * @param ?int $idContato
      * @param ?int $idContatoCobranca
      */

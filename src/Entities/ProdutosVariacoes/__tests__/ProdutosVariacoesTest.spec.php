@@ -21,8 +21,8 @@ class ProdutosVariacoesTest extends TestCase
     /**
      * Obtém a instância da entidade.
      *
-     * @param IBlingRepository $repository
      *
+     * @param \AleBatistella\BlingErpApi\Repositories\IBlingRepository $repository
      * @return ProdutosVariacoes
      */
     private function getInstance(IBlingRepository $repository): ProdutosVariacoes
@@ -38,10 +38,10 @@ class ProdutosVariacoesTest extends TestCase
     public function testShouldFindSuccessfully(): void
     {
         $idProdutoPai = fake()->randomNumber();
-        $findResponse = json_decode(file_get_contents(__DIR__ . '/find/response.json'), true);
+        $findResponse = json_decode(file_get_contents(__DIR__ . "/find/response.json"), true);
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('show')
+            ->method("show")
             ->with(
                 $this->callback(
                     fn (RequestOptions $requestOptions) =>
@@ -50,7 +50,7 @@ class ProdutosVariacoesTest extends TestCase
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($findResponse)));
 
-        /** @var IBlingRepository $repository */
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $response = $this->getInstance($repository)->find($idProdutoPai);
 
         $this->assertInstanceOf(FindResponse::class, $response);
@@ -66,16 +66,16 @@ class ProdutosVariacoesTest extends TestCase
     {
         $idProdutoPai = fake()->randomNumber();
         $changeAttributeNameBody = json_decode(
-            file_get_contents(__DIR__ . '/change-attribute-name/request.json'),
+            file_get_contents(__DIR__ . "/change-attribute-name/request.json"),
             true
         );
         $changeAttributeNameResponse = json_decode(
-            file_get_contents(__DIR__ . '/change-attribute-name/response.json'),
+            file_get_contents(__DIR__ . "/change-attribute-name/response.json"),
             true
         );
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('update')
+            ->method("update")
             ->with(
                 $this->callback(
                     fn (RequestOptions $requestOptions) =>
@@ -85,7 +85,7 @@ class ProdutosVariacoesTest extends TestCase
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($changeAttributeNameResponse)));
 
-        /** @var IBlingRepository $repository */
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $response = $this->getInstance($repository)->changeAttributeName(
             idProdutoPai: $idProdutoPai,
             body: $changeAttributeNameBody
@@ -103,16 +103,16 @@ class ProdutosVariacoesTest extends TestCase
     public function testShouldGenerateCombinationsSuccessfully(): void
     {
         $generateCombinationsBody = json_decode(
-            file_get_contents(__DIR__ . '/generate-combinations/request.json'),
+            file_get_contents(__DIR__ . "/generate-combinations/request.json"),
             true
         );
         $generateCombinationsResponse = json_decode(
-            file_get_contents(__DIR__ . '/generate-combinations/response.json'),
+            file_get_contents(__DIR__ . "/generate-combinations/response.json"),
             true
         );
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('store')
+            ->method("store")
             ->with(
                 $this->callback(
                     fn (RequestOptions $requestOptions) =>
@@ -122,7 +122,7 @@ class ProdutosVariacoesTest extends TestCase
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($generateCombinationsResponse)));
 
-        /** @var IBlingRepository $repository */
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $response = $this->getInstance($repository)->generateCombinations(
             body: $generateCombinationsBody
         );

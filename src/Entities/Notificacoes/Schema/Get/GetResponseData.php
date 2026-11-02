@@ -4,6 +4,9 @@ namespace AleBatistella\BlingErpApi\Entities\Notificacoes\Schema\Get;
 
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class GetResponseData extends BaseResponseObject
 {
     /**
@@ -23,7 +26,7 @@ readonly final class GetResponseData extends BaseResponseObject
      * @param ?string $dataLeitura
      * @param ?string $dataAlerta
      * @param ?string $dataPerigo
-     * @param ?GetResponseDataEnquadramentos[] $enquadramentos
+     * @param ?array $enquadramentos
      */
     public function __construct(
         public ?string $id,
@@ -50,7 +53,7 @@ readonly final class GetResponseData extends BaseResponseObject
     protected static function fromRules(): array
     {
         return [
-            'enquadramentos' => GetResponseDataEnquadramentos::class,
+            "enquadramentos" => GetResponseDataEnquadramentos::class,
         ];
     }
 }

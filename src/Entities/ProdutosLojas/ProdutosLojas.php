@@ -44,8 +44,8 @@ class ProdutosLojas extends BaseEntity
     /**
      * Obtém vínculos de produtos com lojas.
      *
-     * @param GetParams|array|null $params Parâmetros para a busca
      *
+     * @param \AleBatistella\BlingErpApi\Entities\ProdutosLojas\Schema\Get\GetParams|array|null $params Parâmetros para a busca
      * @return GetResponse
      * @throws BlingApiException|BlingInternalException
      *

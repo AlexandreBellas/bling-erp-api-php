@@ -7,6 +7,9 @@ use AleBatistella\BlingErpApi\Entities\Produtos\Enum\Tipo;
 use AleBatistella\BlingErpApi\Entities\Produtos\Enum\Situacao;
 use AleBatistella\BlingErpApi\Entities\Produtos\Enum\Formato;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class GetResponseData extends BaseResponseObject
 {
     /**
@@ -18,10 +21,10 @@ readonly final class GetResponseData extends BaseResponseObject
      * @param ?string $codigo
      * @param ?float $preco
      * @param ?float $precoCusto
-     * @param ?GetResponseDataEstoque $estoque
-     * @param Tipo $tipo
-     * @param Situacao $situacao
-     * @param Formato $formato
+     * @param ?\AleBatistella\BlingErpApi\Entities\Produtos\Schema\Get\GetResponseDataEstoque $estoque
+     * @param \AleBatistella\BlingErpApi\Entities\Produtos\Enum\Tipo $tipo
+     * @param \AleBatistella\BlingErpApi\Entities\Produtos\Enum\Situacao $situacao
+     * @param \AleBatistella\BlingErpApi\Entities\Produtos\Enum\Formato $formato
      * @param ?string $descricaoCurta
      * @param ?string $imagemURL
      */

@@ -14,7 +14,7 @@ readonly final class GetResponse extends BaseResponseRootObject
     /**
      * Constrói o objeto.
      *
-     * @param GetResponseData $data
+     * @param \AleBatistella\BlingErpApi\Entities\Homologacao\Schema\Get\GetResponseData $data
      * @param string $hash
      */
     public function __construct(
@@ -24,6 +24,7 @@ readonly final class GetResponse extends BaseResponseRootObject
     }
 
     /**
+     * @param \AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions $response
      * @inheritDoc
      */
     public static function fromResponse(ResponseOptions $response): static
@@ -32,9 +33,11 @@ readonly final class GetResponse extends BaseResponseRootObject
             static::throwForInconsistentResponseOptions($response);
         }
 
+        $homologacao = "x-bling-homologacao";
+
         return self::from([
             ...$response->body->content,
-            'hash' => $response->headers->content['x-bling-homologacao'],
+            "hash" => $response->headers->content[$homologacao],
         ]);
     }
 }

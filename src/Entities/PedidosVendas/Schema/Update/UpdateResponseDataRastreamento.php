@@ -4,6 +4,9 @@ namespace AleBatistella\BlingErpApi\Entities\PedidosVendas\Schema\Update;
 
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class UpdateResponseDataRastreamento extends BaseResponseObject
 {
     /**

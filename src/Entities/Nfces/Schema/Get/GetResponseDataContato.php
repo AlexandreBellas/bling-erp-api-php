@@ -4,6 +4,9 @@ namespace AleBatistella\BlingErpApi\Entities\Nfces\Schema\Get;
 
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class GetResponseDataContato extends BaseResponseObject
 {
     /**
@@ -16,7 +19,7 @@ readonly final class GetResponseDataContato extends BaseResponseObject
      * @param ?string $rg
      * @param ?string $telefone
      * @param ?string $email
-     * @param ?GetResponseDataContatoEndereco $endereco
+     * @param ?\AleBatistella\BlingErpApi\Entities\Nfces\Schema\Get\GetResponseDataContatoEndereco $endereco
      */
     public function __construct(
         public ?int $id,

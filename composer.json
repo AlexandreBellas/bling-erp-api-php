@@ -1,41 +1,68 @@
 {
-  "name": "alebatistella/bling-erp-api",
-  "description": "Pacote de integração com a API do Bling ERP",
-  "type": "library",
-  "version": "1.17.0",
-  "license": "MIT",
-  "autoload": {
-    "psr-4": {
-      "AleBatistella\\BlingErpApi\\": "./src/",
-      "AleBatistella\\BlingErpApi\\Entities\\Shared\\": "./src/Entities/@shared/",
-      "AleBatistella\\BlingErpApi\\Entities\\ContasPagar\\Schema\\Shared\\": "./src/Entities/ContasPagar/Schema/@shared/",
-      "AleBatistella\\BlingErpApi\\Entities\\ContasReceber\\Schema\\Shared\\": "./src/Entities/ContasReceber/Schema/@shared/"
-    },
+    "name": "alebatistella/bling-erp-api",
+    "description": "Pacote de integração com a API do Bling ERP",
+    "type": "library",
+    "version": "1.17.0",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "AleBatistella\\BlingErpApi\\": "./src/",
+            "AleBatistella\\BlingErpApi\\Entities\\Shared\\": "./src/Entities/@shared/",
+            "AleBatistella\\BlingErpApi\\Entities\\ContasPagar\\Schema\\Shared\\": "./src/Entities/ContasPagar/Schema/@shared/",
+            "AleBatistella\\BlingErpApi\\Entities\\ContasReceber\\Schema\\Shared\\": "./src/Entities/ContasReceber/Schema/@shared/"
+        },
     "files": [
-      "./src/Helpers/functions.php"
+      "./src/Helpers/functions.php",
+      "./global-functions.php"
     ]
-  },
-  "authors": [
-    {
-      "name": "Alexandre Batistella Bellas",
-      "email": "alexandre.bellas@gmail.com"
+    },
+    "authors": [
+        {
+            "name": "Alexandre Batistella Bellas",
+            "email": "alexandre.bellas@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "guzzlehttp/guzzle": "^7.8"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.5",
+        "fakerphp/faker": "^1.23",
+        "alexandrebellas/code-conventions": "dev-main",
+        "phpstan/extension-installer": "^1.4"
+    },
+    "archive": {
+        "exclude": [
+            "./.github",
+            "./.vscode",
+            "./.editorconfig",
+            "./.gitignore",
+            "./CONTRIBUTING.md"
+        ]
+    },
+    "config": {
+        "allow-plugins": {
+            "phpstan/extension-installer": true
+        }
+    },
+    "repositories": {
+        "code-conventions": {
+            "type": "vcs",
+            "url": "https://github.com/AlexandreBellas/code-conventions.git"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "scripts": {
+        "lint": "phpstan analyse --no-progress --memory-limit=1G",
+        "format": "php-cs-fixer fix",
+        "format:check": "php-cs-fixer fix --dry-run --diff",
+        "test": "phpunit -c phpunit.xml"
+    },
+    "autoload-dev": {
+        "files": [
+            "./dev/fake.php"
+        ]
     }
-  ],
-  "require": {
-    "guzzlehttp/guzzle": "^7.8"
-  },
-  "require-dev": {
-    "laravel/laravel": "^10.2",
-    "phpunit/phpunit": "^10.5",
-    "fakerphp/faker": "^1.23"
-  },
-  "archive": {
-    "exclude": [
-      "./.github",
-      "./.vscode",
-      "./.editorconfig",
-      "./.gitignore",
-      "./CONTRIBUTING.md"
-    ]
-  }
 }

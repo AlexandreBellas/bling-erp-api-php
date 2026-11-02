@@ -5,6 +5,9 @@ namespace AleBatistella\BlingErpApi\Entities\Depositos\Schema\Find;
 use AleBatistella\BlingErpApi\Entities\Depositos\Enum\Situacao;
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class FindResponseData extends BaseResponseObject
 {
     /**
@@ -12,7 +15,7 @@ readonly final class FindResponseData extends BaseResponseObject
      *
      * @param ?int $id
      * @param string $descricao
-     * @param Situacao $situacao
+     * @param \AleBatistella\BlingErpApi\Entities\Depositos\Enum\Situacao $situacao
      * @param bool $padrao
      * @param bool $desconsiderarSaldo
      */

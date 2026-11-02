@@ -7,7 +7,7 @@ namespace AleBatistella\BlingErpApi\Entities\PedidosVendas\Enum;
  */
 enum TipoPessoa: string
 {
-    case FISICA = 'F';
-    case JURIDICA = 'J';
-    case ESTRANGEIRA = 'E';
+    case FISICA = "F";
+    case JURIDICA = "J";
+    case ESTRANGEIRA = "E";
 }

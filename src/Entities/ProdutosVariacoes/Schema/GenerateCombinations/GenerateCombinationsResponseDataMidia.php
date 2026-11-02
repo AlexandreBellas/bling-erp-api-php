@@ -4,13 +4,16 @@ namespace AleBatistella\BlingErpApi\Entities\ProdutosVariacoes\Schema\GenerateCo
 
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class GenerateCombinationsResponseDataMidia extends BaseResponseObject
 {
     /**
      * Constrói o objeto.
      *
-     * @param GenerateCombinationsResponseDataMidiaVideo $video
-     * @param GenerateCombinationsResponseDataMidiaImagens $imagens
+     * @param \AleBatistella\BlingErpApi\Entities\ProdutosVariacoes\Schema\GenerateCombinations\GenerateCombinationsResponseDataMidiaVideo $video
+     * @param \AleBatistella\BlingErpApi\Entities\ProdutosVariacoes\Schema\GenerateCombinations\GenerateCombinationsResponseDataMidiaImagens $imagens
      */
     public function __construct(
         public GenerateCombinationsResponseDataMidiaVideo $video,

@@ -2,10 +2,11 @@
 
 namespace AleBatistella\BlingErpApi\Entities\PropostasComerciais;
 
+use AleBatistella\BlingErpApi\Entities\PropostasComerciais\Schema\DeleteMany\DeleteManyParams;
+
 use AleBatistella\BlingErpApi\Entities\PropostasComerciais\Schema\Delete\DeleteResponse;
 use AleBatistella\BlingErpApi\Entities\PropostasComerciais\Schema\DeleteMany\DeleteManyResponse;
 use AleBatistella\BlingErpApi\Entities\PropostasComerciais\Schema\ChangeSituation\ChangeSituationResponse;
-use AleBatistella\BlingErpApi\Entities\PropostasComerciais\Schema\ChangeSituationMany\ChangeSituationManyResponse;
 use AleBatistella\BlingErpApi\Entities\PropostasComerciais\Schema\Get\GetParams;
 use AleBatistella\BlingErpApi\Entities\PropostasComerciais\Schema\Create\CreateResponse;
 use AleBatistella\BlingErpApi\Entities\PropostasComerciais\Schema\Find\FindResponse;
@@ -26,19 +27,20 @@ class PropostasComerciais extends BaseEntity
     /**
      * Remove múltiplas propostas comerciais.
      *
-     * @param int[] $idsPropostasComerciais IDs dos produtos
+     * Aceita `DeleteManyParams` ou o mapa de query que o objeto serializa, por exemplo `["idsPropostasComerciais" => [1, 2]]`.
      *
+     * @param \AleBatistella\BlingErpApi\Entities\PropostasComerciais\Schema\DeleteMany\DeleteManyParams|array $params
      * @return DeleteManyResponse
      * @throws BlingApiException|BlingInternalException
      *
      * @see https://developer.bling.com.br/referencia#/Propostas%20Comerciais/delete_propostas_comerciais
      */
-    public function deleteMany(array $idsPropostasComerciais): DeleteManyResponse
+    public function deleteMany(DeleteManyParams|array $params): DeleteManyResponse
     {
         $response = $this->repository->destroy(
             new RequestOptions(
                 endpoint: "propostas-comerciais",
-                queryParams: ['idsPropostasComerciais' => $idsPropostasComerciais]
+                queryParams: $params
             )
         );
 
@@ -69,8 +71,8 @@ class PropostasComerciais extends BaseEntity
     /**
      * Obtém propostas comerciais.
      *
-     * @param GetParams|array|null $params Parâmetros para a busca
      *
+     * @param \AleBatistella\BlingErpApi\Entities\PropostasComerciais\Schema\Get\GetParams|array|null $params Parâmetros para a busca
      * @return GetResponse
      * @throws BlingApiException|BlingInternalException
      *
@@ -157,10 +159,10 @@ class PropostasComerciais extends BaseEntity
     /**
      * Altera uma proposta comercial.
      *
+     *
      * @param int $idPropostaComercial ID da proposta comercial
      * @param array $body Corpo da requisição
-     *
-     * @return UpdateResponse
+     * @return null
      * @throws BlingApiException|BlingInternalException
      *
      * @see https://developer.bling.com.br/referencia#/Propostas%20Comerciais/put_propostas_comerciais__idPropostaComercial_
