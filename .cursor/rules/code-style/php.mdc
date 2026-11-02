@@ -1,0 +1,45 @@
+---
+description: PHP language conventions for this package
+globs: src/**/*.php,composer.json,phpunit.xml
+alwaysApply: false
+---
+
+# PHP Conventions
+
+## Language level
+
+- **PHP 8.2**, matching `README.md` and `.github/workflows/on-commit-test.yaml`.
+- Files start with `<?php` and a namespace. They have no closing tag and no `declare(strict_types=1)`.
+- One class, enum, interface, or trait per file. The file name is the type name (PSR-4).
+
+## Types used in this codebase
+
+- Parsed schema classes, including `*Params` and response objects, are `readonly final class`.
+- `QueryParams`, `Body`, and `Headers` are `readonly class`. `QueryParams` is the parent of every `*Params` class.
+- `BaseEntity` subclasses use a plain `class` declaration.
+- Constructor promotion is the way to declare typed properties (`public function __construct(public int $id)`).
+- `RequestOptions` is built with named arguments: `endpoint:`, `queryParams:`, `headers:`, `body:`.
+- A filter parameter is the union `GetParams|array|null $params = null`.
+- A nullable scalar is `?int`, `?string`, `?array`, or `?bool`.
+- An empty success body uses the return type `null`.
+- Discrete Bling values are backed enums (`enum Situacao: string` or `: int`).
+- Entity methods are synchronous. They return the value of `*Response::fromResponse(...)`.
+
+## Strings and structure
+
+- Double quotes for PHP strings, including endpoint paths (`"contatos/$idContato"`).
+- 4-space indentation, LF line endings, UTF-8.
+- `use` imports are one class per line and name only classes the file references.
+- Namespace `AleBatistella\BlingErpApi\...` mirrors the path under `src/`, with `@shared` directories spelled `Shared` in the namespace.
+
+## Calls
+
+- Entity code calls `$this->repository->index|show|store|update|replace|destroy`.
+- Parsing goes through `BaseResponseObject::from` and `BaseResponseRootObject::fromResponse`.
+- Dates written to the query string go through `prepareStringOrDateParam`, `convertDateToString`, or `convertDateTimeToString`.
+
+## Dependencies
+
+- Runtime: `guzzlehttp/guzzle` (`composer.json`).
+- Dev: `phpunit/phpunit`, `fakerphp/faker`, `laravel/laravel`.
+- Tests call `fake()` from `src/Helpers/functions.php`.

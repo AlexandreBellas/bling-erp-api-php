@@ -1,0 +1,49 @@
+---
+description: File, class, method, and endpoint naming conventions
+globs: src/**
+alwaysApply: false
+---
+
+# Naming Conventions
+
+## Folders and files
+
+| Artifact | Pattern | Example |
+|----------|---------|---------|
+| Entity folder | PascalCase Portuguese Bling name | `src/Entities/PedidosVendas/` |
+| Entity class file | `<Folder>.php` | `src/Entities/Contatos/Contatos.php` |
+| Operation folder | PascalCase method name | `Schema/FindFinalCustomer/` |
+| Response class | `<Operation>Response` | `FindResponse`, `GetBankSlipsResponse` |
+| Nested payload | `<Operation>ResponseData<Suffix>` | `FindResponseDataEndereco` |
+| Query class | `<Operation>Params` | `GetParams`, `DeleteManyParams` |
+| Enum | PascalCase, file matches the type | `Enum/Situacao.php` |
+| Shared variant folder | `@shared`, namespace `Shared` | `Schema/@shared/ContasPagarOcorrenciaUnicaDTO.php` |
+| Test spec | `<Entity>Test.spec.php` | `__tests__/ContatosTest.spec.php` |
+| Test fixture directory | kebab-case operation | `__tests__/find-final-customer/response.json` |
+
+## PHP identifiers
+
+| Kind | Convention | Example |
+|------|------------|---------|
+| Entity class | PascalCase resource name | `Contatos`, `Nfes`, `FormasDePagamentos` |
+| Enum case | `SCREAMING_SNAKE` Portuguese | `ATIVO = 'A'`, `CONTRIBUINTE_ICMS = 1` |
+| Method | English verb, camelCase | `get`, `find`, `changeSituation`, `postStock` |
+| Path id parameter | Bling's camelCase id | `$idContato`, `$idCampoCustomizado` |
+| Query property | Bling's Portuguese camelCase | `$dataInclusaoInicial`, `$idsContatos` |
+| Facade getter | camelCase | `$bling->formasDePagamentos`, `$bling->naturezasDeOperacoes` |
+| Endpoint | kebab-case path | `"campos-customizados"`, `"contas/receber"` |
+
+## Method names
+
+- `get` — collection or auxiliary listing.
+- `find` — one resource by id.
+- `create`, `update`, `delete`, `deleteMany`.
+- Further names describe the Bling action: `changeSituation`, `download`, `send`, `cancel`, `getModules`, `findByModule`, `generateNfe`.
+
+## Enum names
+
+Enum type names are Portuguese PascalCase (`Situacao`, `Criterio`, `TipoPagamento`, `IndicadorIe`). Case names describe the value in Portuguese.
+
+## Facade getters
+
+The getter is the camelCase form of the entity folder name: folder `FormasDePagamentos` → `$bling->formasDePagamentos`. Document it with `@property FormasDePagamentos $formasDePagamentos`.

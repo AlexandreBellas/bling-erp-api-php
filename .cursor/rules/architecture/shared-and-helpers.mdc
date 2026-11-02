@@ -1,0 +1,84 @@
+---
+description: Shared cross-entity types, response parsing, and helpers
+globs: src/Entities/@shared/**,src/Helpers/**,src/Contracts/**
+alwaysApply: false
+---
+
+# Shared Code
+
+`src/Entities/@shared/` autoloads as `AleBatistella\BlingErpApi\Entities\Shared`.
+
+## Base types
+
+### `BaseEntity`
+
+Constructor takes `IBlingRepository`. Subclasses call `$this->repository`.
+
+### `BaseResponseObject`
+
+`readonly abstract class` implementing `IResponseObject`.
+
+- `from(array $attributes): static` maps constructor parameters with reflection. Array keys are the property names.
+- A missing key on a nullable property becomes `null`.
+- `int`, `string`, `bool`, and `float` are copied from the array.
+- A property typed as another `IResponseObject` is built with `ThatClass::from`.
+- A backed enum is `tryFrom` on the raw value.
+- An `array` property listed in `fromRules()` is mapped with `ItemClass::from`. Any other array is copied as-is.
+- A union tries each named type. A member that throws `BlingParseResponsePayloadException` is skipped.
+- `toArray()` returns `objectToArray($this)`.
+
+Override `fromRules(): array` to declare arrays of objects: `['fields' => ErrorField::class]`.
+
+### `BaseResponseRootObject`
+
+`fromResponse(ResponseOptions $response): static|null` is abstract. Success objects parse `$response->body->content`. Empty successes return `null`. Either mismatch calls `throwForInconsistentResponseOptions`.
+
+## Request DTOs (`DTO/Request`)
+
+| Class | Role |
+|-------|------|
+| `RequestOptions` | `endpoint`, `queryParams`, `headers`, `body`. Arrays passed for query, headers, or body are wrapped in the matching DTO |
+| `QueryParams` | `readonly` base. `content` is the query array. `prepareStringOrDateParam` formats dates |
+| `Body` | `readonly`. `content` is `array` or `string` |
+| `Headers` | `readonly`. `content` is the header array |
+| `ResponseOptions` | `endpoint`, `method`, `status`, `headers`, `body`. Construction normalizes Bling errors |
+
+A `*Params` class is `readonly final`, extends `QueryParams`, and ends with `parent::__construct(objectToArray($this))`.
+
+## Schema DTOs
+
+| Class | Role |
+|-------|------|
+| `Id` | `{ id: int }` |
+| `OptionalId` | `{ id: ?int }` |
+| `ErrorResponse` and children | Canonical API error body |
+
+Parsed schema classes are `readonly final`.
+
+## Shared enums (`Enum/`)
+
+| File | Cases |
+|------|--------|
+| `UF.php` | Brazilian state codes, `string`, plus `EXTERIOR = 'UX'` |
+| `TipoPessoa.php` | `FISICA = 'F'`, `JURIDICA = 'J'`, `ESTRANGEIRA = 'E'` |
+| `Genero.php` | `MASCULINO = 'M'`, `FEMININO = 'F'` |
+
+Add an enum here when two or more modules share the same cases. The same property name with different cases is a module enum: `Contatos\Enum\Situacao`, `Produtos\Enum\Situacao`, and `CamposCustomizados\Enum\Situacao`.
+
+## Helpers
+
+`src/Helpers/functions.php` is autoloaded via `composer.json` `autoload.files`. Each function is wrapped in `function_exists`.
+
+| Function | Contract |
+|----------|----------|
+| `convertDateToString` | `\DateTimeInterface` → `Y-m-d` |
+| `convertDateTimeToString` | `\DateTimeInterface` → `Y-m-d H:i:s` |
+| `objectToArray` | `json_decode(json_encode($obj), true)` |
+| `fake` | `\Faker\Factory::create()` for tests |
+
+`QueryParams::prepareStringOrDateParam($param, $shouldIncludeTime = false)` returns `null` for `null`, returns a string unchanged, and otherwise calls `convertDateToString` or `convertDateTimeToString`.
+
+## Boundaries
+
+- `@shared` and `Helpers` do not import an entity module.
+- Contracts stay in `src/Contracts/` and contain `from` / `toArray` (`IResponseObject`) and `fromResponse` (`IResponseRootObject`).

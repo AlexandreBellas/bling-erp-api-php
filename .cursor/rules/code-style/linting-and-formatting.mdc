@@ -1,0 +1,40 @@
+---
+description: Formatting and the PHPUnit workflow for this package
+globs: src/**/*.php,.vscode/settings.json,.github/workflows/on-commit-test.yaml,phpunit.xml
+alwaysApply: false
+---
+
+# Formatting and Checks
+
+## Layout
+
+- 4-space indentation. No tabs.
+- LF line endings, UTF-8, a final newline.
+- Double quotes for PHP strings.
+- Intelephense formats PHP on save (`.vscode/settings.json`, `editor.defaultFormatter`: `bmewburn.vscode-intelephense-client`).
+- `editor.codeActionsOnSave` keeps `source.organizeImports` off. Write `use` lines by hand, one class per line, and import only names the file uses.
+
+## Tests
+
+`phpunit.xml` bootstraps `vendor/autoload.php`, enables colors, and loads every `*.spec.php` file under `src/`.
+
+Run:
+
+```bash
+vendor/phpunit/phpunit/phpunit -c phpunit.xml
+```
+
+## CI
+
+`.github/workflows/on-commit-test.yaml` runs on every push:
+
+1. `shivammathur/setup-php` with PHP `8.2`
+2. `composer update`
+3. `composer dump-autoload -o`
+4. `vendor/phpunit/phpunit/phpunit -c phpunit.xml`
+
+## Imports
+
+One `use` per line. Import only classes the file references.
+
+The test namespace is `Tests\Unit\AleBatistella\BlingErpApi\...` and follows the path under `src/`. PHPUnit loads the file by path; the namespace is not registered in `composer.json`.

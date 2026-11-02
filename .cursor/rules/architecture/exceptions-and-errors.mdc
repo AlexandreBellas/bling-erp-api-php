@@ -1,0 +1,55 @@
+---
+description: Exception types and API error handling flow
+globs: src/Exceptions/**,src/Entities/@shared/DTO/Error/**,src/Entities/@shared/DTO/Request/ResponseOptions.php
+alwaysApply: false
+---
+
+# Exceptions and Errors
+
+## Types
+
+| Class | File | When thrown |
+|-------|------|-------------|
+| `BlingApiException` | `src/Exceptions/BlingApiException.php` | Bling returns a structured `error` object |
+| `BlingInternalException` | `src/Exceptions/BlingInternalException.php` | Transport or library failure, or an error body that is not `ErrorResponse` |
+| `BlingParseResponsePayloadException` | `src/Exceptions/BlingParseResponsePayloadException.php` | A union member rejects a payload during `from` |
+
+## API error shape
+
+`Entities\Shared\DTO\Error` is the only error model:
+
+- `ErrorResponse` holds `Error $error`.
+- `Error` holds `type`, `message`, `description`, and `ErrorField[] $fields`.
+- `ErrorField` holds `code`, `msg`, `element`, `namespace`, and `ErrorFieldCollection[] $collection`.
+
+`BlingApiException` sets `Exception::$message` from `error.description` and the code from the HTTP status. `getResponse(): ErrorResponse` returns the parsed body. `getHttpStatus(): int` returns the status.
+
+`BlingInternalException` carries `?Headers $responseHeaders`, `?Body $responseBody`, the message, the code, and the previous throwable, in that order.
+
+## Handling flow
+
+`ResponseOptions::__construct` performs the translation described in `architecture/repository-layer.mdc`. Entities return `fromResponse(...)` and do not catch these exceptions.
+
+Callers catch `BlingApiException` for a Bling error payload and `BlingInternalException` for a failed call or an unreadable payload.
+
+`BaseResponseRootObject::throwForInconsistentResponseOptions` throws `BlingInternalException` when a success body is missing or unexpectedly present. Message: `Resposta inconsistente da API: {method} {endpoint}`.
+
+## Union parsing
+
+A schema `from` override throws `BlingParseResponsePayloadException` when the payload is a different variant. `BaseResponseObject::from` catches that exception while trying a union and continues with the next type (`ContasPagarOcorrenciaUnicaDTO`). Do not throw `BlingParseResponsePayloadException` for HTTP failures.
+
+## Entity documentation
+
+Every public entity method that calls `$this->repository` documents:
+
+```
+@throws BlingApiException|BlingInternalException
+```
+
+Follow the block in `src/Entities/Contatos/Contatos.php`.
+
+## Extension rules
+
+- Keep these three exception classes. Extend `Error`, `ErrorField`, or `ErrorFieldCollection` when Bling adds an error field.
+- Do not read `error` inside an entity method.
+- Do not build a second error DTO under an entity `Schema/` folder.

@@ -1,0 +1,82 @@
+---
+description: Schema DTO and enum file organization per entity
+globs: src/Entities/**/Schema/**,src/Entities/**/Enum/**
+alwaysApply: false
+---
+
+# Schemas and Enums
+
+## Schema folder
+
+One folder per entity method, named in PascalCase: `Schema/Get/`, `Schema/ChangeSituation/`, `Schema/FindFinalCustomer/`.
+
+### Files for an operation
+
+| File | Extends | Role |
+|------|---------|------|
+| `GetParams.php` | `QueryParams` | Query filters |
+| `GetResponse.php` | `BaseResponseRootObject` | Root payload (`data`) |
+| `GetResponseData.php` | `BaseResponseObject` | One element of `data` |
+| `GetResponseDataEstoque.php` | `BaseResponseObject` | Nested object under `estoque` |
+
+Reference: `src/Entities/Contatos/Schema/`, `src/Entities/CamposCustomizados/Schema/`, `src/Entities/Produtos/Schema/`.
+
+### Params class
+
+`readonly final class GetParams extends QueryParams`.
+
+- Constructor parameters are the Bling query fields, with defaults of `null`.
+- A backed enum is accepted as `EnumType|scalar|null` and stored as `$enum->value`.
+- A `\DateTimeInterface|string|null` argument is passed through `prepareStringOrDateParam`. The second argument is `true` when Bling expects a datetime (`Contatos\Schema\Get\GetParams`).
+- The constructor finishes with `parent::__construct(objectToArray($this))`.
+- The entity method accepts `GetParams|array|null $params = null` and passes `$params` as `queryParams`.
+
+### Response root
+
+`readonly final class GetResponse extends BaseResponseRootObject`.
+
+List payloads type `data` as an array and register the item in `fromRules`:
+
+```php
+protected static function fromRules(): array
+{
+    return ['data' => GetResponseData::class];
+}
+```
+
+`fromResponse` rejects a null body with `throwForInconsistentResponseOptions`, then `return self::from($response->body->content)`.
+
+An empty success (`DeleteResponse`, `Contatos\Schema\Update\UpdateResponse`) implements `fromResponse(...): null`, rejects a non-null body, and returns `null`.
+
+A header the caller must keep is merged in `fromResponse` before `from`. `Homologacao\Schema\Get\GetResponse` sets `'hash' => $response->headers->content['x-bling-homologacao']`.
+
+### Nested objects and lists
+
+Name the class `<Parent><FieldInPascalCase>`: `FindResponseData` → `FindResponseDataEndereco` → `FindResponseDataEnderecoDados`.
+
+A property typed as a single schema class is parsed by `BaseResponseObject::from` with no `fromRules` entry. A property typed as an array of schema objects has a `fromRules` entry (`FindResponseData::$tiposContato`).
+
+### Discriminated unions
+
+One `readonly final` class per variant, suffix `DTO`, living in `Schema/@shared/` when several operations share it. `from` throws `BlingParseResponsePayloadException` when the discriminator does not match, then calls `parent::from`. The property on the parent is the union (`Unica|Parcelada|Normal|Semanal|null $ocorrencia` in `ContasPagar\Schema\Find\FindResponseData`).
+
+## Enums
+
+`Enum/<Name>.php` is a backed enum. The backing type is `string` or `int`, matching the JSON value. The docblock is `Enumerador de ...`.
+
+```php
+enum Situacao: string
+{
+    case ATIVO = 'A';
+    case INATIVO = 'I';
+}
+```
+
+Put the enum in `src/Entities/@shared/Enum/` only when at least two modules share those cases (`UF`, `TipoPessoa`, `Genero`). Resource-specific `Situacao` enums stay next to the entity.
+
+## Rules
+
+- One operation per `Schema/<Operation>/` folder.
+- Schema classes contain data and `from` / `fromResponse` / `fromRules` only.
+- Property names match the Bling JSON keys.
+- A `{ "id": int }` object uses `Entities\Shared\DTO\Schema\Id`.

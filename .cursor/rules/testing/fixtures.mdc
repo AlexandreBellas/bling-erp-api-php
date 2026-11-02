@@ -1,0 +1,42 @@
+---
+description: JSON fixtures for mocked API responses
+globs: src/**/__tests__/**
+alwaysApply: false
+---
+
+# Test Fixtures
+
+## Path
+
+`<operation>/response.json` inside the entity `__tests__/` folder. The directory name is the method name in kebab-case:
+
+- `find/response.json`
+- `create/response.json`
+- `delete/response.json`
+- `change-situation/response.json`
+- `find-final-customer/response.json`
+- `get-modules/response.json` for `getModules`
+
+When the entity method takes a body, add `request.json` in the same directory (`create/request.json`, `update/request.json`, `change-situation/request.json`).
+
+## Contents
+
+- `response.json` is the array or object `fromResponse` reads, or the JSON literal `null` when the success body is empty (`src/Entities/Contatos/__tests__/delete/response.json`).
+- `request.json` is the associative array passed as `$body`.
+- Keys match the schema property names and the Bling payload (`id`, `nome`, `situacao`, nested `endereco`).
+- Use stable placeholder ids such as `12345678` (`src/Entities/Contatos/__tests__/get/response.json`).
+- Enum fields are the raw backed values (`"situacao": "A"`, `"indicadorIe": 1`), not enum case names.
+
+## How a spec loads them
+
+```php
+$payload = json_decode(file_get_contents(__DIR__ . '/get/response.json'), true);
+```
+
+Pass the decoded response to `$this->buildBody($payload)` and then to `buildResponse`. Pass the decoded request as the entity method's body argument.
+
+## Rules
+
+- Fixtures are JSON data. They do not contain PHP.
+- One operation per directory.
+- A response fixture is what `toArray()` on the schema object equals after a successful call.

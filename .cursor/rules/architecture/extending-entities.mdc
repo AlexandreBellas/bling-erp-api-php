@@ -1,0 +1,61 @@
+---
+description: Checklist for adding or extending Bling API modules
+globs: src/Entities/**,src/Bling.php,README.md
+alwaysApply: false
+---
+
+# Extending Entity Modules
+
+Use the official reference as the source of truth: https://developer.bling.com.br/referencia
+
+## New resource module
+
+1. **Create** `src/Entities/<PascalName>/` using an existing folder as the model (`Depositos`, `GruposDeProdutos`, `Empresas`).
+2. **Add `<PascalName>.php`.** Class extends `BaseEntity`. One public method per Bling operation. Copy the shape of `CamposCustomizados` for a medium module or `Empresas` for a single GET.
+3. **Add `Schema/<Operation>/`.** One folder per method. Response class `<Operation>Response`. Nested objects are `<Operation>ResponseData` plus a PascalCase suffix for each JSON level (`FindResponseDataEndereco`). Filter objects are `<Operation>Params` extending `QueryParams`.
+4. **Add `Enum/<Name>.php`** for each discrete Bling value set used by this resource.
+5. **Reuse `Entities\Shared`** only when the cases match `UF`, `TipoPessoa`, `Genero`, or the object is `Id` / `OptionalId`.
+6. **Register the getter** in `src/Bling.php` (`@property`, import, `match` arm) and cover it in `src/BlingTest.spec.php`.
+7. **Add tests** — `__tests__/<PascalName>Test.spec.php` and `__tests__/<kebab-operation>/response.json`. Follow `src/Entities/CamposCustomizados/__tests__/`.
+8. **Update the README checklist** with `- [x] <label> (`->getter`)`.
+
+A new `@shared` directory needs a PSR-4 line in `composer.json` mapping that folder to the `Shared` namespace segment. The existing lines cover `src/Entities/@shared/`, `ContasPagar/Schema/@shared/`, and `ContasReceber/Schema/@shared/`.
+
+## New operation on an existing module
+
+1. Add `Schema/<Operation>/` with the response class and, when the call sends a query, a `*Params` class.
+2. Add the entity method. Call the repository verb that matches the Bling HTTP method (see `architecture/repository-layer.mdc`).
+3. Pass path ids inside `endpoint`. Pass filters as the `*Params` argument (`queryParams: $params`). Pass a JSON body as `array $body`.
+4. Add the JSON fixture and a `testShould<Action>Successfully` method.
+
+## Choosing `update` vs `replace`
+
+- Bling **PATCH** → `$this->repository->update`. `CamposCustomizados::update` and `CamposCustomizados::changeSituation`.
+- Bling **PUT** → `$this->repository->replace`. `Contatos::update`. `OrdensDeProducao::changeSituation` is PUT (`put_ordens_producao__idOrdemProducao__situacoes`).
+- Read the verb from the reference anchor (`patch_...` or `put_...`), then from the operation's HTTP method.
+
+## Situation changes
+
+Put every id the reference shows in the path into `endpoint`.
+
+- `PATCH campos-customizados/{id}/situacoes` with a JSON body → `update` and `body: $body` (`CamposCustomizados::changeSituation`).
+- `PATCH pedidos/vendas/{id}/situacoes/{idSituacao}` → `update` and both ids in the endpoint (`PedidosVendas::changeSituation`).
+- `PUT ordens-producao/{id}/situacoes` with a JSON body → `replace` (`OrdensDeProducao::changeSituation`).
+
+## Response body contract
+
+- The reference returns a JSON object → `fromResponse` reads `$response->body->content` and the entity returns that response class (`GetResponse`, `FindResponse`, `CreateResponse`).
+- The reference returns no body → `fromResponse` returns `null` after rejecting a non-null body, and the entity method is typed `null` (`DeleteResponse` in `Contatos`).
+- A required response header is copied onto the response object inside `fromResponse`. `Homologacao\Schema\Get\GetResponse` reads `x-bling-homologacao` into `$hash`.
+
+## Payload shapes
+
+- **Homologação hash.** Send `headers: ['x-bling-homologacao' => $hash]` on the following call. `Homologacao::execute` runs GET → POST → PUT → PATCH → DELETE and returns `void`.
+- **Discriminated objects.** Model a `oneOf` as separate schema classes that override `from` and throw `BlingParseResponsePayloadException` when the discriminator does not match. The property type is the union. See `ContasPagarOcorrenciaUnicaDTO` and `FindResponseData::$ocorrencia`.
+- **Array of objects.** Register the item class in `fromRules` (`'tiposContato' => FindResponseDataTiposContato::class`).
+
+## Do not
+
+- Construct a Guzzle client, or any other HTTP client, inside an entity.
+- Put JSON fixtures in `Schema/` or schema classes in `__tests__/`.
+- Ship a public method without a `@see` link to the Bling operation.

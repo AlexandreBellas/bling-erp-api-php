@@ -1,0 +1,52 @@
+---
+description: Linking implementation to the official Bling API reference
+globs: src/Entities/**/*.php,src/Bling.php,README.md
+alwaysApply: false
+---
+
+# Bling API Reference Links
+
+## Source of truth
+
+Endpoints, parameters, and response shapes match the [Bling API v3 reference](https://developer.bling.com.br/referencia).
+
+`README.md` records the aligned API revision (`v310`) and links to the [changelog](https://developer.bling.com.br/changelogs).
+
+## `@see` on entity methods
+
+Every entity method `@see` is the operation anchor, not only the resource section.
+
+Copy the URL from a method on the same resource:
+
+- `src/Entities/CamposCustomizados/CamposCustomizados.php` — custom fields
+- `src/Entities/PedidosVendas/PedidosVendas.php` — orders and actions
+- `src/Entities/Nfses/Nfses.php` — service invoices
+
+The anchor's verb prefix (`get_`, `post_`, `put_`, `patch_`, `delete_`) selects `index`/`show`, `store`, `replace`, `update`, or `destroy`.
+
+## Class-level `@see`
+
+The class docblock links to the resource group (`#/Contatos`, `#/Campos%20Customizados`).
+
+## README entity list
+
+`README.md` keeps the consumer checklist of `$bling-><getter>` accessors. The getter text is the camelCase name from `Bling::__get`, including `formasDePagamentos`. Update the list when adding a module.
+
+## Authentication docs
+
+Point consumers to:
+
+- `README.md` — `new Bling($accessToken)` and the note that this package does not run the OAuth grant
+- `https://developer.bling.com.br/aplicativos#tokens-de-acesso`
+- `demo/` — authorization-code sample that stores the token and calls `new Bling($accessToken)`
+
+## Checks before adding an operation
+
+1. Confirm the HTTP verb and path in the Bling reference.
+2. Map the verb to `repository->*` (`architecture/repository-layer.mdc`).
+3. Use the reference's Portuguese camelCase for query and body fields.
+4. Add the operation `@see` with the encoded resource name and the operation anchor.
+
+## Versioning
+
+Package `1.x` (`composer.json` `version`) targets API v3. A breaking change in a Bling payload is applied by editing the `Schema/` classes of the affected operations.

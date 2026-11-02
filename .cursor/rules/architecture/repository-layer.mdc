@@ -1,0 +1,52 @@
+---
+description: HTTP repository contract and Guzzle transport
+globs: src/Repositories/**,src/Entities/@shared/DTO/Request/**
+alwaysApply: false
+---
+
+# Repository Layer
+
+## Contract
+
+`src/Repositories/IBlingRepository.php` is the only HTTP surface entities depend on. Every method accepts `RequestOptions` and returns `ResponseOptions`.
+
+`RequestOptions` carries `endpoint`, `queryParams` (`QueryParams`, array, or null), `headers`, and `body` (`Body`, array, or null). Resource ids are part of `endpoint`. The repository has no separate id argument.
+
+### Verb mapping (Laravel-style names)
+
+| Method | HTTP | Use in entities |
+|--------|------|-----------------|
+| `index` | GET | Collection or auxiliary route. A parent id may sit in the path (`campos-customizados/modulos/{idModulo}` in `CamposCustomizados::findByModule`) |
+| `show` | GET | One resource (`contatos/{idContato}`, `contatos/consumidor-final`) |
+| `store` | POST | Create, and POST actions such as `nfe/{id}/lancar-estoque` |
+| `update` | PATCH | Partial update and PATCH actions |
+| `replace` | PUT | Full replacement and PUT actions |
+| `destroy` | DELETE | Delete one resource or a bulk delete |
+
+`index` and `show` both send GET to `options->endpoint` with the query string and headers. Entities still pick the verb from the table above.
+
+## Implementation
+
+`src/Repositories/BlingRepository.php` builds a Guzzle client with:
+
+- `base_uri` set to the API root
+- `'http_errors' => false`, so HTTP 4xx and 5xx are returned as a `ResponseOptions`
+
+Each call merges the bearer header with `$options->headers` and sends `$options->body->content` as JSON on POST, PATCH, PUT, and DELETE. The response body is `json_decode`d to an associative array and wrapped in `Body`. A body that is not a JSON array or object becomes `null` (`buildResponseBody`).
+
+## Normalization
+
+Constructing `ResponseOptions` (`src/Entities/@shared/DTO/Request/ResponseOptions.php`) is the error boundary:
+
+- HTTP status `>= 400`, or a body that contains an `error` key, is parsed as `ErrorResponse`.
+- A parsed Bling error becomes `BlingApiException` (message = `error.description`, code = HTTP status).
+- A payload that fails `ErrorResponse::from` surfaces as `BlingInternalException`.
+- A `\TypeError` during that parse becomes `BlingInternalException` with message `Não foi possível realizar a chamada HTTP: {method} {endpoint}`.
+
+Entity code does not catch Guzzle exceptions and does not inspect status codes.
+
+## Rules for changes
+
+- Add a new HTTP shape only on `IBlingRepository` and `BlingRepository`.
+- Keep the verb names. Map a new Bling operation onto the row that matches its HTTP method.
+- Leave query keys as PHP names (`idsProdutos`). Do not append `[]` in the library.
