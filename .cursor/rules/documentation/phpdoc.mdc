@@ -23,13 +23,13 @@ Copy the header in `src/Entities/CamposCustomizados/CamposCustomizados.php` or `
 
 Each public entity method documents, in this order:
 
-1. **Description** — one Portuguese sentence.
+1. **Description** — one Portuguese sentence. When the argument is `*Params|array`, add a second sentence that names both forms and gives a query-map example, such as `["idsProdutos" => [1, 2]]`.
 2. **`@param`** — `{type} $name` and a short Portuguese description, one tag per parameter.
 3. **`@return`** — the PHP type. Use `null` when `fromResponse` returns `null`.
 4. **`@throws BlingApiException|BlingInternalException`** — on every method that calls `$this->repository`.
 5. **`@see`** — the Bling operation URL.
 
-Omit `@param` when the method takes no arguments. An `@param` type is the resolved signature type: a fully qualified class name (`\AleBatistella\BlingErpApi\Entities\Produtos\Schema\DeleteMany\DeleteManyParams|array|null`) or a builtin (`?int`, `array`, `\DateTimeInterface|string|null`).
+Omit `@param` when the method takes no arguments. An `@param` type is the resolved signature type: a fully qualified class name (`\AleBatistella\BlingErpApi\Entities\Produtos\Schema\DeleteMany\DeleteManyParams|array`, or `|array|null` when the filter is optional) or a builtin (`?int`, `array`, `\DateTimeInterface|string|null`).
 
 ## Schema and enum blocks
 

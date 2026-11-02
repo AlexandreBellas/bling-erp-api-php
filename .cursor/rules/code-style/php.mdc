@@ -19,7 +19,7 @@ alwaysApply: false
 - `BaseEntity` subclasses use a plain `class` declaration.
 - Constructor promotion is the way to declare typed properties (`public function __construct(public int $id)`).
 - `RequestOptions` is built with named arguments: `endpoint:`, `queryParams:`, `headers:`, `body:`.
-- A filter parameter is the union `GetParams|array|null $params = null`.
+- A parameter the operation needs is `*Params|array $params`. An optional filter stays `*Params|array|null $params = null`. The array is the query map the Params object serializes, for example `["idsProdutos" => [1, 2]]`.
 - A nullable scalar is `?int`, `?string`, `?array`, or `?bool`.
 - An empty success body uses the return type `null`.
 - Discrete Bling values are backed enums (`enum Situacao: string` or `: int`).

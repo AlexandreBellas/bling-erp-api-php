@@ -6,6 +6,7 @@ use AleBatistella\BlingErpApi\Entities\PedidosVendas\PedidosVendas;
 use AleBatistella\BlingErpApi\Entities\PedidosVendas\Schema\Create\CreateResponse;
 use AleBatistella\BlingErpApi\Entities\PedidosVendas\Schema\Find\FindResponse;
 use AleBatistella\BlingErpApi\Entities\PedidosVendas\Schema\Get\GetResponse;
+use AleBatistella\BlingErpApi\Entities\PedidosVendas\Schema\DeleteMany\DeleteManyParams;
 use AleBatistella\BlingErpApi\Entities\PedidosVendas\Schema\DeleteMany\DeleteManyResponse;
 use AleBatistella\BlingErpApi\Entities\PedidosVendas\Schema\GenerateNfe\GenerateNfeResponse;
 use AleBatistella\BlingErpApi\Entities\PedidosVendas\Schema\GenerateNfce\GenerateNfceResponse;
@@ -62,6 +63,35 @@ class PedidosVendasTest extends TestCase
 
         $this->assertInstanceOf(DeleteManyResponse::class, $response);
         $this->assertEquals($deleteManyResponse, $response->toArray());
+    }
+
+    /**
+     * Testa que o mapa e o objeto de parâmetros enviam a mesma requisição.
+     *
+     * @return void
+     */
+    public function testShouldDeleteManyWithParamsAndArraySuccessfully(): void
+    {
+        $params = new DeleteManyParams(idsPedidosVendas: [1, 2]);
+        $deleteManyResponse = json_decode(file_get_contents(__DIR__ . "/delete-many/response.json"), true);
+        $captured = [];
+        $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
+        $repository->expects($this->exactly(2))
+            ->method("destroy")
+            ->willReturnCallback(function (RequestOptions $requestOptions) use (&$captured, $deleteManyResponse) {
+                $captured[] = $requestOptions;
+
+                return $this->buildResponse(status: 200, body: $this->buildBody($deleteManyResponse));
+            });
+
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
+        $entity = $this->getInstance($repository);
+        $entity->deleteMany(params: $params->content);
+        $entity->deleteMany(params: $params);
+
+        $this->assertSame($captured[0]->endpoint, $captured[1]->endpoint);
+        $this->assertEquals($params->content, $captured[0]->queryParams->content);
+        $this->assertEquals($captured[0]->queryParams->content, $captured[1]->queryParams->content);
     }
 
     /**

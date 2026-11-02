@@ -168,13 +168,15 @@ class BlingRepository implements IBlingRepository
      */
     private function buildResponseBody(mixed $contents): ?Body
     {
-        $body = null;
-
-        if (!is_null($contents)) {
-            $arrResponseBody = json_decode($contents, true);
-            $body = is_array($arrResponseBody) ? new Body(json_decode($contents, true)) : null;
+        if (!is_string($contents) || $contents === "") {
+            return null;
         }
 
-        return $body;
+        $decoded = json_decode($contents, true);
+        if (json_last_error() === JSON_ERROR_NONE) {
+            return is_array($decoded) ? new Body($decoded) : null;
+        }
+
+        return new Body($contents);
     }
 }

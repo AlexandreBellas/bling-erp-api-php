@@ -90,15 +90,16 @@ class ContasReceber extends BaseEntity
 
     /**
      * Obtém os boletos - Bling conta.
-     * 
-     * 
-     * @param \AleBatistella\BlingErpApi\Entities\ContasReceber\Schema\GetBankSlips\GetBankSlipsParams|array|null $params Parâmetros da busca
+     *
+     * Aceita `GetBankSlipsParams` ou o mapa de query que o objeto serializa, por exemplo `["idOrigem" => 1, "situacoes" => [1, 2]]`.
+     *
+     * @param \AleBatistella\BlingErpApi\Entities\ContasReceber\Schema\GetBankSlips\GetBankSlipsParams|array $params
      * @return GetBankSlipsResponse
      * @throws BlingApiException|BlingInternalException
-     * 
+     *
      * @see https://developer.bling.com.br/referencia#/Contas%20a%20Receber/get_contas_receber_view_bankslips
      */
-    public function getBankSlips(GetBankSlipsParams|array|null $params = null): GetBankSlipsResponse
+    public function getBankSlips(GetBankSlipsParams|array $params): GetBankSlipsResponse
     {
         $response = $this->repository->index(
             new RequestOptions(

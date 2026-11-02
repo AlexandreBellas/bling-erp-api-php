@@ -6,6 +6,7 @@ use AleBatistella\BlingErpApi\Entities\Usuarios\Usuarios;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\RequestOptions;
 use AleBatistella\BlingErpApi\Entities\Shared\TestResponseTrait;
 use AleBatistella\BlingErpApi\Entities\Usuarios\Schema\RecoverPassword\RecoverPasswordResponse;
+use AleBatistella\BlingErpApi\Entities\Usuarios\Schema\ValidateHash\ValidateHashParams;
 use AleBatistella\BlingErpApi\Entities\Usuarios\Schema\ValidateHash\ValidateHashResponse;
 use AleBatistella\BlingErpApi\Repositories\IBlingRepository;
 use PHPUnit\Framework\TestCase;
@@ -61,6 +62,35 @@ class UsuariosTest extends TestCase
 
         $this->assertInstanceOf(ValidateHashResponse::class, $response);
         $this->assertEquals($validateHashResponse, $response->toArray());
+    }
+
+    /**
+     * Testa que o mapa e o objeto de parâmetros enviam a mesma requisição.
+     *
+     * @return void
+     */
+    public function testShouldValidateHashWithParamsAndArraySuccessfully(): void
+    {
+        $params = new ValidateHashParams(hash: "abc");
+        $validateHashResponse = json_decode(file_get_contents(__DIR__ . "/validate-hash/response.json"), true);
+        $captured = [];
+        $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
+        $repository->expects($this->exactly(2))
+            ->method("index")
+            ->willReturnCallback(function (RequestOptions $requestOptions) use (&$captured, $validateHashResponse) {
+                $captured[] = $requestOptions;
+
+                return $this->buildResponse(status: 200, body: $this->buildBody($validateHashResponse));
+            });
+
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
+        $entity = $this->getInstance($repository);
+        $entity->validateHash(params: $params->content);
+        $entity->validateHash(params: $params);
+
+        $this->assertSame($captured[0]->endpoint, $captured[1]->endpoint);
+        $this->assertEquals($params->content, $captured[0]->queryParams->content);
+        $this->assertEquals($captured[0]->queryParams->content, $captured[1]->queryParams->content);
     }
 
     /**

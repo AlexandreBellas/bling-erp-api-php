@@ -28,14 +28,15 @@ class Produtos extends BaseEntity
     /**
      * Remove múltiplos produtos.
      *
+     * Aceita `DeleteManyParams` ou o mapa de query que o objeto serializa, por exemplo `["idsProdutos" => [1, 2]]`.
      *
-     * @param \AleBatistella\BlingErpApi\Entities\Produtos\Schema\DeleteMany\DeleteManyParams|array|null $params
+     * @param \AleBatistella\BlingErpApi\Entities\Produtos\Schema\DeleteMany\DeleteManyParams|array $params
      * @return DeleteManyResponse
      * @throws BlingApiException|BlingInternalException
      *
      * @see https://developer.bling.com.br/referencia#/Produtos/delete_produtos
      */
-    public function deleteMany(DeleteManyParams|array|null $params = null): DeleteManyResponse
+    public function deleteMany(DeleteManyParams|array $params): DeleteManyResponse
     {
         $response = $this->repository->destroy(
             new RequestOptions(

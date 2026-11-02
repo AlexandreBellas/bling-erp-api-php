@@ -3,6 +3,7 @@
 namespace Tests\Unit\AleBatistella\BlingErpApi\Entities\ContasReceber;
 
 use AleBatistella\BlingErpApi\Entities\ContasReceber\ContasReceber;
+use AleBatistella\BlingErpApi\Entities\ContasReceber\Schema\GetBankSlips\GetBankSlipsParams;
 use AleBatistella\BlingErpApi\Entities\ContasReceber\Schema\Create\CreateResponse;
 use AleBatistella\BlingErpApi\Entities\ContasReceber\Schema\Find\FindResponse;
 use AleBatistella\BlingErpApi\Entities\ContasReceber\Schema\Get\GetResponse;
@@ -141,6 +142,35 @@ class ContasReceberTest extends TestCase
 
         $this->assertInstanceOf(GetBankSlipsResponse::class, $response);
         $this->assertEquals($getBankSlipsResponse, $response->toArray());
+    }
+
+    /**
+     * Testa que o mapa e o objeto de parâmetros enviam a mesma requisição.
+     *
+     * @return void
+     */
+    public function testShouldGetBankSlipsWithParamsAndArraySuccessfully(): void
+    {
+        $params = new GetBankSlipsParams(idOrigem: 1, situacoes: [1, 2]);
+        $getBankSlipsResponse = json_decode(file_get_contents(__DIR__ . "/get-bank-slips/response.json"), true);
+        $captured = [];
+        $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
+        $repository->expects($this->exactly(2))
+            ->method("index")
+            ->willReturnCallback(function (RequestOptions $requestOptions) use (&$captured, $getBankSlipsResponse) {
+                $captured[] = $requestOptions;
+
+                return $this->buildResponse(status: 200, body: $this->buildBody($getBankSlipsResponse));
+            });
+
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
+        $entity = $this->getInstance($repository);
+        $entity->getBankSlips(params: $params->content);
+        $entity->getBankSlips(params: $params);
+
+        $this->assertSame($captured[0]->endpoint, $captured[1]->endpoint);
+        $this->assertEquals($params->content, $captured[0]->queryParams->content);
+        $this->assertEquals($captured[0]->queryParams->content, $captured[1]->queryParams->content);
     }
 
     /**

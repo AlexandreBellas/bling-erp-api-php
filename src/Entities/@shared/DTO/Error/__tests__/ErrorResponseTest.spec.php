@@ -6,6 +6,8 @@ use AleBatistella\BlingErpApi\Entities\Shared\DTO\Error\ErrorResponse;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\Body;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions;
 use AleBatistella\BlingErpApi\Exceptions\BlingApiException;
+use AleBatistella\BlingErpApi\Exceptions\BlingInternalException;
+use AleBatistella\BlingErpApi\Repositories\BlingRepository;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -132,5 +134,62 @@ class ErrorResponseTest extends TestCase
         $actual = ErrorResponse::from($expected);
 
         $this->assertEquals($expected, $actual->toArray());
+    }
+
+    /**
+     * Testa erro sem JSON e erro com corpo HTML.
+     *
+     * @return void
+     */
+    public function testShouldThrowInternalExceptionWhenErrorBodyIsMissingOrNotJson(): void
+    {
+        $html = "<html>502 Bad Gateway</html>";
+
+        try {
+            new ResponseOptions(
+                endpoint: "produtos",
+                method: "GET",
+                status: 502,
+            );
+            $this->fail("Expected BlingInternalException.");
+        } catch (BlingInternalException $exception) {
+            $this->assertSame(502, $exception->getCode());
+            $this->assertNull($exception->responseBody);
+        }
+
+        try {
+            new ResponseOptions(
+                endpoint: "produtos",
+                method: "GET",
+                status: 502,
+                body: new Body($html),
+            );
+            $this->fail("Expected BlingInternalException.");
+        } catch (BlingInternalException $exception) {
+            $this->assertSame(502, $exception->getCode());
+            $this->assertSame($html, $exception->responseBody?->content);
+        }
+    }
+
+    /**
+     * Testa que o repositório preserva um corpo que não é JSON.
+     *
+     * @return void
+     */
+    public function testShouldKeepRawBodyWhenResponseIsNotJson(): void
+    {
+        $repository = new BlingRepository("https://example.test", "token");
+        $method = new \ReflectionMethod(BlingRepository::class, "buildResponseBody");
+        $html = "<html>502 Bad Gateway</html>";
+
+        $raw = $method->invoke($repository, $html);
+        $empty = $method->invoke($repository, "");
+        $json = $method->invoke($repository, "{\"data\":[]}");
+
+        $this->assertInstanceOf(Body::class, $raw);
+        $this->assertSame($html, $raw->content);
+        $this->assertNull($empty);
+        $this->assertInstanceOf(Body::class, $json);
+        $this->assertSame(["data" => []], $json->content);
     }
 }

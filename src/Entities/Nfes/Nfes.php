@@ -31,14 +31,15 @@ class Nfes extends BaseEntity
     /**
      * Remove múltiplas notas fiscais.
      *
+     * Aceita `DeleteManyParams` ou o mapa de query que o objeto serializa, por exemplo `["idsNotas" => [1, 2]]`.
      *
-     * @param \AleBatistella\BlingErpApi\Entities\Nfes\Schema\DeleteMany\DeleteManyParams|array|null $params
+     * @param \AleBatistella\BlingErpApi\Entities\Nfes\Schema\DeleteMany\DeleteManyParams|array $params
      * @return DeleteManyResponse
      * @throws BlingApiException|BlingInternalException
      *
      * @see https://developer.bling.com.br/referencia#/Notas%20Fiscais%20Eletr%C3%B4nicas/delete_nfe
      */
-    public function deleteMany(DeleteManyParams|array|null $params = null): DeleteManyResponse
+    public function deleteMany(DeleteManyParams|array $params): DeleteManyResponse
     {
         $response = $this->repository->destroy(
             new RequestOptions(

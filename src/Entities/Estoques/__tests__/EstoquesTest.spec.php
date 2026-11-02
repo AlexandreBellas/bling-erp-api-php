@@ -4,7 +4,9 @@ namespace Tests\Unit\AleBatistella\BlingErpApi\Entities\Estoques;
 
 use AleBatistella\BlingErpApi\Entities\Estoques\Estoques;
 use AleBatistella\BlingErpApi\Entities\Estoques\Schema\Create\CreateResponse;
+use AleBatistella\BlingErpApi\Entities\Estoques\Schema\FindBalance\FindBalanceParams;
 use AleBatistella\BlingErpApi\Entities\Estoques\Schema\FindBalance\FindBalanceResponse;
+use AleBatistella\BlingErpApi\Entities\Estoques\Schema\GetBalances\GetBalancesParams;
 use AleBatistella\BlingErpApi\Entities\Estoques\Schema\GetBalances\GetBalancesResponse;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\RequestOptions;
 use AleBatistella\BlingErpApi\Entities\Shared\TestResponseTrait;
@@ -63,6 +65,36 @@ class EstoquesTest extends TestCase
     }
 
     /**
+     * Testa que o mapa e o objeto de parâmetros enviam a mesma requisição.
+     *
+     * @return void
+     */
+    public function testShouldFindBalanceWithParamsAndArraySuccessfully(): void
+    {
+        $idDeposito = 7;
+        $params = new FindBalanceParams(idsProdutos: [1, 2], codigos: ["SKU"]);
+        $findBalanceResponse = json_decode(file_get_contents(__DIR__ . "/find-balance/response.json"), true);
+        $captured = [];
+        $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
+        $repository->expects($this->exactly(2))
+            ->method("index")
+            ->willReturnCallback(function (RequestOptions $requestOptions) use (&$captured, $findBalanceResponse) {
+                $captured[] = $requestOptions;
+
+                return $this->buildResponse(status: 200, body: $this->buildBody($findBalanceResponse));
+            });
+
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
+        $entity = $this->getInstance($repository);
+        $entity->findBalance(idDeposito: $idDeposito, params: $params->content);
+        $entity->findBalance(idDeposito: $idDeposito, params: $params);
+
+        $this->assertSame($captured[0]->endpoint, $captured[1]->endpoint);
+        $this->assertEquals($params->content, $captured[0]->queryParams->content);
+        $this->assertEquals($captured[0]->queryParams->content, $captured[1]->queryParams->content);
+    }
+
+    /**
      * Testa a listagem.
      *
      * @return void
@@ -90,6 +122,35 @@ class EstoquesTest extends TestCase
 
         $this->assertInstanceOf(GetBalancesResponse::class, $response);
         $this->assertEquals($getBalancesResponse, $response->toArray());
+    }
+
+    /**
+     * Testa que o mapa e o objeto de parâmetros enviam a mesma requisição.
+     *
+     * @return void
+     */
+    public function testShouldGetBalancesWithParamsAndArraySuccessfully(): void
+    {
+        $params = new GetBalancesParams(idsProdutos: [1, 2]);
+        $getBalancesResponse = json_decode(file_get_contents(__DIR__ . "/get-balances/response.json"), true);
+        $captured = [];
+        $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
+        $repository->expects($this->exactly(2))
+            ->method("index")
+            ->willReturnCallback(function (RequestOptions $requestOptions) use (&$captured, $getBalancesResponse) {
+                $captured[] = $requestOptions;
+
+                return $this->buildResponse(status: 200, body: $this->buildBody($getBalancesResponse));
+            });
+
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
+        $entity = $this->getInstance($repository);
+        $entity->getBalances(params: $params->content);
+        $entity->getBalances(params: $params);
+
+        $this->assertSame($captured[0]->endpoint, $captured[1]->endpoint);
+        $this->assertEquals($params->content, $captured[0]->queryParams->content);
+        $this->assertEquals($captured[0]->queryParams->content, $captured[1]->queryParams->content);
     }
 
     /**

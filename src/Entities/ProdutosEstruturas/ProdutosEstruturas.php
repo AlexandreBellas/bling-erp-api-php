@@ -26,15 +26,16 @@ class ProdutosEstruturas extends BaseEntity
     /**
      * Remove componentes específicos de um produto com composição.
      *
+     * Aceita `DeleteComponentsParams` ou o mapa de query que o objeto serializa, por exemplo `["idsComponentes" => [1, 2]]`.
      *
      * @param int $idProdutoEstrutura ID do produto com composição
-     * @param \AleBatistella\BlingErpApi\Entities\ProdutosEstruturas\Schema\DeleteComponents\DeleteComponentsParams|array|null $params
+     * @param \AleBatistella\BlingErpApi\Entities\ProdutosEstruturas\Schema\DeleteComponents\DeleteComponentsParams|array $params
      * @return null
      * @throws BlingApiException|BlingInternalException
      *
      * @see https://developer.bling.com.br/referencia#/Produtos%20-%20Estruturas/delete_produtos_estruturas__idProdutoEstrutura__componentes
      */
-    public function deleteComponents(int $idProdutoEstrutura, DeleteComponentsParams|array|null $params = null): null
+    public function deleteComponents(int $idProdutoEstrutura, DeleteComponentsParams|array $params): null
     {
         $response = $this->repository->destroy(
             new RequestOptions(
@@ -49,14 +50,15 @@ class ProdutosEstruturas extends BaseEntity
     /**
      * Remove a estrutura de múltiplos produtos.
      *
+     * Aceita `DeleteParams` ou o mapa de query que o objeto serializa, por exemplo `["idsProdutos" => [1, 2]]`.
      *
-     * @param \AleBatistella\BlingErpApi\Entities\ProdutosEstruturas\Schema\Delete\DeleteParams|array|null $params
+     * @param \AleBatistella\BlingErpApi\Entities\ProdutosEstruturas\Schema\Delete\DeleteParams|array $params
      * @return DeleteResponse
      * @throws BlingApiException|BlingInternalException
      *
      * @see https://developer.bling.com.br/referencia#/Produtos%20-%20Estruturas/delete_produtos_estruturas
      */
-    public function delete(DeleteParams|array|null $params = null): DeleteResponse
+    public function delete(DeleteParams|array $params): DeleteResponse
     {
         $response = $this->repository->destroy(
             new RequestOptions(

@@ -20,15 +20,16 @@ class Usuarios extends BaseEntity
 {
     /**
      * Valida o hash recebido.
-     * 
      *
-     * @param \AleBatistella\BlingErpApi\Entities\Usuarios\Schema\ValidateHash\ValidateHashParams|array|null $params
+     * Aceita `ValidateHashParams` ou o mapa de query que o objeto serializa, por exemplo `["hash" => "abc"]`.
+     *
+     * @param \AleBatistella\BlingErpApi\Entities\Usuarios\Schema\ValidateHash\ValidateHashParams|array $params
      * @return ValidateHashResponse
      * @throws BlingApiException|BlingInternalException
      *
      * @see https://developer.bling.com.br/referencia#/Usu%C3%A1rios/get_usuarios_verificar_hash
      */
-    public function validateHash(ValidateHashParams|array|null $params = null): ValidateHashResponse
+    public function validateHash(ValidateHashParams|array $params): ValidateHashResponse
     {
         $response = $this->repository->index(
             new RequestOptions(

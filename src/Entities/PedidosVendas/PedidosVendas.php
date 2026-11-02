@@ -34,14 +34,15 @@ class PedidosVendas extends BaseEntity
     /**
      * Remove pedidos de vendas.
      *
+     * Aceita `DeleteManyParams` ou o mapa de query que o objeto serializa, por exemplo `["idsPedidosVendas" => [1, 2]]`.
      *
-     * @param \AleBatistella\BlingErpApi\Entities\PedidosVendas\Schema\DeleteMany\DeleteManyParams|array|null $params
+     * @param \AleBatistella\BlingErpApi\Entities\PedidosVendas\Schema\DeleteMany\DeleteManyParams|array $params
      * @return DeleteManyResponse
      * @throws BlingApiException|BlingInternalException
      *
      * @see https://developer.bling.com.br/referencia#/Pedidos%20-%20Vendas/delete_pedidos_vendas
      */
-    public function deleteMany(DeleteManyParams|array|null $params = null): DeleteManyResponse
+    public function deleteMany(DeleteManyParams|array $params): DeleteManyResponse
     {
         $response = $this->repository->destroy(
             new RequestOptions(

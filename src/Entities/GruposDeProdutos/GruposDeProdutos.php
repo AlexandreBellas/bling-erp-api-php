@@ -26,14 +26,15 @@ class GruposDeProdutos extends BaseEntity
     /**
      * Remove múltiplos grupos de produtos.
      *
+     * Aceita `DeleteManyParams` ou o mapa de query que o objeto serializa, por exemplo `["idsGruposProdutos" => [1, 2]]`.
      *
-     * @param \AleBatistella\BlingErpApi\Entities\GruposDeProdutos\Schema\DeleteMany\DeleteManyParams|array|null $params
+     * @param \AleBatistella\BlingErpApi\Entities\GruposDeProdutos\Schema\DeleteMany\DeleteManyParams|array $params
      * @return DeleteManyResponse
      * @throws BlingApiException|BlingInternalException
      *
      * @see https://developer.bling.com.br/referencia#/Grupos%20de%20Produtos/delete_grupos_produtos
      */
-    public function deleteMany(DeleteManyParams|array|null $params = null): DeleteManyResponse
+    public function deleteMany(DeleteManyParams|array $params): DeleteManyResponse
     {
         $response = $this->repository->destroy(
             new RequestOptions(

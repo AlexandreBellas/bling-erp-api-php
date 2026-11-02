@@ -3,6 +3,8 @@
 namespace Tests\Unit\AleBatistella\BlingErpApi\Entities\ProdutosEstruturas;
 
 use AleBatistella\BlingErpApi\Entities\ProdutosEstruturas\ProdutosEstruturas;
+use AleBatistella\BlingErpApi\Entities\ProdutosEstruturas\Schema\Delete\DeleteParams;
+use AleBatistella\BlingErpApi\Entities\ProdutosEstruturas\Schema\DeleteComponents\DeleteComponentsParams;
 use AleBatistella\BlingErpApi\Entities\ProdutosEstruturas\Schema\Find\FindResponse;
 use AleBatistella\BlingErpApi\Entities\ProdutosEstruturas\Schema\Delete\DeleteResponse;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\RequestOptions;
@@ -64,6 +66,35 @@ class ProdutosEstruturasTest extends TestCase
     }
 
     /**
+     * Testa que o mapa e o objeto de parâmetros enviam a mesma requisição.
+     *
+     * @return void
+     */
+    public function testShouldDeleteComponentsWithParamsAndArraySuccessfully(): void
+    {
+        $idProdutoEstrutura = 10;
+        $params = new DeleteComponentsParams(idsComponentes: [1, 2]);
+        $captured = [];
+        $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
+        $repository->expects($this->exactly(2))
+            ->method("destroy")
+            ->willReturnCallback(function (RequestOptions $requestOptions) use (&$captured) {
+                $captured[] = $requestOptions;
+
+                return $this->buildResponse(status: 200, body: null);
+            });
+
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
+        $entity = $this->getInstance($repository);
+        $entity->deleteComponents(idProdutoEstrutura: $idProdutoEstrutura, params: $params->content);
+        $entity->deleteComponents(idProdutoEstrutura: $idProdutoEstrutura, params: $params);
+
+        $this->assertSame($captured[0]->endpoint, $captured[1]->endpoint);
+        $this->assertEquals($params->content, $captured[0]->queryParams->content);
+        $this->assertEquals($captured[0]->queryParams->content, $captured[1]->queryParams->content);
+    }
+
+    /**
      * Testa a deleção com a resposta completa.
      *
      * @return void
@@ -121,6 +152,35 @@ class ProdutosEstruturasTest extends TestCase
 
         $this->assertInstanceOf(DeleteResponse::class, $response);
         $this->assertEquals(["data" => null], $response->toArray());
+    }
+
+    /**
+     * Testa que o mapa e o objeto de parâmetros enviam a mesma requisição.
+     *
+     * @return void
+     */
+    public function testShouldDeleteWithParamsAndArraySuccessfully(): void
+    {
+        $params = new DeleteParams(idsProdutos: [1, 2]);
+        $deleteResponse = json_decode(file_get_contents(__DIR__ . "/delete/response-empty.json"), true);
+        $captured = [];
+        $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
+        $repository->expects($this->exactly(2))
+            ->method("destroy")
+            ->willReturnCallback(function (RequestOptions $requestOptions) use (&$captured, $deleteResponse) {
+                $captured[] = $requestOptions;
+
+                return $this->buildResponse(status: 200, body: $this->buildBody($deleteResponse));
+            });
+
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
+        $entity = $this->getInstance($repository);
+        $entity->delete(params: $params->content);
+        $entity->delete(params: $params);
+
+        $this->assertSame($captured[0]->endpoint, $captured[1]->endpoint);
+        $this->assertEquals($params->content, $captured[0]->queryParams->content);
+        $this->assertEquals($captured[0]->queryParams->content, $captured[1]->queryParams->content);
     }
 
     /**
