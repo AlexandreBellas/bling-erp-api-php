@@ -13,12 +13,12 @@ readonly final class GetConfigurationsResponse extends BaseResponseRootObject
     /**
      * Constrói o objeto.
      *
-     * @param ?GetConfigurationsResponseBasicas $basicas
-     * @param ?GetConfigurationsResponseISS $ISS
-     * @param ?GetConfigurationsResponseControle $controle
-     * @param ?GetConfigurationsResponseImpostos $impostos
-     * @param ?GetConfigurationsResponseEnvioEmail $envioEmail
-     * @param ?GetConfigurationsResponseAdicionais $adicionais
+     * @param ?\AleBatistella\BlingErpApi\Entities\Nfses\Schema\GetConfigurations\GetConfigurationsResponseBasicas $basicas
+     * @param ?\AleBatistella\BlingErpApi\Entities\Nfses\Schema\GetConfigurations\GetConfigurationsResponseISS $ISS
+     * @param ?\AleBatistella\BlingErpApi\Entities\Nfses\Schema\GetConfigurations\GetConfigurationsResponseControle $controle
+     * @param ?\AleBatistella\BlingErpApi\Entities\Nfses\Schema\GetConfigurations\GetConfigurationsResponseImpostos $impostos
+     * @param ?\AleBatistella\BlingErpApi\Entities\Nfses\Schema\GetConfigurations\GetConfigurationsResponseEnvioEmail $envioEmail
+     * @param ?\AleBatistella\BlingErpApi\Entities\Nfses\Schema\GetConfigurations\GetConfigurationsResponseAdicionais $adicionais
      */
     public function __construct(
         public ?GetConfigurationsResponseBasicas $basicas,
@@ -31,6 +31,7 @@ readonly final class GetConfigurationsResponse extends BaseResponseRootObject
     }
 
     /**
+     * @param \AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions $response
      * @inheritDoc
      */
     public static function fromResponse(ResponseOptions $response): static

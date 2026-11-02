@@ -5,6 +5,9 @@ namespace AleBatistella\BlingErpApi\Entities\LogisticasRemessas\Schema\Find;
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 use AleBatistella\BlingErpApi\Entities\LogisticasRemessas\Enum\SituacaoRastreamento;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class FindResponseDataObjetosRastreamento extends BaseResponseObject
 {
     /**
@@ -12,7 +15,7 @@ readonly final class FindResponseDataObjetosRastreamento extends BaseResponseObj
      *
      * @param string $codigo
      * @param string $descricao
-     * @param SituacaoRastreamento $situacao
+     * @param \AleBatistella\BlingErpApi\Entities\LogisticasRemessas\Enum\SituacaoRastreamento $situacao
      * @param string $origem
      * @param string $destino
      * @param string $ultimaAlteracao

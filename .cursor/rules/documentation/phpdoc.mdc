@@ -29,7 +29,7 @@ Each public entity method documents, in this order:
 4. **`@throws BlingApiException|BlingInternalException`** — on every method that calls `$this->repository`.
 5. **`@see`** — the Bling operation URL.
 
-Omit `@param` when the method takes no arguments. `Homologacao::execute` returns `void`, calls other entity methods, and documents `@return void` plus `@see https://developer.bling.com.br/homologacao`.
+Omit `@param` when the method takes no arguments. An `@param` type is the resolved signature type: a fully qualified class name (`\AleBatistella\BlingErpApi\Entities\Produtos\Schema\DeleteMany\DeleteManyParams|array|null`) or a builtin (`?int`, `array`, `\DateTimeInterface|string|null`).
 
 ## Schema and enum blocks
 

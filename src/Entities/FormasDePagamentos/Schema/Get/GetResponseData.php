@@ -8,6 +8,9 @@ use AleBatistella\BlingErpApi\Entities\FormasDePagamentos\Enum\Situacao;
 use AleBatistella\BlingErpApi\Entities\FormasDePagamentos\Enum\TipoPagamento;
 use AleBatistella\BlingErpApi\Entities\FormasDePagamentos\Enum\Padrao;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class GetResponseData extends BaseResponseObject
 {
     /**
@@ -15,11 +18,11 @@ readonly final class GetResponseData extends BaseResponseObject
      *
      * @param ?int $id
      * @param string $descricao
-     * @param TipoPagamento $tipoPagamento
-     * @param ?Situacao $situacao
+     * @param \AleBatistella\BlingErpApi\Entities\FormasDePagamentos\Enum\TipoPagamento $tipoPagamento
+     * @param ?\AleBatistella\BlingErpApi\Entities\FormasDePagamentos\Enum\Situacao $situacao
      * @param ?bool $fixa
-     * @param ?Padrao $padrao
-     * @param Finalidade $finalidade
+     * @param ?\AleBatistella\BlingErpApi\Entities\FormasDePagamentos\Enum\Padrao $padrao
+     * @param \AleBatistella\BlingErpApi\Entities\FormasDePagamentos\Enum\Finalidade $finalidade
      */
     public function __construct(
         public ?int $id,

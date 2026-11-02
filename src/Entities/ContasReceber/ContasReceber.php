@@ -48,8 +48,8 @@ class ContasReceber extends BaseEntity
     /**
      * Obtém contas a receber.
      *
-     * @param GetParams|array|null $params Parâmetros para a busca
      * 
+     * @param \AleBatistella\BlingErpApi\Entities\ContasReceber\Schema\Get\GetParams|array|null $params Parâmetros para a busca
      * @return GetResponse
      * @throws BlingApiException|BlingInternalException
      *
@@ -91,28 +91,19 @@ class ContasReceber extends BaseEntity
     /**
      * Obtém os boletos - Bling conta.
      * 
-     * @param int $idOrigem idOrigem que pode ser ID de um venda ou NF
-     * @param GetBankSlipsParams|array|null $params Parâmetros da busca
      * 
+     * @param \AleBatistella\BlingErpApi\Entities\ContasReceber\Schema\GetBankSlips\GetBankSlipsParams|array|null $params Parâmetros da busca
      * @return GetBankSlipsResponse
      * @throws BlingApiException|BlingInternalException
      * 
      * @see https://developer.bling.com.br/referencia#/Contas%20a%20Receber/get_contas_receber_view_bankslips
      */
-    public function getBankSlips(int $idOrigem, GetBankSlipsParams|array|null $params = null): GetBankSlipsResponse
+    public function getBankSlips(GetBankSlipsParams|array|null $params = null): GetBankSlipsResponse
     {
-        if ($params instanceof GetBankSlipsParams) {
-            $actualParams = $params->content;
-        } else if (is_array($params)) {
-            $actualParams = $params;
-        }
-
-        $actualParams['idOrigem'] = $idOrigem;
-
         $response = $this->repository->index(
             new RequestOptions(
                 endpoint: "contas/receber/boletos",
-                queryParams: $actualParams
+                queryParams: $params
             )
         );
 

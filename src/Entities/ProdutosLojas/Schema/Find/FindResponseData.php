@@ -5,6 +5,9 @@ namespace AleBatistella\BlingErpApi\Entities\ProdutosLojas\Schema\Find;
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class FindResponseData extends BaseResponseObject
 {
     /**
@@ -14,11 +17,11 @@ readonly final class FindResponseData extends BaseResponseObject
      * @param string $codigo
      * @param ?float $preco
      * @param ?float $precoPromocional
-     * @param Id $produto
-     * @param Id $loja
-     * @param ?Id $fornecedorLoja
-     * @param ?Id $marcaLoja
-     * @param ?Id[] $categoriasProdutos
+     * @param \AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id $produto
+     * @param \AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id $loja
+     * @param ?\AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id $fornecedorLoja
+     * @param ?\AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id $marcaLoja
+     * @param ?array $categoriasProdutos
      */
     public function __construct(
         public ?int $id,
@@ -39,7 +42,7 @@ readonly final class FindResponseData extends BaseResponseObject
     protected static function fromRules(): array
     {
         return [
-            'categoriasProdutos' => Id::class
+            "categoriasProdutos" => Id::class
         ];
     }
 }

@@ -20,8 +20,8 @@ class NaturezasDeOperacoes extends BaseEntity
     /**
      * Obtém naturezas de operações.
      *
-     * @param GetParams|array|null $params Parâmetros para a busca
      *
+     * @param \AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Schema\Get\GetParams|array|null $params Parâmetros para a busca
      * @return GetResponse
      * @throws BlingApiException|BlingInternalException
      *

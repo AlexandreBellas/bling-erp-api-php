@@ -5,6 +5,9 @@ namespace AleBatistella\BlingErpApi\Entities\ContasReceber\Schema\GetBankSlips;
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 use AleBatistella\BlingErpApi\Entities\ContasReceber\Enum\BankSlipSituacao;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class GetBankSlipsResponseContas extends BaseResponseObject
 {
 
@@ -15,7 +18,7 @@ readonly final class GetBankSlipsResponseContas extends BaseResponseObject
      * @param ?string $numeroExterno
      * @param ?string $vencimento
      * @param ?float $valor
-     * @param ?BankSlipSituacao $situacao
+     * @param ?\AleBatistella\BlingErpApi\Entities\ContasReceber\Enum\BankSlipSituacao $situacao
      */
     public function __construct(
         public ?int $id,

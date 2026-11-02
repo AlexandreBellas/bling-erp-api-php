@@ -10,11 +10,11 @@ enum ActionEstoque: string
     /**
      * Irá zerar os saldos de estoque.
      */
-    case ZERAR = 'Z';
+    case ZERAR = "Z";
     /**
      * Transfere o estoque do produto pai para a primeira variação informada.
      */
-    case TRANSFERIR = 'T';
+    case TRANSFERIR = "T";
     /**
      * O valor retornado foi nulo.
      */

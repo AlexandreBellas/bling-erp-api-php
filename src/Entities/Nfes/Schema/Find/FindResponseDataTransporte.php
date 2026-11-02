@@ -6,15 +6,18 @@ use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 use AleBatistella\BlingErpApi\Entities\Nfes\Enum\FretePorConta;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class FindResponseDataTransporte extends BaseResponseObject
 {
     /**
      * Constrói o objeto.
      *
-     * @param ?FretePorConta $fretePorConta
-     * @param ?FindResponseDataTransporteTransportador $transportador
-     * @param ?Id[] $volumes
-     * @param ?FindResponseDataTransporteEtiqueta $etiqueta
+     * @param ?\AleBatistella\BlingErpApi\Entities\Nfes\Enum\FretePorConta $fretePorConta
+     * @param ?\AleBatistella\BlingErpApi\Entities\Nfes\Schema\Find\FindResponseDataTransporteTransportador $transportador
+     * @param ?array $volumes
+     * @param ?\AleBatistella\BlingErpApi\Entities\Nfes\Schema\Find\FindResponseDataTransporteEtiqueta $etiqueta
      */
     public function __construct(
         public ?FretePorConta $fretePorConta,
@@ -30,7 +33,7 @@ readonly final class FindResponseDataTransporte extends BaseResponseObject
     protected static function fromRules(): array
     {
         return [
-            'volumes' => Id::class
+            "volumes" => Id::class
         ];
     }
 }

@@ -2,7 +2,6 @@
 
 namespace AleBatistella\BlingErpApi\Entities\ContatosTipos;
 
-use AleBatistella\BlingErpApi\Entities\ContatosTipos\Schema\Get\GetParams;
 use AleBatistella\BlingErpApi\Entities\ContatosTipos\Schema\Get\GetResponse;
 use AleBatistella\BlingErpApi\Entities\Shared\BaseEntity;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\RequestOptions;

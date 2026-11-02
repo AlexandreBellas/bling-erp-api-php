@@ -19,8 +19,8 @@ class LogisticasEtiquetas extends BaseEntity
     /**
      * Obtém etiquetas das vendas.
      *
-     * @param GetParams|array|null $params Parâmetros para a busca
      *
+     * @param \AleBatistella\BlingErpApi\Entities\LogisticasEtiquetas\Schema\Get\GetParams|array|null $params Parâmetros para a busca
      * @return GetResponse
      * @throws BlingApiException|BlingInternalException
      *

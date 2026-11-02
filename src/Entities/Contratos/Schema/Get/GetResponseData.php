@@ -6,6 +6,9 @@ use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 use AleBatistella\BlingErpApi\Entities\Contratos\Enum\Situacao;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class GetResponseData extends BaseResponseObject
 {
     /**
@@ -16,8 +19,8 @@ readonly final class GetResponseData extends BaseResponseObject
      * @param string $data
      * @param string $numero
      * @param float $valor
-     * @param Situacao $situacao
-     * @param Id $contato
+     * @param \AleBatistella\BlingErpApi\Entities\Contratos\Enum\Situacao $situacao
+     * @param \AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id $contato
      */
     public function __construct(
         public ?int $id,

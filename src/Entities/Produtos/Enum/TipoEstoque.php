@@ -7,7 +7,7 @@ namespace AleBatistella\BlingErpApi\Entities\Produtos\Enum;
  */
 enum TipoEstoque: string
 {
-    case FISICO = 'F';
-    case VIRTUAL = 'V';
+    case FISICO = "F";
+    case VIRTUAL = "V";
     case NAO_DEFINIDO = "";
 }

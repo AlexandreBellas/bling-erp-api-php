@@ -6,6 +6,9 @@ use AleBatistella\BlingErpApi\Entities\CategoriasReceitasDespesas\Enum\Tipo;
 use AleBatistella\BlingErpApi\Entities\CategoriasReceitasDespesas\Enum\Situacao;
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class FindResponseData extends BaseResponseObject
 {
     /**
@@ -14,8 +17,8 @@ readonly final class FindResponseData extends BaseResponseObject
      * @param ?int $id
      * @param ?int $idCategoriaPai
      * @param string $descricao
-     * @param Tipo $tipo
-     * @param ?Situacao $situacao
+     * @param \AleBatistella\BlingErpApi\Entities\CategoriasReceitasDespesas\Enum\Tipo $tipo
+     * @param ?\AleBatistella\BlingErpApi\Entities\CategoriasReceitasDespesas\Enum\Situacao $situacao
      */
     public function __construct(
         public ?int $id,

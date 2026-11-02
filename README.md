@@ -101,7 +101,7 @@ var_dump($products);
 Faça o clone do projeto, instale as dependências e execute:
 
 ```bash
-vendor/phpunit/phpunit/phpunit -c phpunit.xml
+composer test
 ```
 
 ## Contribuindo ao projeto

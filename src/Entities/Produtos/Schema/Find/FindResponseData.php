@@ -11,6 +11,9 @@ use AleBatistella\BlingErpApi\Entities\Produtos\Enum\TipoProducao;
 use AleBatistella\BlingErpApi\Entities\Produtos\Enum\Condicao;
 use AleBatistella\BlingErpApi\Entities\Produtos\Enum\ActionEstoque;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class FindResponseData extends BaseResponseObject
 {
     /**
@@ -20,9 +23,9 @@ readonly final class FindResponseData extends BaseResponseObject
      * @param string $nome
      * @param ?string $codigo
      * @param ?float $preco
-     * @param Tipo $tipo
-     * @param Situacao $situacao
-     * @param Formato $formato
+     * @param \AleBatistella\BlingErpApi\Entities\Produtos\Enum\Tipo $tipo
+     * @param \AleBatistella\BlingErpApi\Entities\Produtos\Enum\Situacao $situacao
+     * @param \AleBatistella\BlingErpApi\Entities\Produtos\Enum\Formato $formato
      * @param ?string $descricaoCurta
      * @param ?string $imagemURL
      * @param ?string $dataValidade
@@ -33,25 +36,25 @@ readonly final class FindResponseData extends BaseResponseObject
      * @param ?float $itensPorCaixa
      * @param ?string $gtin
      * @param ?string $gtinEmbalagem
-     * @param ?TipoProducao $tipoProducao
-     * @param ?Condicao $condicao
+     * @param ?\AleBatistella\BlingErpApi\Entities\Produtos\Enum\TipoProducao $tipoProducao
+     * @param ?\AleBatistella\BlingErpApi\Entities\Produtos\Enum\Condicao $condicao
      * @param ?bool $freteGratis
      * @param ?string $marca
      * @param ?string $descricaoComplementar
      * @param ?string $linkExterno
      * @param ?string $observacoes
      * @param ?string $descricaoEmbalagemDiscreta
-     * @param ?Id $categoria
-     * @param ?FindResponseDataEstoque $estoque
-     * @param ?FindResponseDataFornecedor $fornecedor
-     * @param ?ActionEstoque $actionEstoque
-     * @param ?FindResponseDataDimensoes $dimensoes
-     * @param ?FindResponseDataTributacao $tributacao
-     * @param ?FindResponseDataMidia $midia
-     * @param ?Id $linhaProduto
-     * @param ?FindResponseDataEstrutura $estrutura
-     * @param ?FindResponseDataCamposCustomizados[] $camposCustomizados
-     * @param ?FindResponseDataVariacoes[] $variacoes
+     * @param ?\AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id $categoria
+     * @param ?\AleBatistella\BlingErpApi\Entities\Produtos\Schema\Find\FindResponseDataEstoque $estoque
+     * @param ?\AleBatistella\BlingErpApi\Entities\Produtos\Schema\Find\FindResponseDataFornecedor $fornecedor
+     * @param ?\AleBatistella\BlingErpApi\Entities\Produtos\Enum\ActionEstoque $actionEstoque
+     * @param ?\AleBatistella\BlingErpApi\Entities\Produtos\Schema\Find\FindResponseDataDimensoes $dimensoes
+     * @param ?\AleBatistella\BlingErpApi\Entities\Produtos\Schema\Find\FindResponseDataTributacao $tributacao
+     * @param ?\AleBatistella\BlingErpApi\Entities\Produtos\Schema\Find\FindResponseDataMidia $midia
+     * @param ?\AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id $linhaProduto
+     * @param ?\AleBatistella\BlingErpApi\Entities\Produtos\Schema\Find\FindResponseDataEstrutura $estrutura
+     * @param ?array $camposCustomizados
+     * @param ?array $variacoes
      */
     public function __construct(
         public ?int $id,
@@ -98,8 +101,8 @@ readonly final class FindResponseData extends BaseResponseObject
     protected static function fromRules(): array
     {
         return [
-            'camposCustomizados' => FindResponseDataCamposCustomizados::class,
-            'variacoes' => FindResponseDataVariacoes::class,
+            "camposCustomizados" => FindResponseDataCamposCustomizados::class,
+            "variacoes" => FindResponseDataVariacoes::class,
         ];
     }
 }

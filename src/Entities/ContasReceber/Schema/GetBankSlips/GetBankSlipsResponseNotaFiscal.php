@@ -4,6 +4,9 @@ namespace AleBatistella\BlingErpApi\Entities\ContasReceber\Schema\GetBankSlips;
 
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class GetBankSlipsResponseNotaFiscal extends BaseResponseObject
 {
     /** 

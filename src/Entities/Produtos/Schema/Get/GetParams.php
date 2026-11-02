@@ -23,9 +23,8 @@ readonly final class GetParams extends QueryParams
      *
      * @param ?int $pagina
      * @param ?int $limite
-     * @param Criterio|int|null $criterio
-     * @param TipoListagem|int|null $tipo
-     * @param ?int $idComponente
+     * @param \AleBatistella\BlingErpApi\Entities\Produtos\Enum\Criterio|int|null $criterio
+     * @param \AleBatistella\BlingErpApi\Entities\Produtos\Enum\TipoListagem|int|null $tipo
      * @param \DateTimeInterface|string|null $dataInclusaoInicial
      * @param \DateTimeInterface|string|null $dataInclusaoFinal
      * @param \DateTimeInterface|string|null $dataAlteracaoInicial
@@ -34,8 +33,8 @@ readonly final class GetParams extends QueryParams
      * @param ?int $idLoja
      * @param ?string $codigo
      * @param ?string $nome
-     * @param ?int[] $idsProdutos
-     * @param ?string[] $codigos
+     * @param ?array $idsProdutos
+     * @param ?array $codigos
      */
     public function __construct(
         public ?int $pagina = null,

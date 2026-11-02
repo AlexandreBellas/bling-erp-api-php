@@ -4,6 +4,9 @@ namespace AleBatistella\BlingErpApi\Entities\ProdutosVariacoes\Schema\Find;
 
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class FindResponseDataVariacoesVariacao extends BaseResponseObject
 {
     /**
@@ -11,7 +14,7 @@ readonly final class FindResponseDataVariacoesVariacao extends BaseResponseObjec
      *
      * @param string $nome
      * @param int $ordem
-     * @param FindResponseDataVariacoesVariacaoProdutoPai $produtoPai
+     * @param \AleBatistella\BlingErpApi\Entities\ProdutosVariacoes\Schema\Find\FindResponseDataVariacoesVariacaoProdutoPai $produtoPai
      */
     public function __construct(
         public string $nome,

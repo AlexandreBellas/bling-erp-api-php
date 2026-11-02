@@ -13,7 +13,7 @@ readonly final class ChangeSituationManyResponse extends BaseResponseRootObject
     /**
      * Constrói o objeto.
      *
-     * @param ?ChangeSituationManyResponseData $data
+     * @param ?\AleBatistella\BlingErpApi\Entities\Produtos\Schema\ChangeSituationMany\ChangeSituationManyResponseData $data
      */
     public function __construct(
         public ?ChangeSituationManyResponseData $data
@@ -21,6 +21,7 @@ readonly final class ChangeSituationManyResponse extends BaseResponseRootObject
     }
 
     /**
+     * @param \AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions $response
      * @inheritDoc
      */
     public static function fromResponse(ResponseOptions $response): static

@@ -4,6 +4,9 @@ namespace AleBatistella\BlingErpApi\Entities\ProdutosVariacoes\Schema\GenerateCo
 
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class GenerateCombinationsResponseDataVariacoesVariacao extends BaseResponseObject
 {
     /**
@@ -11,7 +14,7 @@ readonly final class GenerateCombinationsResponseDataVariacoesVariacao extends B
      *
      * @param string $nome
      * @param int $ordem
-     * @param GenerateCombinationsResponseDataVariacoesVariacaoProdutoPai $produtoPai
+     * @param \AleBatistella\BlingErpApi\Entities\ProdutosVariacoes\Schema\GenerateCombinations\GenerateCombinationsResponseDataVariacoesVariacaoProdutoPai $produtoPai
      */
     public function __construct(
         public string $nome,

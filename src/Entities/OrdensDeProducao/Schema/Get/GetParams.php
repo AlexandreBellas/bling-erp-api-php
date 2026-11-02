@@ -14,7 +14,7 @@ readonly final class GetParams extends QueryParams
      *
      * @param ?int $pagina
      * @param ?int $limite
-     * @param ?int[] $idsSituacoes
+     * @param ?array $idsSituacoes
      */
     public function __construct(
         public ?int $pagina = null,

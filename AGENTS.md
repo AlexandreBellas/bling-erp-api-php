@@ -26,7 +26,7 @@ Rules live under `.cursor/rules/`. Each file states one standard for its topic.
 | [php](.cursor/rules/code-style/php.mdc) | PHP 8.2, PSR-4, readonly schema objects, synchronous calls |
 | [naming](.cursor/rules/code-style/naming.mdc) | Files, classes, endpoints, enums, and facade getters |
 | [schemas-and-enums](.cursor/rules/code-style/schemas-and-enums.mdc) | `Schema/` and `Enum/` organization |
-| [linting-and-formatting](.cursor/rules/code-style/linting-and-formatting.mdc) | Indentation, quotes, editor format, PHPUnit command |
+| [linting-and-formatting](.cursor/rules/code-style/linting-and-formatting.mdc) | PHPStan api-library preset (level 3), PHP-CS-Fixer, Composer scripts, on-commit CI |
 
 ### Documentation
 

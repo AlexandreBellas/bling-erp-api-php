@@ -22,8 +22,8 @@ class Notificacoes extends BaseEntity
     /**
      * Obtém todas as notificações de uma empresa em um período.
      *
-     * @param GetParams|array|null $params Parâmetros para a busca
      * 
+     * @param \AleBatistella\BlingErpApi\Entities\Notificacoes\Schema\Get\GetParams|array|null $params Parâmetros para a busca
      * @return GetResponse
      * @throws BlingApiException|BlingInternalException
      *
@@ -44,8 +44,8 @@ class Notificacoes extends BaseEntity
     /**
      * Obtém a quantidade de notificações de uma empresa em um período.
      * 
-     * @param GetQuantityParams|array|null $params
      * 
+     * @param \AleBatistella\BlingErpApi\Entities\Notificacoes\Schema\GetQuantity\GetQuantityParams|array|null $params
      * @return GetQuantityResponse
      * @throws BlingApiException|BlingInternalException
      * 

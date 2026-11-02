@@ -6,13 +6,16 @@ use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id;
 use AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Enum\Tributacao;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class ObtainTaxResponseDataSimplesSt extends BaseResponseObject
 {
     /**
      * Constrói o objeto.
      *
-     * @param ?Id $regraOperacao
-     * @param ?Tributacao $tributacao
+     * @param ?\AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id $regraOperacao
+     * @param ?\AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Enum\Tributacao $tributacao
      * @param ?string $cst
      * @param ?float $aliquota
      * @param ?float $base

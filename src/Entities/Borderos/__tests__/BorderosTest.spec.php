@@ -14,69 +14,69 @@ use PHPUnit\Framework\TestCase;
  */
 class BorderosTest extends TestCase
 {
-  use TestResponseTrait;
+    use TestResponseTrait;
 
-  /**
-   * Obtém a instância da entidade.
-   *
-   * @param IBlingRepository $repository
-   *
-   * @return Borderos
-   */
-  private function getInstance(IBlingRepository $repository): Borderos
-  {
-    return new Borderos($repository);
-  }
+    /**
+     * Obtém a instância da entidade.
+     *
+     *
+     * @param \AleBatistella\BlingErpApi\Repositories\IBlingRepository $repository
+     * @return Borderos
+     */
+    private function getInstance(IBlingRepository $repository): Borderos
+    {
+        return new Borderos($repository);
+    }
 
-  /**
-   * Testa a deleção.
-   *
-   * @return void
-   */
-  public function testShouldDeleteSuccessfully(): void
-  {
-    $idBordero = fake()->randomNumber();
-    $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
-    $repository->expects($this->once())
-      ->method('destroy')
-      ->with(
-        $this->callback(
-          fn(RequestOptions $requestOptions) =>
-          $requestOptions->endpoint === "borderos/$idBordero"
-        )
-      )
-      ->willReturn($this->buildResponse(status: 200, body: null));
+    /**
+     * Testa a deleção.
+     *
+     * @return void
+     */
+    public function testShouldDeleteSuccessfully(): void
+    {
+        $idBordero = fake()->randomNumber();
+        $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
+        $repository->expects($this->once())
+          ->method("destroy")
+          ->with(
+              $this->callback(
+                  fn(RequestOptions $requestOptions) =>
+                  $requestOptions->endpoint === "borderos/$idBordero"
+              )
+          )
+          ->willReturn($this->buildResponse(status: 200, body: null));
 
-    /** @var IBlingRepository $repository */
-    $response = $this->getInstance($repository)->delete($idBordero);
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
+        $response = $this->getInstance($repository)->delete($idBordero);
 
-    $this->assertNull($response);
-  }
+        $this->assertNull($response);
+    }
 
-  /**
-   * Testa a busca pontual.
-   *
-   * @return void
-   */
-  public function testShouldFindSuccessfully(): void
-  {
-    $idBordero = fake()->randomNumber();
-    $findResponse = json_decode(file_get_contents(__DIR__ . '/find/response.json'), true);
-    $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
-    $repository->expects($this->once())
-      ->method('show')
-      ->with(
-        $this->callback(
-          fn(RequestOptions $requestOptions) =>
-          $requestOptions->endpoint === "borderos/$idBordero"
-        )
-      )
-      ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($findResponse)));
+    /**
+     * Testa a busca pontual.
+     *
+     * @return void
+     */
+    public function testShouldFindSuccessfully(): void
+    {
+        $idBordero = fake()->randomNumber();
+        $findResponse = json_decode(file_get_contents(__DIR__ . "/find/response.json"), true);
+        $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
+        $repository->expects($this->once())
+          ->method("show")
+          ->with(
+              $this->callback(
+                  fn(RequestOptions $requestOptions) =>
+                  $requestOptions->endpoint === "borderos/$idBordero"
+              )
+          )
+          ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($findResponse)));
 
-    /** @var IBlingRepository $repository */
-    $response = $this->getInstance($repository)->find($idBordero);
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
+        $response = $this->getInstance($repository)->find($idBordero);
 
-    $this->assertInstanceOf(FindResponse::class, $response);
-    $this->assertEquals($findResponse, $response->toArray());
-  }
+        $this->assertInstanceOf(FindResponse::class, $response);
+        $this->assertEquals($findResponse, $response->toArray());
+    }
 }

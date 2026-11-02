@@ -5,6 +5,9 @@ namespace AleBatistella\BlingErpApi\Entities\PropostasComerciais\Schema\Find;
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\OptionalId;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class FindResponseDataParcelas extends BaseResponseObject
 {
     /**
@@ -30,7 +33,7 @@ readonly final class FindResponseDataParcelas extends BaseResponseObject
     protected static function fromRules(): array
     {
         return [
-            'formaPagamento' => OptionalId::class
+            "formaPagamento" => OptionalId::class
         ];
     }
 }

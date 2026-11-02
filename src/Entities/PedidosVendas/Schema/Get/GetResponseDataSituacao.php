@@ -5,13 +5,16 @@ namespace AleBatistella\BlingErpApi\Entities\PedidosVendas\Schema\Get;
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 use AleBatistella\BlingErpApi\Entities\PedidosVendas\Enum\Situacao;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class GetResponseDataSituacao extends BaseResponseObject
 {
     /**
      * Constrói o objeto.
      *
      * @param int $id
-     * @param Situacao $valor
+     * @param \AleBatistella\BlingErpApi\Entities\PedidosVendas\Enum\Situacao $valor
      */
     public function __construct(
         public int $id,

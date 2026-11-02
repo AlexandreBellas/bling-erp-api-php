@@ -15,7 +15,7 @@ readonly final class GetQuantityResponse extends BaseResponseRootObject
     /**
      * Constrói o objeto.
      *
-     * @param GetQuantityResponseData $data
+     * @param \AleBatistella\BlingErpApi\Entities\Notificacoes\Schema\GetQuantity\GetQuantityResponseData $data
      */
     public function __construct(
         public GetQuantityResponseData $data
@@ -23,6 +23,7 @@ readonly final class GetQuantityResponse extends BaseResponseRootObject
     }
 
     /**
+     * @param \AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions $response
      * @inheritDoc
      */
     public static function fromResponse(ResponseOptions $response): static

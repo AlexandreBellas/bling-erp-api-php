@@ -2,10 +2,10 @@
 
 namespace AleBatistella\BlingErpApi\Entities\GruposDeProdutos;
 
+use AleBatistella\BlingErpApi\Entities\GruposDeProdutos\Schema\DeleteMany\DeleteManyParams;
+
 use AleBatistella\BlingErpApi\Entities\GruposDeProdutos\Schema\Delete\DeleteResponse;
 use AleBatistella\BlingErpApi\Entities\GruposDeProdutos\Schema\DeleteMany\DeleteManyResponse;
-use AleBatistella\BlingErpApi\Entities\GruposDeProdutos\Schema\ChangeSituation\ChangeSituationResponse;
-use AleBatistella\BlingErpApi\Entities\GruposDeProdutos\Schema\ChangeSituationMany\ChangeSituationManyResponse;
 use AleBatistella\BlingErpApi\Entities\GruposDeProdutos\Schema\Get\GetParams;
 use AleBatistella\BlingErpApi\Entities\GruposDeProdutos\Schema\Create\CreateResponse;
 use AleBatistella\BlingErpApi\Entities\GruposDeProdutos\Schema\Find\FindResponse;
@@ -26,19 +26,19 @@ class GruposDeProdutos extends BaseEntity
     /**
      * Remove múltiplos grupos de produtos.
      *
-     * @param int[] $idsGruposProdutos IDs dos grupos de produtos
      *
+     * @param \AleBatistella\BlingErpApi\Entities\GruposDeProdutos\Schema\DeleteMany\DeleteManyParams|array|null $params
      * @return DeleteManyResponse
      * @throws BlingApiException|BlingInternalException
      *
      * @see https://developer.bling.com.br/referencia#/Grupos%20de%20Produtos/delete_grupos_produtos
      */
-    public function deleteMany(array $idsGruposProdutos): DeleteManyResponse
+    public function deleteMany(DeleteManyParams|array|null $params = null): DeleteManyResponse
     {
         $response = $this->repository->destroy(
             new RequestOptions(
                 endpoint: "grupos-produtos",
-                queryParams: ['idsGruposProdutos' => $idsGruposProdutos]
+                queryParams: $params
             )
         );
 
@@ -69,8 +69,8 @@ class GruposDeProdutos extends BaseEntity
     /**
      * Obtém grupos de produtos.
      *
-     * @param GetParams|array|null $params Parâmetros para a busca
      *
+     * @param \AleBatistella\BlingErpApi\Entities\GruposDeProdutos\Schema\Get\GetParams|array|null $params Parâmetros para a busca
      * @return GetResponse
      * @throws BlingApiException|BlingInternalException
      *
@@ -134,10 +134,10 @@ class GruposDeProdutos extends BaseEntity
     /**
      * Altera um grupo de produtos.
      *
+     *
      * @param int $idGrupoProduto ID do grupo de produto
      * @param array $body Corpo da requisição
-     *
-     * @return UpdateResponse
+     * @return null
      * @throws BlingApiException|BlingInternalException
      *
      * @see https://developer.bling.com.br/referencia#/Grupos%20de%20Produtos/put_grupos_produtos__idGrupoProduto_

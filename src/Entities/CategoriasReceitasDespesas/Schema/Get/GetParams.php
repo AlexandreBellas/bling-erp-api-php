@@ -19,8 +19,8 @@ readonly final class GetParams extends QueryParams
      * 
      * @param ?int $pagina N° da página da listagem
      * @param ?int $limite Quantidade de registros que devem ser exibidos por página
-     * @param ?Tipo $tipo
-     * @param ?Situacao $situacao
+     * @param ?\AleBatistella\BlingErpApi\Entities\CategoriasReceitasDespesas\Enum\Tipo $tipo
+     * @param ?\AleBatistella\BlingErpApi\Entities\CategoriasReceitasDespesas\Enum\Situacao $situacao
      */
     public function __construct(
         public ?int $pagina = null,

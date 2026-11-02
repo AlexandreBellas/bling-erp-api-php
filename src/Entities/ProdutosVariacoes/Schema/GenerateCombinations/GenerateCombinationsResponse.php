@@ -14,7 +14,7 @@ readonly final class GenerateCombinationsResponse extends BaseResponseRootObject
     /**
      * Constrói o objeto.
      *
-     * @param GenerateCombinationsResponseData $data
+     * @param \AleBatistella\BlingErpApi\Entities\ProdutosVariacoes\Schema\GenerateCombinations\GenerateCombinationsResponseData $data
      */
     public function __construct(
         public GenerateCombinationsResponseData $data
@@ -22,6 +22,7 @@ readonly final class GenerateCombinationsResponse extends BaseResponseRootObject
     }
 
     /**
+     * @param \AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions $response
      * @inheritDoc
      */
     public static function fromResponse(ResponseOptions $response): static

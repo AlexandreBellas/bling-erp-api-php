@@ -4,13 +4,16 @@ namespace AleBatistella\BlingErpApi\Entities\Produtos\Schema\Find;
 
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class FindResponseDataMidiaImagens extends BaseResponseObject
 {
     /**
      * Constrói o objeto.
      *
-     * @param ?FindResponseDataMidiaImagensExternas[] $externas
-     * @param ?FindResponseDataMidiaImagensInternas[] $internas
+     * @param ?array $externas
+     * @param ?array $internas
      */
     public function __construct(
         public ?array $externas,
@@ -24,8 +27,8 @@ readonly final class FindResponseDataMidiaImagens extends BaseResponseObject
     protected static function fromRules(): array
     {
         return [
-            'externas' => FindResponseDataMidiaImagensExternas::class,
-            'internas' => FindResponseDataMidiaImagensInternas::class,
+            "externas" => FindResponseDataMidiaImagensExternas::class,
+            "internas" => FindResponseDataMidiaImagensInternas::class,
         ];
     }
 }

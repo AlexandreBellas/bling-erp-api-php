@@ -13,13 +13,14 @@ readonly final class DeleteManyResponse extends BaseResponseRootObject
     /**
      * Constrói o objeto.
      *
-     * @param ?DeleteManyResponseData $data
+     * @param ?\AleBatistella\BlingErpApi\Entities\GruposDeProdutos\Schema\DeleteMany\DeleteManyResponseData $data
      */
     public function __construct(
         public ?DeleteManyResponseData $data
     ) {}
 
     /**
+     * @param \AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions $response
      * @inheritDoc
      */
     public static function fromResponse(ResponseOptions $response): static

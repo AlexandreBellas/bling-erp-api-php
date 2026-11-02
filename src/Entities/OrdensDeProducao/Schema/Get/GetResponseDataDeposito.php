@@ -4,6 +4,9 @@ namespace AleBatistella\BlingErpApi\Entities\OrdensDeProducao\Schema\Get;
 
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class GetResponseDataDeposito extends BaseResponseObject
 {
     /**

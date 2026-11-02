@@ -11,6 +11,9 @@ use AleBatistella\BlingErpApi\Entities\ProdutosVariacoes\Enum\TipoProducao;
 use AleBatistella\BlingErpApi\Entities\ProdutosVariacoes\Enum\Condicao;
 use AleBatistella\BlingErpApi\Entities\ProdutosVariacoes\Enum\ActionEstoque;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class GenerateCombinationsResponseDataVariacoes extends BaseResponseObject
 {
     /**
@@ -20,9 +23,9 @@ readonly final class GenerateCombinationsResponseDataVariacoes extends BaseRespo
      * @param string $nome
      * @param ?string $codigo
      * @param ?float $preco
-     * @param Tipo $tipo
-     * @param Situacao $situacao
-     * @param Formato $formato
+     * @param \AleBatistella\BlingErpApi\Entities\ProdutosVariacoes\Enum\Tipo $tipo
+     * @param \AleBatistella\BlingErpApi\Entities\ProdutosVariacoes\Enum\Situacao $situacao
+     * @param \AleBatistella\BlingErpApi\Entities\ProdutosVariacoes\Enum\Formato $formato
      * @param ?string $descricaoCurta
      * @param ?string $imagemURL
      * @param ?string $dataValidade
@@ -33,24 +36,24 @@ readonly final class GenerateCombinationsResponseDataVariacoes extends BaseRespo
      * @param ?float $itensPorCaixa
      * @param ?string $gtin
      * @param ?string $gtinEmbalagem
-     * @param ?TipoProducao $tipoProducao
-     * @param ?Condicao $condicao
+     * @param ?\AleBatistella\BlingErpApi\Entities\ProdutosVariacoes\Enum\TipoProducao $tipoProducao
+     * @param ?\AleBatistella\BlingErpApi\Entities\ProdutosVariacoes\Enum\Condicao $condicao
      * @param ?bool $freteGratis
      * @param ?string $marca
      * @param ?string $descricaoComplementar
      * @param ?string $linkExterno
      * @param ?string $observacoes
      * @param ?string $descricaoEmbalagemDiscreta
-     * @param ?Id $categoria
-     * @param ?GenerateCombinationsResponseDataEstoque $estoque
-     * @param ?ActionEstoque $actionEstoque
-     * @param ?GenerateCombinationsResponseDataDimensoes $dimensoes
-     * @param ?GenerateCombinationsResponseDataTributacao $tributacao
-     * @param ?GenerateCombinationsResponseDataMidia $midia
-     * @param ?Id $linhaProduto
-     * @param ?GenerateCombinationsResponseDataEstrutura $estrutura
-     * @param ?GenerateCombinationsResponseDataCamposCustomizados[] $camposCustomizados
-     * @param ?GenerateCombinationsResponseDataVariacoesVariacao $variacao
+     * @param ?\AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id $categoria
+     * @param ?\AleBatistella\BlingErpApi\Entities\ProdutosVariacoes\Schema\GenerateCombinations\GenerateCombinationsResponseDataEstoque $estoque
+     * @param ?\AleBatistella\BlingErpApi\Entities\ProdutosVariacoes\Enum\ActionEstoque $actionEstoque
+     * @param ?\AleBatistella\BlingErpApi\Entities\ProdutosVariacoes\Schema\GenerateCombinations\GenerateCombinationsResponseDataDimensoes $dimensoes
+     * @param ?\AleBatistella\BlingErpApi\Entities\ProdutosVariacoes\Schema\GenerateCombinations\GenerateCombinationsResponseDataTributacao $tributacao
+     * @param ?\AleBatistella\BlingErpApi\Entities\ProdutosVariacoes\Schema\GenerateCombinations\GenerateCombinationsResponseDataMidia $midia
+     * @param ?\AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id $linhaProduto
+     * @param ?\AleBatistella\BlingErpApi\Entities\ProdutosVariacoes\Schema\GenerateCombinations\GenerateCombinationsResponseDataEstrutura $estrutura
+     * @param ?array $camposCustomizados
+     * @param ?\AleBatistella\BlingErpApi\Entities\ProdutosVariacoes\Schema\GenerateCombinations\GenerateCombinationsResponseDataVariacoesVariacao $variacao
      */
     public function __construct(
         public ?int $id,
@@ -97,7 +100,7 @@ readonly final class GenerateCombinationsResponseDataVariacoes extends BaseRespo
     protected static function fromRules(): array
     {
         return [
-            'camposCustomizados' => GenerateCombinationsResponseDataCamposCustomizados::class,
+            "camposCustomizados" => GenerateCombinationsResponseDataCamposCustomizados::class,
         ];
     }
 }

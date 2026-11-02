@@ -2,6 +2,8 @@
 
 namespace AleBatistella\BlingErpApi\Entities\Nfes;
 
+use AleBatistella\BlingErpApi\Entities\Nfes\Schema\DeleteMany\DeleteManyParams;
+
 use AleBatistella\BlingErpApi\Entities\Nfes\Schema\DeleteMany\DeleteManyResponse;
 use AleBatistella\BlingErpApi\Entities\Nfes\Schema\Get\GetParams;
 use AleBatistella\BlingErpApi\Entities\Nfes\Schema\Create\CreateResponse;
@@ -29,19 +31,19 @@ class Nfes extends BaseEntity
     /**
      * Remove múltiplas notas fiscais.
      *
-     * @param int[] $idsNotas IDs das notas fiscais
      *
+     * @param \AleBatistella\BlingErpApi\Entities\Nfes\Schema\DeleteMany\DeleteManyParams|array|null $params
      * @return DeleteManyResponse
      * @throws BlingApiException|BlingInternalException
      *
      * @see https://developer.bling.com.br/referencia#/Notas%20Fiscais%20Eletr%C3%B4nicas/delete_nfe
      */
-    public function deleteMany(array $idsNotas): DeleteManyResponse
+    public function deleteMany(DeleteManyParams|array|null $params = null): DeleteManyResponse
     {
         $response = $this->repository->destroy(
             new RequestOptions(
                 endpoint: "nfe",
-                queryParams: ['idsNotas' => $idsNotas]
+                queryParams: $params
             )
         );
 
@@ -51,8 +53,8 @@ class Nfes extends BaseEntity
     /**
      * Obtém notas fiscais.
      *
-     * @param GetParams|array|null $params Parâmetros para a busca
      *
+     * @param \AleBatistella\BlingErpApi\Entities\Nfes\Schema\Get\GetParams|array|null $params Parâmetros para a busca
      * @return GetResponse
      * @throws BlingApiException|BlingInternalException
      *

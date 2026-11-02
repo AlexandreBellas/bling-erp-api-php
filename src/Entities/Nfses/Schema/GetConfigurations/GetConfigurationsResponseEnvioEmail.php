@@ -4,6 +4,9 @@ namespace AleBatistella\BlingErpApi\Entities\Nfses\Schema\GetConfigurations;
 
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class GetConfigurationsResponseEnvioEmail extends BaseResponseObject
 {
     /**
@@ -13,7 +16,7 @@ readonly final class GetConfigurationsResponseEnvioEmail extends BaseResponseObj
      * @param ?string $remetente
      * @param ?string $assunto
      * @param ?string $mensagem
-     * @param ?GetConfigurationsResponseEnvioEmailPadrao $padrao
+     * @param ?\AleBatistella\BlingErpApi\Entities\Nfses\Schema\GetConfigurations\GetConfigurationsResponseEnvioEmailPadrao $padrao
      */
     public function __construct(
         public ?bool $enviarBoletoRPS,

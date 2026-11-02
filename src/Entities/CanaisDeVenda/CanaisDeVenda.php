@@ -22,8 +22,8 @@ class CanaisDeVenda extends BaseEntity
     /**
      * Obtém canais de venda.
      *
-     * @param GetParams|array|null $params Parâmetros para a busca
      * 
+     * @param \AleBatistella\BlingErpApi\Entities\CanaisDeVenda\Schema\Get\GetParams|array|null $params Parâmetros para a busca
      * @return GetResponse
      * @throws BlingApiException|BlingInternalException
      *
@@ -65,8 +65,8 @@ class CanaisDeVenda extends BaseEntity
     /**
      * Obtém os tipos de canais de venda.
      *
-     * @param GetTypesParams|array|null $params Parâmetros para a busca
      * 
+     * @param \AleBatistella\BlingErpApi\Entities\CanaisDeVenda\Schema\GetTypes\GetTypesParams|array|null $params Parâmetros para a busca
      * @return GetTypesResponse
      * @throws BlingApiException|BlingInternalException
      *

@@ -1,0 +1,29 @@
+parameters:
+    level: 3
+    phpVersion: 80200
+    paths:
+        - src
+    bootstrapFiles:
+        - dev/fake.php
+        - global-functions.php
+    apiLibrary:
+        rootNamespace: AleBatistella\BlingErpApi
+        docsHost: developer.bling.com.br
+        facadeClass: Bling
+        repositoryInterface: IBlingRepository
+        apiException: BlingApiException
+        internalException: BlingInternalException
+        entityBaseClass: BaseEntity
+        queryParamsClass: QueryParams
+        responseRootClass: BaseResponseRootObject
+        responseObjectClass: BaseResponseObject
+        responseContract: IResponseRootObject
+        requestOptionsClass: RequestOptions
+        prepareDateMethod: prepareStringOrDateParam
+        toArrayFunction: objectToArray
+        enumDocblockPrefix: "Enumerador de"
+        requestDtoClasses:
+            - QueryParams
+            - Body
+            - Headers
+        testResponseTrait: TestResponseTrait

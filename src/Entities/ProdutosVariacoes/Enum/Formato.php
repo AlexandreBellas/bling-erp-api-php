@@ -7,7 +7,7 @@ namespace AleBatistella\BlingErpApi\Entities\ProdutosVariacoes\Enum;
  */
 enum Formato: string
 {
-    case SIMPLES = 'S';
-    case COM_VARIACOES = 'V';
-    case COM_COMPOSICAO = 'E';
+    case SIMPLES = "S";
+    case COM_VARIACOES = "V";
+    case COM_COMPOSICAO = "E";
 }

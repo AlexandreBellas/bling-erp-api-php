@@ -4,14 +4,17 @@ namespace AleBatistella\BlingErpApi\Entities\OrdensDeProducao\Schema\GenerateOve
 
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class GenerateOverDemandResponseData extends BaseResponseObject
 {
     /**
      * Constrói o objeto.
      *
-     * @param int $id
-     * @param ?GenerateOverDemandResponseDataItens[] $itens
-     * @param GenerateOverDemandResponseDataDeposito $deposito
+     * @param ?int $id
+     * @param ?array $itens
+     * @param \AleBatistella\BlingErpApi\Entities\OrdensDeProducao\Schema\GenerateOverDemand\GenerateOverDemandResponseDataDeposito $deposito
      */
     public function __construct(
         public ?int $id,

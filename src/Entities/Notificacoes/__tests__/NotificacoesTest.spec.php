@@ -21,8 +21,8 @@ class NotificacoesTest extends TestCase
     /**
      * Obtém a instância da entidade.
      *
-     * @param IBlingRepository $repository
      *
+     * @param \AleBatistella\BlingErpApi\Repositories\IBlingRepository $repository
      * @return Notificacoes
      */
     private function getInstance(IBlingRepository $repository): Notificacoes
@@ -37,10 +37,10 @@ class NotificacoesTest extends TestCase
      */
     public function testShouldGetSuccessfully(): void
     {
-        $getResponse = json_decode(file_get_contents(__DIR__ . '/get/response.json'), true);
+        $getResponse = json_decode(file_get_contents(__DIR__ . "/get/response.json"), true);
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('index')
+            ->method("index")
             ->with(
                 $this->callback(
                     fn (RequestOptions $requestOptions) =>
@@ -50,7 +50,7 @@ class NotificacoesTest extends TestCase
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($getResponse)));
 
-        /** @var IBlingRepository $repository */
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $response = $this->getInstance($repository)->get();
 
         $this->assertInstanceOf(GetResponse::class, $response);
@@ -64,10 +64,10 @@ class NotificacoesTest extends TestCase
      */
     public function testShouldGetQuantitySuccessfully(): void
     {
-        $getQuantityResponse = json_decode(file_get_contents(__DIR__ . '/get-quantity/response.json'), true);
+        $getQuantityResponse = json_decode(file_get_contents(__DIR__ . "/get-quantity/response.json"), true);
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('index')
+            ->method("index")
             ->with(
                 $this->callback(
                     fn (RequestOptions $requestOptions) =>
@@ -76,7 +76,7 @@ class NotificacoesTest extends TestCase
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($getQuantityResponse)));
 
-        /** @var IBlingRepository $repository */
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $response = $this->getInstance($repository)->getQuantity();
 
         $this->assertInstanceOf(GetQuantityResponse::class, $response);
@@ -91,10 +91,10 @@ class NotificacoesTest extends TestCase
     public function testShouldReadSuccessfully(): void
     {
         $idNotificacao = fake()->randomNumber();
-        $readResponse = json_decode(file_get_contents(__DIR__ . '/read/response.json'), true);
+        $readResponse = json_decode(file_get_contents(__DIR__ . "/read/response.json"), true);
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('store')
+            ->method("store")
             ->with(
                 $this->callback(
                     fn (RequestOptions $requestOptions) =>
@@ -103,7 +103,7 @@ class NotificacoesTest extends TestCase
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($readResponse)));
 
-        /** @var IBlingRepository $repository */
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $response = $this->getInstance($repository)->read($idNotificacao);
 
         $this->assertInstanceOf(ReadResponse::class, $response);

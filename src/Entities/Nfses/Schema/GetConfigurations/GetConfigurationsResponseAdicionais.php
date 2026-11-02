@@ -4,6 +4,9 @@ namespace AleBatistella\BlingErpApi\Entities\Nfses\Schema\GetConfigurations;
 
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class GetConfigurationsResponseAdicionais extends BaseResponseObject
 {
     /**
@@ -22,7 +25,7 @@ readonly final class GetConfigurationsResponseAdicionais extends BaseResponseObj
      * @param ?bool $incluirParcelas
      * @param ?bool $considerarDataParcela
      * @param ?bool $considerarDataOrdemServico
-     * @param ?GetConfigurationsResponseAdicionaisCadastroPrefeitura $cadastroPrefeitura
+     * @param ?\AleBatistella\BlingErpApi\Entities\Nfses\Schema\GetConfigurations\GetConfigurationsResponseAdicionaisCadastroPrefeitura $cadastroPrefeitura
      */
     public function __construct(
         public ?string $CFPS,

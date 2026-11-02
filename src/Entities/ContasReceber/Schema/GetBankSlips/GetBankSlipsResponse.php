@@ -13,10 +13,10 @@ readonly final class GetBankSlipsResponse extends BaseResponseRootObject
     /**
      * Constrói o objeto.
      *
-     * @param ?GetBankSlipsResponseVenda $venda
-     * @param ?GetBankSlipsResponseNotaFiscal $notaFiscal
+     * @param ?\AleBatistella\BlingErpApi\Entities\ContasReceber\Schema\GetBankSlips\GetBankSlipsResponseVenda $venda
+     * @param ?\AleBatistella\BlingErpApi\Entities\ContasReceber\Schema\GetBankSlips\GetBankSlipsResponseNotaFiscal $notaFiscal
      * @param ?float $valorTotal
-     * @param ?GetBankSlipsResponseContas[] $contas
+     * @param ?array $contas
      */
     public function __construct(
         public ?GetBankSlipsResponseVenda $venda,
@@ -31,11 +31,12 @@ readonly final class GetBankSlipsResponse extends BaseResponseRootObject
     protected static function fromRules(): array
     {
         return [
-            'contas' => GetBankSlipsResponseContas::class,
+            "contas" => GetBankSlipsResponseContas::class,
         ];
     }
 
     /**
+     * @param \AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions $response
      * @inheritDoc
      */
     public static function fromResponse(ResponseOptions $response): static

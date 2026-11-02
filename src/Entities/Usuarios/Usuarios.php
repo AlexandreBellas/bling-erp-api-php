@@ -6,6 +6,7 @@ use AleBatistella\BlingErpApi\Entities\Shared\BaseEntity;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\RequestOptions;
 use AleBatistella\BlingErpApi\Entities\Usuarios\Schema\ChangePassword\ChangePasswordResponse;
 use AleBatistella\BlingErpApi\Entities\Usuarios\Schema\RecoverPassword\RecoverPasswordResponse;
+use AleBatistella\BlingErpApi\Entities\Usuarios\Schema\ValidateHash\ValidateHashParams;
 use AleBatistella\BlingErpApi\Entities\Usuarios\Schema\ValidateHash\ValidateHashResponse;
 use AleBatistella\BlingErpApi\Exceptions\BlingApiException;
 use AleBatistella\BlingErpApi\Exceptions\BlingInternalException;
@@ -20,19 +21,19 @@ class Usuarios extends BaseEntity
     /**
      * Valida o hash recebido.
      * 
-     * @param string $hash
      *
+     * @param \AleBatistella\BlingErpApi\Entities\Usuarios\Schema\ValidateHash\ValidateHashParams|array|null $params
      * @return ValidateHashResponse
      * @throws BlingApiException|BlingInternalException
      *
-     * @see https://developer.bling.com.br/referencia#/Situa%C3%A7%C3%B5es%20-%20M%C3%B3dulos/get_situacoes_modulos
+     * @see https://developer.bling.com.br/referencia#/Usu%C3%A1rios/get_usuarios_verificar_hash
      */
-    public function validateHash(string $hash): ValidateHashResponse
+    public function validateHash(ValidateHashParams|array|null $params = null): ValidateHashResponse
     {
-        $response = $this->repository->show(
+        $response = $this->repository->index(
             new RequestOptions(
                 endpoint: "usuarios/verificar-hash",
-                queryParams: ['hash' => $hash]
+                queryParams: $params
             )
         );
 
@@ -42,19 +43,19 @@ class Usuarios extends BaseEntity
     /**
      * Redefine senha do usuário.
      * 
-     * @param string $password
      *
+     * @param array $body
      * @return null
      * @throws BlingApiException|BlingInternalException
      *
      * @see https://developer.bling.com.br/referencia#/Usu%C3%A1rios/patch_usuarios_redefinir_senha
      */
-    public function changePassword(string $password): null
+    public function changePassword(array $body): null
     {
         $response = $this->repository->update(
             new RequestOptions(
                 endpoint: "usuarios/redefinir-senha",
-                body: $password
+                body: $body
             )
         );
 
@@ -64,19 +65,19 @@ class Usuarios extends BaseEntity
     /**
      * Envia solicitação de recuperação de senha.
      * 
-     * @param string $email
      *
+     * @param array $body
      * @return RecoverPasswordResponse
      * @throws BlingApiException|BlingInternalException
      *
-     * @see https://developer.bling.com.br/referencia#/Usu%C3%A1rios/patch_usuarios_redefinir_senha
+     * @see https://developer.bling.com.br/referencia#/Usu%C3%A1rios/post_usuarios_recuperar_senha
      */
-    public function recoverPassword(string $email): RecoverPasswordResponse
+    public function recoverPassword(array $body): RecoverPasswordResponse
     {
         $response = $this->repository->store(
             new RequestOptions(
                 endpoint: "usuarios/recuperar-senha",
-                body: $email
+                body: $body
             )
         );
 

@@ -10,25 +10,26 @@ use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions;
  */
 readonly final class FindResponse extends BaseResponseRootObject
 {
-  /**
-   * Constrói o objeto.
-   *
-   * @param FindResponseData $data
-   */
-  public function __construct(
-    public FindResponseData $data
-  ) {
-  }
-
-  /**
-   * @inheritDoc
-   */
-  public static function fromResponse(ResponseOptions $response): static
-  {
-    if (is_null($response->body)) {
-      static::throwForInconsistentResponseOptions($response);
+    /**
+     * Constrói o objeto.
+     *
+     * @param \AleBatistella\BlingErpApi\Entities\Borderos\Schema\Find\FindResponseData $data
+     */
+    public function __construct(
+        public FindResponseData $data
+    ) {
     }
 
-    return self::from($response->body->content);
-  }
+    /**
+     * @param \AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions $response
+     * @inheritDoc
+     */
+    public static function fromResponse(ResponseOptions $response): static
+    {
+        if (is_null($response->body)) {
+            static::throwForInconsistentResponseOptions($response);
+        }
+
+        return self::from($response->body->content);
+    }
 }

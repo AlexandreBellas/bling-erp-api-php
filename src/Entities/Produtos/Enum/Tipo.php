@@ -7,7 +7,7 @@ namespace AleBatistella\BlingErpApi\Entities\Produtos\Enum;
  */
 enum Tipo: string
 {
-    case SERVICO = 'S';
-    case PRODUTO = 'P';
-    case SERVICO_06_21_22 = 'N';
+    case SERVICO = "S";
+    case PRODUTO = "P";
+    case SERVICO_06_21_22 = "N";
 }

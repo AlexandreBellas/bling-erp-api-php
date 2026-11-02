@@ -8,13 +8,16 @@ use AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Enum\Tributacao;
 use AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Enum\TipoPartilha;
 use AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Enum\MotivoDesoneracaoICMS;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class ObtainTaxResponseDataIcms extends BaseResponseObject
 {
     /**
      * Constrói o objeto.
      *
-     * @param ?Id $regraOperacao
-     * @param ?Tributacao $tributacao
+     * @param ?\AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id $regraOperacao
+     * @param ?\AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Enum\Tributacao $tributacao
      * @param ?string $cst
      * @param ?float $aliquota
      * @param ?float $base
@@ -32,9 +35,9 @@ readonly final class ObtainTaxResponseDataIcms extends BaseResponseObject
      * @param ?float $aliquotaPresumido
      * @param ?float $porcentagemBaseCalculoUfDestino
      * @param ?float $porcentagemIcmsUfDestino
-     * @param ?TipoPartilha $tipoPartilha
+     * @param ?\AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Enum\TipoPartilha $tipoPartilha
      * @param ?float $valorIcmsDesonerado
-     * @param ?MotivoDesoneracaoICMS $motivoDesoneracaoIcms
+     * @param ?\AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Enum\MotivoDesoneracaoICMS $motivoDesoneracaoIcms
      * @param ?float $baseDiferimento
      * @param ?float $valorBaseDiferimento
      * @param ?float $valorPresumido

@@ -39,7 +39,7 @@ Follow `src/Entities/Contatos/__tests__/ContatosTest.spec.php`:
 4. `$repository->expects($this->once())->method('<verb>')`.
 5. `->with($this->callback(fn (RequestOptions $requestOptions) => $requestOptions->endpoint === '<path>'))`.
 6. `->willReturn($this->buildResponse(status: 200, body: $this->buildBody($decoded)))`.
-7. Call the entity through `getInstance`. Annotate the mock with `/** @var IBlingRepository $repository */` before the call.
+7. Call the entity through `getInstance`. Annotate the mock with `/** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */` before the call.
 8. `assertNull` when the method returns `null`.
 9. `assertInstanceOf` plus `assertEquals($decoded, $response->toArray())` when it returns a response object.
 
@@ -58,7 +58,7 @@ Spy the repository method the entity calls (`index`, `show`, `store`, `update`, 
 ## Running tests
 
 ```bash
-vendor/phpunit/phpunit/phpunit -c phpunit.xml
+composer test
 ```
 
 ## What these tests cover

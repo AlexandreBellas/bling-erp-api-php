@@ -7,9 +7,9 @@ namespace AleBatistella\BlingErpApi\Entities\Vendedores\Enum;
  */
 enum SituacaoFiltro: string
 {
-    case ATIVO = 'A';
-    case INATIVO = 'I';
-    case SEM_MOVIMENTO = 'S';
-    case EXCLUIDO = 'E';
-    case TODOS = 'T';
+    case ATIVO = "A";
+    case INATIVO = "I";
+    case SEM_MOVIMENTO = "S";
+    case EXCLUIDO = "E";
+    case TODOS = "T";
 }

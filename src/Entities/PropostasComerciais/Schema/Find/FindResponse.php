@@ -20,8 +20,8 @@ readonly final class FindResponse extends BaseResponseRootObject
      * @param ?float $total
      * @param ?float $totalProdutos
      * @param ?int $numero
-     * @param ?OptionalId $contato
-     * @param ?OptionalId $loja
+     * @param ?\AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\OptionalId $contato
+     * @param ?\AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\OptionalId $loja
      * @param ?float $desconto
      * @param ?float $outrasDespesas
      * @param ?int $garantia
@@ -34,8 +34,8 @@ readonly final class FindResponse extends BaseResponseRootObject
      * @param ?string $prazoEntrega
      * @param ?array $itens
      * @param ?array $parcelas
-     * @param ?OptionalId $vendedor
-     * @param ?FindResponseDataTransporte $transporte
+     * @param ?\AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\OptionalId $vendedor
+     * @param ?\AleBatistella\BlingErpApi\Entities\PropostasComerciais\Schema\Find\FindResponseDataTransporte $transporte
      */
     public function __construct(
         public ?int $id,
@@ -68,12 +68,13 @@ readonly final class FindResponse extends BaseResponseRootObject
     protected static function fromRules(): array
     {
         return [
-            'itens' => FindResponseDataItens::class,
-            'parcelas' => FindResponseDataParcelas::class,
+            "itens" => FindResponseDataItens::class,
+            "parcelas" => FindResponseDataParcelas::class,
         ];
     }
 
     /**
+     * @param \AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions $response
      * @inheritDoc
      */
     public static function fromResponse(ResponseOptions $response): static

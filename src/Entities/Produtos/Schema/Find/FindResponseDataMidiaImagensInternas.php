@@ -5,6 +5,9 @@ namespace AleBatistella\BlingErpApi\Entities\Produtos\Schema\Find;
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class FindResponseDataMidiaImagensInternas extends BaseResponseObject
 {
     /**
@@ -13,8 +16,8 @@ readonly final class FindResponseDataMidiaImagensInternas extends BaseResponseOb
      * @param string $linkMiniatura
      * @param string $validade
      * @param ?int $ordem
-     * @param Id $anexo
-     * @param Id $anexoVinculo
+     * @param \AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id $anexo
+     * @param \AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id $anexoVinculo
      */
     public function __construct(
         public string $linkMiniatura,

@@ -2,6 +2,7 @@
 
 namespace AleBatistella\BlingErpApi\Entities\Shared;
 
+
 use AleBatistella\BlingErpApi\Contracts\IResponseObject;
 use AleBatistella\BlingErpApi\Exceptions\BlingInternalException;
 use AleBatistella\BlingErpApi\Exceptions\BlingParseResponsePayloadException;
@@ -14,7 +15,7 @@ readonly abstract class BaseResponseObject implements IResponseObject
     /**
      * Construtor base.
      */
-    private function __construct(...$args)
+    private function __construct()
     {
     }
 
@@ -24,7 +25,7 @@ readonly abstract class BaseResponseObject implements IResponseObject
      * Função usada para ser sobrescrita quando há propriedades na classe que
      * são "_array_ de objetos".
      * 
-     * @return array<string, IResponseObject>
+     * @return array<string, class-string<IResponseObject>>
      */
     protected static function fromRules(): array
     {
@@ -32,6 +33,7 @@ readonly abstract class BaseResponseObject implements IResponseObject
     }
 
     /**
+     * @param array $attributes
      * @inheritDoc
      */
     public static function from(array $attributes): static
@@ -51,13 +53,23 @@ readonly abstract class BaseResponseObject implements IResponseObject
             }
 
             if ($propType instanceof \ReflectionNamedType) {
-                $properties[$propName] = static::parseProperty(
+                $properties[$propName] = self::parseProperty(
                     propType: $propType,
                     propName: $propName,
                     attributes: $attributes
                 );
 
                 continue;
+            }
+
+            if (
+                !$propType instanceof \ReflectionUnionType
+                && !$propType instanceof \ReflectionIntersectionType
+            ) {
+                $classSignature = static::class;
+                throw new BlingInternalException(
+                    "Could not parse type \"$propName\" of class \"$classSignature\"."
+                );
             }
 
             $success = false;
@@ -67,7 +79,7 @@ readonly abstract class BaseResponseObject implements IResponseObject
                 }
 
                 try {
-                    $properties[$propName] = static::parseProperty(
+                    $properties[$propName] = self::parseProperty(
                         propType: $propTypeFromUnion,
                         propName: $propName,
                         attributes: $attributes
@@ -87,7 +99,14 @@ readonly abstract class BaseResponseObject implements IResponseObject
             }
         }
 
-        return new static(...$properties);
+        $instance = (new \ReflectionClass(static::class))->newInstance(...$properties);
+        if (!$instance instanceof static) {
+            throw new BlingInternalException(
+                "Could not build \"" . static::class . "\"."
+            );
+        }
+
+        return $instance;
     }
 
     /**
@@ -118,12 +137,12 @@ readonly abstract class BaseResponseObject implements IResponseObject
             );
         }
 
-        if (in_array($propTypeName, ['int', 'string', 'bool', 'float'])) {
+        if (in_array($propTypeName, ["int", "string", "bool", "float"])) {
             // Primitivo
             return $attributes[$propName];
         }
 
-        if ($propTypeName === 'array') {
+        if ($propTypeName === "array") {
             return array_key_exists($propName, $fromRules)
                 ? // Array de objetos 
                 array_map(
@@ -140,7 +159,7 @@ readonly abstract class BaseResponseObject implements IResponseObject
                 return null;
             }
 
-            /** @var \BackedEnum */
+            /** @var class-string<\BackedEnum> $enumSignature */
             $enumSignature = $objSignature;
             $enumValue = $enumSignature::tryFrom($attributes[$propName]);
 
@@ -153,7 +172,7 @@ readonly abstract class BaseResponseObject implements IResponseObject
         }
 
         // Objeto
-        /** @var IResponseObject $objSignature */
+        /** @var class-string<IResponseObject> $objSignature */
         return $objSignature::from($attributes[$propName]);
     }
 

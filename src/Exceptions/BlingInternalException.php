@@ -14,8 +14,8 @@ class BlingInternalException extends \Exception
      * Constrói a exceção.
      *
      * @param string $message
-     * @param ?Body $responseBody
-     * @param ?Headers $responseHeaders
+     * @param ?\AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\Headers $responseHeaders
+     * @param ?\AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\Body $responseBody
      * @param int $code
      * @param ?\Throwable $previous
      */

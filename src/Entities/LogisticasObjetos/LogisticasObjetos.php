@@ -2,11 +2,9 @@
 
 namespace AleBatistella\BlingErpApi\Entities\LogisticasObjetos;
 
-use AleBatistella\BlingErpApi\Entities\LogisticasObjetos\Schema\Get\GetParams;
 use AleBatistella\BlingErpApi\Entities\LogisticasObjetos\Schema\Create\CreateResponse;
 use AleBatistella\BlingErpApi\Entities\LogisticasObjetos\Schema\Delete\DeleteResponse;
 use AleBatistella\BlingErpApi\Entities\LogisticasObjetos\Schema\Find\FindResponse;
-use AleBatistella\BlingErpApi\Entities\LogisticasObjetos\Schema\Get\GetResponse;
 use AleBatistella\BlingErpApi\Entities\LogisticasObjetos\Schema\Update\UpdateResponse;
 use AleBatistella\BlingErpApi\Entities\Shared\BaseEntity;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\RequestOptions;

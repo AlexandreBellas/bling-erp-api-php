@@ -5,7 +5,10 @@ namespace AleBatistella\BlingErpApi\Entities\ContasPagar\Schema\Shared;
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 use AleBatistella\BlingErpApi\Exceptions\BlingParseResponsePayloadException;
 
-readonly class ContasPagarOcorrenciaSemanalDTO extends BaseResponseObject
+/**
+ * Variante de dados da resposta.
+ */
+readonly final class ContasPagarOcorrenciaSemanalDTO extends BaseResponseObject
 {
     /**
      * Constrói o objeto.
@@ -23,11 +26,13 @@ readonly class ContasPagarOcorrenciaSemanalDTO extends BaseResponseObject
     ) {}
 
     /**
+     * @param array $attributes
      * @inheritDoc
      */
     public static function from(array $attributes): static
     {
-        if (!array_key_exists('tipo', $attributes) || $attributes['tipo'] !== 9) {
+        $tipo = "tipo";
+        if (!array_key_exists($tipo, $attributes) || $attributes[$tipo] !== 9) {
             throw new BlingParseResponsePayloadException($attributes);
         }
 

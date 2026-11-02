@@ -4,6 +4,9 @@ namespace AleBatistella\BlingErpApi\Entities\Contatos\Schema\Find;
 
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class FindResponseDataTiposContato extends BaseResponseObject
 {
     /**

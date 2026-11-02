@@ -4,6 +4,9 @@ namespace AleBatistella\BlingErpApi\Entities\Nfses\Schema\GetConfigurations;
 
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class GetConfigurationsResponseISSTributos extends BaseResponseObject
 {
     /**
@@ -14,7 +17,7 @@ readonly final class GetConfigurationsResponseISSTributos extends BaseResponseOb
      * @param string $CNAE
      * @param string $descricaoServico
      * @param ?bool $padrao
-     * @param GetConfigurationsResponseISSTributosCodigo $codigo
+     * @param \AleBatistella\BlingErpApi\Entities\Nfses\Schema\GetConfigurations\GetConfigurationsResponseISSTributosCodigo $codigo
      */
     public function __construct(
         public ?int $id,

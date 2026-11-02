@@ -5,6 +5,9 @@ namespace AleBatistella\BlingErpApi\Entities\LogisticasRemessas\Schema\GetByLogi
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 use AleBatistella\BlingErpApi\Entities\LogisticasRemessas\Enum\Situacao;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class GetByLogisticResponseData extends BaseResponseObject
 {
     /**
@@ -12,10 +15,10 @@ readonly final class GetByLogisticResponseData extends BaseResponseObject
      *
      * @param int $id
      * @param string $numeroPlp
-     * @param Situacao $situacao
+     * @param \AleBatistella\BlingErpApi\Entities\LogisticasRemessas\Enum\Situacao $situacao
      * @param string $descricao
      * @param string $dataCriacao
-     * @param int[] $objetos
+     * @param array $objetos
      */
     public function __construct(
         public int $id,

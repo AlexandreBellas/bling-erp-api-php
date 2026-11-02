@@ -3,7 +3,6 @@
 namespace Tests\Unit\AleBatistella\BlingErpApi\Entities\ContasReceber;
 
 use AleBatistella\BlingErpApi\Entities\ContasReceber\ContasReceber;
-use AleBatistella\BlingErpApi\Entities\ContasReceber\Schema\CancelBankSlips\CancelBankSlipsResponse;
 use AleBatistella\BlingErpApi\Entities\ContasReceber\Schema\Create\CreateResponse;
 use AleBatistella\BlingErpApi\Entities\ContasReceber\Schema\Find\FindResponse;
 use AleBatistella\BlingErpApi\Entities\ContasReceber\Schema\Get\GetResponse;
@@ -25,8 +24,8 @@ class ContasReceberTest extends TestCase
     /**
      * Obtém a instância da entidade.
      *
-     * @param IBlingRepository $repository
      *
+     * @param \AleBatistella\BlingErpApi\Repositories\IBlingRepository $repository
      * @return ContasReceber
      */
     private function getInstance(IBlingRepository $repository): ContasReceber
@@ -41,11 +40,11 @@ class ContasReceberTest extends TestCase
      */
     public function testShouldDeleteSuccessfully(): void
     {
-        $deleteResponse = json_decode(file_get_contents(__DIR__ . '/delete/response.json'), true);
+        $deleteResponse = json_decode(file_get_contents(__DIR__ . "/delete/response.json"), true);
         $idContaReceber = fake()->randomNumber();
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('destroy')
+            ->method("destroy")
             ->with(
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
@@ -54,7 +53,7 @@ class ContasReceberTest extends TestCase
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($deleteResponse)));
 
-        /** @var IBlingRepository $repository */
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $response = $this->getInstance($repository)->delete($idContaReceber);
 
         $this->assertNull($response);
@@ -67,10 +66,10 @@ class ContasReceberTest extends TestCase
      */
     public function testShouldGetSuccessfully(): void
     {
-        $getResponse = json_decode(file_get_contents(__DIR__ . '/get/response.json'), true);
+        $getResponse = json_decode(file_get_contents(__DIR__ . "/get/response.json"), true);
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('index')
+            ->method("index")
             ->with(
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
@@ -80,7 +79,7 @@ class ContasReceberTest extends TestCase
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($getResponse)));
 
-        /** @var IBlingRepository $repository */
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $response = $this->getInstance($repository)->get();
 
         $this->assertInstanceOf(GetResponse::class, $response);
@@ -95,10 +94,10 @@ class ContasReceberTest extends TestCase
     public function testShouldFindSuccessfully(): void
     {
         $idContaReceber = fake()->randomNumber();
-        $findResponse = json_decode(file_get_contents(__DIR__ . '/find/response.json'), true);
+        $findResponse = json_decode(file_get_contents(__DIR__ . "/find/response.json"), true);
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('show')
+            ->method("show")
             ->with(
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
@@ -107,7 +106,7 @@ class ContasReceberTest extends TestCase
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($findResponse)));
 
-        /** @var IBlingRepository $repository */
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $response = $this->getInstance($repository)->find($idContaReceber);
 
         $this->assertInstanceOf(FindResponse::class, $response);
@@ -122,20 +121,23 @@ class ContasReceberTest extends TestCase
     public function testShouldGetBankSlipsSuccessfully(): void
     {
         $idContaReceber = fake()->randomNumber();
-        $getBankSlipsResponse = json_decode(file_get_contents(__DIR__ . '/get-bank-slips/response.json'), true);
+        $getBankSlipsResponse = json_decode(file_get_contents(__DIR__ . "/get-bank-slips/response.json"), true);
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('index')
+            ->method("index")
             ->with(
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
                     $requestOptions->endpoint === "contas/receber/boletos"
+                    && $requestOptions->queryParams->content === ["idOrigem" => $idContaReceber]
                 )
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($getBankSlipsResponse)));
 
-        /** @var IBlingRepository $repository */
-        $response = $this->getInstance($repository)->getBankSlips($idContaReceber);
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
+        $response = $this->getInstance($repository)->getBankSlips(
+            params: ["idOrigem" => $idContaReceber]
+        );
 
         $this->assertInstanceOf(GetBankSlipsResponse::class, $response);
         $this->assertEquals($getBankSlipsResponse, $response->toArray());
@@ -148,11 +150,11 @@ class ContasReceberTest extends TestCase
      */
     public function testShouldCreateSuccessfully(): void
     {
-        $createBody = json_decode(file_get_contents(__DIR__ . '/create/request.json'), true);
-        $createResponse = json_decode(file_get_contents(__DIR__ . '/create/response.json'), true);
+        $createBody = json_decode(file_get_contents(__DIR__ . "/create/request.json"), true);
+        $createResponse = json_decode(file_get_contents(__DIR__ . "/create/response.json"), true);
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('store')
+            ->method("store")
             ->with(
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
@@ -161,7 +163,7 @@ class ContasReceberTest extends TestCase
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($createResponse)));
 
-        /** @var IBlingRepository $repository */
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $response = $this->getInstance($repository)->create($createBody);
 
         $this->assertInstanceOf(CreateResponse::class, $response);
@@ -176,11 +178,11 @@ class ContasReceberTest extends TestCase
     public function testShouldDownloadSuccessfully(): void
     {
         $idContaReceber = fake()->randomNumber();
-        $downloadBody = json_decode(file_get_contents(__DIR__ . '/download/request.json'), true);
-        $downloadResponse = json_decode(file_get_contents(__DIR__ . '/download/response.json'), true);
+        $downloadBody = json_decode(file_get_contents(__DIR__ . "/download/request.json"), true);
+        $downloadResponse = json_decode(file_get_contents(__DIR__ . "/download/response.json"), true);
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('store')
+            ->method("store")
             ->with(
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
@@ -189,7 +191,7 @@ class ContasReceberTest extends TestCase
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($downloadResponse)));
 
-        /** @var IBlingRepository $repository */
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $response = $this->getInstance($repository)->download($idContaReceber, $downloadBody);
 
         $this->assertInstanceOf(DownloadResponse::class, $response);
@@ -203,11 +205,11 @@ class ContasReceberTest extends TestCase
      */
     public function testShouldCancelBankSlipsSuccessfully(): void
     {
-        $cancelBankSlipsBody = json_decode(file_get_contents(__DIR__ . '/cancel-bank-slips/request.json'), true);
-        $cancelBankSlipsResponse = json_decode(file_get_contents(__DIR__ . '/cancel-bank-slips/response.json'), true);
+        $cancelBankSlipsBody = json_decode(file_get_contents(__DIR__ . "/cancel-bank-slips/request.json"), true);
+        $cancelBankSlipsResponse = json_decode(file_get_contents(__DIR__ . "/cancel-bank-slips/response.json"), true);
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('store')
+            ->method("store")
             ->with(
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
@@ -216,7 +218,7 @@ class ContasReceberTest extends TestCase
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($cancelBankSlipsResponse)));
 
-        /** @var IBlingRepository $repository */
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $response = $this->getInstance($repository)->cancelBankSlips($cancelBankSlipsBody);
 
         $this->assertNull($response);
@@ -230,11 +232,11 @@ class ContasReceberTest extends TestCase
     public function testShouldUpdateSuccessfully(): void
     {
         $idContaReceber = fake()->randomNumber();
-        $updateBody = json_decode(file_get_contents(__DIR__ . '/update/request.json'), true);
-        $updateResponse = json_decode(file_get_contents(__DIR__ . '/update/response.json'), true);
+        $updateBody = json_decode(file_get_contents(__DIR__ . "/update/request.json"), true);
+        $updateResponse = json_decode(file_get_contents(__DIR__ . "/update/response.json"), true);
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('replace')
+            ->method("replace")
             ->with(
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
@@ -243,7 +245,7 @@ class ContasReceberTest extends TestCase
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($updateResponse)));
 
-        /** @var IBlingRepository $repository */
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $response = $this->getInstance($repository)->update($idContaReceber, $updateBody);
 
         $this->assertInstanceOf(UpdateResponse::class, $response);

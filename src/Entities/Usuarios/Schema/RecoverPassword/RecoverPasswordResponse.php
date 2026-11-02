@@ -13,7 +13,7 @@ readonly final class RecoverPasswordResponse extends BaseResponseRootObject
     /**
      * Constrói o objeto.
      *
-     * @param RecoverPasswordResponseData[] $data
+     * @param array $data
      */
     public function __construct(
         public array $data
@@ -26,11 +26,12 @@ readonly final class RecoverPasswordResponse extends BaseResponseRootObject
     protected static function fromRules(): array
     {
         return [
-            'data' => RecoverPasswordResponseData::class
+            "data" => RecoverPasswordResponseData::class
         ];
     }
 
     /**
+     * @param \AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions $response
      * @inheritDoc
      */
     public static function fromResponse(ResponseOptions $response): static

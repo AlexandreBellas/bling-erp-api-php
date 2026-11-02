@@ -7,19 +7,19 @@ namespace AleBatistella\BlingErpApi\Contracts;
  */
 interface IResponseObject
 {
-  /**
-   * Constrói o objeto a partir da resposta em formato _array_.
-   *
-   * @param array $attributes
-   *
-   * @return self
-   */
-  public static function from(array $attributes): static;
+    /**
+     * Constrói o objeto a partir da resposta em formato _array_.
+     *
+     *
+     * @param array $attributes
+     * @return static
+     */
+    public static function from(array $attributes): static;
 
-  /**
-   * Converte o objeto em _array_.
-   *
-   * @return array
-   */
-  public function toArray(): array;
+    /**
+     * Converte o objeto em _array_.
+     *
+     * @return array
+     */
+    public function toArray(): array;
 }

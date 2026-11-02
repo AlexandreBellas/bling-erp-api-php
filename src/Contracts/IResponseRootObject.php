@@ -9,8 +9,9 @@ use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions;
  */
 interface IResponseRootObject extends IResponseObject
 {
-  /**
-   * Constrói a partir de uma resposta de requisição.
-   */
-  public static function fromResponse(ResponseOptions $response): static|null;
+    /**
+     * Constrói a partir de uma resposta de requisição.
+     * @param \AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\ResponseOptions $response
+     */
+    public static function fromResponse(ResponseOptions $response): ?static;
 }

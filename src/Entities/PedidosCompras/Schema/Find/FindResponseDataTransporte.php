@@ -5,6 +5,9 @@ namespace AleBatistella\BlingErpApi\Entities\PedidosCompras\Schema\Find;
 use AleBatistella\BlingErpApi\Entities\Shared\BaseResponseObject;
 use AleBatistella\BlingErpApi\Entities\PedidosCompras\Enum\FretePorConta;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class FindResponseDataTransporte extends BaseResponseObject
 {
     /**
@@ -12,7 +15,7 @@ readonly final class FindResponseDataTransporte extends BaseResponseObject
      *
      * @param ?float $frete
      * @param ?string $transportador
-     * @param ?FretePorConta $fretePorConta
+     * @param ?\AleBatistella\BlingErpApi\Entities\PedidosCompras\Enum\FretePorConta $fretePorConta
      * @param ?float $pesoBruto
      * @param ?int $volumes
      */

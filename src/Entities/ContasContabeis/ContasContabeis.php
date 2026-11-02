@@ -20,8 +20,8 @@ class ContasContabeis extends BaseEntity
     /**
      * Obtém contas contábeis.
      *
-     * @param GetParams|array|null $params Parâmetros para a busca
      * 
+     * @param \AleBatistella\BlingErpApi\Entities\ContasContabeis\Schema\Get\GetParams|array|null $params Parâmetros para a busca
      * @return GetResponse
      * @throws BlingApiException|BlingInternalException
      *

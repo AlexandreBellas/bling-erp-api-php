@@ -7,11 +7,11 @@ namespace AleBatistella\BlingErpApi\Entities\Produtos\Enum;
  */
 enum TipoListagem: string
 {
-    case TODOS = 'T';
-    case PRODUTOS = 'P';
-    case SERVICOS = 'S';
-    case COMPOSICOES = 'E';
-    case PRODUTOS_SIMPLES = 'PS';
-    case COM_VARIACOES = 'C';
-    case VARIACOES = 'V';
+    case TODOS = "T";
+    case PRODUTOS = "P";
+    case SERVICOS = "S";
+    case COMPOSICOES = "E";
+    case PRODUTOS_SIMPLES = "PS";
+    case COM_VARIACOES = "C";
+    case VARIACOES = "V";
 }

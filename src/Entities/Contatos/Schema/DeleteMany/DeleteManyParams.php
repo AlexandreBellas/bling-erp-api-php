@@ -12,7 +12,7 @@ readonly final class DeleteManyParams extends QueryParams
     /**
      * Constrói o objeto.
      *
-     * @param int[] $idsContatos
+     * @param array $idsContatos
      */
     public function __construct(
         public array $idsContatos,

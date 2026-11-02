@@ -2,31 +2,34 @@
 
 namespace AleBatistella\BlingErpApi\Entities\ContasReceber\Schema\GetBankSlips;
 
-use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\QueryParams;
 use AleBatistella\BlingErpApi\Entities\ContasReceber\Enum\BankSlipSituacao;
+use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\QueryParams;
 
 /**
- * Parâmetros da busca de boletos vinculados a um idOrigem, o qual corresponde ao ID de uma venda ou nota fiscal.
+ * Parâmetros da busca de boletos vinculados a uma venda ou nota fiscal.
  */
 readonly final class GetBankSlipsParams extends QueryParams
 {
-    /** @property int[]|null $situations */
-    public ?array $situations;
+    public ?array $situacoes;
 
     /**
      * Constrói o objeto.
      *
-     * @param BankSlipSituacao[]|int[]|null $situations
+     * @param int $idOrigem
+     * @param ?array $situacoes
      */
     public function __construct(
-        ?array $situations = null,
+        public int $idOrigem,
+        ?array $situacoes = null,
     ) {
-        $this->situations = array_map(
-            fn(BankSlipSituacao|int|null $situacao) => $situacao instanceof BankSlipSituacao
-                ? $situacao->value
-                : $situacao,
-            $situations
-        );
+        $this->situacoes = is_null($situacoes)
+            ? null
+            : array_map(
+                fn (BankSlipSituacao|int $situacao): int => $situacao instanceof BankSlipSituacao
+                    ? $situacao->value
+                    : $situacao,
+                $situacoes
+            );
 
         parent::__construct(objectToArray($this));
     }

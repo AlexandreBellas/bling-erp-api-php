@@ -6,7 +6,6 @@ use AleBatistella\BlingErpApi\Entities\Estoques\Estoques;
 use AleBatistella\BlingErpApi\Entities\Estoques\Schema\Create\CreateResponse;
 use AleBatistella\BlingErpApi\Entities\Estoques\Schema\FindBalance\FindBalanceResponse;
 use AleBatistella\BlingErpApi\Entities\Estoques\Schema\GetBalances\GetBalancesResponse;
-use AleBatistella\BlingErpApi\Entities\Estoques\Schema\Update\UpdateResponse;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\RequestOptions;
 use AleBatistella\BlingErpApi\Entities\Shared\TestResponseTrait;
 use AleBatistella\BlingErpApi\Repositories\IBlingRepository;
@@ -22,8 +21,8 @@ class EstoquesTest extends TestCase
     /**
      * Obtém a instância da entidade.
      *
-     * @param IBlingRepository $repository
      *
+     * @param \AleBatistella\BlingErpApi\Repositories\IBlingRepository $repository
      * @return Estoques
      */
     private function getInstance(IBlingRepository $repository): Estoques
@@ -40,23 +39,23 @@ class EstoquesTest extends TestCase
     {
         $idDeposito = fake()->randomNumber();
         $idsProdutos = [fake()->randomNumber(), fake()->randomNumber()];
-        $findBalanceResponse = json_decode(file_get_contents(__DIR__ . '/find-balance/response.json'), true);
+        $findBalanceResponse = json_decode(file_get_contents(__DIR__ . "/find-balance/response.json"), true);
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('show')
+            ->method("index")
             ->with(
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
                     $requestOptions->endpoint === "estoques/saldos/$idDeposito"
-                    && $requestOptions->queryParams->content['idsProdutos'] === $idsProdutos
+                    && $requestOptions->queryParams->content === ["idsProdutos" => $idsProdutos]
                 )
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($findBalanceResponse)));
 
-        /** @var IBlingRepository $repository */
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $response = $this->getInstance($repository)->findBalance(
             idDeposito: $idDeposito,
-            idsProdutos: $idsProdutos,
+            params: ["idsProdutos" => $idsProdutos],
         );
 
         $this->assertInstanceOf(FindBalanceResponse::class, $response);
@@ -71,22 +70,22 @@ class EstoquesTest extends TestCase
     public function testShouldGetBalancesSuccessfully(): void
     {
         $idsProdutos = [fake()->randomNumber(), fake()->randomNumber()];
-        $getBalancesResponse = json_decode(file_get_contents(__DIR__ . '/get-balances/response.json'), true);
+        $getBalancesResponse = json_decode(file_get_contents(__DIR__ . "/get-balances/response.json"), true);
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('index')
+            ->method("index")
             ->with(
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
                     $requestOptions->endpoint === "estoques/saldos"
-                    && $requestOptions->queryParams->content['idsProdutos'] === $idsProdutos
+                    && $requestOptions->queryParams->content === ["idsProdutos" => $idsProdutos]
                 )
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($getBalancesResponse)));
 
-        /** @var IBlingRepository $repository */
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $response = $this->getInstance($repository)->getBalances(
-            idsProdutos: $idsProdutos
+            params: ["idsProdutos" => $idsProdutos]
         );
 
         $this->assertInstanceOf(GetBalancesResponse::class, $response);
@@ -100,11 +99,11 @@ class EstoquesTest extends TestCase
      */
     public function testShouldCreateSuccessfully(): void
     {
-        $createBody = json_decode(file_get_contents(__DIR__ . '/create/request.json'), true);
-        $createResponse = json_decode(file_get_contents(__DIR__ . '/create/response.json'), true);
+        $createBody = json_decode(file_get_contents(__DIR__ . "/create/request.json"), true);
+        $createResponse = json_decode(file_get_contents(__DIR__ . "/create/response.json"), true);
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('store')
+            ->method("store")
             ->with(
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
@@ -113,7 +112,7 @@ class EstoquesTest extends TestCase
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($createResponse)));
 
-        /** @var IBlingRepository $repository */
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $response = $this->getInstance($repository)->create($createBody);
 
         $this->assertInstanceOf(CreateResponse::class, $response);
@@ -128,11 +127,11 @@ class EstoquesTest extends TestCase
     public function testShouldUpdateSuccessfully(): void
     {
         $idEstoque = fake()->randomNumber();
-        $updateBody = json_decode(file_get_contents(__DIR__ . '/update/request.json'), true);
-        $updateResponse = json_decode(file_get_contents(__DIR__ . '/update/response.json'), true);
+        $updateBody = json_decode(file_get_contents(__DIR__ . "/update/request.json"), true);
+        $updateResponse = json_decode(file_get_contents(__DIR__ . "/update/response.json"), true);
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('replace')
+            ->method("replace")
             ->with(
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
@@ -141,7 +140,7 @@ class EstoquesTest extends TestCase
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($updateResponse)));
 
-        /** @var IBlingRepository $repository */
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $response = $this->getInstance($repository)->update($idEstoque, $updateBody);
 
         $this->assertNull($response);

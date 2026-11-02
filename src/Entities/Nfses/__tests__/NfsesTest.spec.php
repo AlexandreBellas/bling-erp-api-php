@@ -8,7 +8,6 @@ use AleBatistella\BlingErpApi\Entities\Nfses\Schema\Find\FindResponse;
 use AleBatistella\BlingErpApi\Entities\Nfses\Schema\Get\GetResponse;
 use AleBatistella\BlingErpApi\Entities\Nfses\Schema\GetConfigurations\GetConfigurationsResponse;
 use AleBatistella\BlingErpApi\Entities\Nfses\Schema\Send\SendResponse;
-use AleBatistella\BlingErpApi\Entities\Nfses\Schema\Update\UpdateResponse;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\RequestOptions;
 use AleBatistella\BlingErpApi\Entities\Shared\TestResponseTrait;
 use AleBatistella\BlingErpApi\Repositories\IBlingRepository;
@@ -24,8 +23,8 @@ class NfsesTest extends TestCase
     /**
      * Obtém a instância da entidade.
      *
-     * @param IBlingRepository $repository
      *
+     * @param \AleBatistella\BlingErpApi\Repositories\IBlingRepository $repository
      * @return Nfses
      */
     private function getInstance(IBlingRepository $repository): Nfses
@@ -41,10 +40,10 @@ class NfsesTest extends TestCase
     public function testShouldDeleteSuccessfully(): void
     {
         $idNotaServico = fake()->randomNumber();
-        $deleteResponse = json_decode(file_get_contents(__DIR__ . '/delete/response.json'), true);
+        $deleteResponse = json_decode(file_get_contents(__DIR__ . "/delete/response.json"), true);
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('destroy')
+            ->method("destroy")
             ->with(
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
@@ -53,7 +52,7 @@ class NfsesTest extends TestCase
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($deleteResponse)));
 
-        /** @var IBlingRepository $repository */
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $response = $this->getInstance($repository)->delete($idNotaServico);
 
         $this->assertNull($response);
@@ -66,10 +65,10 @@ class NfsesTest extends TestCase
      */
     public function testShouldGetSuccessfully(): void
     {
-        $getResponse = json_decode(file_get_contents(__DIR__ . '/get/response.json'), true);
+        $getResponse = json_decode(file_get_contents(__DIR__ . "/get/response.json"), true);
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('index')
+            ->method("index")
             ->with(
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
@@ -79,7 +78,7 @@ class NfsesTest extends TestCase
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($getResponse)));
 
-        /** @var IBlingRepository $repository */
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $response = $this->getInstance($repository)->get();
 
         $this->assertInstanceOf(GetResponse::class, $response);
@@ -94,10 +93,10 @@ class NfsesTest extends TestCase
     public function testShouldFindSuccessfully(): void
     {
         $idNotaServico = fake()->randomNumber();
-        $findResponse = json_decode(file_get_contents(__DIR__ . '/find/response.json'), true);
+        $findResponse = json_decode(file_get_contents(__DIR__ . "/find/response.json"), true);
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('show')
+            ->method("show")
             ->with(
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
@@ -106,7 +105,7 @@ class NfsesTest extends TestCase
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($findResponse)));
 
-        /** @var IBlingRepository $repository */
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $response = $this->getInstance($repository)->find($idNotaServico);
 
         $this->assertInstanceOf(FindResponse::class, $response);
@@ -121,12 +120,12 @@ class NfsesTest extends TestCase
     public function testShouldGetConfigurationsSuccessfully(): void
     {
         $getConfigurationsResponse = json_decode(
-            file_get_contents(__DIR__ . '/get-configurations/response.json'),
+            file_get_contents(__DIR__ . "/get-configurations/response.json"),
             true
         );
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('index')
+            ->method("index")
             ->with(
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
@@ -135,7 +134,7 @@ class NfsesTest extends TestCase
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($getConfigurationsResponse)));
 
-        /** @var IBlingRepository $repository */
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $response = $this->getInstance($repository)->getConfigurations();
 
         $this->assertInstanceOf(GetConfigurationsResponse::class, $response);
@@ -149,11 +148,11 @@ class NfsesTest extends TestCase
      */
     public function testShouldCreateSuccessfully(): void
     {
-        $createBody = json_decode(file_get_contents(__DIR__ . '/create/request.json'), true);
-        $createResponse = json_decode(file_get_contents(__DIR__ . '/create/response.json'), true);
+        $createBody = json_decode(file_get_contents(__DIR__ . "/create/request.json"), true);
+        $createResponse = json_decode(file_get_contents(__DIR__ . "/create/response.json"), true);
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('store')
+            ->method("store")
             ->with(
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
@@ -162,7 +161,7 @@ class NfsesTest extends TestCase
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($createResponse)));
 
-        /** @var IBlingRepository $repository */
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $response = $this->getInstance($repository)->create($createBody);
 
         $this->assertInstanceOf(CreateResponse::class, $response);
@@ -177,10 +176,10 @@ class NfsesTest extends TestCase
     public function testShouldSendSuccessfully(): void
     {
         $idNotaServico = fake()->randomNumber();
-        $sendResponse = json_decode(file_get_contents(__DIR__ . '/send/response.json'), true);
+        $sendResponse = json_decode(file_get_contents(__DIR__ . "/send/response.json"), true);
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('store')
+            ->method("store")
             ->with(
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
@@ -189,7 +188,7 @@ class NfsesTest extends TestCase
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($sendResponse)));
 
-        /** @var IBlingRepository $repository */
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $response = $this->getInstance($repository)->send($idNotaServico);
 
         $this->assertInstanceOf(SendResponse::class, $response);
@@ -204,11 +203,11 @@ class NfsesTest extends TestCase
     public function testShouldCancelSuccessfully(): void
     {
         $idNotaServico = fake()->randomNumber();
-        $cancelRequest = json_decode(file_get_contents(__DIR__ . '/cancel/request.json'), true);
-        $cancelResponse = json_decode(file_get_contents(__DIR__ . '/cancel/response.json'), true);
+        $cancelRequest = json_decode(file_get_contents(__DIR__ . "/cancel/request.json"), true);
+        $cancelResponse = json_decode(file_get_contents(__DIR__ . "/cancel/response.json"), true);
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('store')
+            ->method("store")
             ->with(
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
@@ -217,7 +216,7 @@ class NfsesTest extends TestCase
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($cancelResponse)));
 
-        /** @var IBlingRepository $repository */
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $response = $this->getInstance($repository)->cancel(
             $idNotaServico,
             $cancelRequest
@@ -234,16 +233,16 @@ class NfsesTest extends TestCase
     public function testShouldUpdateConfigurationsSuccessfully(): void
     {
         $updateConfigurationsBody = json_decode(
-            file_get_contents(__DIR__ . '/update-configurations/request.json'),
+            file_get_contents(__DIR__ . "/update-configurations/request.json"),
             true
         );
         $updateConfigurationsResponse = json_decode(
-            file_get_contents(__DIR__ . '/update-configurations/response.json'),
+            file_get_contents(__DIR__ . "/update-configurations/response.json"),
             true
         );
         $repository = $this->getMockBuilder(IBlingRepository::class)->getMock();
         $repository->expects($this->once())
-            ->method('replace')
+            ->method("replace")
             ->with(
                 $this->callback(
                     fn(RequestOptions $requestOptions) =>
@@ -252,7 +251,7 @@ class NfsesTest extends TestCase
             )
             ->willReturn($this->buildResponse(status: 200, body: $this->buildBody($updateConfigurationsResponse)));
 
-        /** @var IBlingRepository $repository */
+        /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $response = $this->getInstance($repository)->updateConfigurations(
             body: $updateConfigurationsBody
         );

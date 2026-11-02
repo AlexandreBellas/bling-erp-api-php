@@ -44,8 +44,8 @@ class CategoriasLojas extends BaseEntity
     /**
      * Obtém categorias de lojas virtuais vinculadas a de produtos.
      *
-     * @param GetParams|array|null $params Parâmetros para a busca
      * 
+     * @param \AleBatistella\BlingErpApi\Entities\CategoriasLojas\Schema\Get\GetParams|array|null $params Parâmetros para a busca
      * @return GetResponse
      * @throws BlingApiException|BlingInternalException
      *

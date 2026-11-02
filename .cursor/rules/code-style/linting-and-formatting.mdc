@@ -1,6 +1,6 @@
 ---
-description: Formatting and the PHPUnit workflow for this package
-globs: src/**/*.php,.vscode/settings.json,.github/workflows/on-commit-test.yaml,phpunit.xml
+description: PHPStan, PHP-CS-Fixer, and the on-commit workflow for this package
+globs: src/**/*.php,.php-cs-fixer.php,phpstan.neon,.github/workflows/on-commit.yaml,phpunit.xml,composer.json
 alwaysApply: false
 ---
 
@@ -14,6 +14,21 @@ alwaysApply: false
 - Intelephense formats PHP on save (`.vscode/settings.json`, `editor.defaultFormatter`: `bmewburn.vscode-intelephense-client`).
 - `editor.codeActionsOnSave` keeps `source.organizeImports` off. Write `use` lines by hand, one class per line, and import only names the file uses.
 
+## Static analysis and formatting
+
+Dev dependencies: `alexandrebellas/code-conventions` (`dev-main`, VCS repository `code-conventions`) and `phpstan/extension-installer`. The installer loads the `api-library` PHPStan preset. `phpstan.neon` sets `phpVersion: 80200`, path `src`, and the `apiLibrary` parameters for this package. It does not include a baseline, `ignoreErrors`, or per-file exclusions.
+
+PHPStan level is **3**. That is the level this package analyses. Higher levels require iterable value types on `array` and reject `assertNull` on a method whose return type is already `null`, which conflicts with the preset's `@param` rule and the test standard.
+
+`.php-cs-fixer.php` returns the shared `php/php-cs-fixer/api-library.php` config from `code-conventions`.
+
+Composer scripts:
+
+- `composer lint` — `phpstan analyse --no-progress --memory-limit=1G`
+- `composer format` — `php-cs-fixer fix`
+- `composer format:check` — `php-cs-fixer fix --dry-run --diff`
+- `composer test` — `phpunit -c phpunit.xml`
+
 ## Tests
 
 `phpunit.xml` bootstraps `vendor/autoload.php`, enables colors, and loads every `*.spec.php` file under `src/`.
@@ -21,17 +36,19 @@ alwaysApply: false
 Run:
 
 ```bash
-vendor/phpunit/phpunit/phpunit -c phpunit.xml
+composer test
 ```
 
 ## CI
 
-`.github/workflows/on-commit-test.yaml` runs on every push:
+`.github/workflows/on-commit.yaml` runs on every push and every pull request:
 
-1. `shivammathur/setup-php` with PHP `8.2`
-2. `composer update`
-3. `composer dump-autoload -o`
-4. `vendor/phpunit/phpunit/phpunit -c phpunit.xml`
+1. `actions/checkout`
+2. `shivammathur/setup-php` with PHP `8.2` and Composer cache
+3. `composer install --no-interaction --prefer-dist`
+4. `composer lint`
+5. `composer format:check`
+6. `composer test`
 
 ## Imports
 

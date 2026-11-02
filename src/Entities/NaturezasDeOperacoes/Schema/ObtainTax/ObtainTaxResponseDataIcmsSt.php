@@ -7,13 +7,16 @@ use AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id;
 use AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Enum\Tributacao;
 use AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Enum\ModalidadeBaseCalculoICMSST;
 
+/**
+ * Dados da resposta.
+ */
 readonly final class ObtainTaxResponseDataIcmsSt extends BaseResponseObject
 {
     /**
      * Constrói o objeto.
      *
-     * @param ?Id $regraOperacao
-     * @param ?Tributacao $tributacao
+     * @param ?\AleBatistella\BlingErpApi\Entities\Shared\DTO\Schema\Id $regraOperacao
+     * @param ?\AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Enum\Tributacao $tributacao
      * @param ?string $cst
      * @param ?float $aliquota
      * @param ?float $base
@@ -22,7 +25,7 @@ readonly final class ObtainTaxResponseDataIcmsSt extends BaseResponseObject
      * @param ?string $observacoes
      * @param ?string $informacoesAdicionaisFisco
      * @param ?float $percentualAdicionado
-     * @param ?ModalidadeBaseCalculoICMSST $modalidadeBaseCalculo
+     * @param ?\AleBatistella\BlingErpApi\Entities\NaturezasDeOperacoes\Enum\ModalidadeBaseCalculoICMSST $modalidadeBaseCalculo
      * @param ?float $valorPauta
      */
     public function __construct(

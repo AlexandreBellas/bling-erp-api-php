@@ -44,8 +44,8 @@ class FormasDePagamentos extends BaseEntity
     /**
      * Obtém formas de pagamentos.
      *
-     * @param GetParams|array|null $params Parâmetros para a busca
      * 
+     * @param \AleBatistella\BlingErpApi\Entities\FormasDePagamentos\Schema\Get\GetParams|array|null $params Parâmetros para a busca
      * @return GetResponse
      * @throws BlingApiException|BlingInternalException
      *
