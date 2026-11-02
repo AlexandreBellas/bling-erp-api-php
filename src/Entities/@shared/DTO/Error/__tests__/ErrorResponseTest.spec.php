@@ -182,12 +182,14 @@ class ErrorResponseTest extends TestCase
         $method = new \ReflectionMethod(BlingRepository::class, "buildResponseBody");
         $html = "<html>502 Bad Gateway</html>";
 
-        $raw = $method->invoke($repository, $html);
-        $empty = $method->invoke($repository, "");
-        $json = $method->invoke($repository, "{\"data\":[]}");
+        $raw = $method->invoke($repository, $html, 502);
+        $successHtml = $method->invoke($repository, $html, 200);
+        $empty = $method->invoke($repository, "", 200);
+        $json = $method->invoke($repository, "{\"data\":[]}", 200);
 
         $this->assertInstanceOf(Body::class, $raw);
         $this->assertSame($html, $raw->content);
+        $this->assertNull($successHtml);
         $this->assertNull($empty);
         $this->assertInstanceOf(Body::class, $json);
         $this->assertSame(["data" => []], $json->content);

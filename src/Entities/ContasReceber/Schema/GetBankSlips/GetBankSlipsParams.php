@@ -10,6 +10,7 @@ use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\QueryParams;
  */
 readonly final class GetBankSlipsParams extends QueryParams
 {
+    public int $idOrigem;
     public ?array $situacoes;
 
     /**
@@ -19,9 +20,10 @@ readonly final class GetBankSlipsParams extends QueryParams
      * @param ?array $situacoes
      */
     public function __construct(
-        public int $idOrigem,
+        int $idOrigem,
         ?array $situacoes = null,
     ) {
+        $this->idOrigem = $idOrigem;
         $this->situacoes = is_null($situacoes)
             ? null
             : array_map(

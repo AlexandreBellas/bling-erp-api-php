@@ -43,7 +43,8 @@ class Usuarios extends BaseEntity
 
     /**
      * Redefine senha do usuário.
-     * 
+     *
+     * O corpo segue o cliente JS: `["hash" => $hash, "password" => $password]`.
      *
      * @param array $body
      * @return null

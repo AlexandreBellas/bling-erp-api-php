@@ -10,11 +10,11 @@ use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\QueryParams;
 readonly final class FindBalanceParams extends QueryParams
 {
     /**
-     * @param ?array $idsProdutos
+     * @param array $idsProdutos
      * @param ?array $codigos
      */
     public function __construct(
-        public ?array $idsProdutos = null,
+        public array $idsProdutos,
         public ?array $codigos = null,
     ) {
         parent::__construct(objectToArray($this));

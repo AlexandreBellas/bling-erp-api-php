@@ -12,6 +12,8 @@ use AleBatistella\BlingErpApi\Entities\Produtos\Schema\DeleteMany\DeleteManyResp
 use AleBatistella\BlingErpApi\Entities\Produtos\Schema\Update\UpdateResponse;
 use AleBatistella\BlingErpApi\Entities\Shared\DTO\Request\RequestOptions;
 use AleBatistella\BlingErpApi\Entities\Shared\TestResponseTrait;
+use AleBatistella\BlingErpApi\Exceptions\BlingInternalException;
+use AleBatistella\BlingErpApi\Repositories\BlingRepository;
 use AleBatistella\BlingErpApi\Repositories\IBlingRepository;
 use PHPUnit\Framework\TestCase;
 
@@ -203,6 +205,29 @@ class ProdutosTest extends TestCase
 
         $this->assertInstanceOf(FindResponse::class, $response);
         $this->assertEquals($findResponse, $response->toArray());
+    }
+
+    /**
+     * Testa que um 2xx com corpo que não é JSON lança `BlingInternalException`.
+     *
+     * @return void
+     */
+    public function testShouldThrowWhenFindBodyIsNotJsonSuccessfully(): void
+    {
+        $repository = new BlingRepository("https://example.test", "token");
+        $method = new \ReflectionMethod(BlingRepository::class, "buildResponseBody");
+        $body = $method->invoke($repository, "<html>not json</html>", 200);
+
+        $this->assertNull($body);
+        $this->expectException(BlingInternalException::class);
+        $this->expectExceptionMessage("Resposta inconsistente");
+
+        FindResponse::fromResponse($this->buildResponse(
+            endpoint: "produtos/1",
+            method: "GET",
+            status: 200,
+            body: $body
+        ));
     }
 
     /**

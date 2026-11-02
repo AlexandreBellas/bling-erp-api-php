@@ -50,7 +50,7 @@ class BlingRepository implements IBlingRepository
             method: "GET",
             status: $response->getStatusCode(),
             headers: new Headers($response->getHeaders()),
-            body: $this->buildResponseBody($response->getBody()->getContents()),
+            body: $this->buildResponseBody($response->getBody()->getContents(), $response->getStatusCode()),
         );
     }
 
@@ -83,7 +83,7 @@ class BlingRepository implements IBlingRepository
             method: "POST",
             status: $response->getStatusCode(),
             headers: new Headers($response->getHeaders()),
-            body: $this->buildResponseBody($response->getBody()->getContents()),
+            body: $this->buildResponseBody($response->getBody()->getContents(), $response->getStatusCode()),
         );
     }
 
@@ -107,7 +107,7 @@ class BlingRepository implements IBlingRepository
             method: "PATCH",
             status: $response->getStatusCode(),
             headers: new Headers($response->getHeaders()),
-            body: $this->buildResponseBody($response->getBody()->getContents()),
+            body: $this->buildResponseBody($response->getBody()->getContents(), $response->getStatusCode()),
         );
     }
 
@@ -131,7 +131,7 @@ class BlingRepository implements IBlingRepository
             method: "PUT",
             status: $response->getStatusCode(),
             headers: new Headers($response->getHeaders()),
-            body: $this->buildResponseBody($response->getBody()->getContents()),
+            body: $this->buildResponseBody($response->getBody()->getContents(), $response->getStatusCode()),
         );
     }
 
@@ -155,18 +155,22 @@ class BlingRepository implements IBlingRepository
             method: "DELETE",
             status: $response->getStatusCode(),
             headers: new Headers($response->getHeaders()),
-            body: $this->buildResponseBody($response->getBody()->getContents()),
+            body: $this->buildResponseBody($response->getBody()->getContents(), $response->getStatusCode()),
         );
     }
 
     /**
      * Monta o corpo da resposta.
      *
+     * Um corpo que não é JSON vira texto só em status de erro. Em 2xx ele
+     * permanece vazio para `fromResponse` lançar `BlingInternalException`.
+     *
      * @param mixed $contents
+     * @param int $status
      *
      * @return ?Body
      */
-    private function buildResponseBody(mixed $contents): ?Body
+    private function buildResponseBody(mixed $contents, int $status): ?Body
     {
         if (!is_string($contents) || $contents === "") {
             return null;
@@ -177,6 +181,10 @@ class BlingRepository implements IBlingRepository
             return is_array($decoded) ? new Body($decoded) : null;
         }
 
-        return new Body($contents);
+        if ($status >= 400) {
+            return new Body($contents);
+        }
+
+        return null;
     }
 }

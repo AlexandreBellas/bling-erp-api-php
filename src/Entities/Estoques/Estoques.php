@@ -27,7 +27,7 @@ class Estoques extends BaseEntity
      * Aceita `FindBalanceParams` ou o mapa de query que o objeto serializa, por exemplo `["idsProdutos" => [1, 2], "codigos" => ["SKU"]]`.
      *
      * @param int $idDeposito ID do depósito
-     * @param \AleBatistella\BlingErpApi\Entities\Estoques\Schema\FindBalance\FindBalanceParams|array|null $params
+     * @param \AleBatistella\BlingErpApi\Entities\Estoques\Schema\FindBalance\FindBalanceParams|array $params
      * @return FindBalanceResponse
      * @throws BlingApiException|BlingInternalException
      *
@@ -35,7 +35,7 @@ class Estoques extends BaseEntity
      */
     public function findBalance(
         int $idDeposito,
-        FindBalanceParams|array|null $params = null
+        FindBalanceParams|array $params
     ): FindBalanceResponse {
         $response = $this->repository->index(
             new RequestOptions(

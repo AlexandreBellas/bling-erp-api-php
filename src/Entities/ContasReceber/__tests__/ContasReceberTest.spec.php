@@ -151,6 +151,7 @@ class ContasReceberTest extends TestCase
      */
     public function testShouldGetBankSlipsWithParamsAndArraySuccessfully(): void
     {
+        $array = ["idOrigem" => 1, "situacoes" => [1, 2]];
         $params = new GetBankSlipsParams(idOrigem: 1, situacoes: [1, 2]);
         $getBankSlipsResponse = json_decode(file_get_contents(__DIR__ . "/get-bank-slips/response.json"), true);
         $captured = [];
@@ -165,12 +166,14 @@ class ContasReceberTest extends TestCase
 
         /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
         $entity = $this->getInstance($repository);
-        $entity->getBankSlips(params: $params->content);
+        $entity->getBankSlips(params: $array);
         $entity->getBankSlips(params: $params);
 
+        $expected = json_encode($array);
+        $this->assertSame("contas/receber/boletos", $captured[0]->endpoint);
         $this->assertSame($captured[0]->endpoint, $captured[1]->endpoint);
-        $this->assertEquals($params->content, $captured[0]->queryParams->content);
-        $this->assertEquals($captured[0]->queryParams->content, $captured[1]->queryParams->content);
+        $this->assertSame($expected, json_encode($captured[0]->queryParams->content));
+        $this->assertSame($expected, json_encode($captured[1]->queryParams->content));
     }
 
     /**

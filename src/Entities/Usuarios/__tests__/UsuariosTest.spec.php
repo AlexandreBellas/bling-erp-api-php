@@ -100,6 +100,7 @@ class UsuariosTest extends TestCase
      */
     public function testShouldChangePasswordSuccessfully(): void
     {
+        $hash = fake()->sha256();
         $password = fake()->word();
         $changePasswordResponse = json_decode(
             file_get_contents(__DIR__ . "/change-password/response.json"),
@@ -112,7 +113,7 @@ class UsuariosTest extends TestCase
                 $this->callback(
                     fn (RequestOptions $requestOptions) =>
                     $requestOptions->endpoint === "usuarios/redefinir-senha"
-                        && $requestOptions->body->content === ["password" => $password]
+                        && $requestOptions->body->content === ["hash" => $hash, "password" => $password]
                 )
             )
             ->willReturn($this->buildResponse(
@@ -121,7 +122,10 @@ class UsuariosTest extends TestCase
             ));
 
         /** @var \AleBatistella\BlingErpApi\Repositories\IBlingRepository&\PHPUnit\Framework\MockObject\MockObject $repository */
-        $response = $this->getInstance($repository)->changePassword(["password" => $password]);
+        $response = $this->getInstance($repository)->changePassword([
+            "hash" => $hash,
+            "password" => $password,
+        ]);
 
         $this->assertNull($response);
     }
